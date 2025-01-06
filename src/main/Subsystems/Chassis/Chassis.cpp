@@ -80,7 +80,7 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 	SwerveModuleConfig config{ feedForwardFrontLeft };
 	config.DriveMotorConfig.MotorId = 6;
 	config.TurnMotorConfig.MotorId = 5;
-	config.EncoderConfig.CanCoderId = 11;
+	config.EncoderConfig.CanCoderId = 9;
 	config.CanBus = "OverCANivore";
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
@@ -89,8 +89,8 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
-	config.EncoderConfig.Offset = -0.443359375_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.EncoderConfig.Offset = 0.243408203125_tr;
 #endif 
 	config.ModuleName = "Front Left";
 	config.DriveMotorConfig.Inverted = false;
@@ -110,8 +110,8 @@ SwerveModuleConfig Chassis::FrontRightConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
-	config.EncoderConfig.Offset = -0.13037109375_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.EncoderConfig.Offset = 0.052734375_tr;
 #endif 
 	config.DriveMotorConfig.Inverted = false;
 	config.ModuleName = "Front Right";
@@ -131,8 +131,8 @@ SwerveModuleConfig Chassis::BackLeftConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
-	config.EncoderConfig.Offset = 0.05419921875_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.EncoderConfig.Offset = 0.471923828125_tr;
 #endif  //Original 53
 	config.ModuleName = "Back Left";
 	config.DriveMotorConfig.Inverted = false;
@@ -143,7 +143,7 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 	SwerveModuleConfig config{ feedForwardBackRight };
 	config.DriveMotorConfig.MotorId = 2;
 	config.TurnMotorConfig.MotorId = 1;
-	config.EncoderConfig.CanCoderId = 9;
+	config.EncoderConfig.CanCoderId = 11;
 	config.CanBus = "OverCANivore";
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
@@ -152,8 +152,8 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
-	config.EncoderConfig.Offset = 0.0791015625_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.EncoderConfig.Offset = 0.289794921875_tr;
 #endif 
 	config.DriveMotorConfig.Inverted = false;
 	config.ModuleName = "Back Right";

@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "ResetHeading.h"
-#include <Commands/UtilityFunctions/UtilityFunctions.h>
+#include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
 frc2::CommandPtr ResetHeading(Chassis* chassis){
     if(isRedAlliance()){

@@ -1,7 +1,7 @@
 {
     "fileName": "OvertureLib.json",
     "name": "OvertureLib",
-    "version": "2025.1.1",
+    "version": "0.0.0",
     "frcYear": "2025",
     "uuid": "f5b78b8e-1696-4920-b6a1-154fa9a48d06",
     "mavenUrls": ["https://overture-7421.github.io/overturelib/repo"],
@@ -12,7 +12,7 @@
         {
             "groupId": "com.overture.lib",
             "artifactId": "OvertureLib-cpp",
-            "version": "2025.1.1",
+            "version": "0.0.0",
             "libName": "OvertureLib",
             "headerClassifier": "headers",
             "sharedLibrary": true,

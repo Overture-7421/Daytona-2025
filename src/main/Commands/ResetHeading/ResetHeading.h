@@ -4,14 +4,7 @@
 
 #pragma once
 
-#include <frc2/command/CommandPtr.h>
+#include "Subsystems/Chassis/Chassis.h"
+#include <frc2/command/Commands.h>
 
-class RobotContainer {
- public:
-  RobotContainer();
-
-  frc2::CommandPtr GetAutonomousCommand();
-
- private:
-  void ConfigureBindings();
-};
+frc2::CommandPtr ResetHeading(Chassis* chassis);

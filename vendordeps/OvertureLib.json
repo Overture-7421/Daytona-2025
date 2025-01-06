@@ -1,0 +1,31 @@
+{
+    "fileName": "OvertureLib.json",
+    "name": "OvertureLib",
+    "version": "2025.1.1",
+    "frcYear": "2025",
+    "uuid": "f5b78b8e-1696-4920-b6a1-154fa9a48d06",
+    "mavenUrls": ["https://overture-7421.github.io/overturelib/repo"],
+    "jsonUrl": "https://overture-7421.github.io/overturelib/OvertureLib.json",
+    "javaDependencies": [],
+    "jniDependencies": [],
+    "cppDependencies": [
+        {
+            "groupId": "com.overture.lib",
+            "artifactId": "OvertureLib-cpp",
+            "version": "2025.1.1",
+            "libName": "OvertureLib",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "windowsx86",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxathena",
+                "linuxarm32",
+                "osxuniversal"
+            ]
+        }
+    ]
+}

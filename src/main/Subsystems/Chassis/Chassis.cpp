@@ -78,7 +78,7 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(25.0);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
@@ -98,7 +98,7 @@ SwerveModuleConfig Chassis::FrontRightConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(25.0);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
@@ -118,7 +118,7 @@ SwerveModuleConfig Chassis::BackLeftConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(25.0);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
@@ -138,7 +138,7 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(25.0);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else

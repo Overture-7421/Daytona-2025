@@ -35,6 +35,10 @@ deploy {
     }
 }
 
+repositories {
+    mavenLocal()
+}
+
 def deployArtifact = deploy.targets.roborio.artifacts.frcCpp
 
 // Set this to true to enable desktop support.

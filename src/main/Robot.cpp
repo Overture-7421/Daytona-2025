@@ -24,9 +24,9 @@ Robot::Robot() {
 	simPigeonManager.Init("Offseason 2024/imu");
 
 	simCANCoderManager.Init({
-	  {9, "Offseason 2024/cancoders/back_right_cancoder"},
+	  {11, "Offseason 2024/cancoders/back_right_cancoder"},
 	  {10, "Offseason 2024/cancoders/back_left_cancoder"},
-	  {11, "Offseason 2024/cancoders/front_left_cancoder"},
+	  {9, "Offseason 2024/cancoders/front_left_cancoder"},
 	  {12, "Offseason 2024/cancoders/front_right_cancoder"}
 		});
 

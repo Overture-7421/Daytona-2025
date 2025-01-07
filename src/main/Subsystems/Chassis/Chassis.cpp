@@ -69,13 +69,6 @@ frc::Rotation3d Chassis::getRotation3d() {
 	return pigeon.GetRotation3d();
 }
 
-void Chassis::simPigeon() {
-	ctre::phoenix6::sim::Pigeon2SimState& gyro = pigeon.GetSimState();
-
-	gyro.SetSupplyVoltage(frc::RobotController::GetBatteryVoltage());
-	gyro.SetRawYaw(getRotation2d().Degrees() + getCurrentSpeeds().omega.convert<units::deg_per_s>() * 0.0005_s);
-}
-
 SwerveModuleConfig Chassis::FrontLeftConfig() {
 	SwerveModuleConfig config{ feedForwardFrontLeft };
 	config.DriveMotorConfig.MotorId = 6;
@@ -89,7 +82,7 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
 	config.EncoderConfig.Offset = 0.243408203125_tr;
 #endif 
 	config.ModuleName = "Front Left";
@@ -110,7 +103,7 @@ SwerveModuleConfig Chassis::FrontRightConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
 	config.EncoderConfig.Offset = 0.052734375_tr;
 #endif 
 	config.DriveMotorConfig.Inverted = false;
@@ -131,7 +124,7 @@ SwerveModuleConfig Chassis::BackLeftConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
 	config.EncoderConfig.Offset = 0.471923828125_tr;
 #endif  //Original 53
 	config.ModuleName = "Back Left";
@@ -152,7 +145,7 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 	config.TurnMotorConfig.PIDConfigs.WithKP(10.0);
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.TurnMotorConfig.PIDConfigs.WithKP(0.0);
+	config.TurnMotorConfig.PIDConfigs.WithKP(53.0);
 	config.EncoderConfig.Offset = 0.289794921875_tr;
 #endif 
 	config.DriveMotorConfig.Inverted = false;

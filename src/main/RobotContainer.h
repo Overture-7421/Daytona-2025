@@ -32,7 +32,7 @@ private:
 	OverXboxController driver{ 0,0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
-	frc::AprilTagFieldLayout tagLayout{ "/deploy/tag_layout/7421-field.json" };
+	frc::AprilTagFieldLayout tagLayout{ "src/main/deploy/tag_layout/7421-field.json" };
 	// frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
 	frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };

@@ -51,11 +51,6 @@ private:
   frc::SlewRateLimiter<units::meters_per_second> vyLimiter{180_mps_sq};
   frc::SlewRateLimiter<units::radians_per_second> vwLimiter{600_rad_per_s_sq};
 
-  // POSE LOGS
-  wpi::log::DataLog &log = frc::DataLogManager::GetLog();
-  wpi::log::StructLogEntry<frc::Pose2d> poseLog = wpi::log::StructLogEntry<frc::Pose2d>(log, "/chassis/pose");
-  wpi::log::StructLogEntry<frc::Pose2d> visionPoseLog = wpi::log::StructLogEntry<frc::Pose2d>(log, "/chassis/vision_pose");
-
   // Kinematics for chassis configuration
   frc::Field2d field2d;
   frc::ChassisSpeeds desiredSpeeds;

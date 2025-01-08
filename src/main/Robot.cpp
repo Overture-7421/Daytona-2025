@@ -23,7 +23,7 @@ Robot::Robot() {
 
 	simPigeonManager.Init("Offseason 2024/imu");
 
-	simPhotonVisionManager.Init(frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField));
+	simPhotonVisionManager.Init(frc::AprilTagFieldLayout("/deploy/tag_layout/7421-field.json"));
 
 	simCANCoderManager.Init({
 	  {11, "Offseason 2024/cancoders/back_right_cancoder"},

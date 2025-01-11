@@ -80,11 +80,10 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 	config.WheelDiameter = 4_in;
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.245849609375_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif 
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Front Left";
 	return config;
@@ -101,11 +100,10 @@ SwerveModuleConfig Chassis::FrontRightConfig() {
 	config.WheelDiameter = 4_in;
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.449951171875_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif 
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Front Right";
 	return config;
@@ -122,11 +120,10 @@ SwerveModuleConfig Chassis::BackLeftConfig() {
 	config.WheelDiameter = 4_in;
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.01806640625_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Back Left";
 	return config;
@@ -143,11 +140,10 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 	config.WheelDiameter = 4_in;
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.20654296875_tr;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif 
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Back Right";
 	return config;

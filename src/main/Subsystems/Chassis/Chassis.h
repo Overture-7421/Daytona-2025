@@ -22,13 +22,7 @@ public:
 	SwerveModule& getBackLeftModule() override;
 	SwerveModule& getBackRightModule() override;
 
-	frc::SlewRateLimiter<units::meters_per_second>& getVxLimiter() override;
-	frc::SlewRateLimiter<units::meters_per_second>& getVyLimiter() override;
-	frc::SlewRateLimiter<units::radians_per_second>& getVwLimiter() override;
-
 	frc::SwerveDriveKinematics<4>& getKinematics() override;
-
-	void simPigeon();
 
 private:
 	OverPigeon pigeon{ 13, "OverCANivore" };

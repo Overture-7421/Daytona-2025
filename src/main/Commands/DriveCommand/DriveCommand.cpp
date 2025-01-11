@@ -49,7 +49,11 @@ void DriveCommand::Execute() {
 
 	auto xSpeed = xInput.Calculate(Utils::ApplyAxisFilter(allianceMulti * -gamepad->GetHID().GetRawAxis(1), 0.2, 0.5) * chassis->getMaxModuleSpeed());
 	auto ySpeed = yInput.Calculate(Utils::ApplyAxisFilter(allianceMulti * -gamepad->GetHID().GetRawAxis(0), 0.2, 0.5) * chassis->getMaxModuleSpeed());
-	auto rotationSpeed = (gamepad->getTwist() * 5.0_tps);
+#ifndef __FRC_ROBORIO__
+	auto rotationSpeed = (gamepad->getTwist() * 2_tps);
+#else
+	auto rotationSpeed = (gamepad->getTwist() * 4_tps);
+#endif
 
 	frc::ChassisSpeeds speeds = frc::ChassisSpeeds::Discretize(frc::ChassisSpeeds::FromFieldRelativeSpeeds(xSpeed, ySpeed, rotationSpeed, chassis->getEstimatedPose().Rotation()), 0.02_s);
 	chassis->setTargetSpeeds(speeds);

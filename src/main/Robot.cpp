@@ -22,9 +22,9 @@ Robot::Robot() {
 		});
 
 	simPigeonManager.Init("Reefscape2025/imu");
-	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+	// frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 
-	simPhotonVisionManager.Init(tagLayout);
+	// simPhotonVisionManager.Init(tagLayout);
 
 	simCANCoderManager.Init({
 	  {11, "Reefscape2025/cancoders/back_right_cancoder"},

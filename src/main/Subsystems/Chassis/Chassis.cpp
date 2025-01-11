@@ -82,10 +82,9 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.EncoderConfig.Offset = 0.243408203125_tr;
+	config.EncoderConfig.Offset = -0.25341796875_tr;
 #endif 
 	config.ModuleName = "Front Left";
-	config.DriveMotorConfig.Inverted = true;
 	config.TurnMotorConfig.Inverted = true;
 	return config;
 }
@@ -103,9 +102,8 @@ SwerveModuleConfig Chassis::FrontRightConfig() {
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.EncoderConfig.Offset = 0.052734375_tr;
+	config.EncoderConfig.Offset = -0.449951171875_tr;
 #endif 
-	config.DriveMotorConfig.Inverted = true;
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Front Right";
 	return config;
@@ -124,10 +122,9 @@ SwerveModuleConfig Chassis::BackLeftConfig() {
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.EncoderConfig.Offset = 0.471923828125_tr;
+	config.EncoderConfig.Offset = -0.021240234375_tr;
 #endif  //Original 53
 	config.ModuleName = "Back Left";
-	config.DriveMotorConfig.Inverted = true;
 	config.TurnMotorConfig.Inverted = true;
 	return config;
 }
@@ -145,9 +142,8 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
 #else
-	config.EncoderConfig.Offset = 0.289794921875_tr;
+	config.EncoderConfig.Offset = -0.21044921875_tr;
 #endif 
-	config.DriveMotorConfig.Inverted = true;
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Back Right";
 	return config;

@@ -44,18 +44,6 @@ SwerveModule& Chassis::getFrontRightModule() {
 	return frontRightModule;
 }
 
-frc::SlewRateLimiter<units::meters_per_second>& Chassis::getVxLimiter() {
-	return vxLimiter;
-}
-
-frc::SlewRateLimiter<units::meters_per_second>& Chassis::getVyLimiter() {
-	return vyLimiter;
-}
-
-frc::SlewRateLimiter<units::radians_per_second>& Chassis::getVwLimiter() {
-	return vwLimiter;
-}
-
 frc::SwerveDriveKinematics<4>& Chassis::getKinematics() {
 	return kinematics;
 }
@@ -63,7 +51,6 @@ frc::SwerveDriveKinematics<4>& Chassis::getKinematics() {
 frc::Rotation2d Chassis::getRotation2d() {
 	return pigeon.GetRotation2d();
 }
-
 
 frc::Rotation3d Chassis::getRotation3d() {
 	return pigeon.GetRotation3d();

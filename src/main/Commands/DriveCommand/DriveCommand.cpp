@@ -52,7 +52,7 @@ void DriveCommand::Execute() {
 
 	auto rotationSpeed = (gamepad->getTwist() * 4_tps);
 	
-	frc::ChassisSpeeds speeds = frc::ChassisSpeeds::Discretize(frc::ChassisSpeeds::FromFieldRelativeSpeeds(xSpeed, ySpeed, rotationSpeed, chassis->getEstimatedPose().Rotation()), RobotConstants::LoopTime);
+	frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xSpeed, ySpeed, rotationSpeed, chassis->getEstimatedPose().Rotation());
 	chassis->setTargetSpeeds(speeds);
 
 }

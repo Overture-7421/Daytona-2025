@@ -10,27 +10,27 @@ Robot::Robot() {
 
 #ifndef __FRC_ROBORIO__
 	simMotorManager.Init({
-	  {2, "Offseason 2024/motors/back_right_drive"},
-	  {4, "Offseason 2024/motors/back_left_drive"},
-	  {6, "Offseason 2024/motors/front_left_drive"},
-	  {8, "Offseason 2024/motors/front_right_drive"},
+	  {8, "Reefscape2025/motors/back_right_drive"},
+	  {6, "Reefscape2025/motors/back_left_drive"},
+	  {2, "Reefscape2025/motors/front_left_drive"},
+	  {4, "Reefscape2025/motors/front_right_drive"},
 
-	  {1, "Offseason 2024/motors/back_right_rotation"},
-	  {3, "Offseason 2024/motors/back_left_rotation"},
-	  {5, "Offseason 2024/motors/front_left_rotation"},
-	  {7, "Offseason 2024/motors/front_right_rotation"}
+	  {7, "Reefscape2025/motors/back_right_rotation"},
+	  {5, "Reefscape2025/motors/back_left_rotation"},
+	  {1, "Reefscape2025/motors/front_left_rotation"},
+	  {3, "Reefscape2025/motors/front_right_rotation"}
 		});
 
-	simPigeonManager.Init("Offseason 2024/imu");
-	frc::AprilTagFieldLayout tagLayout{ "src/main/deploy/tag_layout/7421-field.json" };
+	simPigeonManager.Init("Reefscape2025/imu");
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 
 	simPhotonVisionManager.Init(tagLayout);
 
 	simCANCoderManager.Init({
-	  {11, "Offseason 2024/cancoders/back_right_cancoder"},
-	  {10, "Offseason 2024/cancoders/back_left_cancoder"},
-	  {9, "Offseason 2024/cancoders/front_left_cancoder"},
-	  {12, "Offseason 2024/cancoders/front_right_cancoder"}
+	  {11, "Reefscape2025/cancoders/back_right_cancoder"},
+	  {10, "Reefscape2025/cancoders/back_left_cancoder"},
+	  {9, "Reefscape2025/cancoders/front_left_cancoder"},
+	  {12, "Reefscape2025/cancoders/front_right_cancoder"}
 		});
 
 #endif

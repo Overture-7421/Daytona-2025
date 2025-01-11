@@ -78,14 +78,15 @@ SwerveModuleConfig Chassis::FrontLeftConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.245849609375_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif 
-	config.ModuleName = "Front Left";
 	config.TurnMotorConfig.Inverted = true;
+	config.ModuleName = "Front Left";
 	return config;
 }
 
@@ -98,11 +99,12 @@ SwerveModuleConfig Chassis::FrontRightConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.449951171875_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif 
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Front Right";
@@ -118,14 +120,15 @@ SwerveModuleConfig Chassis::BackLeftConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.01806640625_tr;
-#endif  //Original 53
-	config.ModuleName = "Back Left";
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
+#endif
 	config.TurnMotorConfig.Inverted = true;
+	config.ModuleName = "Back Left";
 	return config;
 }
 
@@ -138,11 +141,12 @@ SwerveModuleConfig Chassis::BackRightConfig() {
 	config.DriveGearRatio = 5.9027777;
 	config.TurnGearRatio = 150.0 / 7.0;
 	config.WheelDiameter = 4_in;
-	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #ifndef __FRC_ROBORIO__
 	config.EncoderConfig.Offset = 0.0_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(10);
 #else
 	config.EncoderConfig.Offset = -0.20654296875_tr;
+	config.TurnMotorConfig.PIDConfigs.WithKP(53);
 #endif 
 	config.TurnMotorConfig.Inverted = true;
 	config.ModuleName = "Back Right";

@@ -27,15 +27,6 @@ void Climber::setToAngle(units::degree_t armAngle, units::degree_t hookAngle) {
     hookMotor.SetControl(hookVoltage.WithPosition(hookAngle).WithFeedForward(hookFeedForward.Calculate(hookTurns, hookTurnsPerSecond)).WithEnableFOC(true));
 };
 
-
-void Climber::getCurrentAngle(double armAngle, double hookAngle){
-    double currentArmAngle = armAngle * 360;
-    double currentHookAngle = hookAngle * 360;
-    frc::SmartDashboard::PutNumber("Current Arm Angle", currentArmAngle);
-    frc::SmartDashboard::PutNumber("Current Hook Angle", currentHookAngle);
-};
-
-
 bool Climber::isClimberAtPosition(units::degree_t armAngle, units::degree_t hookAngle){
     units::degree_t armError = armAngle - armMotor.GetPosition().GetValue();
     units::degree_t hookError = hookAngle - hookMotor.GetPosition().GetValue();
@@ -68,4 +59,10 @@ frc2::CommandPtr Climber::SysIdDynamic(frc2::sysid::Direction direction){
   return m_sysIdRoutine.Dynamic(direction);
 }
 
-void Climber::Periodic() {}
+void Climber::Periodic() {
+
+    double armCurrentAngle = armMotor.GetPosition().GetValueAsDouble();
+    double hookCurrentAngle = hookMotor.GetPosition().GetValueAsDouble();
+    frc::SmartDashboard::PutNumber("Current Arm Angle", armCurrentAngle);
+    frc::SmartDashboard::PutNumber("Current hook Angle", hookCurrentAngle);
+}

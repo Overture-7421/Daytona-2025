@@ -19,7 +19,7 @@ void Elevator::setPosition(units::meter_t position){
 
 bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition){
     units::meter_t elevatorError = elevatorPosition - leftElevatorMotor.GetPosition().GetValueAsDouble();
-     if(units::math::abs(elevatorError) < 1.0_deg) {
+     if(units::math::abs(elevatorError) < 0.015_m) {
         return true;
      } else {
         return false;
@@ -35,12 +35,11 @@ frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition){
         { this }
     ).ToPtr();
 }
-
 // This method will be called once per scheduler run
 void Elevator::Periodic() {
 
     //no sé si está bien jiji
-    double currentPosition = leftElevatorMotor.GetPosition().GetValueAsDouble();
+    double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::diameter.value() * 3.14159265358979323846)};
     frc::SmartDashboard::PutNumber("Current Elevator Position", currentPosition);
 
 }

@@ -34,14 +34,6 @@ void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
 };
 
 
-void Arm::getCurrentAngle(double armAngle, double wristAngle){
-    double currentArmAngle = armAngle * 360;
-    double currentWristAngle = wristAngle * 360;
-    frc::SmartDashboard::PutNumber("Current Arm Lower Angle", currentArmAngle);
-    frc::SmartDashboard::PutNumber("Current Arm Upper Angle", currentWristAngle);
-};
-
-
 bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle){
     units::degree_t armError = armAngle - armLeftMotor.GetPosition().GetValue();
     units::degree_t wristError = wristAngle - wristMotor.GetPosition().GetValue();
@@ -74,4 +66,9 @@ frc2::CommandPtr Arm::SysIdDynamic(frc2::sysid::Direction direction){
   return m_sysIdRoutine.Dynamic(direction);
 }
 
-void Arm::Periodic() {}
+void Arm::Periodic() {
+    double armCurrentAngle = armCANCoder.GetPosition().GetValueAsDouble();
+    double wristCurrentAngle = wristCANCoder.GetPosition().GetValueAsDouble();
+    frc::SmartDashboard::PutNumber("Current Arm Lower Angle", armCurrentAngle);
+    frc::SmartDashboard::PutNumber("Current Arm Upper Angle", wristCurrentAngle);
+}

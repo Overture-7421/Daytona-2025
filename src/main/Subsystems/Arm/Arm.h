@@ -26,7 +26,6 @@ public:
   frc2::CommandPtr setArmCommand(units::degree_t armAngle, units::degree_t wristAngle);
 
   bool isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle);
-  void getCurrentAngle(double currentArmAngle, double currentWristAngle);
 
   OverTalonFX armLeftMotor{Constants::armLeftConfig(), "rio"};
   OverTalonFX armRightMotor{Constants::armRightConfig(), "rio"};

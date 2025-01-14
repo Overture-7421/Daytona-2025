@@ -23,9 +23,9 @@ void Climber::setToAngle(units::degree_t armAngle, units::degree_t hookAngle) {
     auto hookTurns = units::turn_t(hookMotor.GetClosedLoopReference().GetValueAsDouble());
     auto hookTurnsPerSecond = units::turns_per_second_t(hookMotor.GetClosedLoopReferenceSlope().GetValueAsDouble());
 
-    armMotor.SetControl(armVoltage.WithPosition(armAngle).WithFeedForward(armFeedForward.Calculate(armTurns, armTurnsPerSecond)).WithEnableFOC(true));
-    hookMotor.SetControl(hookVoltage.WithPosition(hookAngle).WithFeedForward(hookFeedForward.Calculate(hookTurns, hookTurnsPerSecond)).WithEnableFOC(true));
-};
+    armMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
+    hookMotor.SetControl(hookVoltage.WithPosition(hookAngle).WithEnableFOC(true));
+    }
 
 bool Climber::isClimberAtPosition(units::degree_t armAngle, units::degree_t hookAngle){
     units::degree_t armError = armAngle - armMotor.GetPosition().GetValue();

@@ -43,11 +43,7 @@ class Climber : public frc2::SubsystemBase {
           .position(armMotor.GetPosition().GetValue())
           .velocity(armMotor.GetVelocity().GetValue());
     }, this}};
-
-
-  frc::ArmFeedforward armFeedForward{0.0_V, 0.0_V, 0.0_V / 0_tps, 0.0_V / 0_tr_per_s_sq };
-  frc::ArmFeedforward hookFeedForward{0.0_V, 0.0_V, 0.0_V / 0_tps, 0_V / 0_tr_per_s_sq };
-  
+    
   MotionMagicVoltage armVoltage{0_tr};
   MotionMagicVoltage hookVoltage{0_tr};
 };

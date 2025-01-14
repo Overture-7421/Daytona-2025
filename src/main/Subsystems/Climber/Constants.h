@@ -24,7 +24,7 @@ struct Constants {
     armConfig.useFOC = true;
 
     armConfig.ClosedLoopRampRate = 0.01_s;
-    armConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0);
+    armConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return armConfig;
   }
@@ -36,7 +36,7 @@ struct Constants {
     hookConfig.useFOC = true;
 
     hookConfig.ClosedLoopRampRate = 0.01_s;
-    hookConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0);
+    hookConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return hookConfig;
   }

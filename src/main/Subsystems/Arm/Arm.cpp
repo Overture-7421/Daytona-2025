@@ -69,6 +69,6 @@ frc2::CommandPtr Arm::SysIdDynamic(frc2::sysid::Direction direction){
 void Arm::Periodic() {
     double armCurrentAngle = armCANCoder.GetPosition().GetValueAsDouble();
     double wristCurrentAngle = wristCANCoder.GetPosition().GetValueAsDouble();
-    frc::SmartDashboard::PutNumber("Current Arm Lower Angle", armCurrentAngle);
-    frc::SmartDashboard::PutNumber("Current Arm Upper Angle", wristCurrentAngle);
+    frc::SmartDashboard::PutNumber("Current Arm Angle", armCurrentAngle);
+    frc::SmartDashboard::PutNumber("Current Wrist Angle", wristCurrentAngle);
 }

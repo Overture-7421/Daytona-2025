@@ -32,7 +32,7 @@ bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle){
     units::degree_t armError = armAngle - armLeftMotor.GetPosition().GetValue();
     units::degree_t wristError = wristAngle - wristMotor.GetPosition().GetValue();
 
-    if(units::math::abs(armError) < 1.0_deg && units::math::abs(wristError) < 1.0_deg ){
+    if(units::math::abs(armError) < Constants::ArmAngleRange && units::math::abs(wristError) < Constants::WristAngleRange){
         return true;
     } else {
         return false;

@@ -51,9 +51,6 @@ private:
         },
         this}};
 
-  frc::ArmFeedforward armFeedForward{0.0_V, 0.0_V, 0.0_V / 0_tps, 0.0_V / 0_tr_per_s_sq};
-  frc::ArmFeedforward wristFeedForward{0.0_V, 0.0_V, 0.0_V / 0_tps, 0_V / 0_tr_per_s_sq};
-
   MotionMagicVoltage armVoltage{0_tr};
   MotionMagicVoltage wristVoltage{0_tr};
 };

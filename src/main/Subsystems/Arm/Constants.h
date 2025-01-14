@@ -32,7 +32,7 @@ struct Constants {
     armLeftConfig.useFOC = true;
 
     armLeftConfig.ClosedLoopRampRate = 0.01_s;
-    armLeftConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0);
+    armLeftConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return armLeftConfig;
   }
@@ -44,7 +44,7 @@ struct Constants {
     armRightConfig.useFOC = true;
 
     armRightConfig.ClosedLoopRampRate = 0.01_s;
-    armRightConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0);
+    armRightConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return armRightConfig;
   }
@@ -56,7 +56,7 @@ struct Constants {
     wristConfig.useFOC = true;
 
     wristConfig.ClosedLoopRampRate = 0.01_s;
-    wristConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0);
+    wristConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return wristConfig;
   }

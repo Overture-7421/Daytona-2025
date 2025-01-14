@@ -23,14 +23,8 @@ Arm::Arm(){
 
 
 void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
-    auto armTurns = units::turn_t(armLeftMotor.GetClosedLoopReference().GetValueAsDouble());
-    auto armTurnsPerSecond = units::turns_per_second_t(armLeftMotor.GetClosedLoopReferenceSlope().GetValueAsDouble());
-
-    auto wristTurns = units::turn_t(wristMotor.GetClosedLoopReference().GetValueAsDouble());
-    auto wristTurnsPerSecond = units::turns_per_second_t(wristMotor.GetClosedLoopReferenceSlope().GetValueAsDouble());
-
-    armLeftMotor.SetControl(armVoltage.WithPosition(armAngle).WithFeedForward(armFeedForward.Calculate(armTurns, armTurnsPerSecond)).WithEnableFOC(true));
-    wristMotor.SetControl(wristVoltage.WithPosition(wristAngle).WithFeedForward(wristFeedForward.Calculate(wristTurns, wristTurnsPerSecond)).WithEnableFOC(true));
+    armLeftMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
+    wristMotor.SetControl(wristVoltage.WithPosition(wristAngle).WithEnableFOC(true));
 };
 
 

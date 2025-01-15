@@ -8,7 +8,8 @@
 #include "wpi/DataLog.h"
 #include "OvertureLib/Subsystems/Swerve/SpeedsHelper/HeadingSpeedsHelper/HeadingSpeedsHelper.h"
 
-class Chassis: public SwerveChassis {
+class Chassis: public SwerveChassis
+{
 public:
     Chassis();
 
@@ -25,7 +26,8 @@ public:
     frc::SwerveDriveKinematics<4>& getKinematics() override;
 
 private:
-    OverPigeon pigeon { 13, "OverCANivore" };
+    OverPigeon pigeon
+    { 13, "OverCANivore" };
 
     // Module configurations
     static SwerveModuleConfig FrontLeftConfig();
@@ -34,20 +36,29 @@ private:
     static SwerveModuleConfig BackRightConfig();
 
     // Swerve modules
-    SwerveModule frontLeftModule { Chassis::FrontLeftConfig() };
-    SwerveModule frontRightModule { Chassis::FrontRightConfig() };
-    SwerveModule backLeftModule { Chassis::BackLeftConfig() };
-    SwerveModule backRightModule { Chassis::BackRightConfig() };
+    SwerveModule frontLeftModule
+    { Chassis::FrontLeftConfig() };
+    SwerveModule frontRightModule
+    { Chassis::FrontRightConfig() };
+    SwerveModule backLeftModule
+    { Chassis::BackLeftConfig() };
+    SwerveModule backRightModule
+    { Chassis::BackRightConfig() };
 
     // Kinematics for chassis configuration
     frc::Field2d field2d;
     frc::ChassisSpeeds desiredSpeeds;
     ChassisAccels currentAccels;
     frc::Pose2d latestPose;
-    frc::SwerveDriveKinematics<4> kinematics { { frc::Translation2d { 10.375_in,
-            10.375_in },   // FrontLeftModule
-            frc::Translation2d { 10.375_in, -10.375_in },  // FrontRightModule
-            frc::Translation2d { -10.375_in, 10.375_in }, // BackLeftModule
-            frc::Translation2d { -10.375_in, -10.375_in } // BackRightModule
+    frc::SwerveDriveKinematics<4> kinematics
+    {
+    { frc::Translation2d
+    { 10.375_in, 10.375_in },   // FrontLeftModule
+            frc::Translation2d
+            { 10.375_in, -10.375_in },  // FrontRightModule
+            frc::Translation2d
+            { -10.375_in, 10.375_in }, // BackLeftModule
+            frc::Translation2d
+            { -10.375_in, -10.375_in } // BackRightModule
     } };
 };

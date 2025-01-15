@@ -13,7 +13,8 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Subsystems/Intake/Constants.h"
 
-class Intake: public frc2::SubsystemBase {
+class Intake: public frc2::SubsystemBase
+{
 public:
     Intake();
 
@@ -28,5 +29,6 @@ public:
 
 private:
     //ID 20
-    OverTalonFX intakeMotor { Constants::IntakeConfig(), "rio" };
+    OverTalonFX intakeMotor
+    { Constants::IntakeConfig(), "rio" };
 };

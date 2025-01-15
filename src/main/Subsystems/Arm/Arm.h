@@ -13,7 +13,8 @@
 
 #include "Subsystems/Arm/Constants.h"
 
-class Arm: public frc2::SubsystemBase {
+class Arm: public frc2::SubsystemBase
+{
 public:
     Arm();
 
@@ -21,8 +22,7 @@ public:
     frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
     void setToAngle(units::degree_t armAngle, units::degree_t wristAngle);
-    frc2::CommandPtr setArmCommand(units::degree_t armAngle,
-            units::degree_t wristAngle);
+    frc2::CommandPtr setArmCommand(units::degree_t armAngle, units::degree_t wristAngle);
 
     bool isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle);
 
@@ -30,14 +30,22 @@ public:
 
 private:
 
-    OverTalonFX armLeftMotor { Constants::ArmLeftConfig(), "rio" };
-    OverTalonFX armRightMotor { Constants::ArmRightConfig(), "rio" };
-    OverCANCoder armCANCoder { Constants::ArmCANConfig(), "rio" };
-    OverTalonFX wristMotor { Constants::WristConfig(), "rio" };
-    OverCANCoder wristCANCoder { Constants::WristCANConfig(), "rio" };
+    OverTalonFX armLeftMotor
+    { Constants::ArmLeftConfig(), "rio" };
+    OverTalonFX armRightMotor
+    { Constants::ArmRightConfig(), "rio" };
+    OverCANCoder armCANCoder
+    { Constants::ArmCANConfig(), "rio" };
+    OverTalonFX wristMotor
+    { Constants::WristConfig(), "rio" };
+    OverCANCoder wristCANCoder
+    { Constants::WristCANConfig(), "rio" };
 
-    frc2::sysid::SysIdRoutine m_sysIdRoutine {frc2::sysid::Config {1_V / 1_s, 3_V, 30_s, nullptr},
-        frc2::sysid::Mechanism {
+    frc2::sysid::SysIdRoutine m_sysIdRoutine
+    {   frc2::sysid::Config
+        {   1_V / 1_s, 3_V, 30_s, nullptr},
+        frc2::sysid::Mechanism
+        {
             [this](units::volt_t driveVoltage)
             {
                 armLeftMotor.SetVoltage(driveVoltage);

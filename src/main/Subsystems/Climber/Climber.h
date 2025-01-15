@@ -10,7 +10,8 @@
 #include <frc2/command/FunctionalCommand.h>
 #include "Subsystems/Climber/Constants.h"
 
-class Climber: public frc2::SubsystemBase {
+class Climber: public frc2::SubsystemBase
+{
 public:
     Climber();
 
@@ -26,20 +27,28 @@ public:
     void Periodic() override;
 
 private:
-    OverTalonFX armRightMotor { Constants::RightConfig(), "rio" };
-    OverTalonFX armLeftMotor { Constants::LeftConfig(), "rio" };
+    OverTalonFX armRightMotor
+    { Constants::RightConfig(), "rio" };
+    OverTalonFX armLeftMotor
+    { Constants::LeftConfig(), "rio" };
 
-    frc2::sysid::SysIdRoutine m_sysIdRoutine {frc2::sysid::Config {1_V / 1_s, 3_V, 30_s, nullptr},
-        frc2::sysid::Mechanism {
-            [this](units::volt_t driveVoltage) {
+    frc2::sysid::SysIdRoutine m_sysIdRoutine
+    {   frc2::sysid::Config
+        {   1_V / 1_s, 3_V, 30_s, nullptr},
+        frc2::sysid::Mechanism
+        {
+            [this](units::volt_t driveVoltage)
+            {
                 armRightMotor.SetVoltage(driveVoltage);
             },
-            [this](frc::sysid::SysIdRoutineLog* log) {
+            [this](frc::sysid::SysIdRoutineLog* log)
+            {
                 log->Motor("lowerArm")
                 .voltage(armRightMotor.GetMotorVoltage().GetValue())
                 .position(armRightMotor.GetPosition().GetValue())
                 .velocity(armRightMotor.GetVelocity().GetValue());
             }, this}};
 
-    MotionMagicVoltage armVoltage { 0_tr };
+    MotionMagicVoltage armVoltage
+    { 0_tr };
 };

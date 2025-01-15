@@ -21,7 +21,8 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DriveCommand: public frc2::CommandHelper<frc2::Command, DriveCommand> {
+class DriveCommand: public frc2::CommandHelper<frc2::Command, DriveCommand>
+{
 public:
     DriveCommand(Chassis *chassis, OverXboxController *gamepad);
 
@@ -38,17 +39,20 @@ private:
     Chassis *chassis;
     OverXboxController *gamepad;
 
-    frc::ProfiledPIDController<units::radian> headingController {
+    frc::ProfiledPIDController<units::radian> headingController
+    {
     // PID constants: 
-            5, 0.0, 0.0, frc::TrapezoidProfile < units::radian > ::Constraints {
-                    1000_deg_per_s, 850_deg_per_s / 1_s } //Constraints max velocity, max acceleration
+            5, 0.0, 0.0, frc::TrapezoidProfile < units::radian > ::Constraints
+            { 1000_deg_per_s, 850_deg_per_s / 1_s } //Constraints max velocity, max acceleration
     };
     HeadingSpeedsHelper headingSpeedsHelper;
 
     frc::Translation2d targetObjective;
 
-    frc::SlewRateLimiter<units::meters_per_second> xInput { 8_mps_sq };
-    frc::SlewRateLimiter<units::meters_per_second> yInput { 8_mps_sq };
+    frc::SlewRateLimiter<units::meters_per_second> xInput
+    { 8_mps_sq };
+    frc::SlewRateLimiter<units::meters_per_second> yInput
+    { 8_mps_sq };
 
     int allianceMulti;
 

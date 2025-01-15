@@ -6,7 +6,8 @@
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
-struct Constants {
+struct Constants
+{
 
     constexpr static const units::degree_t ArmAngleRange = 1.0_deg;
     constexpr static const units::degree_t WristAngleRange = 1.0_deg;
@@ -17,12 +18,9 @@ struct Constants {
     constexpr static const double WristSensorToMechanism = 1.0;
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1.5_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration =
-            7_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity =
-            5.0_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration =
-            15_tr_per_s_sq;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 5.0_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 15_tr_per_s_sq;
 
     constexpr static const double ArmCANCoderId = 22;
     constexpr static const double WristCANCoderId = 23;
@@ -30,7 +28,8 @@ struct Constants {
     constexpr static const double ArmLeftMotorId = 20;
     constexpr static const double ArmRightMotorId = 29;
 
-    constexpr static const OverTalonFXConfig ArmLeftConfig() {
+    constexpr static const OverTalonFXConfig ArmLeftConfig()
+    {
         OverTalonFXConfig armLeftConfig;
         armLeftConfig.MotorId = ArmLeftMotorId;
         armLeftConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -42,13 +41,13 @@ struct Constants {
         armLeftConfig.TriggerThreshold = 90_A;
         armLeftConfig.TriggerThresholdTime = 1_s;
         armLeftConfig.OpenLoopRampRate = 0.05_s;
-        armLeftConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(
-                0.0).WithKV(0.0).WithKA(0.0);
+        armLeftConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
         return armLeftConfig;
     }
 
-    constexpr static const OverTalonFXConfig ArmRightConfig() {
+    constexpr static const OverTalonFXConfig ArmRightConfig()
+    {
         OverTalonFXConfig armRightConfig;
         armRightConfig.MotorId = ArmRightMotorId;
         armRightConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -60,13 +59,13 @@ struct Constants {
         armRightConfig.TriggerThreshold = 90_A;
         armRightConfig.TriggerThresholdTime = 1_s;
         armRightConfig.OpenLoopRampRate = 0.05_s;
-        armRightConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(
-                0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
+        armRightConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
         return armRightConfig;
     }
 
-    constexpr static const OverTalonFXConfig WristConfig() {
+    constexpr static const OverTalonFXConfig WristConfig()
+    {
         OverTalonFXConfig wristConfig;
         wristConfig.MotorId = 21;
         wristConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -78,13 +77,13 @@ struct Constants {
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
         wristConfig.OpenLoopRampRate = 0.05_s;
-        wristConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(
-                0.0).WithKV(0.0).WithKA(0.0);
+        wristConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
         return wristConfig;
     }
 
-    constexpr static const CanCoderConfig ArmCANConfig() {
+    constexpr static const CanCoderConfig ArmCANConfig()
+    {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
         armCANConfig.Offset = 0.0_tr;
@@ -92,7 +91,8 @@ struct Constants {
         return armCANConfig;
     }
 
-    constexpr static const CanCoderConfig WristCANConfig() {
+    constexpr static const CanCoderConfig WristCANConfig()
+    {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
         wristCANConfig.Offset = 0.0_tr;

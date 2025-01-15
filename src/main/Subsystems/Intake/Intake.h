@@ -28,6 +28,5 @@ public:
 
 private:
     //ID 20
-    OverTalonFX intakeMotor
-    { Constants::IntakeConfig(), "rio" };
+    OverTalonFX intakeMotor {Constants::IntakeConfig(), "rio"};
 };

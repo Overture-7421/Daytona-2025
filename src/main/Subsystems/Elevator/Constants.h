@@ -12,6 +12,17 @@ struct ElevatorConstants{
     constexpr static const double LowerSensorToMechanism = 0.0;
     constexpr static const units::meter_t Diameter = 0.0_m;
 
+    constexpr static const units::meter_t SourcePosition = 2.13_m;
+    constexpr static const units::meter_t FloorPosition = 0_m;
+    constexpr static const units::meter_t ClosedPosition = 2.13_m;
+    constexpr static const units::meter_t L1Position = 0.46_m;
+    constexpr static const units::meter_t L2Position = 0.81_m;
+    constexpr static const units::meter_t L3Position = 1.21_m;
+    constexpr static const units::meter_t L4Position = 1.83_m;
+    constexpr static const units::meter_t NetPosition = 2.5_m;
+    constexpr static const units::meter_t BottomAlgaePosition = 0.95_m;
+    constexpr static const units::meter_t TopAlgaePosition = 1.3_m;
+
     constexpr static const OverTalonFXConfig RightConfig(){
     OverTalonFXConfig right;
     right.MotorId = 10;

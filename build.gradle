@@ -97,7 +97,6 @@ spotless {
             exclude '**/build/**', '**/build-*/**'
         }
         eclipseCdt().configFile('eclipse-cdt-config.xml')
-        leadingTabsToSpaces(4)
         toggleOffOn()
     }
     groovyGradle {

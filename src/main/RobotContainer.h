@@ -6,11 +6,9 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc/smartdashboard/SendableChooser.h>
-
 #include <OvertureLib/Robots/OverContainer/OverContainer.h>
 #include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
 #include <OvertureLib/Subsystems/Vision/AprilTags/AprilTags.h>
-
 #include "Subsystems/Chassis/Chassis.h"
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
@@ -23,13 +21,14 @@ public:
 	void UpdateTelemetry();
 
 private:
+
 	void ConfigureBindings();
 	void ConfigDriverBindings();
 	void ConfigOperatorBindings();
 	void ConfigDefaultCommands();
 	void ConfigCharacterizationBindings();
 
-	OverXboxController driver{ 0,0.20, 0.2 };
+	OverXboxController driver{ 0, 0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
 	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);

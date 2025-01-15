@@ -97,6 +97,7 @@ spotless {
             exclude '**/build/**', '**/build-*/**'
         }
         eclipseCdt()
+        leadingTabsToSpaces(4)
         toggleOffOn()
     }
     groovyGradle {
@@ -105,7 +106,7 @@ spotless {
             exclude '**/build/**', '**/build-*/**'
         }
         greclipse()
-        indentWithSpaces(4)
+        leadingTabsToSpaces(4)
         trimTrailingWhitespace()
         endWithNewline()
     }
@@ -115,7 +116,7 @@ spotless {
             exclude '**/build/**', '**/build-*/**'
         }
         trimTrailingWhitespace()
-        indentWithSpaces(4)
+        leadingTabsToSpaces(4)
         endWithNewline()
     }
 }

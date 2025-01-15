@@ -12,7 +12,7 @@
 #include <OvertureLib/Robots/OverRobot/OverRobot.h>
 #include "RobotContainer.h"
 
-class Robot : public OverRobot {
+class Robot: public OverRobot {
 public:
 	Robot();
 	void RobotPeriodic() override;
@@ -30,7 +30,7 @@ public:
 	void TestExit() override;
 
 private:
-	frc2::Command* m_autonomousCommand;
+	frc2::Command *m_autonomousCommand;
 
 	RobotContainer m_container;
 };

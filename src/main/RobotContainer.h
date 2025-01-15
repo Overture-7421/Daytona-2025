@@ -13,7 +13,7 @@
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
-class RobotContainer : public OverContainer {
+class RobotContainer: public OverContainer {
 public:
 	RobotContainer();
 
@@ -28,10 +28,11 @@ private:
 	void ConfigDefaultCommands();
 	void ConfigCharacterizationBindings();
 
-	OverXboxController driver{ 0, 0.20, 0.2 };
+	OverXboxController driver { 0, 0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
-	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(
+			frc::AprilTagField::kDefaultField);
 #else
 	frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 
@@ -40,8 +41,7 @@ private:
 	Chassis chassis;
 
 	static AprilTags::Config testCameraConfig();
-	AprilTags shooterCamera{ &tagLayout, &chassis, testCameraConfig() };
-
+	AprilTags shooterCamera { &tagLayout, &chassis, testCameraConfig() };
 
 	frc::SendableChooser<frc2::Command*> autoChooser;
 

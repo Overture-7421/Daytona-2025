@@ -10,44 +10,44 @@
 
 class Chassis: public SwerveChassis {
 public:
-	Chassis();
+    Chassis();
 
-	units::meters_per_second_t getMaxModuleSpeed() override;
-	units::meter_t getDriveBaseRadius() override;
-	frc::Rotation2d getRotation2d() override;
-	frc::Rotation3d getRotation3d() override;
+    units::meters_per_second_t getMaxModuleSpeed() override;
+    units::meter_t getDriveBaseRadius() override;
+    frc::Rotation2d getRotation2d() override;
+    frc::Rotation3d getRotation3d() override;
 
-	SwerveModule& getFrontLeftModule() override;
-	SwerveModule& getFrontRightModule() override;
-	SwerveModule& getBackLeftModule() override;
-	SwerveModule& getBackRightModule() override;
+    SwerveModule& getFrontLeftModule() override;
+    SwerveModule& getFrontRightModule() override;
+    SwerveModule& getBackLeftModule() override;
+    SwerveModule& getBackRightModule() override;
 
-	frc::SwerveDriveKinematics<4>& getKinematics() override;
+    frc::SwerveDriveKinematics<4>& getKinematics() override;
 
 private:
-	OverPigeon pigeon { 13, "OverCANivore" };
+    OverPigeon pigeon { 13, "OverCANivore" };
 
-	// Module configurations
-	static SwerveModuleConfig FrontLeftConfig();
-	static SwerveModuleConfig FrontRightConfig();
-	static SwerveModuleConfig BackLeftConfig();
-	static SwerveModuleConfig BackRightConfig();
+    // Module configurations
+    static SwerveModuleConfig FrontLeftConfig();
+    static SwerveModuleConfig FrontRightConfig();
+    static SwerveModuleConfig BackLeftConfig();
+    static SwerveModuleConfig BackRightConfig();
 
-	// Swerve modules
-	SwerveModule frontLeftModule { Chassis::FrontLeftConfig() };
-	SwerveModule frontRightModule { Chassis::FrontRightConfig() };
-	SwerveModule backLeftModule { Chassis::BackLeftConfig() };
-	SwerveModule backRightModule { Chassis::BackRightConfig() };
+    // Swerve modules
+    SwerveModule frontLeftModule { Chassis::FrontLeftConfig() };
+    SwerveModule frontRightModule { Chassis::FrontRightConfig() };
+    SwerveModule backLeftModule { Chassis::BackLeftConfig() };
+    SwerveModule backRightModule { Chassis::BackRightConfig() };
 
-	// Kinematics for chassis configuration
-	frc::Field2d field2d;
-	frc::ChassisSpeeds desiredSpeeds;
-	ChassisAccels currentAccels;
-	frc::Pose2d latestPose;
-	frc::SwerveDriveKinematics<4> kinematics { { frc::Translation2d { 10.375_in,
-			10.375_in },   // FrontLeftModule
-			frc::Translation2d { 10.375_in, -10.375_in },  // FrontRightModule
-			frc::Translation2d { -10.375_in, 10.375_in }, // BackLeftModule
-			frc::Translation2d { -10.375_in, -10.375_in } // BackRightModule
-	} };
+    // Kinematics for chassis configuration
+    frc::Field2d field2d;
+    frc::ChassisSpeeds desiredSpeeds;
+    ChassisAccels currentAccels;
+    frc::Pose2d latestPose;
+    frc::SwerveDriveKinematics<4> kinematics { { frc::Translation2d { 10.375_in,
+            10.375_in },   // FrontLeftModule
+            frc::Translation2d { 10.375_in, -10.375_in },  // FrontRightModule
+            frc::Translation2d { -10.375_in, 10.375_in }, // BackLeftModule
+            frc::Translation2d { -10.375_in, -10.375_in } // BackRightModule
+    } };
 };

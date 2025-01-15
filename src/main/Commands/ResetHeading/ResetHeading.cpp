@@ -6,13 +6,13 @@
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
 frc2::CommandPtr ResetHeading(Chassis *chassis) {
-	if (isRedAlliance()) {
-		return frc2::cmd::RunOnce([chassis] {
-			return chassis->resetHeading(180.0_deg);
-		});
-	} else {
-		return frc2::cmd::RunOnce([chassis] {
-			return chassis->resetHeading(0.0_deg);
-		});
-	}
+    if (isRedAlliance()) {
+        return frc2::cmd::RunOnce([chassis] {
+            return chassis->resetHeading(180.0_deg);
+        });
+    } else {
+        return frc2::cmd::RunOnce([chassis] {
+            return chassis->resetHeading(0.0_deg);
+        });
+    }
 }

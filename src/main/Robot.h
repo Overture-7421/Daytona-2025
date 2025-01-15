@@ -14,23 +14,23 @@
 
 class Robot: public OverRobot {
 public:
-	Robot();
-	void RobotPeriodic() override;
-	void DisabledInit() override;
-	void DisabledPeriodic() override;
-	void DisabledExit() override;
-	void AutonomousInit() override;
-	void AutonomousPeriodic() override;
-	void AutonomousExit() override;
-	void TeleopInit() override;
-	void TeleopPeriodic() override;
-	void TeleopExit() override;
-	void TestInit() override;
-	void TestPeriodic() override;
-	void TestExit() override;
+    Robot();
+    void RobotPeriodic() override;
+    void DisabledInit() override;
+    void DisabledPeriodic() override;
+    void DisabledExit() override;
+    void AutonomousInit() override;
+    void AutonomousPeriodic() override;
+    void AutonomousExit() override;
+    void TeleopInit() override;
+    void TeleopPeriodic() override;
+    void TeleopExit() override;
+    void TestInit() override;
+    void TestPeriodic() override;
+    void TestExit() override;
 
 private:
-	frc2::Command *m_autonomousCommand;
+    frc2::Command *m_autonomousCommand;
 
-	RobotContainer m_container;
+    RobotContainer m_container;
 };

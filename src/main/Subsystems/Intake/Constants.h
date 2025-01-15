@@ -10,16 +10,16 @@
 struct Constants {
 public:
 
-	constexpr static const units::volt_t GroundGrabVolts = 6.0_V;
-	constexpr static const units::volt_t stopVolts = 0.0_V;
-	constexpr static const units::volt_t reverseVolts = -6.0_V;
+    constexpr static const units::volt_t GroundGrabVolts = 6.0_V;
+    constexpr static const units::volt_t stopVolts = 0.0_V;
+    constexpr static const units::volt_t reverseVolts = -6.0_V;
 
-	constexpr static const OverTalonFXConfig IntakeConfig() {
-		OverTalonFXConfig intakeConfig;
-		intakeConfig.MotorId = 1;
-		intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
+    constexpr static const OverTalonFXConfig IntakeConfig() {
+        OverTalonFXConfig intakeConfig;
+        intakeConfig.MotorId = 1;
+        intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
 
-		return intakeConfig;
-	}
+        return intakeConfig;
+    }
 
 };

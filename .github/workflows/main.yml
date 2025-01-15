@@ -25,6 +25,12 @@ jobs:
     # Grant execute permission for gradlew
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+    # Apply Spotless formatting if needed
+    - name: Apply Spotless formatting
+      run: ./gradlew spotlessApply
+    # Check if there are any changes after applying Spotless formatting
+    - name: Check for changes
+      run: git diff --exit-code || git commit -am "Apply Spotless formatting"
     # Runs a single command using the runners shell
     - name: Compile and run tests on robot code
       run: ./gradlew build

@@ -7,44 +7,34 @@
 
 Climber::Climber(){
 
-    armMotor.setSensorToMechanism(Constants::ArmSensorToMechanism); 
-    hookMotor.setSensorToMechanism(Constants::HookSensorToMechanism);
+    armLeftMotor.setFollow(Constants::rightArmMotorId, true);
 
-    armMotor.configureMotionMagic(Constants::ArmCruiseVelocity, Constants::ArmCruiseAcceleration, 0.0_tr_per_s_cu);
-    hookMotor.configureMotionMagic(Constants::HookCruiseVelocity, Constants::HookCruiseAcceleration, 0.0_tr_per_s_cu);
+    armRightMotor.setSensorToMechanism(Constants::ArmSensorToMechanism); 
+    armRightMotor.configureMotionMagic(Constants::ArmCruiseVelocity, Constants::ArmCruiseAcceleration, 0.0_tr_per_s_cu);
+   
 }
 
 //Function that requires an angle and does calculations with other values in order to get or to order the mechanism to go to a position.
-void Climber::setToAngle(units::degree_t armAngle, units::degree_t hookAngle) {
+void Climber::setToAngle(units::degree_t armAngle) {
 
-    auto armTurns = units::turn_t(armMotor.GetClosedLoopReference().GetValueAsDouble());
-    auto armTurnsPerSecond = units::turns_per_second_t(armMotor.GetClosedLoopReferenceSlope().GetValueAsDouble());
+    armRightMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
 
-    auto hookTurns = units::turn_t(hookMotor.GetClosedLoopReference().GetValueAsDouble());
-    auto hookTurnsPerSecond = units::turns_per_second_t(hookMotor.GetClosedLoopReferenceSlope().GetValueAsDouble());
-
-    armMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
-    hookMotor.SetControl(hookVoltage.WithPosition(hookAngle).WithEnableFOC(true));
     }
 
-bool Climber::isClimberAtPosition(units::degree_t armAngle, units::degree_t hookAngle){
-    units::degree_t armError = armAngle - armMotor.GetPosition().GetValue();
-    units::degree_t hookError = hookAngle - hookMotor.GetPosition().GetValue();
+bool Climber::isClimberAtPosition(units::degree_t armAngle){
+    units::degree_t armError = armAngle - armRightMotor.GetPosition().GetValue();
 
-    if(units::math::abs(armError) < 1.0_deg && units::math::abs(hookError) < 1.0_deg ){
-        return true;
-    } else {
-        return false;
-    }
+    return units::math::abs(armError) < 1.0_deg;
+   
 }
 
 
-frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle, units::degree_t hookAngle){
+frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle){
     return frc2::FunctionalCommand(
-		[&]() {setToAngle(armAngle, hookAngle);},
+		[&]() {setToAngle(armAngle);},
 		[&]() {},
 		[&](bool interupted) {},
-		[&]() {return isClimberAtPosition(armAngle, hookAngle);},
+		[&]() {return isClimberAtPosition(armAngle);},
 		{ this }
 	).ToPtr();
 }
@@ -61,8 +51,6 @@ frc2::CommandPtr Climber::SysIdDynamic(frc2::sysid::Direction direction){
 
 void Climber::Periodic() {
 
-    double armCurrentAngle = armMotor.GetPosition().GetValueAsDouble();
-    double hookCurrentAngle = hookMotor.GetPosition().GetValueAsDouble();
-    frc::SmartDashboard::PutNumber("Current Arm Angle", armCurrentAngle);
-    frc::SmartDashboard::PutNumber("Current hook Angle", hookCurrentAngle);
+    double armCurrentAngle = armRightMotor.GetPosition().GetValueAsDouble();
+    frc::SmartDashboard::PutNumber("Climber/Current Arm Angle", armCurrentAngle);
 }

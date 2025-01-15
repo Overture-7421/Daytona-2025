@@ -17,33 +17,33 @@ class Climber : public frc2::SubsystemBase {
   frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction);
   frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
-  void setToAngle(units::degree_t armAngle, units::degree_t hookAngle);
-  frc2::CommandPtr setClimberCommand(units::degree_t armAngle, units::degree_t hookAngle);
+  void setToAngle(units::degree_t armAngle);
+  frc2::CommandPtr setClimberCommand(units::degree_t armAngle);
 
-  bool isClimberAtPosition(units::degree_t armAngle, units::degree_t hookAngle);
-  void getCurrentAngle(double armAngle, double hookAngle);
+  bool isClimberAtPosition(units::degree_t armAngle);
+  void getCurrentAngle(double armAngle);
 
-  OverTalonFX armMotor{Constants::armConfig(), "rio"};
-  OverTalonFX hookMotor{Constants::hookConfig(), "rio"};
+  
  
 
   void Periodic() override; 
 
 
  private:
+  OverTalonFX armRightMotor{Constants::RightConfig(), "rio"};
+  OverTalonFX armLeftMotor{Constants::LeftConfig(), "rio"};
 
   frc2::sysid::SysIdRoutine m_sysIdRoutine{frc2::sysid::Config{1_V / 1_s, 3_V, 30_s, nullptr}, 
   frc2::sysid::Mechanism{
     [this](units::volt_t driveVoltage) {
-        armMotor.SetVoltage(driveVoltage);
+        armRightMotor.SetVoltage(driveVoltage);
     }, 
     [this](frc::sysid::SysIdRoutineLog* log) {
       log->Motor("lowerArm")
-          .voltage(armMotor.GetMotorVoltage().GetValue())
-          .position(armMotor.GetPosition().GetValue())
-          .velocity(armMotor.GetVelocity().GetValue());
+          .voltage(armRightMotor.GetMotorVoltage().GetValue())
+          .position(armRightMotor.GetPosition().GetValue())
+          .velocity(armRightMotor.GetVelocity().GetValue());
     }, this}};
-    
+
   MotionMagicVoltage armVoltage{0_tr};
-  MotionMagicVoltage hookVoltage{0_tr};
 };

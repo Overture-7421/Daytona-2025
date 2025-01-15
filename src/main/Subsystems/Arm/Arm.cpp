@@ -23,6 +23,9 @@ Arm::Arm(){
 
 
 void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
+    MotionMagicVoltage armVoltage{0_tr};
+    MotionMagicVoltage wristVoltage{0_tr};
+
     armLeftMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
     wristMotor.SetControl(wristVoltage.WithPosition(wristAngle).WithEnableFOC(true));
 };

@@ -51,6 +51,4 @@ private:
         },
         this}};
 
-  MotionMagicVoltage armVoltage{0_tr};
-  MotionMagicVoltage wristVoltage{0_tr};
 };

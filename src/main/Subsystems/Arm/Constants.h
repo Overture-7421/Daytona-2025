@@ -10,7 +10,6 @@ struct Constants {
     constexpr static const units::degree_t ArmAngleRange = 1.0_deg;
     constexpr static const units::degree_t WristAngleRange = 1.0_deg;
 
-
     constexpr static const units::degree_t ArmL1Reef = 1.0_deg;
     constexpr static const units::degree_t WristL1Reef = 1.0_deg;
 
@@ -37,7 +36,6 @@ struct Constants {
 
     constexpr static const units::degree_t ArmClosed = 1.0_deg;
     constexpr static const units::degree_t WristClosed = 1.0_deg;
-
 
     constexpr static const double ArmRotorToSensor = 1.0;
     constexpr static const double WristRotorToSensor = 1.0;

@@ -96,32 +96,7 @@ spotless {
             include '**/*.cpp', '**/*.h'
             exclude '**/build/**', '**/build-*/**'
         }
-        eclipseCdt().config([
-            'org.eclipse.cdt.core.formatter.tabulation.char': 'space',
-            'org.eclipse.cdt.core.formatter.tabulation.size': '4',
-            'org.eclipse.cdt.core.formatter.lineSplit': '120',
-            'org.eclipse.cdt.core.formatter.brace_position_for_method_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_type_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_array_initializer': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_lambda_body': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_namespace_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_switch_case': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_enum_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_constructor_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_initializer_list': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_anonymous_type_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_case': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_switch_case': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_lambda_body': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_initializer_list': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_enum_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_constructor_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_anonymous_type_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_namespace_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_type_declaration': 'next_line',
-            'org.eclipse.cdt.core.formatter.brace_position_for_block_in_method_declaration': 'next_line'
-        ])
+        eclipseCdt().configFile('eclipse-cdt-config.xml')
         leadingTabsToSpaces(4)
         toggleOffOn()
     }

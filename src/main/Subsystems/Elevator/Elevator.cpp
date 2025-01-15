@@ -12,18 +12,15 @@ Elevator::Elevator(){
 
 void Elevator::setPosition(units::meter_t position){
 
-    units::turn_t positionInRotations{position.value() / (ElevatorConstants::diameter.value() * 3.14159265358979323846)};
+    units::turn_t positionInRotations{position.value() / (ElevatorConstants::Diameter.value() * 3.14159265358979323846)};
     leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
     
 };
 
 bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition){
     units::meter_t elevatorError = elevatorPosition - leftElevatorMotor.GetPosition().GetValueAsDouble();
-     if(units::math::abs(elevatorError) < 0.015_m) {
-        return true;
-     } else {
-        return false;
-     }
+     return (units::math::abs(elevatorError) < 0.015_m);
+      
 }
 
 frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition){
@@ -39,7 +36,7 @@ frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition){
 void Elevator::Periodic() {
 
     //no sé si está bien jiji
-    double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::diameter.value() * 3.14159265358979323846)};
-    frc::SmartDashboard::PutNumber("Current Elevator Position", currentPosition);
+        double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * 3.14159265358979323846)};
+    frc::SmartDashboard::PutNumber("Elevator/CurrentPosition", currentPosition);
 
 }

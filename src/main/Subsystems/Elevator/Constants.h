@@ -10,7 +10,7 @@
 struct ElevatorConstants{
     constexpr static const double LowerGearRatio = 0.0;
     constexpr static const double LowerSensorToMechanism = 0.0;
-    constexpr static const units::meter_t diameter = 0.0_m;
+    constexpr static const units::meter_t Diameter = 0.0_m;
 
     constexpr static const OverTalonFXConfig RightConfig(){
     OverTalonFXConfig right;

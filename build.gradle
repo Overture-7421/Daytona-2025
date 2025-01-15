@@ -92,7 +92,30 @@ model {
 
 spotless {
     cpp {
-	    target 'src/main/**/*.cpp', 'src/main/**/*.cc', 'src/main/**/*.h'
-	    clangFormat().style('Google')
+        target fileTree('.') {
+            include '**/*.cpp', '**/*.h'
+            exclude '**/build/**', '**/build-*/**'
+        }
+        eclipseCdt()
+        toggleOffOn()
+    }
+    groovyGradle {
+        target fileTree('.') {
+            include '**/*.gradle'
+            exclude '**/build/**', '**/build-*/**'
+        }
+        greclipse()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    format 'misc', {
+        target fileTree('.') {
+            include '**/*.md', '**/.gitignore'
+            exclude '**/build/**', '**/build-*/**'
+        }
+        trimTrailingWhitespace()
+        indentWithSpaces(4)
+        endWithNewline()
     }
 }

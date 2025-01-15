@@ -13,36 +13,37 @@
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
-class RobotContainer : public OverContainer {
+class RobotContainer: public OverContainer {
 public:
-	RobotContainer();
+    RobotContainer();
 
-	frc2::Command* GetAutonomousCommand();
-	void UpdateTelemetry();
+    frc2::Command* GetAutonomousCommand();
+    void UpdateTelemetry();
 
 private:
 
-	void ConfigureBindings();
-	void ConfigDriverBindings();
-	void ConfigOperatorBindings();
-	void ConfigDefaultCommands();
-	void ConfigCharacterizationBindings();
+    void ConfigureBindings();
+    void ConfigDriverBindings();
+    void ConfigOperatorBindings();
+    void ConfigDefaultCommands();
+    void ConfigCharacterizationBindings();
 
-	OverXboxController driver{ 0, 0.20, 0.2 };
+    OverXboxController driver
+    { 0, 0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
-	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+    frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
-	frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
+    frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 
 #endif 
-	//Subsystems
-	Chassis chassis;
+    //Subsystems
+    Chassis chassis;
 
-	static AprilTags::Config testCameraConfig();
-	AprilTags shooterCamera{ &tagLayout, &chassis, testCameraConfig() };
+    static AprilTags::Config testCameraConfig();
+    AprilTags shooterCamera
+    { &tagLayout, &chassis, testCameraConfig() };
 
-
-	frc::SendableChooser<frc2::Command*> autoChooser;
+    frc::SendableChooser<frc2::Command*> autoChooser;
 
 };

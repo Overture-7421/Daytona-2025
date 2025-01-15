@@ -3,7 +3,6 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct Constants {
-
   constexpr static const double ArmSensorToMechanism = 0.0;
 
   constexpr static const units::turns_per_second_t ArmCruiseVelocity = 5.0_tps;

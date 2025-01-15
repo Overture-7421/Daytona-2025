@@ -93,6 +93,6 @@ model {
 spotless {
     cpp {
 	    target 'src/main/**/*.cpp', 'src/main/**/*.cc', 'src/main/**/*.h'
-	    googleCppFormat()
+	    clangFormat().style('Google')
     }
 }

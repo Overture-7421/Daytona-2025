@@ -22,9 +22,6 @@ jobs:
     # Declares the repository safe and not under dubious ownership.
     - name: Add repository to git safe directories
       run: git config --global --add safe.directory $GITHUB_WORKSPACE
-    # Install clang-format
-    - name: Install clang-format
-      run: apt-get update && apt-get install -y clang-format
     # Grant execute permission for gradlew
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew

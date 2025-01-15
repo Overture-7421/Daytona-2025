@@ -4,7 +4,7 @@
 #include "Elevator.h"
 
 Elevator::Elevator(){
-    rightElevatorMotor.setFollow(9, true);
+    rightElevatorMotor.setFollow(leftElevatorMotor.GetDeviceID(), true);
 
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
 

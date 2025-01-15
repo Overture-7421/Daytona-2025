@@ -28,8 +28,8 @@ class Elevator : public frc2::SubsystemBase {
   frc2::CommandPtr setElevatorCommand(units::meter_t elevatorPosition);
 
  private:
-  OverTalonFX leftElevatorMotor{ElevatorConstants::leftConfig(), "rio"};
-  OverTalonFX rightElevatorMotor{ElevatorConstants::rightConfig(),"rio"};
+  OverTalonFX leftElevatorMotor{ElevatorConstants::LeftConfig(), "rio"};
+  OverTalonFX rightElevatorMotor{ElevatorConstants::RightConfig(),"rio"};
 
   MotionMagicVoltage elevatorVoltage{0_tr};
 

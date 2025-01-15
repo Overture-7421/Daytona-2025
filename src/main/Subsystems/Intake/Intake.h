@@ -29,5 +29,5 @@ class Intake : public frc2::SubsystemBase {
 
   private:
  //ID 20
-    OverTalonFX intakeMotor{Constants::intakeConfig() , "rio"};
+    OverTalonFX intakeMotor{Constants::IntakeConfig() , "rio"};
 };

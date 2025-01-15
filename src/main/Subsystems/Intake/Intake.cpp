@@ -20,5 +20,5 @@ frc2::CommandPtr Intake::moveIntake(units::volt_t voltage){return this->RunOnce(
 
 // This method will be called once per scheduler run
 void Intake::Periodic() {
-  frc::SmartDashboard::PutBoolean("INTAKE ACTIVATED?", getVoltage() > 0.0);
+  frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
 }

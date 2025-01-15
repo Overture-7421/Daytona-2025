@@ -36,7 +36,7 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
     }, [&]() {
         return isClimberAtPosition(armAngle);
     },
-    { this }).ToPtr();
+    {this}).ToPtr();
 }
 
 frc2::CommandPtr Climber::SysIdQuasistatic(frc2::sysid::Direction direction) {

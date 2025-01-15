@@ -12,14 +12,14 @@ Elevator::Elevator(){
 
 void Elevator::setPosition(units::meter_t position){
 
-    units::turn_t positionInRotations{position.value() / (ElevatorConstants::Diameter.value() * 3.14159265358979323846)};
+    units::turn_t positionInRotations{position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
     leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
     
 };
 
 bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition){
-    units::meter_t elevatorError = elevatorPosition - leftElevatorMotor.GetPosition().GetValueAsDouble();
-     return (units::math::abs(elevatorError) < 0.015_m);
+    units::meter_t elevatorError = elevatorPosition - units::meter_t(leftElevatorMotor.GetPosition().GetValueAsDouble()* (ElevatorConstants::Diameter.value() * 3.14159265358979323846));
+    return (units::math::abs(elevatorError) < 0.015_m);
       
 }
 

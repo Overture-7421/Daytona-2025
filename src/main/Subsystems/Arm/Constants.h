@@ -7,9 +7,37 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct Constants {
-
     constexpr static const units::degree_t ArmAngleRange = 1.0_deg;
     constexpr static const units::degree_t WristAngleRange = 1.0_deg;
+
+
+    constexpr static const units::degree_t ArmL1Reef = 1.0_deg;
+    constexpr static const units::degree_t WristL1Reef = 1.0_deg;
+
+    constexpr static const units::degree_t ArmL2Reef = 1.0_deg;
+    constexpr static const units::degree_t WristL2Reef = 1.0_deg;
+
+    constexpr static const units::degree_t ArmL3Reef = 1.0_deg;
+    constexpr static const units::degree_t WristL3Reef = 1.0_deg;
+
+    constexpr static const units::degree_t ArmL4Reef = 1.0_deg;
+    constexpr static const units::degree_t WristL4Reef = 1.0_deg;
+
+    constexpr static const units::degree_t ArmCoralStation = 1.0_deg;
+    constexpr static const units::degree_t WristCoralStation = 1.0_deg;
+
+    constexpr static const units::degree_t ArmProcessor = 1.0_deg;
+    constexpr static const units::degree_t WristProcessor = 1.0_deg;
+
+    constexpr static const units::degree_t ArmNet = 1.0_deg;
+    constexpr static const units::degree_t WristNet = 1.0_deg;
+
+    constexpr static const units::degree_t ArmGround = 1.0_deg;
+    constexpr static const units::degree_t WristGround = 1.0_deg;
+
+    constexpr static const units::degree_t ArmClosed = 1.0_deg;
+    constexpr static const units::degree_t WristClosed = 1.0_deg;
+
 
     constexpr static const double ArmRotorToSensor = 1.0;
     constexpr static const double WristRotorToSensor = 1.0;

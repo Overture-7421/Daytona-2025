@@ -12,8 +12,7 @@ Elevator::Elevator() {
 
 void Elevator::setPosition(units::meter_t position) {
 
-    units::turn_t positionInRotations
-    { position.value() / (ElevatorConstants::Diameter.value() * M_PI) };
+    units::turn_t positionInRotations {position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
     leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
 
 }
@@ -39,15 +38,14 @@ frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
     [&]() {
         return isElevatorAtPosition(elevatorPosition);
     },
-    { this }).ToPtr();
+    {this}).ToPtr();
 }
 // This method will be called once per scheduler run
 void Elevator::Periodic() {
 
     //no sé si está bien jiji
-    double currentPosition =
-    { leftElevatorMotor.GetPosition().GetValueAsDouble()
-            * (ElevatorConstants::Diameter.value() * 3.14159265358979323846) };
+    double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble()
+            * (ElevatorConstants::Diameter.value() * 3.14159265358979323846)};
     frc::SmartDashboard::PutNumber("Elevator/CurrentPosition", currentPosition);
 
 }

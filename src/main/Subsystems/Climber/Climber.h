@@ -26,10 +26,8 @@ public:
     void Periodic() override;
 
 private:
-    OverTalonFX armRightMotor
-    { Constants::RightConfig(), "rio" };
-    OverTalonFX armLeftMotor
-    { Constants::LeftConfig(), "rio" };
+    OverTalonFX armRightMotor {Constants::RightConfig(), "rio"};
+    OverTalonFX armLeftMotor {Constants::LeftConfig(), "rio"};
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine
     {   frc2::sysid::Config
@@ -48,6 +46,5 @@ private:
                 .velocity(armRightMotor.GetVelocity().GetValue());
             }, this}};
 
-    MotionMagicVoltage armVoltage
-    { 0_tr };
+    MotionMagicVoltage armVoltage {0_tr};
 };

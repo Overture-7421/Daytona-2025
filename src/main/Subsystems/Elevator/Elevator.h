@@ -28,13 +28,10 @@ public:
     frc2::CommandPtr setElevatorCommand(units::meter_t elevatorPosition);
 
 private:
-    OverTalonFX leftElevatorMotor
-    { ElevatorConstants::LeftConfig(), "rio" };
-    OverTalonFX rightElevatorMotor
-    { ElevatorConstants::RightConfig(), "rio" };
+    OverTalonFX leftElevatorMotor {ElevatorConstants::LeftConfig(), "rio"};
+    OverTalonFX rightElevatorMotor {ElevatorConstants::RightConfig(), "rio"};
 
-    MotionMagicVoltage elevatorVoltage
-    { 0_tr };
+    MotionMagicVoltage elevatorVoltage {0_tr};
 
     // Components (e.g. motor controllers and sensors) should generally be
     // declared private and exposed only through public methods.

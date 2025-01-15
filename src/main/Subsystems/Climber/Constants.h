@@ -19,7 +19,7 @@ struct Constants {
     rightConfig.NeutralMode = ControllerNeutralMode::Brake;
     rightConfig.useFOC = true;
     rightConfig.ClosedLoopRampRate = 0.01_s;
-    rightConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
+    rightConfig.PIDConfigs.WithKP(70.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return rightConfig;
   }
@@ -30,7 +30,7 @@ struct Constants {
     leftConfig.NeutralMode = ControllerNeutralMode::Brake;
     leftConfig.useFOC = true;
     leftConfig.ClosedLoopRampRate = 0.01_s;
-    leftConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
+    leftConfig.PIDConfigs.WithKP(70.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
 
     return leftConfig;
   }

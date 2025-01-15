@@ -6,8 +6,7 @@
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
-struct Constants
-{
+struct Constants {
 
     constexpr static const units::degree_t ArmAngleRange = 1.0_deg;
     constexpr static const units::degree_t WristAngleRange = 1.0_deg;
@@ -28,8 +27,7 @@ struct Constants
     constexpr static const double ArmLeftMotorId = 20;
     constexpr static const double ArmRightMotorId = 29;
 
-    constexpr static const OverTalonFXConfig ArmLeftConfig()
-    {
+    constexpr static const OverTalonFXConfig ArmLeftConfig() {
         OverTalonFXConfig armLeftConfig;
         armLeftConfig.MotorId = ArmLeftMotorId;
         armLeftConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -46,8 +44,7 @@ struct Constants
         return armLeftConfig;
     }
 
-    constexpr static const OverTalonFXConfig ArmRightConfig()
-    {
+    constexpr static const OverTalonFXConfig ArmRightConfig() {
         OverTalonFXConfig armRightConfig;
         armRightConfig.MotorId = ArmRightMotorId;
         armRightConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -64,8 +61,7 @@ struct Constants
         return armRightConfig;
     }
 
-    constexpr static const OverTalonFXConfig WristConfig()
-    {
+    constexpr static const OverTalonFXConfig WristConfig() {
         OverTalonFXConfig wristConfig;
         wristConfig.MotorId = 21;
         wristConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -82,8 +78,7 @@ struct Constants
         return wristConfig;
     }
 
-    constexpr static const CanCoderConfig ArmCANConfig()
-    {
+    constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
         armCANConfig.Offset = 0.0_tr;
@@ -91,8 +86,7 @@ struct Constants
         return armCANConfig;
     }
 
-    constexpr static const CanCoderConfig WristCANConfig()
-    {
+    constexpr static const CanCoderConfig WristCANConfig() {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
         wristCANConfig.Offset = 0.0_tr;

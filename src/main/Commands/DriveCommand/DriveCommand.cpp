@@ -8,8 +8,7 @@
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
 DriveCommand::DriveCommand(Chassis *chassis, OverXboxController *gamepad) : headingSpeedsHelper
-{ headingController, chassis }
-{
+{ headingController, chassis } {
     this->chassis = chassis;
     this->gamepad = gamepad;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -18,42 +17,34 @@ DriveCommand::DriveCommand(Chassis *chassis, OverXboxController *gamepad) : head
 }
 
 // Called when the command is initially scheduled.
-void DriveCommand::Initialize()
-{
-    if (isRedAlliance())
-    {
+void DriveCommand::Initialize() {
+    if (isRedAlliance()) {
         allianceMulti = -1;
-    } else
-    {
+    } else {
         allianceMulti = 1;
     }
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DriveCommand::Execute()
-{
+void DriveCommand::Execute() {
     frc::Rotation2d targetAngle
     { gamepad->getRightStickDirection() };
 
-    if (allianceMulti == -1)
-    {
+    if (allianceMulti == -1) {
         targetAngle = targetAngle.RotateBy(
         { 180_deg });
     }
 
     double squares = sqrt(gamepad->GetRightY() * gamepad->GetRightY() + gamepad->GetRightX() * gamepad->GetRightX());
 
-    if (squares > 0.71)
-    {
-        if (speedHelperMoved == false)
-        {
+    if (squares > 0.71) {
+        if (speedHelperMoved == false) {
             speedHelperMoved = true;
             chassis->enableSpeedHelper(&headingSpeedsHelper);
         }
 
-    } else if (speedHelperMoved == true)
-    {
+    } else if (speedHelperMoved == true) {
         speedHelperMoved = false;
         chassis->disableSpeedHelper();
     }
@@ -76,14 +67,12 @@ void DriveCommand::Execute()
 }
 
 // Called once the command ends or is interrupted.
-void DriveCommand::End(bool interrupted)
-{
+void DriveCommand::End(bool interrupted) {
     chassis->disableSpeedHelper();
 
 }
 
 // Returns true when the command should end.
-bool DriveCommand::IsFinished()
-{
+bool DriveCommand::IsFinished() {
     return false;
 }

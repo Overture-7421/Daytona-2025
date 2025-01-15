@@ -10,8 +10,7 @@
 #include <frc2/command/FunctionalCommand.h>
 #include "Subsystems/Climber/Constants.h"
 
-class Climber: public frc2::SubsystemBase
-{
+class Climber: public frc2::SubsystemBase {
 public:
     Climber();
 

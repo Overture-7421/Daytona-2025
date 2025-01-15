@@ -13,8 +13,7 @@
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
-class RobotContainer: public OverContainer
-{
+class RobotContainer: public OverContainer {
 public:
     RobotContainer();
 

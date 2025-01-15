@@ -6,8 +6,7 @@
 
 #include <frc2/command/Commands.h>
 
-RobotContainer::RobotContainer()
-{
+RobotContainer::RobotContainer() {
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
 
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -17,43 +16,36 @@ RobotContainer::RobotContainer()
     chassis.setAcceptingVisionMeasurements(true);
 }
 
-void RobotContainer::ConfigureBindings()
-{
+void RobotContainer::ConfigureBindings() {
     ConfigDriverBindings();
     ConfigOperatorBindings();
     ConfigDefaultCommands();
     //ConfigCharacterizationBindings();
 }
 
-frc2::Command* RobotContainer::GetAutonomousCommand()
-{
+frc2::Command* RobotContainer::GetAutonomousCommand() {
     chassis.setAcceptingVisionMeasurements(true);
 
     return autoChooser.GetSelected();
 }
 
-void RobotContainer::ConfigDriverBindings()
-{
+void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
 
     driver.Back().OnTrue(ResetHeading(&chassis));
 }
 
-void RobotContainer::ConfigOperatorBindings()
-{
+void RobotContainer::ConfigOperatorBindings() {
 }
 
-void RobotContainer::ConfigDefaultCommands()
-{
+void RobotContainer::ConfigDefaultCommands() {
 
 }
 
-void RobotContainer::ConfigCharacterizationBindings()
-{
+void RobotContainer::ConfigCharacterizationBindings() {
 }
 
-AprilTags::Config RobotContainer::testCameraConfig()
-{
+AprilTags::Config RobotContainer::testCameraConfig() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
     config.cameraToRobot =
@@ -62,7 +54,6 @@ AprilTags::Config RobotContainer::testCameraConfig()
     return config;
 }
 
-void RobotContainer::UpdateTelemetry()
-{
+void RobotContainer::UpdateTelemetry() {
     chassis.shuffleboardPeriodic();
 }

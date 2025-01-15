@@ -13,8 +13,7 @@
 
 #include "Subsystems/Arm/Constants.h"
 
-class Arm: public frc2::SubsystemBase
-{
+class Arm: public frc2::SubsystemBase {
 public:
     Arm();
 

@@ -13,8 +13,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Subsystems/Intake/Constants.h"
 
-class Intake: public frc2::SubsystemBase
-{
+class Intake: public frc2::SubsystemBase {
 public:
     Intake();
 

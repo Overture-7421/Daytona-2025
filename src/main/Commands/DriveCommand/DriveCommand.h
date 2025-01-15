@@ -21,8 +21,7 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DriveCommand: public frc2::CommandHelper<frc2::Command, DriveCommand>
-{
+class DriveCommand: public frc2::CommandHelper<frc2::Command, DriveCommand> {
 public:
     DriveCommand(Chassis *chassis, OverXboxController *gamepad);
 

@@ -8,8 +8,7 @@
 #include "wpi/DataLog.h"
 #include "OvertureLib/Subsystems/Swerve/SpeedsHelper/HeadingSpeedsHelper/HeadingSpeedsHelper.h"
 
-class Chassis: public SwerveChassis
-{
+class Chassis: public SwerveChassis {
 public:
     Chassis();
 

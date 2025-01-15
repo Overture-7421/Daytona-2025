@@ -17,60 +17,49 @@ frc::SimpleMotorFeedforward<units::meters> feedForwardBackLeft
 frc::SimpleMotorFeedforward<units::meters> feedForwardBackRight
 { 0.0_V, 2.0879_V / 1_mps, 0.098433_V / 1_mps_sq };
 
-Chassis::Chassis() : SwerveChassis()
-{
+Chassis::Chassis() : SwerveChassis() {
     configureSwerveBase();
     setAcceptingVisionMeasurements(true);
     resetHeading();
 }
 
-units::meters_per_second_t Chassis::getMaxModuleSpeed()
-{
+units::meters_per_second_t Chassis::getMaxModuleSpeed() {
     return 5_mps;
 }
 
-units::meter_t Chassis::getDriveBaseRadius()
-{
+units::meter_t Chassis::getDriveBaseRadius() {
     return 0.5270_m;
 }
 
-SwerveModule& Chassis::getBackLeftModule()
-{
+SwerveModule& Chassis::getBackLeftModule() {
     return backLeftModule;
 }
 
-SwerveModule& Chassis::getBackRightModule()
-{
+SwerveModule& Chassis::getBackRightModule() {
     return backRightModule;
 }
 
-SwerveModule& Chassis::getFrontLeftModule()
-{
+SwerveModule& Chassis::getFrontLeftModule() {
     return frontLeftModule;
 }
 
-SwerveModule& Chassis::getFrontRightModule()
-{
+SwerveModule& Chassis::getFrontRightModule() {
     return frontRightModule;
 }
 
-frc::SwerveDriveKinematics<4>& Chassis::getKinematics()
-{
+frc::SwerveDriveKinematics<4>& Chassis::getKinematics() {
     return kinematics;
 }
 
-frc::Rotation2d Chassis::getRotation2d()
-{
+frc::Rotation2d Chassis::getRotation2d() {
     return pigeon.GetRotation2d();
 }
 
-frc::Rotation3d Chassis::getRotation3d()
-{
+frc::Rotation3d Chassis::getRotation3d() {
     return pigeon.GetRotation3d();
 }
 
-SwerveModuleConfig Chassis::FrontLeftConfig()
-{
+SwerveModuleConfig Chassis::FrontLeftConfig() {
     SwerveModuleConfig config
     { feedForwardFrontLeft };
     config.DriveMotorConfig.MotorId = 2;
@@ -91,8 +80,7 @@ SwerveModuleConfig Chassis::FrontLeftConfig()
     return config;
 }
 
-SwerveModuleConfig Chassis::FrontRightConfig()
-{
+SwerveModuleConfig Chassis::FrontRightConfig() {
     SwerveModuleConfig config
     { feedForwardFrontRight };
     config.DriveMotorConfig.MotorId = 4;
@@ -113,8 +101,7 @@ SwerveModuleConfig Chassis::FrontRightConfig()
     return config;
 }
 
-SwerveModuleConfig Chassis::BackLeftConfig()
-{
+SwerveModuleConfig Chassis::BackLeftConfig() {
     SwerveModuleConfig config
     { feedForwardBackLeft };
     config.DriveMotorConfig.MotorId = 6;
@@ -135,8 +122,7 @@ SwerveModuleConfig Chassis::BackLeftConfig()
     return config;
 }
 
-SwerveModuleConfig Chassis::BackRightConfig()
-{
+SwerveModuleConfig Chassis::BackRightConfig() {
     SwerveModuleConfig config
     { feedForwardBackRight };
     config.DriveMotorConfig.MotorId = 8;

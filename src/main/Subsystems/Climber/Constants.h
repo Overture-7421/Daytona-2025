@@ -2,8 +2,7 @@
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
-struct Constants
-{
+struct Constants {
 
     constexpr static const double ArmSensorToMechanism = 0.0;
 
@@ -13,8 +12,7 @@ struct Constants
     constexpr static const double rightArmMotorId = 20;
     constexpr static const double leftArmMotorId = 29;
 
-    constexpr static const OverTalonFXConfig RightConfig()
-    {
+    constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig rightConfig;
         rightConfig.MotorId = rightArmMotorId;
         rightConfig.NeutralMode = ControllerNeutralMode::Brake;
@@ -25,8 +23,7 @@ struct Constants
         return rightConfig;
     }
 
-    constexpr static const OverTalonFXConfig LeftConfig()
-    {
+    constexpr static const OverTalonFXConfig LeftConfig() {
         OverTalonFXConfig leftConfig;
         leftConfig.MotorId = leftArmMotorId;
         leftConfig.NeutralMode = ControllerNeutralMode::Brake;

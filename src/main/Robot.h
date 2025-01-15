@@ -12,8 +12,7 @@
 #include <OvertureLib/Robots/OverRobot/OverRobot.h>
 #include "RobotContainer.h"
 
-class Robot: public OverRobot
-{
+class Robot: public OverRobot {
 public:
     Robot();
     void RobotPeriodic() override;

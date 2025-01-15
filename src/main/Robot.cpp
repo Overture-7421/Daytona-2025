@@ -6,8 +6,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 
-Robot::Robot()
-{
+Robot::Robot() {
 
 #ifndef __FRC_ROBORIO__
     simMotorManager.Init(
@@ -35,79 +34,62 @@ Robot::Robot()
 
 #endif
 
-    AddPeriodic([&]
-    {
+    AddPeriodic([&] {
         frc2::CommandScheduler::GetInstance().Run();
     }, RobotConstants::LoopTime, RobotConstants::TimingOffset);
 }
 
-void Robot::RobotPeriodic()
-{
+void Robot::RobotPeriodic() {
     m_container.UpdateTelemetry();
 }
 
-void Robot::DisabledInit()
-{
+void Robot::DisabledInit() {
 }
 
-void Robot::DisabledPeriodic()
-{
+void Robot::DisabledPeriodic() {
 }
 
-void Robot::DisabledExit()
-{
+void Robot::DisabledExit() {
 }
 
-void Robot::AutonomousInit()
-{
+void Robot::AutonomousInit() {
     m_autonomousCommand = m_container.GetAutonomousCommand();
 
-    if (m_autonomousCommand)
-    {
+    if (m_autonomousCommand) {
         m_autonomousCommand->Schedule();
     }
 }
 
-void Robot::AutonomousPeriodic()
-{
+void Robot::AutonomousPeriodic() {
 }
 
-void Robot::AutonomousExit()
-{
+void Robot::AutonomousExit() {
 }
 
-void Robot::TeleopInit()
-{
-    if (m_autonomousCommand)
-    {
+void Robot::TeleopInit() {
+    if (m_autonomousCommand) {
         m_autonomousCommand->Cancel();
     }
 }
 
-void Robot::TeleopPeriodic()
-{
+void Robot::TeleopPeriodic() {
 }
 
-void Robot::TeleopExit()
-{
+void Robot::TeleopExit() {
 }
 
-void Robot::TestInit()
-{
+void Robot::TestInit() {
     frc2::CommandScheduler::GetInstance().CancelAll();
 }
 
-void Robot::TestPeriodic()
-{
+void Robot::TestPeriodic() {
 }
 
-void Robot::TestExit()
-{
+void Robot::TestExit() {
 }
 
 #ifndef RUNNING_FRC_TESTS
-int main()
-{
+int main() {
     return frc::StartRobot<Robot>();
 }
 #endif

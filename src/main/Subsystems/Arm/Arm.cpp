@@ -23,10 +23,8 @@ Arm::Arm() {
 }
 
 void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
-    MotionMagicVoltage armVoltage
-    { 0_tr };
-    MotionMagicVoltage wristVoltage
-    { 0_tr };
+    MotionMagicVoltage armVoltage {0_tr};
+    MotionMagicVoltage wristVoltage {0_tr};
 
     armLeftMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
     wristMotor.SetControl(wristVoltage.WithPosition(wristAngle).WithEnableFOC(true));
@@ -49,7 +47,7 @@ frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wr
     }, [&]() {
         return isArmAtPosition(armAngle, wristAngle);
     },
-    { this }).ToPtr();
+    {this}).ToPtr();
 }
 
 frc2::CommandPtr Arm::SysIdQuasistatic(frc2::sysid::Direction direction) {

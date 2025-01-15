@@ -10,7 +10,6 @@
 #include <frc2/command/sysid/SysIdRoutine.h>
 #include <frc/controller/ArmFeedforward.h>
 #include <frc2/command/FunctionalCommand.h>
-// #include <units/angular_acceleration.h>
 
 #include "Subsystems/Arm/Constants.h"
 
@@ -27,15 +26,16 @@ public:
 
   bool isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle);
 
-  OverTalonFX armLeftMotor{Constants::armLeftConfig(), "rio"};
-  OverTalonFX armRightMotor{Constants::armRightConfig(), "rio"};
-  OverCANCoder armCANCoder{Constants::armCANConfig(), "rio"};
-  OverTalonFX wristMotor{Constants::wristConfig(), "rio"};
-  OverCANCoder wristCANCoder{Constants::wristCANConfig(), "rio"};
-
   void Periodic() override;
 
 private:
+
+  OverTalonFX armLeftMotor{Constants::ArmLeftConfig(), "rio"};
+  OverTalonFX armRightMotor{Constants::ArmRightConfig(), "rio"};
+  OverCANCoder armCANCoder{Constants::ArmCANConfig(), "rio"};
+  OverTalonFX wristMotor{Constants::WristConfig(), "rio"};
+  OverCANCoder wristCANCoder{Constants::WristCANConfig(), "rio"};
+
   frc2::sysid::SysIdRoutine m_sysIdRoutine{frc2::sysid::Config{1_V / 1_s, 3_V, 30_s, nullptr},
     frc2::sysid::Mechanism{
         [this](units::volt_t driveVoltage)

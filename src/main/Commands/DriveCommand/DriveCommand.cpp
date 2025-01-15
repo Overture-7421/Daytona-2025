@@ -7,13 +7,12 @@
 #include <cmath>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
-DriveCommand::DriveCommand(Chassis *chassis, OverXboxController *gamepad) : headingSpeedsHelper
-{ headingController, chassis } {
+DriveCommand::DriveCommand(Chassis *chassis, OverXboxController *gamepad) : headingSpeedsHelper {headingController,
+        chassis} {
     this->chassis = chassis;
     this->gamepad = gamepad;
     // Use addRequirements() here to declare subsystem dependencies.
-    AddRequirements(
-    { chassis });
+    AddRequirements( {chassis});
 }
 
 // Called when the command is initially scheduled.
@@ -28,12 +27,10 @@ void DriveCommand::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveCommand::Execute() {
-    frc::Rotation2d targetAngle
-    { gamepad->getRightStickDirection() };
+    frc::Rotation2d targetAngle {gamepad->getRightStickDirection()};
 
     if (allianceMulti == -1) {
-        targetAngle = targetAngle.RotateBy(
-        { 180_deg });
+        targetAngle = targetAngle.RotateBy( {180_deg});
     }
 
     double squares = sqrt(gamepad->GetRightY() * gamepad->GetRightY() + gamepad->GetRightX() * gamepad->GetRightX());

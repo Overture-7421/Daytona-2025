@@ -29,16 +29,11 @@ public:
 
 private:
 
-    OverTalonFX armLeftMotor
-    { Constants::ArmLeftConfig(), "rio" };
-    OverTalonFX armRightMotor
-    { Constants::ArmRightConfig(), "rio" };
-    OverCANCoder armCANCoder
-    { Constants::ArmCANConfig(), "rio" };
-    OverTalonFX wristMotor
-    { Constants::WristConfig(), "rio" };
-    OverCANCoder wristCANCoder
-    { Constants::WristCANConfig(), "rio" };
+    OverTalonFX armLeftMotor {Constants::ArmLeftConfig(), "rio"};
+    OverTalonFX armRightMotor {Constants::ArmRightConfig(), "rio"};
+    OverCANCoder armCANCoder {Constants::ArmCANConfig(), "rio"};
+    OverTalonFX wristMotor {Constants::WristConfig(), "rio"};
+    OverCANCoder wristCANCoder {Constants::WristCANConfig(), "rio"};
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine
     {   frc2::sysid::Config

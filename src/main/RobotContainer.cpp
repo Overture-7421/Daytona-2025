@@ -48,9 +48,7 @@ void RobotContainer::ConfigCharacterizationBindings() {
 AprilTags::Config RobotContainer::testCameraConfig() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot =
-    { 14.950771_in, 0_m, 14.034697_in,
-    { 0_deg, 0_deg, 0_deg } };
+    config.cameraToRobot = {14.950771_in, 0_m, 14.034697_in, {0_deg, 0_deg, 0_deg}};
     return config;
 }
 

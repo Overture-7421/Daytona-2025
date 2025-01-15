@@ -48,7 +48,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git commit -am "Apply Spotless formatting"
-        git push
+        git push origin ${{ github.ref }}
     # Runs a single command using the runners shell
     - name: Compile and run tests on robot code
       run: ./gradlew build

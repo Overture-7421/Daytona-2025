@@ -37,11 +37,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-2022
+          - os: windows-2025
             artifact-name: Win64
             architecture: x64
             build-task: "frcUserProgramWindowsx86-64ReleaseExecutable"
-          - os: macos-14
+          - os: macos-15
             artifact-name: MacOS
             architecture: x64
             build-task: "frcUserProgramOsxuniversalReleaseExecutable"

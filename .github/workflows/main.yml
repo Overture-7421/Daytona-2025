@@ -45,10 +45,6 @@ jobs:
             artifact-name: MacOS
             architecture: x64
             build-task: "frcUserProgramOsxuniversalReleaseExecutable"
-          - os: macos-14-arm64
-            artifact-name: MacOS Arm
-            architecture: arm64
-            build-task: "tasks --all"
     name: "Build - ${{ matrix.artifact-name }}"
     runs-on: ${{ matrix.os }}
     steps:

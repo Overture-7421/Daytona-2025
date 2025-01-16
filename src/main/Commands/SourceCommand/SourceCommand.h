@@ -9,4 +9,4 @@
 #include "Subsystems/Intake/Intake.h"
 #include <frc2/command/Commands.h>
 
-frc2::CommandPtr SourceCommand(Arm* arm, Elevator* elevator, Intake* intake);
+frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake);

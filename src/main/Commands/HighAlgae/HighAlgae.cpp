@@ -11,9 +11,7 @@ frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator) {
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::TopAlgaePosition);
             }),
-            frc2::cmd::Parallel(arm->setArmCommand(Constants::ArmL3Reef, Constants::WristL3Reef)),
-
-            frc2::cmd::WaitUntil([arm] {
+            arm->setArmCommand(Constants::ArmL3Reef, Constants::WristL3Reef), frc2::cmd::WaitUntil([arm] {
                 return arm->isArmAtPosition(Constants::ArmL3Reef, Constants::WristL3Reef);
 
             })

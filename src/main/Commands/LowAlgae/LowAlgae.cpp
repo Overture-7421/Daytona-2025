@@ -6,12 +6,12 @@
 #include "Subsystems/Arm/Constants.h"
 #include "Subsystems/Elevator/Constants.h"
 
-frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, OverXboxController *overxboxController) {
+frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator) {
     return frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::BottomAlgaePosition),
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::BottomAlgaePosition);
             }),
-            frc2::cmd::Parallel(arm->setArmCommand(Constants::ArmL2Reef, Constants::WristL2Reef)),
+            arm->setArmCommand(Constants::ArmL2Reef, Constants::WristL2Reef),
 
             frc2::cmd::WaitUntil([arm] {
                 return arm->isArmAtPosition(Constants::ArmL2Reef, Constants::WristL2Reef);

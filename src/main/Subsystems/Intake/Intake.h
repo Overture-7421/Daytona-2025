@@ -13,21 +13,20 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Subsystems/Intake/Constants.h"
 
+class Intake: public frc2::SubsystemBase {
+public:
+    Intake();
 
-class Intake : public frc2::SubsystemBase {
- public:
-  Intake();
+    void setVoltage(units::volt_t voltage);
+    double getVoltage();
 
-  void setVoltage(units::volt_t voltage);
-  double getVoltage();
+    /**
+     * Will be called periodically whenever the CommandScheduler runs.
+     */
+    void Periodic() override;
+    frc2::CommandPtr moveIntake(units::volt_t voltage);
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic() override;
-  frc2::CommandPtr moveIntake(units::volt_t voltage);
-
-  private:
- //ID 20
-    OverTalonFX intakeMotor{Constants::IntakeConfig() , "rio"};
+private:
+    //ID 20
+    OverTalonFX intakeMotor {Constants::IntakeConfig(), "rio"};
 };

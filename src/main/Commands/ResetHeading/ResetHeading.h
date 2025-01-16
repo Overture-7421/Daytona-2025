@@ -7,4 +7,4 @@
 #include "Subsystems/Chassis/Chassis.h"
 #include <frc2/command/Commands.h>
 
-frc2::CommandPtr ResetHeading(Chassis* chassis);
+frc2::CommandPtr ResetHeading(Chassis *chassis);

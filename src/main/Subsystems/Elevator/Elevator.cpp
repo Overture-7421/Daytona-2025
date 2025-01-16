@@ -21,8 +21,7 @@ void Elevator::setPosition(units::meter_t position) {
 bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
     units::meter_t elevatorError = elevatorPosition
             - units::meter_t(
-                    leftElevatorMotor.GetPosition().GetValueAsDouble()
-                            * (ElevatorConstants::Diameter.value() * 3.14159265358979323846));
+                    leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
     return (units::math::abs(elevatorError) < 0.015_m);
 
 }
@@ -45,7 +44,7 @@ void Elevator::Periodic() {
 
     //no sé si está bien jiji
     double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble()
-            * (ElevatorConstants::Diameter.value() * 3.14159265358979323846)};
+            * (ElevatorConstants::Diameter.value() * M_PI)};
     frc::SmartDashboard::PutNumber("Elevator/CurrentPosition", currentPosition);
 
 }

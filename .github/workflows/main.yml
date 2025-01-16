@@ -29,9 +29,11 @@ jobs:
       run: chmod +x gradlew
     # Apply Spotless formatting if needed
     - name: Apply Spotless formatting
+      if: github.ref != 'refs/heads/main'
       run: ./gradlew spotlessApply
     # Check if there are any changes after applying Spotless formatting
     - name: Check for changes
+      if: github.ref != 'refs/heads/main'
       id: git_diff
       run: |
         if git diff --exit-code; then
@@ -43,7 +45,7 @@ jobs:
         fi
     # Commit and push changes if there are any
     - name: Commit and push changes
-      if: steps.git_diff.outputs.changes == 'true'
+      if: steps.git_diff.outputs.changes == 'true' && github.ref != 'refs/heads/main'
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"

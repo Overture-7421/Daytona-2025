@@ -63,6 +63,6 @@ jobs:
           java-version: 17
           architecture: ${{ matrix.architecture }}
       - name: Build with Gradle
-        run: ./gradlew ${{ matrix.build-task }}
+        run: ./gradlew ${{ matrix.build-task }} -Ptoolchain-optional-roboRio
 
 

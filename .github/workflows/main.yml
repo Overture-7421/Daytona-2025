@@ -17,7 +17,7 @@ jobs:
         include:
           - container: wpilib/roborio-cross-ubuntu:2025-24.04
             artifact-name: RoboRIO
-            build-options: "-Ponlylinuxathena"
+            build-task: "frcUserProgramLinuxathenaReleaseExecutable"
     name: "Build - ${{ matrix.artifact-name }}"
     runs-on: ubuntu-24.04
     container: ${{ matrix.container }}
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
       - name: Build with Gradle
-        run: ./gradlew build -PreleaseMode ${{ matrix.build-options }}
+        run: ./gradlew ${{ matrix.build-task }}
 
   build-host:
     strategy:
@@ -40,12 +40,15 @@ jobs:
           - os: windows-2022
             artifact-name: Win64
             architecture: x64
+            build-task: "frcUserProgramWindowsx86-64ReleaseExecutable"
           - os: macos-14
             artifact-name: MacOS
             architecture: x64
+            build-task: "tasks --all"
           - os: macos-14-arm64
             artifact-name: MacOS Arm
             architecture: arm64
+            build-task: "tasks --all"
     name: "Build - ${{ matrix.artifact-name }}"
     runs-on: ${{ matrix.os }}
     steps:
@@ -60,6 +63,6 @@ jobs:
           java-version: 17
           architecture: ${{ matrix.architecture }}
       - name: Build with Gradle
-        run: ./gradlew build -Pbuildalldesktop -PreleaseMode 
+        run: ./gradlew ${{ matrix.build-task }}
 
 

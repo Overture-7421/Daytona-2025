@@ -9,6 +9,4 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
 
-
-
-frc2::CommandPtr LowAlgae(Arm* arm, Elevator* elevator, OverXboxController* overxboxController);
+frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, OverXboxController *overxboxController);

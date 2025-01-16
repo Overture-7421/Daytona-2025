@@ -44,7 +44,7 @@ jobs:
           - os: macos-14
             artifact-name: MacOS
             architecture: x64
-            build-task: "tasks --all"
+            build-task: "frcUserProgramOsxuniversalReleaseExecutable"
           - os: macos-14-arm64
             artifact-name: MacOS Arm
             architecture: arm64

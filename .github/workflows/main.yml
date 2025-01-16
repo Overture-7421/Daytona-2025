@@ -18,19 +18,19 @@ jobs:
           - container: wpilib/roborio-cross-ubuntu:2025-24.04
             artifact-name: RoboRIO
             build-options: "-Ponlylinuxathena"
-      name: "Build - ${{ matrix.artifact-name }}"
-      runs-on: ubuntu-24.04
-      container: ${{ matrix.container }}
-      steps:
-        - uses: actions/checkout@v4
-          with:
-            submodules: true
-            fetch-depth: 0
-        - name: Fetch all history and metadata
-          run: |
-            git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
-        - name: Build with Gradle
-          run: ./gradlew build -PreleaseMode ${{ matrix.build-options }}
+    name: "Build - ${{ matrix.artifact-name }}"
+    runs-on: ubuntu-24.04
+    container: ${{ matrix.container }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Fetch all history and metadata
+        run: |
+          git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
+      - name: Build with Gradle
+        run: ./gradlew build -PreleaseMode ${{ matrix.build-options }}
 
   build-host:
     strategy:

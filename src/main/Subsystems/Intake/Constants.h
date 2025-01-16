@@ -10,9 +10,14 @@
 struct Constants {
 public:
 
-    constexpr static const units::volt_t GroundGrabVolts = 6.0_V;
-    constexpr static const units::volt_t stopVolts = 0.0_V;
-    constexpr static const units::volt_t reverseVolts = -6.0_V;
+    constexpr static const units::volt_t CoralGrab = 6.0_V;
+    constexpr static const units::volt_t CoralRelease = -6.0_V;
+    constexpr static const units::volt_t AlgeaGrab = 6.0_V;
+    constexpr static const units::volt_t AlgeaRelease = -6.0_V;
+
+    constexpr static const units::volt_t SlowIntake = 3.0_V;
+    constexpr static const units::volt_t StopIntake = 0.0_V;
+    constexpr static const units::volt_t ReverseVolts = -6.0_V;
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;

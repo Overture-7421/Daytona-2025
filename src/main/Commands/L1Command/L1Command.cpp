@@ -4,17 +4,15 @@
 
 #include "L1Command.h"
 
-frc2::CommandPtr L1Command(Arm* arm, Elevator* elevator){
-    return frc2::cmd::Sequence(
-        elevator->setElevatorCommand(ElevatorConstants::L1Position),
-        frc2::cmd::WaitUntil([elevator]{
-            return elevator->isElevatorAtPosition(ElevatorConstants::L1Position);
-            
-        }),
+frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator) {
+    return frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L1Position),
+            frc2::cmd::WaitUntil([elevator] {
+                return elevator->isElevatorAtPosition(ElevatorConstants::L1Position);
 
-        arm->setArmCommand(Constants::ArmL1Reef, Constants::WristL1Reef),
-        frc2::cmd::WaitUntil([arm]{
-            return arm->isArmAtPosition(Constants::ArmL1Reef, Constants::WristL1Reef);
-        })
-        );
+            }),
+
+            arm->setArmCommand(Constants::ArmL1Reef, Constants::WristL1Reef), frc2::cmd::WaitUntil([arm] {
+                return arm->isArmAtPosition(Constants::ArmL1Reef, Constants::WristL1Reef);
+            })
+    );
 }

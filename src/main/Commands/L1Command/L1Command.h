@@ -8,4 +8,4 @@
 #include "Subsystems/Elevator/Elevator.h"
 #include <frc2/command/Commands.h>
 
-frc2::CommandPtr L1Command(Arm* arm, Elevator* elevator);
+frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator);

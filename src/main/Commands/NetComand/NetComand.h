@@ -5,6 +5,6 @@
 #pragma once
 
 class NetComand {
- public:
-  NetComand();
+public:
+    NetComand();
 };

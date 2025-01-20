@@ -6,7 +6,6 @@
 
 AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : alignSpeedHelper(chassis, pose2d) {
     this->chassis = chassis;
-    this->pose2d = pose2d;
 
     AddRequirements( {chassis});
 }

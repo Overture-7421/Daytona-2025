@@ -23,6 +23,5 @@ public:
 
 private:
     Chassis *chassis;
-    frc::Pose2d pose2d;
     AlignSpeedHelper alignSpeedHelper;
 };

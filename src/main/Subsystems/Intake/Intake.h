@@ -17,7 +17,7 @@ class Intake: public frc2::SubsystemBase {
 public:
     Intake();
 
-    void setIVoltage(units::volt_t voltage);
+    void setMotorVoltage(units::volt_t voltage);
     double getVoltage();
 
     /**

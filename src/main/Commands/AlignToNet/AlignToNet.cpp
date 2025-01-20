@@ -6,7 +6,6 @@
 
 AlignToNet::AlignToNet(Chassis *chassis, frc::Pose2d pose2d) : alignNetSpeedHelper(chassis, pose2d) {
     this->chassis = chassis;
-    this->pose2d = pose2d;
 
     AddRequirements( {chassis});
 }

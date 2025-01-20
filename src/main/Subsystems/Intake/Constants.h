@@ -10,8 +10,8 @@
 struct IntakeConstants {
 public:
 
-    constexpr static const units::volt_t CoralGrab = 6.0_V;
-    constexpr static const units::volt_t CoralRelease = -6.0_V;
+    constexpr static const units::volt_t CoralGrab = 4.0_V;
+    constexpr static const units::volt_t CoralRelease = -4.0_V;
     constexpr static const units::volt_t AlgeaGrab = 6.0_V;
     constexpr static const units::volt_t AlgeaRelease = -6.0_V;
 
@@ -21,8 +21,9 @@ public:
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = 1;
+        intakeConfig.MotorId = 54;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
+        intakeConfig.Inverted = true;
 
         return intakeConfig;
     }

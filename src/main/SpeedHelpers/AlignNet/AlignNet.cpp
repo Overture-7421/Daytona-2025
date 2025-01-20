@@ -25,7 +25,8 @@ void AlignNet::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), targetPose.X()));
     auto yOut = units::meters_per_second_t(inputSpeed.vy());
-    auto rotationOut = units::degrees_per_second_t(headingPIDController.Calculate(pose.Rotation().Degrees(), targetPose.Rotation().Degrees()));
+    auto rotationOut = units::degrees_per_second_t(
+            headingPIDController.Calculate(pose.Rotation().Degrees(), targetPose.Rotation().Degrees()));
 
     if (xPIDController.AtGoal()) {
         xOut = 0_mps;
@@ -34,9 +35,9 @@ void AlignNet::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     if (headingPIDController.AtGoal()) {
         rotationOut = 0_deg_per_s;
     }
-    
 
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, yOut, rotationOut, chassis->getEstimatedPose().Rotation());
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, yOut, rotationOut,
+            chassis->getEstimatedPose().Rotation());
     speeds = frc::ChassisSpeeds::Discretize(speeds, 0.02_s);
 
     inputSpeed = speeds;

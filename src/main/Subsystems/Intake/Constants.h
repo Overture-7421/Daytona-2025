@@ -7,7 +7,7 @@
 #include <units/voltage.h>
 #include "Subsystems/Intake/Intake.h"
 
-struct Constants {
+struct IntakeConstants {
 public:
 
     constexpr static const units::volt_t CoralGrab = 4.0_V;

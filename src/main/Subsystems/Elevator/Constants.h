@@ -20,6 +20,7 @@ struct ElevatorConstants {
     constexpr static const units::meter_t L3Position = 1.21_m;
     constexpr static const units::meter_t L4Position = 1.83_m;
     constexpr static const units::meter_t NetPosition = 2.5_m;
+    constexpr static const units::meter_t ProcessorPosition = 0.1_m;
     constexpr static const units::meter_t BottomAlgaePosition = 0.95_m;
     constexpr static const units::meter_t TopAlgaePosition = 1.3_m;
 

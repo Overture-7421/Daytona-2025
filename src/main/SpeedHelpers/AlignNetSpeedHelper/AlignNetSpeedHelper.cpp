@@ -35,11 +35,8 @@ void AlignNetSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
         rotationOut = 0_deg_per_s;
     }
 
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut,
-            units::meters_per_second_t(inputSpeed.vy()), rotationOut, chassis->getEstimatedPose().Rotation());
-    speeds = frc::ChassisSpeeds::Discretize(speeds, 0.02_s);
-
-    inputSpeed = speeds;
+    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, inputSpeed.vy, rotationOut,
+            chassis->getEstimatedPose().Rotation());
 }
 
 void AlignNetSpeedHelper::initialize() {

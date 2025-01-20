@@ -9,22 +9,21 @@
 #include "Subsystems/Chassis/Chassis.h"
 #include "SpeedHelpers/AlignNet/AlignNet.h"
 
-class AlignToNet
-    : public frc2::CommandHelper<frc2::Command, AlignToNet> {
- public:
+class AlignToNet: public frc2::CommandHelper<frc2::Command, AlignToNet> {
+public:
 
-  AlignToNet(Chassis* chassis, frc::Pose2d pose2d);
+    AlignToNet(Chassis *chassis, frc::Pose2d pose2d);
 
-  void Initialize() override;
+    void Initialize() override;
 
-  void Execute() override;
+    void Execute() override;
 
-  void End(bool interrupted) override;
+    void End(bool interrupted) override;
 
-  bool IsFinished() override;
-  
-  private:
-  Chassis* chassis;
-  frc::Pose2d pose2d;
-  AlignNet alignNet;
+    bool IsFinished() override;
+
+private:
+    Chassis *chassis;
+    frc::Pose2d pose2d;
+    AlignNet alignNet;
 };

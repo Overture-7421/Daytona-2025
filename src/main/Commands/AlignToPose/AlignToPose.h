@@ -9,21 +9,20 @@
 #include "Subsystems/Chassis/Chassis.h"
 #include "SpeedHelpers/Align/Align.h"
 
-class AlignToPose
-    : public frc2::CommandHelper<frc2::Command, AlignToPose> {
- public:
-  AlignToPose(Chassis* chassis, frc::Pose2d pose2d);
+class AlignToPose: public frc2::CommandHelper<frc2::Command, AlignToPose> {
+public:
+    AlignToPose(Chassis *chassis, frc::Pose2d pose2d);
 
-  void Initialize() override;
+    void Initialize() override;
 
-  void Execute() override;
+    void Execute() override;
 
-  void End(bool interrupted) override;
+    void End(bool interrupted) override;
 
-  bool IsFinished() override;
+    bool IsFinished() override;
 
-  private:
-  Chassis* chassis;
-  frc::Pose2d pose2d;
-  Align align;
+private:
+    Chassis *chassis;
+    frc::Pose2d pose2d;
+    Align align;
 };

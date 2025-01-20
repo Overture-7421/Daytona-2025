@@ -10,10 +10,9 @@
 #include <frc/geometry/Pose2d.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-
-class Align : public SpeedsHelper {
+class AlignNet : public SpeedsHelper {
  public:
-  Align(Chassis* chassis, frc::Pose2d targetPose);
+  AlignNet(Chassis* chassis, frc::Pose2d targetPose);
   void alterSpeed(frc::ChassisSpeeds &inputSpeed) override;
   bool atGoal();
 
@@ -22,10 +21,6 @@ class Align : public SpeedsHelper {
  private:
   
   frc::ProfiledPIDController<units::meters> xPIDController{
-    4.0, 0.0, 0.0, {4.0_mps, 2.5_mps_sq}
-  };
-
-  frc::ProfiledPIDController<units::meters> yPIDController{
     4.0, 0.0, 0.0, {4.0_mps, 2.5_mps_sq}
   };
 

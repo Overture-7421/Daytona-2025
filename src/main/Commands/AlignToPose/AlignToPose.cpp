@@ -4,23 +4,24 @@
 
 #include "AlignToPose.h"
 
-AlignToPose::AlignToPose(Chassis* chassis, frc::Pose2d pose2d) : align(chassis, pose2d) {
-  this->chassis = chassis;
-  this->pose2d = pose2d;
-  
-  AddRequirements({chassis});
+AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : align(chassis, pose2d) {
+    this->chassis = chassis;
+    this->pose2d = pose2d;
+
+    AddRequirements( {chassis});
 }
 
 void AlignToPose::Initialize() {
-  chassis->enableSpeedHelper(&align);
+    chassis->enableSpeedHelper(&align);
 }
 
-void AlignToPose::Execute() {}
+void AlignToPose::Execute() {
+}
 
 void AlignToPose::End(bool interrupted) {
-  chassis->disableSpeedHelper();
+    chassis->disableSpeedHelper();
 }
 
 bool AlignToPose::IsFinished() {
-  return align.atGoal();
+    return align.atGoal();
 }

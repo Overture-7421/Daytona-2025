@@ -9,7 +9,7 @@
 #include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
-Align::Align(Chassis* chassis, frc::Pose2d targetPose){
+Align::Align(Chassis *chassis, frc::Pose2d targetPose) {
     this->chassis = chassis;
     this->targetPose = targetPose;
 
@@ -22,47 +22,45 @@ Align::Align(Chassis* chassis, frc::Pose2d targetPose){
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 }
 
-
-void Align::alterSpeed(frc::ChassisSpeeds &inputSpeed){
+void Align::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), targetPose.X()));
     auto yOut = units::meters_per_second_t(yPIDController.Calculate(pose.Y(), targetPose.Y()));
-    auto rotationOut = units::degrees_per_second_t(headingPIDController.Calculate(pose.Rotation().Degrees(), targetPose.Rotation().Degrees()));
+    auto rotationOut = units::degrees_per_second_t(
+            headingPIDController.Calculate(pose.Rotation().Degrees(), targetPose.Rotation().Degrees()));
 
-    if(xPIDController.AtGoal()){
+    if (xPIDController.AtGoal()) {
         xOut = 0_mps;
     }
 
-    if(yPIDController.AtGoal()){
+    if (yPIDController.AtGoal()) {
         yOut = 0_mps;
     }
 
-    if(headingPIDController.AtGoal()){
+    if (headingPIDController.AtGoal()) {
         rotationOut = 0_deg_per_s;
     }
 
-
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, yOut, rotationOut, chassis->getEstimatedPose().Rotation());
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, yOut, rotationOut,
+            chassis->getEstimatedPose().Rotation());
     speeds = frc::ChassisSpeeds::Discretize(speeds, 0.02_s);
 
     inputSpeed = speeds;
 }
 
-
-void Align::initialize(){
+void Align::initialize() {
     xPIDController.Reset(chassis->getEstimatedPose().X());
     yPIDController.Reset(chassis->getEstimatedPose().Y());
     headingPIDController.Reset(chassis->getEstimatedPose().Rotation().Radians());
 
-    if(isRedAlliance()){
+    if (isRedAlliance()) {
         targetPose = pathplanner::FlippingUtil::flipFieldPose(targetPose);
     } else {
         targetPose = targetPose;
     }
 }
 
-
-bool Align::atGoal(){
+bool Align::atGoal() {
     return xPIDController.AtGoal() && yPIDController.AtGoal() && headingPIDController.AtGoal();
 }

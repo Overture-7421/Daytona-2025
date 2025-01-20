@@ -2,14 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "Align.h"
+#include "AlignSpeedHelper.h"
 
 #include <pathplanner/lib/pathfinding/Pathfinding.h>
 #include <pathplanner/lib/pathfinding/Pathfinder.h>
 #include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
-Align::Align(Chassis *chassis, frc::Pose2d targetPose) {
+AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
     this->chassis = chassis;
     this->targetPose = targetPose;
 
@@ -22,7 +22,7 @@ Align::Align(Chassis *chassis, frc::Pose2d targetPose) {
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 }
 
-void Align::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
+void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), targetPose.X()));
@@ -49,7 +49,7 @@ void Align::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     inputSpeed = speeds;
 }
 
-void Align::initialize() {
+void AlignSpeedHelper::initialize() {
     xPIDController.Reset(chassis->getEstimatedPose().X());
     yPIDController.Reset(chassis->getEstimatedPose().Y());
     headingPIDController.Reset(chassis->getEstimatedPose().Rotation().Radians());
@@ -61,6 +61,6 @@ void Align::initialize() {
     }
 }
 
-bool Align::atGoal() {
+bool AlignSpeedHelper::atGoal() {
     return xPIDController.AtGoal() && yPIDController.AtGoal() && headingPIDController.AtGoal();
 }

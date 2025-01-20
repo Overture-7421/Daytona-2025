@@ -2,14 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "AlignNet.h"
+#include "AlignNetSpeedHelper.h"
 
 #include <pathplanner/lib/pathfinding/Pathfinding.h>
 #include <pathplanner/lib/pathfinding/Pathfinder.h>
 #include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
-AlignNet::AlignNet(Chassis *chassis, frc::Pose2d targetPose) {
+AlignNetSpeedHelper::AlignNetSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
     this->chassis = chassis;
     this->targetPose = targetPose;
 
@@ -20,7 +20,7 @@ AlignNet::AlignNet(Chassis *chassis, frc::Pose2d targetPose) {
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 }
 
-void AlignNet::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
+void AlignNetSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), targetPose.X()));
@@ -43,7 +43,7 @@ void AlignNet::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     inputSpeed = speeds;
 }
 
-void AlignNet::initialize() {
+void AlignNetSpeedHelper::initialize() {
     xPIDController.Reset(chassis->getEstimatedPose().X());
     headingPIDController.Reset(chassis->getEstimatedPose().Rotation().Radians());
 
@@ -54,6 +54,6 @@ void AlignNet::initialize() {
     }
 }
 
-bool AlignNet::atGoal() {
+bool AlignNetSpeedHelper::atGoal() {
     return xPIDController.AtGoal() && headingPIDController.AtGoal();
 }

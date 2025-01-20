@@ -4,7 +4,7 @@
 
 #include "AlignToNet.h"
 
-AlignToNet::AlignToNet(Chassis *chassis, frc::Pose2d pose2d) : alignNet(chassis, pose2d) {
+AlignToNet::AlignToNet(Chassis *chassis, frc::Pose2d pose2d) : alignNetSpeedHelper(chassis, pose2d) {
     this->chassis = chassis;
     this->pose2d = pose2d;
 
@@ -12,7 +12,7 @@ AlignToNet::AlignToNet(Chassis *chassis, frc::Pose2d pose2d) : alignNet(chassis,
 }
 
 void AlignToNet::Initialize() {
-    chassis->enableSpeedHelper(&alignNet);
+    chassis->enableSpeedHelper(&alignNetSpeedHelper);
 }
 
 void AlignToNet::Execute() {
@@ -23,5 +23,5 @@ void AlignToNet::End(bool interrupted) {
 }
 
 bool AlignToNet::IsFinished() {
-    return alignNet.atGoal();
+    return alignNetSpeedHelper.atGoal();
 }

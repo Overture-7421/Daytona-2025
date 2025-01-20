@@ -4,7 +4,7 @@
 
 #include "AlignToPose.h"
 
-AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : align(chassis, pose2d) {
+AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : alignSpeedHelper(chassis, pose2d) {
     this->chassis = chassis;
     this->pose2d = pose2d;
 
@@ -12,7 +12,7 @@ AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : align(chassis, 
 }
 
 void AlignToPose::Initialize() {
-    chassis->enableSpeedHelper(&align);
+    chassis->enableSpeedHelper(&alignSpeedHelper);
 }
 
 void AlignToPose::Execute() {
@@ -23,5 +23,5 @@ void AlignToPose::End(bool interrupted) {
 }
 
 bool AlignToPose::IsFinished() {
-    return align.atGoal();
+    return alignSpeedHelper.atGoal();
 }

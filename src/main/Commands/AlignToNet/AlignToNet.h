@@ -7,7 +7,7 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include "Subsystems/Chassis/Chassis.h"
-#include "SpeedHelpers/AlignNet/AlignNet.h"
+#include "SpeedHelpers/AlignNetSpeedHelper/AlignNetSpeedHelper.h"
 
 class AlignToNet: public frc2::CommandHelper<frc2::Command, AlignToNet> {
 public:
@@ -25,5 +25,5 @@ public:
 private:
     Chassis *chassis;
     frc::Pose2d pose2d;
-    AlignNet alignNet;
+    AlignNetSpeedHelper alignNetSpeedHelper;
 };

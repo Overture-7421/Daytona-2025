@@ -7,7 +7,7 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include "Subsystems/Chassis/Chassis.h"
-#include "SpeedHelpers/Align/Align.h"
+#include "SpeedHelpers/AlignSpeedHelper/AlignSpeedHelper.h"
 
 class AlignToPose: public frc2::CommandHelper<frc2::Command, AlignToPose> {
 public:
@@ -24,5 +24,5 @@ public:
 private:
     Chassis *chassis;
     frc::Pose2d pose2d;
-    Align align;
+    AlignSpeedHelper alignSpeedHelper;
 };

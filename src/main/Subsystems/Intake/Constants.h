@@ -21,7 +21,7 @@ public:
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = 54;
+        intakeConfig.MotorId = 13;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.Inverted = true;
 

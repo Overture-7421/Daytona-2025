@@ -26,7 +26,7 @@ struct ElevatorConstants {
 
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;
-        right.MotorId = 10;
+        right.MotorId = 15;
         right.NeutralMode = ControllerNeutralMode::Brake;
         right.Inverted = true;
         right.useFOC = true;
@@ -43,7 +43,7 @@ struct ElevatorConstants {
 
     constexpr static const OverTalonFXConfig LeftConfig() {
         OverTalonFXConfig left;
-        left.MotorId = 9;
+        left.MotorId = 14;
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;

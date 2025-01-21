@@ -47,11 +47,11 @@ struct Constants {
     constexpr static const units::turns_per_second_t WristCruiseVelocity = 5.0_tps;
     constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 15_tr_per_s_sq;
 
-    constexpr static const double ArmCANCoderId = 22;
-    constexpr static const double WristCANCoderId = 23;
+    constexpr static const double ArmCANCoderId = 17;
+    constexpr static const double WristCANCoderId = 19;
 
-    constexpr static const double ArmLeftMotorId = 20;
-    constexpr static const double ArmRightMotorId = 29;
+    constexpr static const double ArmLeftMotorId = 15;
+    constexpr static const double ArmRightMotorId = 16;
 
     constexpr static const OverTalonFXConfig ArmLeftConfig() {
         OverTalonFXConfig armLeftConfig;
@@ -89,7 +89,7 @@ struct Constants {
 
     constexpr static const OverTalonFXConfig WristConfig() {
         OverTalonFXConfig wristConfig;
-        wristConfig.MotorId = 21;
+        wristConfig.MotorId = 18;
         wristConfig.NeutralMode = ControllerNeutralMode::Brake;
         wristConfig.useFOC = true;
 

@@ -35,8 +35,8 @@ void RobotContainer::ConfigDriverBindings() {
     driver.Back().OnTrue(ResetHeading(&chassis));
 
     driver.X().OnTrue(arm.setArmCommand(0_deg, 0_deg));
-    driver.B().OnTrue(arm.setArmCommand(0_deg, -90_deg));
-    driver.Y().OnTrue(arm.setArmCommand(0_deg, 90_deg));
+    driver.B().OnTrue(arm.setArmCommand(-30_deg, -90_deg));
+    driver.Y().OnTrue(arm.setArmCommand(30_deg, 90_deg));
 
 
 

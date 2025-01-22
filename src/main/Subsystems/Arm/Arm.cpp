@@ -21,8 +21,8 @@ Arm::Arm() {
 }
 
 void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
-    frc::SmartDashboard::PutNumber("ArmTarget/ArmTargetPosition", armAngle.value() * 360);
-    frc::SmartDashboard::PutNumber("ArmTarget/WristTargetPosition", wristAngle.value() * 360);
+    frc::SmartDashboard::PutNumber("ArmTarget/ArmTargetPosition", armAngle.value());
+    frc::SmartDashboard::PutNumber("ArmTarget/WristTargetPosition", wristAngle.value());
     
     armLeftMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
     wristMotor.SetControl(wristVoltage.WithPosition(wristAngle).WithEnableFOC(true));

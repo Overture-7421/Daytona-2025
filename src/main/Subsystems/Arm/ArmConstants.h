@@ -94,7 +94,6 @@ struct ArmConstants {
         wristConfig.MotorId = WristMotorId;
         wristConfig.NeutralMode = ControllerNeutralMode::Brake;
         wristConfig.useFOC = true;
-        wristConfig.Inverted = true;
 
         wristConfig.ClosedLoopRampRate = 0.05_s;
         wristConfig.CurrentLimit = 30_A;

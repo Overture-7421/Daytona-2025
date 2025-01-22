@@ -24,7 +24,7 @@ Robot::Robot() {
     simCANCoderManager.Init( { {11, "Reefscape2025/cancoders/back_right_cancoder"}, {10,
             "Reefscape2025/cancoders/back_left_cancoder"}, {9, "Reefscape2025/cancoders/front_left_cancoder"}, {12,
             "Reefscape2025/cancoders/front_right_cancoder"}, {17, "Reefscape2025/cancoders/arm"}, {19,
-            "Reefscape2025/cancoders/arm_rotor"}});
+            "Reefscape2025/cancoders/arm_rotator"}});
 
 #endif
 
@@ -67,7 +67,6 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    arm.setToAngle(30_deg, 0_deg);
 }
 
 void Robot::TeleopExit() {

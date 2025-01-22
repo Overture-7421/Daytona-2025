@@ -51,6 +51,10 @@ struct ArmConstants {
     constexpr static const double ArmLeftMotorId = 15;
     constexpr static const double ArmRightMotorId = 16;
 
+    constexpr static const double WristMotorId = 18;
+
+    
+
     constexpr static const OverTalonFXConfig ArmLeftConfig() {
         OverTalonFXConfig armLeftConfig;
         armLeftConfig.MotorId = ArmLeftMotorId;
@@ -63,7 +67,7 @@ struct ArmConstants {
         armLeftConfig.TriggerThreshold = 90_A;
         armLeftConfig.TriggerThresholdTime = 1_s;
         armLeftConfig.OpenLoopRampRate = 0.05_s;
-        armLeftConfig.PIDConfigs.WithKP(20.0);
+        armLeftConfig.PIDConfigs.WithKP(16.0);
 
         return armLeftConfig;
     }
@@ -80,16 +84,17 @@ struct ArmConstants {
         armRightConfig.TriggerThreshold = 90_A;
         armRightConfig.TriggerThresholdTime = 1_s;
         armRightConfig.OpenLoopRampRate = 0.05_s;
-        armRightConfig.PIDConfigs.WithKP(20.0);
+        armRightConfig.PIDConfigs.WithKP(16.0);
 
         return armRightConfig;
     }
 
     constexpr static const OverTalonFXConfig WristConfig() {
         OverTalonFXConfig wristConfig;
-        wristConfig.MotorId = 18;
+        wristConfig.MotorId = WristMotorId;
         wristConfig.NeutralMode = ControllerNeutralMode::Brake;
         wristConfig.useFOC = true;
+        wristConfig.Inverted = true;
 
         wristConfig.ClosedLoopRampRate = 0.05_s;
         wristConfig.CurrentLimit = 30_A;
@@ -97,7 +102,7 @@ struct ArmConstants {
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
         wristConfig.OpenLoopRampRate = 0.05_s;
-        wristConfig.PIDConfigs.WithKP(20.0);
+        wristConfig.PIDConfigs.WithKP(10.0);
 
         return wristConfig;
     }

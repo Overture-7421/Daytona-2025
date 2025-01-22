@@ -8,9 +8,11 @@
 #include <units/time.h>
 
 struct ElevatorConstants {
-    constexpr static const double LowerGearRatio = 0.0;
-    constexpr static const double LowerSensorToMechanism = 0.0;
-    constexpr static const units::meter_t Diameter = 0.0_m;
+    constexpr static const double LowerSensorToMechanism = 5.6;
+    constexpr static const units::meter_t Diameter = 0.07366_m;
+
+    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 5.0_tps;
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 15_tr_per_s_sq;
 
     constexpr static const units::meter_t SourcePosition = 2.13_m;
     constexpr static const units::meter_t FloorPosition = 0_m;
@@ -22,7 +24,7 @@ struct ElevatorConstants {
     constexpr static const units::meter_t NetPosition = 2.5_m;
     constexpr static const units::meter_t ProcessorPosition = 0.1_m;
     constexpr static const units::meter_t BottomAlgaePosition = 0.95_m;
-    constexpr static const units::meter_t TopAlgaePosition = 1.3_m;
+    constexpr static const units::meter_t TopAlgaePosition = 1.8_m;
 
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;
@@ -30,7 +32,7 @@ struct ElevatorConstants {
         right.NeutralMode = ControllerNeutralMode::Brake;
         right.Inverted = true;
         right.useFOC = true;
-        right.PIDConfigs.WithKP(0);
+        right.PIDConfigs.WithKP(17);
         right.CurrentLimit = 30_A;
         right.StatorCurrentLimit = 30_A;
         right.TriggerThreshold = 90_A;
@@ -47,7 +49,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKP(0);
+        left.PIDConfigs.WithKP(17);
         left.CurrentLimit = 30_A;
         left.StatorCurrentLimit = 30_A;
         left.TriggerThreshold = 90_A;

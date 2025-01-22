@@ -12,9 +12,9 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake) {
 
                     }),
 
-                    arm->setArmCommand(Constants::ArmCoralStation, Constants::WristCoralStation),
+                    arm->setArmCommand(ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation),
                     frc2::cmd::WaitUntil([arm] {
-                        return arm->isArmAtPosition(Constants::ArmCoralStation, Constants::WristCoralStation);
+                        return arm->isArmAtPosition(ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation);
                     })
             ),
 

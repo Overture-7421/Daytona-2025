@@ -13,6 +13,18 @@
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
+#include "Subsystems/Intake/Intake.h"
+#include "Subsystems/Elevator/Elevator.h"
+#include "Subsystems/Arm/Arm.h"
+#include "Subsystems/Climber/Climber.h"
+
+#include "Commands/L1Command/L1Command.h"
+#include "Commands/ClosedCommand/ClosedCommand.h"
+#include "Commands/LowAlgae/LowAlgae.h"
+#include "Commands/HighAlgae/HighAlgae.h"
+#include "Commands/SourceCommand/SourceCommand.h"
+#include "Commands/Processor/Processor.h"
+
 class RobotContainer: public OverContainer {
 public:
     RobotContainer();
@@ -38,6 +50,10 @@ private:
 #endif 
     //Subsystems
     Chassis chassis;
+    Intake intake;
+    Elevator elevator;
+    Arm arm;
+    Climber climber;
 
     static AprilTags::Config testCameraConfig();
     AprilTags shooterCamera {&tagLayout, &chassis, testCameraConfig()};

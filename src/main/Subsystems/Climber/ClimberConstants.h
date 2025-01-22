@@ -2,7 +2,7 @@
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
-struct Constants {
+struct ClimberConstants {
     constexpr static const double ArmSensorToMechanism = 0.0;
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 5.0_tps;

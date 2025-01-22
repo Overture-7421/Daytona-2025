@@ -67,6 +67,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+    arm.setToAngle(30_deg, 0_deg);
 }
 
 void Robot::TeleopExit() {

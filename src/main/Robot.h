@@ -33,4 +33,6 @@ private:
     frc2::Command *m_autonomousCommand;
 
     RobotContainer m_container;
+    Elevator elevator;
+    Arm arm;
 };

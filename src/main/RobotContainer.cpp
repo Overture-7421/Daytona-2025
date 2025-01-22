@@ -33,6 +33,7 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
 
     driver.Back().OnTrue(ResetHeading(&chassis));
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {

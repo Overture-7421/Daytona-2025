@@ -9,8 +9,9 @@ Climber::Climber() {
 
     armLeftMotor.setFollow(armRightMotor.GetDeviceID(), true);
 
-    armRightMotor.setSensorToMechanism(Constants::ArmSensorToMechanism);
-    armRightMotor.configureMotionMagic(Constants::ArmCruiseVelocity, Constants::ArmCruiseAcceleration, 0.0_tr_per_s_cu);
+    armRightMotor.setSensorToMechanism(ClimberConstants::ArmSensorToMechanism);
+    armRightMotor.configureMotionMagic(ClimberConstants::ArmCruiseVelocity, ClimberConstants::ArmCruiseAcceleration,
+            0.0_tr_per_s_cu);
 
 }
 
@@ -29,11 +30,11 @@ bool Climber::isClimberAtPosition(units::degree_t armAngle) {
 }
 
 frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
-    return frc2::FunctionalCommand([&]() {
+    return frc2::FunctionalCommand([this, armAngle]() {
         setToAngle(armAngle);
-    }, [&]() {
-    }, [&](bool interupted) {
-    }, [&]() {
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, armAngle]() {
         return isClimberAtPosition(armAngle);
     },
     {this}).ToPtr();

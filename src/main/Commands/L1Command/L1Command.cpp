@@ -11,8 +11,8 @@ frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator) {
 
             }),
 
-            arm->setArmCommand(Constants::ArmL1Reef, Constants::WristL1Reef), frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(Constants::ArmL1Reef, Constants::WristL1Reef);
+            arm->setArmCommand(ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef), frc2::cmd::WaitUntil([arm] {
+                return arm->isArmAtPosition(ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef);
             })
     );
 }

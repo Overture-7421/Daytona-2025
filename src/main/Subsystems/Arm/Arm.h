@@ -11,7 +11,7 @@
 #include <frc/controller/ArmFeedforward.h>
 #include <frc2/command/FunctionalCommand.h>
 
-#include "Subsystems/Arm/Constants.h"
+#include "Subsystems/Arm/ArmConstants.h"
 
 class Arm: public frc2::SubsystemBase {
 public:
@@ -29,11 +29,14 @@ public:
 
 private:
 
-    OverTalonFX armLeftMotor {Constants::ArmLeftConfig(), "rio"};
-    OverTalonFX armRightMotor {Constants::ArmRightConfig(), "rio"};
-    OverCANCoder armCANCoder {Constants::ArmCANConfig(), "rio"};
-    OverTalonFX wristMotor {Constants::WristConfig(), "rio"};
-    OverCANCoder wristCANCoder {Constants::WristCANConfig(), "rio"};
+    OverTalonFX armLeftMotor {ArmConstants::ArmLeftConfig(), "rio"};
+    OverTalonFX armRightMotor {ArmConstants::ArmRightConfig(), "rio"};
+    OverCANCoder armCANCoder {ArmConstants::ArmCANConfig(), "rio"};
+    OverTalonFX wristMotor {ArmConstants::WristConfig(), "rio"};
+    OverCANCoder wristCANCoder {ArmConstants::WristCANConfig(), "rio"};
+
+    MotionMagicVoltage armVoltage {0_tr};
+    MotionMagicVoltage wristVoltage {0_tr};
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine
     {   frc2::sysid::Config

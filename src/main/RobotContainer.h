@@ -49,7 +49,6 @@ private:
     AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
     AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
 
-
     frc::SendableChooser<frc2::Command*> autoChooser;
 
 };

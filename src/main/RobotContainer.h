@@ -24,6 +24,7 @@
 #include "Commands/HighAlgae/HighAlgae.h"
 #include "Commands/SourceCommand/SourceCommand.h"
 #include "Commands/Processor/Processor.h"
+#include "Commands/AlignToPose/AlignToPose.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -54,6 +55,7 @@ private:
     Elevator elevator;
     Arm arm;
     Climber climber;
+
 
     static AprilTags::Config testCameraConfig();
     AprilTags shooterCamera {&tagLayout, &chassis, testCameraConfig()};

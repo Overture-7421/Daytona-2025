@@ -59,5 +59,5 @@ void AlignSpeedHelper::initialize() {
 }
 
 bool AlignSpeedHelper::atGoal() {
-    return xPIDController.AtGoal() && yPIDController.AtGoal() && headingPIDController.AtGoal();
+    return xPIDController.AtGoal() && yPIDController.AtGoal()  && headingPIDController.AtGoal();
 }

@@ -39,15 +39,15 @@ private:
     //Subsystems
     Chassis chassis;
 
-    static AprilTags::Config testCameraConfig();
-    static AprilTags::Config testCameraConfig2();
-    static AprilTags::Config testCameraConfig3();
-    static AprilTags::Config testCameraConfig4();
+    static AprilTags::Config frontRightCamera();
+    static AprilTags::Config frontLeftCamera();
+    static AprilTags::Config backRightCamera();
+    static AprilTags::Config backLeftCamera();
 
-    AprilTags shooterCamera {&tagLayout, &chassis, testCameraConfig()};
-    AprilTags shooterCameraTwo {&tagLayout, &chassis, testCameraConfig2()};
-    AprilTags shooterCameraThree {&tagLayout, &chassis, testCameraConfig3()};
-    AprilTags shooterCameraFour {&tagLayout, &chassis, testCameraConfig4()};
+    AprilTags frontRightCam {&tagLayout, &chassis, frontRightCamera()};
+    AprilTags frontLeftCam {&tagLayout, &chassis, frontLeftCamera()};
+    AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
+    AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
 
 
     frc::SendableChooser<frc2::Command*> autoChooser;

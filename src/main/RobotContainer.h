@@ -40,7 +40,15 @@ private:
     Chassis chassis;
 
     static AprilTags::Config testCameraConfig();
+    static AprilTags::Config testCameraConfig2();
+    static AprilTags::Config testCameraConfig3();
+    static AprilTags::Config testCameraConfig4();
+
     AprilTags shooterCamera {&tagLayout, &chassis, testCameraConfig()};
+    AprilTags shooterCameraTwo {&tagLayout, &chassis, testCameraConfig2()};
+    AprilTags shooterCameraThree {&tagLayout, &chassis, testCameraConfig3()};
+    AprilTags shooterCameraFour {&tagLayout, &chassis, testCameraConfig4()};
+
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 

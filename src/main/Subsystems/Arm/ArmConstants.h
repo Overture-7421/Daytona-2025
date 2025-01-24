@@ -42,8 +42,8 @@ struct ArmConstants {
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1.5_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity = 5.0_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 15_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 1.5_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 7_tr_per_s_sq;
 
     constexpr static const double ArmCANCoderId = 17;
     constexpr static const double WristCANCoderId = 19;
@@ -101,7 +101,7 @@ struct ArmConstants {
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
         wristConfig.OpenLoopRampRate = 0.05_s;
-        wristConfig.PIDConfigs.WithKP(10.0);
+        wristConfig.PIDConfigs.WithKP(0.535);
 
         return wristConfig;
     }

@@ -11,6 +11,7 @@
 #include <OvertureLib/Subsystems/Vision/AprilTags/AprilTags.h>
 #include "Subsystems/Chassis/Chassis.h"
 #include "Commands/DriveCommand/DriveCommand.h"
+#include "Commands/NetCommand/NetCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
 class RobotContainer: public OverContainer {
@@ -38,6 +39,8 @@ private:
 #endif 
     //Subsystems
     Chassis chassis;
+    Arm arm;
+    Elevator elevator;
 
     static AprilTags::Config frontRightCamera();
     static AprilTags::Config frontLeftCamera();

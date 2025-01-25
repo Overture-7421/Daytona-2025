@@ -8,6 +8,9 @@ Elevator::Elevator() {
 
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
 
+    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
+            ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
+
 }
 
 void Elevator::setPosition(units::meter_t position) {

@@ -11,9 +11,6 @@ Arm::Arm() {
     armLeftMotor.setRotorToSensorRatio(Constants::ArmRotorToSensor);
     wristMotor.setRotorToSensorRatio(Constants::WristRotorToSensor);
 
-    armLeftMotor.setSensorToMechanism(Constants::ArmSensorToMechanism);
-    wristMotor.setSensorToMechanism(Constants::WristSensorToMechanism);
-
     armLeftMotor.setFusedCANCoder(Constants::ArmCANCoderId);
     wristMotor.setFusedCANCoder(Constants::WristCANCoderId);
 

@@ -37,15 +37,13 @@ struct Constants {
     constexpr static const units::degree_t ArmClosed = 1.0_deg;
     constexpr static const units::degree_t WristClosed = 1.0_deg;
 
-    constexpr static const double ArmRotorToSensor = 1.0;
-    constexpr static const double WristRotorToSensor = 1.0;
-    constexpr static const double ArmSensorToMechanism = 1.0;
-    constexpr static const double WristSensorToMechanism = 1.0;
+    constexpr static const double ArmRotorToSensor = 80.88888;
+    constexpr static const double WristRotorToSensor = 27.0;
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1.5_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity = 5.0_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 15_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 6.0_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 14_tr_per_s_sq;
 
     constexpr static const double ArmCANCoderId = 17;
     constexpr static const double WristCANCoderId = 19;
@@ -65,7 +63,7 @@ struct Constants {
         armLeftConfig.TriggerThreshold = 90_A;
         armLeftConfig.TriggerThresholdTime = 1_s;
         armLeftConfig.OpenLoopRampRate = 0.05_s;
-        armLeftConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
+        armLeftConfig.PIDConfigs.WithKP(16.0);
 
         return armLeftConfig;
     }
@@ -82,7 +80,7 @@ struct Constants {
         armRightConfig.TriggerThreshold = 90_A;
         armRightConfig.TriggerThresholdTime = 1_s;
         armRightConfig.OpenLoopRampRate = 0.05_s;
-        armRightConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
+        armRightConfig.PIDConfigs.WithKP(16.0);
 
         return armRightConfig;
     }
@@ -99,7 +97,7 @@ struct Constants {
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
         wristConfig.OpenLoopRampRate = 0.05_s;
-        wristConfig.PIDConfigs.WithKP(0.0).WithKI(0.0).WithKD(0.0).WithKS(0.0).WithKG(0.0).WithKV(0.0).WithKA(0.0);
+        wristConfig.PIDConfigs.WithKP(4.0);
 
         return wristConfig;
     }

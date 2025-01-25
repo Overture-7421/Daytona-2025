@@ -12,8 +12,7 @@ frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator) {
 
                     }),
 
-                    arm->setArmCommand(Constants::ArmNet, Constants::WristNet),
-                    frc2::cmd::WaitUntil([arm] {
+                    arm->setArmCommand(Constants::ArmNet, Constants::WristNet), frc2::cmd::WaitUntil([arm] {
                         return arm->isArmAtPosition(Constants::ArmNet, Constants::WristNet);
                     })
             )

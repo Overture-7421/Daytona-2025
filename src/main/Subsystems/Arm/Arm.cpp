@@ -30,8 +30,8 @@ void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
 }
 
 void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle){
-    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > -40;
-    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < 40;
+    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > -30;
+    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < 30;
 
     if(blockingNegative && blockingPositive){
         setToAngle(armAngle, 0_deg);

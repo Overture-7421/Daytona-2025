@@ -42,7 +42,7 @@ void RobotContainer::ConfigDriverBindings() {
     driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
 
 
-    driver.A().OnTrue(SourceCommand(&arm, &elevator, &intake));
+    driver.A().OnTrue(L1Command(&arm, &elevator));
 
     driver.Y().OnTrue(ClosedCommand(&arm, &elevator));
 

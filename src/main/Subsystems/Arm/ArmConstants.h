@@ -10,8 +10,8 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmAngleRange = 1.0_deg;
     constexpr static const units::degree_t WristAngleRange = 1.0_deg;
 
-    constexpr static const units::degree_t ArmL1Reef = 1.0_deg;
-    constexpr static const units::degree_t WristL1Reef = 1.0_deg;
+    constexpr static const units::degree_t ArmL1Reef = 40.0_deg;
+    constexpr static const units::degree_t WristL1Reef = 0.0_deg;
 
     constexpr static const units::degree_t ArmL2Reef = 1.0_deg;
     constexpr static const units::degree_t WristL2Reef = 1.0_deg;
@@ -28,8 +28,8 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmLowAlgae = 70.0_deg;
     constexpr static const units::degree_t WristLowhAlgae = 90.0_deg;
 
-    constexpr static const units::degree_t ArmCoralStation = -70_deg;
-    constexpr static const units::degree_t WristCoralStation = 0.0_deg;
+    constexpr static const units::degree_t ArmCoralStation = -31_deg;
+    constexpr static const units::degree_t WristCoralStation = 90.0_deg;
 
     constexpr static const units::degree_t ArmProcessor = 90.0_deg;
     constexpr static const units::degree_t WristProcessor = 90.0_deg;

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.7272120949074066,
-        "y": 5.019079499421296
+        "x": 7.786103153935184,
+        "y": 4.712720630787037
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.4622169784362917,
-        "y": 5.279092592770559
+        "x": 8.036064234458825,
+        "y": 4.708309483152517
       },
       "isLocked": false,
-      "linkedName": "Chokehold5"
+      "linkedName": "Algaeinnet2"
     },
     {
       "anchor": {
-        "x": 1.6805881076388878,
-        "y": 7.499823495370371
+        "x": 5.1278678385416665,
+        "y": 2.9666323061342585
       },
       "prevControl": {
-        "x": 2.24897765957318,
-        "y": 6.835273015897338
+        "x": 5.424937112860174,
+        "y": 3.0607132975129625
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokehold6"
+      "linkedName": "Algaeinnet3"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -53.98898835330499
+    "rotation": 122.8644520924698
   },
   "reversed": false,
-  "folder": "ChokeHold",
+  "folder": "AlgaeInNet",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -59.98327590760987
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

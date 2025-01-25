@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 6.338745298032406,
+        "y": 0.5143055555555542
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.919727050769672,
+        "y": 1.4271949408438633
+      },
+      "isLocked": false,
+      "linkedName": "Freealgae2"
+    },
+    {
+      "anchor": {
+        "x": 5.117618995949074,
+        "y": 2.94339771412037
+      },
+      "prevControl": {
+        "x": 5.704564852899074,
+        "y": 1.8546282069859283
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Freealgae3"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -60.08532527027036
+  },
+  "reversed": false,
+  "folder": "FreeAlgae",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -89.82246262548827
+  },
+  "useDefaultConstraints": true
+}

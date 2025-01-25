@@ -8,8 +8,9 @@
     "FreeAlgae"
   ],
   "autoFolders": [
+    "BasicLeave",
     "ChokeHold",
-    "BasicLeave"
+    "FreeAlgae"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,

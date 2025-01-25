@@ -5,7 +5,7 @@
 #include "L1Command.h"
 
 frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L1Position),
+    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L1Position),
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::L1Position);
 

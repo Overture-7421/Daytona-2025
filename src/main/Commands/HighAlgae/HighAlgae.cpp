@@ -5,20 +5,20 @@
 #include "HighAlgae.h"
 #include "Commands/AlignToPose/AlignToPose.h"
 
-frc::Pose2d pose {3.644_m, 2.976_m, 56.73_deg};
+frc::Pose2d pose {3.644_m, 2.976_m, 150.0_deg};
 
 frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Chassis *chassis) {
-    return frc2::cmd::Sequence(
+    return frc2::cmd::Parallel(
         frc2::cmd::Parallel(
             AlignToPose(chassis, pose).ToPtr(),
-            elevator->setElevatorCommand(ElevatorConstants::TopAlgaePosition),
+            elevator->setElevatorCommand(ElevatorConstants::HighAlgae),
         
             frc2::cmd::WaitUntil([elevator] {
-                return elevator->isElevatorAtPosition(ElevatorConstants::TopAlgaePosition);
+                return elevator->isElevatorAtPosition(ElevatorConstants::HighAlgae);
             })
         ),
-            arm->setArmCommand(ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef), frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef);
+            arm->setArmCommand(ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae), frc2::cmd::WaitUntil([arm] {
+                return arm->isArmAtPosition(ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae);
 
             })
 

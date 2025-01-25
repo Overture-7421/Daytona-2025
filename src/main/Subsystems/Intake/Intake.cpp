@@ -7,6 +7,7 @@
 Intake::Intake() = default;
 
 void Intake::setMotorVoltage(units::volt_t voltage) {
+    
     intakeMotor.SetVoltage(voltage);
 }
 

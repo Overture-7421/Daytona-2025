@@ -5,7 +5,7 @@
 #include "Processor.h"
 
 frc2::CommandPtr Processor(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::ProcessorPosition),
+    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::ProcessorPosition),
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::ProcessorPosition);
             }),

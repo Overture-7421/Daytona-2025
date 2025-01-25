@@ -22,11 +22,17 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmL4Reef = 1.0_deg;
     constexpr static const units::degree_t WristL4Reef = 1.0_deg;
 
-    constexpr static const units::degree_t ArmCoralStation = 1.0_deg;
-    constexpr static const units::degree_t WristCoralStation = 1.0_deg;
+    constexpr static const units::degree_t ArmHighAlgae = 68.0_deg;
+    constexpr static const units::degree_t WristHighAlgae = 90.0_deg;
 
-    constexpr static const units::degree_t ArmProcessor = 1.0_deg;
-    constexpr static const units::degree_t WristProcessor = 1.0_deg;
+    constexpr static const units::degree_t ArmLowAlgae = 70.0_deg;
+    constexpr static const units::degree_t WristLowhAlgae = 90.0_deg;
+
+    constexpr static const units::degree_t ArmCoralStation = -70_deg;
+    constexpr static const units::degree_t WristCoralStation = 0.0_deg;
+
+    constexpr static const units::degree_t ArmProcessor = 90.0_deg;
+    constexpr static const units::degree_t WristProcessor = 90.0_deg;
 
     constexpr static const units::degree_t ArmNet = 1.0_deg;
     constexpr static const units::degree_t WristNet = 1.0_deg;
@@ -34,16 +40,16 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmGround = 1.0_deg;
     constexpr static const units::degree_t WristGround = 1.0_deg;
 
-    constexpr static const units::degree_t ArmClosed = 1.0_deg;
-    constexpr static const units::degree_t WristClosed = 1.0_deg;
+    constexpr static const units::degree_t ArmClosed = 0.0_deg;
+    constexpr static const units::degree_t WristClosed = 0.0_deg;
 
     constexpr static const double ArmRotorToSensor = 80.88888;
     constexpr static const double WristRotorToSensor = 27;
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1.5_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity = 1.5_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 7_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 6.0_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 14_tr_per_s_sq;
 
     constexpr static const double ArmCANCoderId = 17;
     constexpr static const double WristCANCoderId = 19;
@@ -101,7 +107,7 @@ struct ArmConstants {
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
         wristConfig.OpenLoopRampRate = 0.05_s;
-        wristConfig.PIDConfigs.WithKP(0.535);
+        wristConfig.PIDConfigs.WithKP(4.0);
 
         return wristConfig;
     }

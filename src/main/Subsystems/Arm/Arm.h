@@ -25,6 +25,8 @@ public:
 
     bool isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle);
 
+    void blockedWrist(units::degree_t armAngle, units::degree_t wristAngle);
+
     void Periodic() override;
 
 private:

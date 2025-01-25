@@ -34,37 +34,35 @@ void RobotContainer::ConfigDriverBindings() {
 
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    //driver.X().OnTrue(arm.setArmCommand(0_deg, 0_deg));
-    //driver.B().OnTrue(arm.setArmCommand(-30_deg, -30_deg));
-    //driver.Y().OnTrue(arm.setArmCommand(30_deg, 30_deg));
+    driver.X().OnTrue(arm.setArmCommand(0_deg, 0_deg));
+    driver.B().OnTrue(arm.setArmCommand(-60_deg, -90_deg));
 
-    driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.50_m));
+
+    driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
     driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
 
-    driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
 
-    driver.X().WhileTrue(climber.setClimberCommand(90_deg));
-    driver.B().WhileTrue(climber.setClimberCommand(-90_deg));
-    driver.Y().WhileTrue(climber.setClimberCommand(0_deg));
+    driver.A().OnTrue(SourceCommand(&arm, &elevator, &intake));
+
+    driver.Y().OnTrue(ClosedCommand(&arm, &elevator));
+
+    //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
 
 
-
-    /*
-    driver.RightBumper().WhileTrue(intake.moveIntake(6_V));
-    driver.LeftBumper().WhileTrue(intake.moveIntake(-6_V));
-
-    driver.A().WhileTrue(intake.moveIntake(0_V));
-
-    driver.B().WhileTrue(intake.moveIntake(11_V));
-    driver.X().WhileTrue(intake.moveIntake(-11_V));
-
-    driver.Y().WhileTrue(intake.moveIntake(-2_V));
-    */
 
 
 }
 
 void RobotContainer::ConfigOperatorBindings() {
+
+    /*
+    oprtr.X().WhileTrue(intake.moveIntake(-8_V));
+    oprtr.Y().WhileTrue(intake.moveIntake(8_V));
+
+    oprtr.B().WhileTrue(intake.moveIntake(-6_V));
+
+    oprtr.A().OnTrue(intake.moveIntake(0_V));
+    */
 }
 
 void RobotContainer::ConfigDefaultCommands() {

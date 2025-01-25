@@ -5,7 +5,7 @@
 #include "ClosedCommand.h"
 
 frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Sequence(arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+    return frc2::cmd::Parallel(arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
             frc2::cmd::WaitUntil([arm] {
                 return arm->isArmAtPosition(ArmConstants::ArmClosed, ArmConstants::WristClosed);
             }),

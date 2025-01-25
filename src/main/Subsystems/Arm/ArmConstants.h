@@ -26,7 +26,7 @@ struct ArmConstants {
     constexpr static const units::degree_t WristHighAlgae = 90.0_deg;
 
     constexpr static const units::degree_t ArmLowAlgae = 70.0_deg;
-    constexpr static const units::degree_t WristLowhAlgae = 90.0_deg;
+    constexpr static const units::degree_t WristLowAlgae = 90.0_deg;
 
     constexpr static const units::degree_t ArmCoralStation = -31_deg;
     constexpr static const units::degree_t WristCoralStation = 90.0_deg;
@@ -58,8 +58,6 @@ struct ArmConstants {
     constexpr static const double ArmRightMotorId = 16;
 
     constexpr static const double WristMotorId = 18;
-
-    
 
     constexpr static const OverTalonFXConfig ArmLeftConfig() {
         OverTalonFXConfig armLeftConfig;

@@ -16,26 +16,26 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ArmMotion
-    : public frc2::CommandHelper<frc2::Command, ArmMotion> {
- public:
- 
-  ArmMotion(Elevator* elevator, Arm* arm, units::degree_t armAngle, units::degree_t wristAngle, units::meter_t elevatorPosition );
+class ArmMotion: public frc2::CommandHelper<frc2::Command, ArmMotion> {
+public:
 
-  void Initialize() override;
+    ArmMotion(Elevator *elevator, Arm *arm, units::degree_t armAngle, units::degree_t wristAngle,
+            units::meter_t elevatorPosition);
 
-  void Execute() override;
+    void Initialize() override;
 
-  void End(bool interrupted) override;
+    void Execute() override;
 
-  bool IsFinished() override;
+    void End(bool interrupted) override;
 
-  private: 
+    bool IsFinished() override;
 
-  Elevator* elevator;
-  Arm* arm;
-  units::degree_t armAngle;
-  units::degree_t wristAngle;
-  units::meter_t elevatorPosition;
+private:
+
+    Elevator *elevator;
+    Arm *arm;
+    units::degree_t armAngle;
+    units::degree_t wristAngle;
+    units::meter_t elevatorPosition;
 
 };

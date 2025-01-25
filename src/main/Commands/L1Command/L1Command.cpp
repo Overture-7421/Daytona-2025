@@ -3,16 +3,14 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "L1Command.h"
+#include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator) {
     return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L1Position),
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::L1Position);
 
-            }),
-
-            arm->setArmCommand(ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef), frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef);
             })
-    );
+            ,
+            ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef, ElevatorConstants::L1Position).ToPtr());
 }

@@ -3,12 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "ClosedCommand.h"
+#include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Parallel(arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-            frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(ArmConstants::ArmClosed, ArmConstants::WristClosed);
-            }),
+    return frc2::cmd::Parallel(
+            ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
+                    ElevatorConstants::ClosedPosition).ToPtr(),
             elevator->setElevatorCommand(ElevatorConstants::ClosedPosition), frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::ClosedPosition);
 

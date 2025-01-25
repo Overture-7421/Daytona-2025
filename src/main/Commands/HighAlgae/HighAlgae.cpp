@@ -17,11 +17,9 @@ frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Chassis *chassis) {
                 return elevator->isElevatorAtPosition(ElevatorConstants::HighAlgae);
             })
         ),
-            arm->setArmCommand(ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae), frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae);
-
-            })
-
+            ArmHighMotion(elevator, arm, ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae, ElevatorConstants::HighAlgae).ToPtr()
+            //arm->setArmCommand(ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae), frc2::cmd::WaitUntil([arm] {
+                //return arm->isArmAtPosition(ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae);
     );
 }
 

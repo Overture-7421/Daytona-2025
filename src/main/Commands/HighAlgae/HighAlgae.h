@@ -8,6 +8,9 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Chassis/Chassis.h"
+#include "Commands/ArmHighMotion/ArmHighMotion.h"
 
 
 frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Chassis *chassis);
+
+

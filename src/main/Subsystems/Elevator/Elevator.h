@@ -22,7 +22,7 @@ public:
 
     void setPosition(units::meter_t position);
 
-    double getPosition();
+    units::meter_t getPosition();
 
     bool isElevatorAtPosition(units::meter_t elevatorPosition);
     frc2::CommandPtr setElevatorCommand(units::meter_t elevatorPosition);

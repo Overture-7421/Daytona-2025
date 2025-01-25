@@ -6,7 +6,7 @@
 Elevator::Elevator() {
     rightElevatorMotor.setFollow(leftElevatorMotor.GetDeviceID(), true);
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
-
+    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity, ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
 }
 
 void Elevator::setPosition(units::meter_t position) {
@@ -16,8 +16,8 @@ void Elevator::setPosition(units::meter_t position) {
 
 };
 
-double Elevator::getPosition(){
-    double currentPosition = leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI);
+units::meter_t Elevator::getPosition(){
+    units::meter_t currentPosition = units::meter_t(leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
     return currentPosition;
 }
 
@@ -30,14 +30,14 @@ bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
 }
 
 frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
-    return frc2::FunctionalCommand([&]() {
+    return frc2::FunctionalCommand([this, elevatorPosition]() {
         setPosition(elevatorPosition);
     },
-    [&]() {
+    []() {
     },
-    [&](bool interrupted) {
+    [](bool interrupted) {
     },
-    [&]() {
+    [this, elevatorPosition]() {
         return isElevatorAtPosition(elevatorPosition);
     },
     {this}).ToPtr();

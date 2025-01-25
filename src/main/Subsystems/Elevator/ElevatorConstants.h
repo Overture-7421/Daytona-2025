@@ -14,7 +14,7 @@ struct ElevatorConstants {
     constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 5.0_tps;
     constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 15_tr_per_s_sq;
 
-    constexpr static const units::meter_t SourcePosition = 0.15_m;
+    constexpr static const units::meter_t SourcePosition = 0.20_m; //0.15
     constexpr static const units::meter_t FloorPosition = 0_m;
     constexpr static const units::meter_t ClosedPosition = 0.1_m;
     constexpr static const units::meter_t L1Position = 0.46_m;
@@ -25,7 +25,7 @@ struct ElevatorConstants {
     constexpr static const units::meter_t ProcessorPosition = 0.05_m;
     constexpr static const units::meter_t LowAlgae = 0.15_m;
     constexpr static const units::meter_t HighAlgae = 0.25_m;
-    constexpr static const units::meter_t HighMotionAllowed = 0.43_m;
+    constexpr static const units::meter_t HighMotionAllowed = 0.20_m;
 
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;

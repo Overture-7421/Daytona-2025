@@ -7,8 +7,8 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct ArmConstants {
-    constexpr static const units::degree_t ArmAngleRange = 1.0_deg;
-    constexpr static const units::degree_t WristAngleRange = 1.0_deg;
+    constexpr static const units::degree_t ArmAngleRange = 1.5_deg;
+    constexpr static const units::degree_t WristAngleRange = 1.5_deg;
 
     constexpr static const units::degree_t ArmL1Reef = 1.0_deg;
     constexpr static const units::degree_t WristL1Reef = 1.0_deg;
@@ -29,7 +29,7 @@ struct ArmConstants {
     constexpr static const units::degree_t WristLowhAlgae = 90.0_deg;
 
     constexpr static const units::degree_t ArmCoralStation = -70_deg;
-    constexpr static const units::degree_t WristCoralStation = 0.0_deg;
+    constexpr static const units::degree_t WristCoralStation = 90.0_deg; // 0.0
 
     constexpr static const units::degree_t ArmProcessor = 90.0_deg;
     constexpr static const units::degree_t WristProcessor = 90.0_deg;
@@ -48,8 +48,8 @@ struct ArmConstants {
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1.5_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity = 6.0_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 14_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 10.0_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 18_tr_per_s_sq;
 
     constexpr static const double ArmCANCoderId = 17;
     constexpr static const double WristCANCoderId = 19;

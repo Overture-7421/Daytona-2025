@@ -16,11 +16,11 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ArmHighMotion
-    : public frc2::CommandHelper<frc2::Command, ArmHighMotion> {
+class ArmMotion
+    : public frc2::CommandHelper<frc2::Command, ArmMotion> {
  public:
  
-  ArmHighMotion(Elevator* elevator, Arm* arm, units::degree_t armAngle, units::degree_t wristAngle, units::meter_t elevatorPosition );
+  ArmMotion(Elevator* elevator, Arm* arm, units::degree_t armAngle, units::degree_t wristAngle, units::meter_t elevatorPosition );
 
   void Initialize() override;
 

@@ -20,7 +20,7 @@ void ArmHighMotion::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void ArmHighMotion::Execute() {
 
-  if (elevator->getPosition() > 0.43){
+  if (elevator->getPosition() > ElevatorConstants::HighMotionAllowed.value()) {
     arm-> setArmCommand( armAngle,  wristAngle);
   } else{
     arm-> blockedWrist( armAngle, wristAngle);

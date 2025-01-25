@@ -3,22 +3,15 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "SourceCommand.h"
+#include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake) {
     return frc2::cmd::Parallel(
-            frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::SourcePosition),
-                    frc2::cmd::WaitUntil([elevator] {
-                        return elevator->isElevatorAtPosition(ElevatorConstants::SourcePosition);
+        elevator->setElevatorCommand(ElevatorConstants::SourcePosition),
 
-                    }),
+        ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation, ElevatorConstants::SourcePosition).ToPtr(),
 
-                    arm->setArmCommand(ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation),
-                    frc2::cmd::WaitUntil([arm] {
-                        return arm->isArmAtPosition(ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation);
-                    })
-            ),
-
-            intake->moveIntake(IntakeConstants::CoralGrab)).FinallyDo([=]() {
+        intake->moveIntake(IntakeConstants::CoralGrab).FinallyDo([=]() {
         intake->moveIntake(IntakeConstants::StopIntake);
-    });
+    }));
 }

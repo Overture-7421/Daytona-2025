@@ -5,19 +5,20 @@
 
 Elevator::Elevator() {
     rightElevatorMotor.setFollow(leftElevatorMotor.GetDeviceID(), true);
-
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
-
-    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
-            ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
-
+    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity, ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
 }
 
 void Elevator::setPosition(units::meter_t position) {
-    frc::SmartDashboard::PutNumber("Elevator/targetPosition", position.value());
-    units::turn_t positionInRotations {(position.value() / (ElevatorConstants::Diameter.value() * M_PI))};
+
+    units::turn_t positionInRotations {position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
     leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
 
+};
+
+units::meter_t Elevator::getPosition(){
+    units::meter_t currentPosition = units::meter_t(leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
+    return currentPosition;
 }
 
 bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
@@ -30,7 +31,7 @@ bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
 
 frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
     return frc2::FunctionalCommand([this, elevatorPosition]() {
-        setPosition(elevatorPosition);  
+        setPosition(elevatorPosition);
     },
     []() {
     },
@@ -41,11 +42,11 @@ frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
     },
     {this}).ToPtr();
 }
+
 // This method will be called once per scheduler run
 void Elevator::Periodic() {
 
     //no sé si está bien jiji
-
     double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble()
             * (ElevatorConstants::Diameter.value() * M_PI)};
     frc::SmartDashboard::PutNumber("Elevator/CurrentPosition", currentPosition);

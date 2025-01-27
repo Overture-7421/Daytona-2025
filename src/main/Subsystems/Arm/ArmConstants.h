@@ -59,8 +59,6 @@ struct ArmConstants {
 
     constexpr static const double WristMotorId = 18;
 
-    
-
     constexpr static const OverTalonFXConfig ArmLeftConfig() {
         OverTalonFXConfig armLeftConfig;
         armLeftConfig.MotorId = ArmLeftMotorId;

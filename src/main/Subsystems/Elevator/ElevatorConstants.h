@@ -18,7 +18,7 @@ struct ElevatorConstants {
     constexpr static const units::meter_t FloorPosition = 0_m;
     constexpr static const units::meter_t ClosedPosition = 0.02_m;
     constexpr static const units::meter_t L1Position = 0.2_m;
-    constexpr static const units::meter_t L2Position = 0.03_m; 
+    constexpr static const units::meter_t L2Position = 0.03_m;
     constexpr static const units::meter_t L3Position = 0.16_m;
     constexpr static const units::meter_t L4Position = 0.37_m;
     constexpr static const units::meter_t NetPosition = 0.36_m;

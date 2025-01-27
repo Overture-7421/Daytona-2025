@@ -23,13 +23,13 @@ Arm::Arm() {
 void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
     frc::SmartDashboard::PutNumber("ArmTarget/ArmTargetPosition", armAngle.value());
     frc::SmartDashboard::PutNumber("ArmTarget/WristTargetPosition", wristAngle.value());
-    
+
     armLeftMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));
     wristMotor.SetControl(wristVoltage.WithPosition(wristAngle).WithEnableFOC(true));
-    
+
 }
 
-void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle){
+void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
 
     bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < -20;
     bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 20;
@@ -37,15 +37,12 @@ void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle){
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingNegative", blockingNegative);
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingPositive", blockingPositive);
 
-
-
-    if(blockingNegative && blockingPositive){
+    if (blockingNegative && blockingPositive) {
         setToAngle(armAngle, 0_deg);
     } else {
         setToAngle(armAngle, wristAngle);
     }
 }
-
 
 bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle) {
     units::degree_t armError = armAngle - armLeftMotor.GetPosition().GetValue();

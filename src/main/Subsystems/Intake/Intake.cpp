@@ -7,7 +7,7 @@
 Intake::Intake() = default;
 
 void Intake::setMotorVoltage(units::volt_t voltage) {
-    
+
     intakeMotor.SetVoltage(voltage);
 }
 
@@ -19,8 +19,8 @@ frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {
         this->setMotorVoltage(voltage);
     });
-};
-
+}
+;
 
 // This method will be called once per scheduler run
 void Intake::Periodic() {

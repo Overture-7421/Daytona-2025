@@ -3,16 +3,18 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "LowAlgae.h"
+#include "Subsystems/Arm/Constants.h"
+#include "Subsystems/Elevator/Constants.h"
 
 frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
+    return frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::BottomAlgaePosition),
             frc2::cmd::WaitUntil([elevator] {
-                return elevator->isElevatorAtPosition(ElevatorConstants::LowAlgae);
+                return elevator->isElevatorAtPosition(ElevatorConstants::BottomAlgaePosition);
             }),
-            arm->setArmCommand(ArmConstants::ArmLowAlgae, ArmConstants::WristLowhAlgae),
+            arm->setArmCommand(Constants::ArmL2Reef, Constants::WristL2Reef),
 
             frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(ArmConstants::ArmLowAlgae, ArmConstants::WristLowhAlgae);
+                return arm->isArmAtPosition(Constants::ArmL2Reef, Constants::WristL2Reef);
 
             })
 

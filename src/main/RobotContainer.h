@@ -13,23 +13,6 @@
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
-#include "Subsystems/Intake/Intake.h"
-#include "Subsystems/Elevator/Elevator.h"
-#include "Subsystems/Arm/Arm.h"
-#include "Subsystems/Climber/Climber.h"
-
-#include "Commands/L1Command/L1Command.h"
-#include "Commands/L2Command/L2Command.h"
-#include "Commands/L3Command/L3Command.h"
-#include "Commands/L4Command/L4Command.h"
-#include "Commands/ClosedCommand/ClosedCommand.h"
-#include "Commands/LowAlgae/LowAlgae.h"
-#include "Commands/HighAlgae/HighAlgae.h"
-#include "Commands/SourceCommand/SourceCommand.h"
-#include "Commands/Processor/Processor.h"
-#include "Commands/AlignToPose/AlignToPose.h"
-#include "Commands/NetCommand/NetCommand.h"
-
 class RobotContainer: public OverContainer {
 public:
     RobotContainer();
@@ -46,7 +29,6 @@ private:
     void ConfigCharacterizationBindings();
 
     OverXboxController driver {0, 0.20, 0.2};
-    OverXboxController oprtr {1, 0.20, 0.2};
 
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
@@ -56,10 +38,6 @@ private:
 #endif 
     //Subsystems
     Chassis chassis;
-    Intake intake;
-    Elevator elevator;
-    Arm arm;
-    Climber climber;
 
     static AprilTags::Config frontRightCamera();
     static AprilTags::Config frontLeftCamera();

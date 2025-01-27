@@ -21,16 +21,9 @@ public:
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = 54;
+        intakeConfig.MotorId = 13;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.Inverted = true;
-
-        intakeConfig.CurrentLimit = 30_A;
-        intakeConfig.StatorCurrentLimit = 30_A;
-        intakeConfig.TriggerThreshold = 90_A;
-        intakeConfig.TriggerThresholdTime = 1_s;
-        intakeConfig.ClosedLoopRampRate = 0.05_s;
-        intakeConfig.OpenLoopRampRate = 0.05_s;
 
         return intakeConfig;
     }

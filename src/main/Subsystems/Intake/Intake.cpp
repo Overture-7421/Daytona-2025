@@ -7,13 +7,13 @@
 Intake::Intake() = default;
 
 void Intake::setMotorVoltage(units::volt_t voltage) {
+
     intakeMotor.SetVoltage(voltage);
 }
 
 double Intake::getVoltage() {
     return intakeMotor.GetMotorVoltage().GetValueAsDouble();
 }
-//...
 
 frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {

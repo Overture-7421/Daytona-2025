@@ -6,7 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
-#include <Subsystems/Elevator/Constants.h>
+#include "Subsystems/Elevator/ElevatorConstants.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <units/math.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -22,7 +22,7 @@ public:
 
     void setPosition(units::meter_t position);
 
-    void getCurrentPosition();
+    units::meter_t getPosition();
 
     bool isElevatorAtPosition(units::meter_t elevatorPosition);
     frc2::CommandPtr setElevatorCommand(units::meter_t elevatorPosition);

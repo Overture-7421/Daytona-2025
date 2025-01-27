@@ -1,0 +1,49 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AlgaeInNet1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AlgaeInNet2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AlgaeInNet3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AlgaeInNet4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AlgaeInNet5"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AlgaeInNet6"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "AlgaeInNet",
+  "choreoAuto": false
+}

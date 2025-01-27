@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.786103153935184,
+        "y": 4.712720630787037
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 8.036064234458825,
+        "y": 4.708309483152517
+      },
+      "isLocked": false,
+      "linkedName": "Algaeinnet2"
+    },
+    {
+      "anchor": {
+        "x": 5.1278678385416665,
+        "y": 2.9666323061342585
+      },
+      "prevControl": {
+        "x": 5.424937112860174,
+        "y": 3.0607132975129625
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Algaeinnet3"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 122.8644520924698
+  },
+  "reversed": false,
+  "folder": "AlgaeInNet",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "useDefaultConstraints": true
+}

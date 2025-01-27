@@ -9,9 +9,8 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include "Constants.h"
 #include <frc/smartdashboard/SmartDashboard.h>
-#include "Subsystems/Intake/Constants.h"
+#include "Subsystems/Intake/IntakeConstants.h"
 
 class Intake: public frc2::SubsystemBase {
 public:

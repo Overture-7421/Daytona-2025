@@ -39,10 +39,17 @@ void RobotContainer::ConfigDriverBindings() {
     driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
 
 
-    driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
-    driver.B().OnTrue(SourceCommand(&arm, &elevator, &intake));
+    driver.A().OnTrue(L1Command(&arm, &elevator));
+    driver.A().OnFalse(ClosedCommand(&arm, &elevator));
 
-    driver.Y().OnTrue(ClosedCommand(&arm, &elevator));
+    driver.B().OnTrue(L2Command(&arm, &elevator));
+    driver.B().OnFalse(ClosedCommand(&arm, &elevator));
+
+    driver.Y().OnTrue(L3Command(&arm, &elevator));
+    driver.Y().OnFalse(ClosedCommand(&arm, &elevator));
+
+    driver.X().OnTrue(L4Command(&arm, &elevator));
+    driver.X().OnFalse(ClosedCommand(&arm, &elevator));
 
     //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
 

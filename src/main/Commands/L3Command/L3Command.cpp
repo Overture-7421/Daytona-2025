@@ -11,8 +11,6 @@ frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator) {
 
             }),
 
-            arm->setArmCommand(ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef), frc2::cmd::WaitUntil([arm] {
-                return arm->isArmAtPosition(ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef);
-            })
+            ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet, ElevatorConstants::NetPosition).ToPtr()
     );
 }

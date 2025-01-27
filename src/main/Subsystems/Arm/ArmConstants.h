@@ -10,16 +10,16 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmAngleRange = 1.5_deg;
     constexpr static const units::degree_t WristAngleRange = 1.5_deg;
 
-    constexpr static const units::degree_t ArmL1Reef = 40.0_deg;
-    constexpr static const units::degree_t WristL1Reef = 0.0_deg;
+    constexpr static const units::degree_t ArmL1Reef = 100.0_deg;
+    constexpr static const units::degree_t WristL1Reef = 90.0_deg;
 
-    constexpr static const units::degree_t ArmL2Reef = 1.0_deg;
-    constexpr static const units::degree_t WristL2Reef = 1.0_deg;
+    constexpr static const units::degree_t ArmL2Reef = 35.0_deg;
+    constexpr static const units::degree_t WristL2Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmL3Reef = 1.0_deg;
+    constexpr static const units::degree_t ArmL3Reef = 30.0_deg;
     constexpr static const units::degree_t WristL3Reef = 1.0_deg;
 
-    constexpr static const units::degree_t ArmL4Reef = 1.0_deg;
+    constexpr static const units::degree_t ArmL4Reef = 25.0_deg;
     constexpr static const units::degree_t WristL4Reef = 1.0_deg;
 
     constexpr static const units::degree_t ArmHighAlgae = 68.0_deg;
@@ -46,7 +46,7 @@ struct ArmConstants {
     constexpr static const double ArmRotorToSensor = 80.88888;
     constexpr static const double WristRotorToSensor = 27;
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1.5_tps;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 2.5_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
     constexpr static const units::turns_per_second_t WristCruiseVelocity = 10.0_tps;
     constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 18_tr_per_s_sq;
@@ -73,7 +73,7 @@ struct ArmConstants {
         armLeftConfig.TriggerThreshold = 90_A;
         armLeftConfig.TriggerThresholdTime = 1_s;
         armLeftConfig.OpenLoopRampRate = 0.05_s;
-        armLeftConfig.PIDConfigs.WithKP(16.0);
+        armLeftConfig.PIDConfigs.WithKP(17.0);
 
         return armLeftConfig;
     }
@@ -90,7 +90,7 @@ struct ArmConstants {
         armRightConfig.TriggerThreshold = 90_A;
         armRightConfig.TriggerThresholdTime = 1_s;
         armRightConfig.OpenLoopRampRate = 0.05_s;
-        armRightConfig.PIDConfigs.WithKP(16.0);
+        armRightConfig.PIDConfigs.WithKP(17.0);
 
         return armRightConfig;
     }

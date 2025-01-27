@@ -6,6 +6,7 @@
 
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
+#include "Commands/ArmMotion/ArmMotion.h"
 #include <frc2/command/Commands.h>
 
 frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator);

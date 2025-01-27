@@ -72,13 +72,33 @@ void RobotContainer::ConfigDefaultCommands() {
 void RobotContainer::ConfigCharacterizationBindings() {
 }
 
-AprilTags::Config RobotContainer::testCameraConfig() {
+AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot = {14.950771_in, 0_m, 14.034697_in, {0_deg, 0_deg, 0_deg}};
+    config.cameraToRobot = {10.5408175_in, -9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, -30_deg}};
     return config;
 }
 
+AprilTags::Config RobotContainer::frontLeftCamera() {
+    AprilTags::Config config;
+    config.cameraName = "Global_Shutter_Camera_2";
+    config.cameraToRobot = {10.5408175_in, 9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, 30_deg}};
+    return config;
+}
+
+AprilTags::Config RobotContainer::backRightCamera() {
+    AprilTags::Config config;
+    config.cameraName = "Global_Shutter_Camera_3";
+    config.cameraToRobot = {-10.5408175_in, -9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, 150_deg}};
+    return config;
+}
+
+AprilTags::Config RobotContainer::backLeftCamera() {
+    AprilTags::Config config;
+    config.cameraName = "Global_Shutter_Camera_4";
+    config.cameraToRobot = {-10.5408175_in, -9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, -150_deg}};
+    return config;
+}
 void RobotContainer::UpdateTelemetry() {
     chassis.shuffleboardPeriodic();
 }

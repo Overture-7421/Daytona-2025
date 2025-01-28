@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.0,
-        "y": 7.0
+        "x": 5.759918619791666,
+        "y": 4.164989872685185
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.0,
-        "y": 7.0
+        "x": 6.8282718260928785,
+        "y": 4.140472834487781
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Basicleave1"
     },
     {
       "anchor": {
-        "x": 3.4900568181818183,
-        "y": 5.17671875
+        "x": 6.830922670717593,
+        "y": 4.164989872685185
       },
       "prevControl": {
-        "x": 2.4900568181818183,
-        "y": 5.17671875
+        "x": 5.892838795449105,
+        "y": 4.18938251975503
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -179.4842835623092
   },
   "reversed": false,
-  "folder": null,
+  "folder": "BasicLeave",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 179.45389016907097
   },
   "useDefaultConstraints": true
 }

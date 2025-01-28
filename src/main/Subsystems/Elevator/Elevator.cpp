@@ -6,7 +6,8 @@
 Elevator::Elevator() {
     rightElevatorMotor.setFollow(leftElevatorMotor.GetDeviceID(), true);
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
-    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity, ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
+    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
+            ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
 }
 
 void Elevator::setPosition(units::meter_t position) {
@@ -14,10 +15,12 @@ void Elevator::setPosition(units::meter_t position) {
     units::turn_t positionInRotations {position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
     leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
 
-};
+}
+;
 
-units::meter_t Elevator::getPosition(){
-    units::meter_t currentPosition = units::meter_t(leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
+units::meter_t Elevator::getPosition() {
+    units::meter_t currentPosition = units::meter_t(
+            leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
     return currentPosition;
 }
 

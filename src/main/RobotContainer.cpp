@@ -53,9 +53,6 @@ void RobotContainer::ConfigDriverBindings() {
 
     //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
 
-
-
-
 }
 
 void RobotContainer::ConfigOperatorBindings() {
@@ -66,8 +63,13 @@ void RobotContainer::ConfigOperatorBindings() {
 
     oprtr.B().WhileTrue(intake.moveIntake(-6_V));
 
+    oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
+
+
     oprtr.A().OnTrue(intake.moveIntake(0_V));
+
     */
+
 }
 
 void RobotContainer::ConfigDefaultCommands() {

@@ -6,7 +6,8 @@
 
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
+#include "Subsystems/Intake/Intake.h"
 #include "Commands/ArmMotion/ArmMotion.h"
 #include <frc2/command/Commands.h>
 
-frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator);
+frc2::CommandPtr GroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake);

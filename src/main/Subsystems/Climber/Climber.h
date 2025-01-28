@@ -8,7 +8,7 @@
 #include <frc2/command/sysid/SysIdRoutine.h>
 #include <frc/controller/ArmFeedforward.h>
 #include <frc2/command/FunctionalCommand.h>
-#include "Subsystems/Climber/Constants.h"
+#include "Subsystems/Climber/ClimberConstants.h"
 
 class Climber: public frc2::SubsystemBase {
 public:
@@ -26,8 +26,8 @@ public:
     void Periodic() override;
 
 private:
-    OverTalonFX armRightMotor {Constants::RightConfig(), "rio"};
-    OverTalonFX armLeftMotor {Constants::LeftConfig(), "rio"};
+    OverTalonFX armRightMotor {ClimberConstants::RightConfig(), "rio"};
+    OverTalonFX armLeftMotor {ClimberConstants::LeftConfig(), "rio"};
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine
     {   frc2::sysid::Config

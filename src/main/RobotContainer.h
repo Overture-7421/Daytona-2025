@@ -19,12 +19,17 @@
 #include "Subsystems/Climber/Climber.h"
 
 #include "Commands/L1Command/L1Command.h"
+#include "Commands/L2Command/L2Command.h"
+#include "Commands/L3Command/L3Command.h"
+#include "Commands/L4Command/L4Command.h"
+#include "Commands/GroundGrabCommand/GroundGrabCommand.h"
 #include "Commands/ClosedCommand/ClosedCommand.h"
 #include "Commands/LowAlgae/LowAlgae.h"
 #include "Commands/HighAlgae/HighAlgae.h"
 #include "Commands/SourceCommand/SourceCommand.h"
 #include "Commands/Processor/Processor.h"
 #include "Commands/AlignToPose/AlignToPose.h"
+#include "Commands/NetCommand/NetCommand.h"
 
 class RobotContainer: public OverContainer {
 public:

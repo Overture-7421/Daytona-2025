@@ -32,8 +32,24 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
 
-    driver.Back().OnTrue(ResetHeading(&chassis));
+   // driver.Back().OnTrue(ResetHeading(&chassis));
 
+
+   // driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
+  //  driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
+
+
+    driver.A().OnTrue(L1Command(&arm, &elevator));
+    driver.A().OnFalse(ClosedCommand(&arm, &elevator));
+
+    driver.B().OnTrue(L2Command(&arm, &elevator));
+    driver.B().OnFalse(ClosedCommand(&arm, &elevator));
+
+    driver.Y().OnTrue(L3Command(&arm, &elevator));
+    driver.Y().OnFalse(ClosedCommand(&arm, &elevator));
+
+    driver.X().OnTrue(GroundGrabCommand(&arm, &elevator, &intake));
+    driver.X().OnFalse(ClosedCommand(&arm, &elevator));
 
     //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
 

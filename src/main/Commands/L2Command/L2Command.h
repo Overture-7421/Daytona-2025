@@ -7,5 +7,6 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
 #include <frc2/command/Commands.h>
+#include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator);

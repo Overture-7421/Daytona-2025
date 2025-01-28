@@ -14,3 +14,5 @@ frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator) {
             ,
 
             ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef, ElevatorConstants::L1Position).ToPtr());
+
+}

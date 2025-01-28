@@ -11,6 +11,6 @@ frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator) {
 
             }),
 
-            ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet, ElevatorConstants::NetPosition).ToPtr()
+            ArmMotion(elevator, arm, ArmConstants::ArmL2Reef, ArmConstants::WristL2Reef, ElevatorConstants::L2Position).ToPtr()
     );
 }

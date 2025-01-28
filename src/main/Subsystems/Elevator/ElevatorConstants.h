@@ -15,7 +15,7 @@ struct ElevatorConstants {
     constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 15_tr_per_s_sq;
 
     constexpr static const units::meter_t SourcePosition = 0.01_m;
-    constexpr static const units::meter_t FloorPosition = 0_m;
+    constexpr static const units::meter_t GroundGrabPosition = 0.08_m;
     constexpr static const units::meter_t ClosedPosition = 0.02_m;
     constexpr static const units::meter_t L1Position = 0.2_m;
     constexpr static const units::meter_t L2Position = 0.03_m; 

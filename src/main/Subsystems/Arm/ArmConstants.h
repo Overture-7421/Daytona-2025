@@ -37,8 +37,8 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmNet = 1.0_deg;
     constexpr static const units::degree_t WristNet = 1.0_deg;
 
-    constexpr static const units::degree_t ArmGround = 1.0_deg;
-    constexpr static const units::degree_t WristGround = 1.0_deg;
+    constexpr static const units::degree_t ArmGround = 120.0_deg;
+    constexpr static const units::degree_t WristGround = 90.0_deg;
 
     constexpr static const units::degree_t ArmClosed = 0.0_deg;
     constexpr static const units::degree_t WristClosed = 0.0_deg;
@@ -73,7 +73,7 @@ struct ArmConstants {
         armLeftConfig.TriggerThreshold = 90_A;
         armLeftConfig.TriggerThresholdTime = 1_s;
         armLeftConfig.OpenLoopRampRate = 0.05_s;
-        armLeftConfig.PIDConfigs.WithKP(17.0);
+        armLeftConfig.PIDConfigs.WithKP(22.0);
 
         return armLeftConfig;
     }
@@ -90,7 +90,7 @@ struct ArmConstants {
         armRightConfig.TriggerThreshold = 90_A;
         armRightConfig.TriggerThresholdTime = 1_s;
         armRightConfig.OpenLoopRampRate = 0.05_s;
-        armRightConfig.PIDConfigs.WithKP(17.0);
+        armRightConfig.PIDConfigs.WithKP(22.0);
 
         return armRightConfig;
     }
@@ -107,7 +107,7 @@ struct ArmConstants {
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
         wristConfig.OpenLoopRampRate = 0.05_s;
-        wristConfig.PIDConfigs.WithKP(4.0);
+        wristConfig.PIDConfigs.WithKP(8.0);
 
         return wristConfig;
     }

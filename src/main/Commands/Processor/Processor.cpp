@@ -9,8 +9,10 @@ frc2::CommandPtr Processor(Arm *arm, Elevator *elevator) {
     return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::ProcessorPosition),
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::ProcessorPosition);
-            }),
-            ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristProcessor, ElevatorConstants::ProcessorPosition).ToPtr()
+            })
+            ,
+            ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristProcessor,
+                    ElevatorConstants::ProcessorPosition).ToPtr()
 
-    );
+            );
 }

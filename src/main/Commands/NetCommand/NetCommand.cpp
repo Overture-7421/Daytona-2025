@@ -6,9 +6,7 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Parallel(
-        elevator->setElevatorCommand(ElevatorConstants::NetPosition),
+    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::NetPosition),
 
-        ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet, ElevatorConstants::NetPosition).ToPtr()
-    );
+    ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet, ElevatorConstants::NetPosition).ToPtr());
 }

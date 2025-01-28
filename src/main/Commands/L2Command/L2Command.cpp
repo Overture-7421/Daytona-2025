@@ -9,8 +9,8 @@ frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator) {
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::L2Position);
 
-            }),
+            })
+            ,
 
-            ArmMotion(elevator, arm, ArmConstants::ArmL2Reef, ArmConstants::WristL2Reef, ElevatorConstants::L2Position).ToPtr()
-    );
+            ArmMotion(elevator, arm, ArmConstants::ArmL2Reef, ArmConstants::WristL2Reef, ElevatorConstants::L2Position).ToPtr());
 }

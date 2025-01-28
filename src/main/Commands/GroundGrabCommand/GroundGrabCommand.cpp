@@ -4,18 +4,20 @@
 
 #include "GroundGrabCommand.h"
 
-frc2::CommandPtr GroundGrabCommand(Arm *arm, Elevator *elevator, Intake* intake) {
+frc2::CommandPtr GroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake) {
     return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::GroundGrabPosition),
             frc2::cmd::WaitUntil([elevator] {
                 return elevator->isElevatorAtPosition(ElevatorConstants::GroundGrabPosition);
 
-            }),
+            })
+            ,
 
-             ArmMotion(elevator, arm, ArmConstants::ArmGround, ArmConstants::WristGround, ElevatorConstants::GroundGrabPosition).ToPtr(),
+            ArmMotion(elevator, arm, ArmConstants::ArmGround, ArmConstants::WristGround,
+                    ElevatorConstants::GroundGrabPosition).ToPtr(),
 
-             intake->moveIntake(IntakeConstants::CoralGrab).FinallyDo([=]() {
-             intake->moveIntake(IntakeConstants::StopIntake);
-             }
-    )
+            intake->moveIntake(IntakeConstants::CoralGrab).FinallyDo([=]() {
+                intake->moveIntake(IntakeConstants::StopIntake);
+            }
+            )
     );
 }

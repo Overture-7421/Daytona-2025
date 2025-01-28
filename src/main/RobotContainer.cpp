@@ -32,12 +32,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
 
-   // driver.Back().OnTrue(ResetHeading(&chassis));
+    // driver.Back().OnTrue(ResetHeading(&chassis));
 
-
-   // driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
-  //  driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
-
+    // driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
+    //  driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
 
     driver.A().OnTrue(L1Command(&arm, &elevator));
     driver.A().OnFalse(ClosedCommand(&arm, &elevator));
@@ -58,17 +56,17 @@ void RobotContainer::ConfigDriverBindings() {
 void RobotContainer::ConfigOperatorBindings() {
 
     /*
-    oprtr.X().WhileTrue(intake.moveIntake(-8_V));
-    oprtr.Y().WhileTrue(intake.moveIntake(8_V));
+     oprtr.X().WhileTrue(intake.moveIntake(-8_V));
+     oprtr.Y().WhileTrue(intake.moveIntake(8_V));
 
-    oprtr.B().WhileTrue(intake.moveIntake(-6_V));
+     oprtr.B().WhileTrue(intake.moveIntake(-6_V));
 
-    oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
+     oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
 
 
-    oprtr.A().OnTrue(intake.moveIntake(0_V));
+     oprtr.A().OnTrue(intake.moveIntake(0_V));
 
-    */
+     */
 
 }
 

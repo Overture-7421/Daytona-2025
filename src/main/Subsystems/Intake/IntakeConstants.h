@@ -25,12 +25,12 @@ public:
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.Inverted = true;
 
-        intakeConfig.CurrentLimit = 30_A;
-        intakeConfig.StatorCurrentLimit = 30_A;
-        intakeConfig.TriggerThreshold = 1_s;
+        intakeConfig.CurrentLimit = 40_A;
+        intakeConfig.StatorCurrentLimit = 120_A;
+        intakeConfig.TriggerThreshold = 60_A;
         intakeConfig.TriggerThresholdTime = 1_s;
-        intakeConfig.ClosedLoopRampRate = 0.05_s;
-        intakeConfig.OpenLoopRampRate = 0.05_s;
+        intakeConfig.ClosedLoopRampRate = 0.0_s;
+        intakeConfig.OpenLoopRampRate = 0.01_s;
 
         return intakeConfig;
     }

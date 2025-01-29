@@ -12,12 +12,12 @@ public:
 
     constexpr static const units::volt_t CoralGrab = 4.0_V;
     constexpr static const units::volt_t CoralRelease = -4.0_V;
-    constexpr static const units::volt_t AlgeaGrab = 6.0_V;
-    constexpr static const units::volt_t AlgeaRelease = -6.0_V;
+    constexpr static const units::volt_t AlgeaGrab = 4.0_V;
+    constexpr static const units::volt_t AlgeaRelease = -4.0_V;
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
-    constexpr static const units::volt_t ReverseVolts = -6.0_V;
+    constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
@@ -27,7 +27,7 @@ public:
 
         intakeConfig.CurrentLimit = 30_A;
         intakeConfig.StatorCurrentLimit = 30_A;
-        intakeConfig.TriggerThreshold = 90_A;
+        intakeConfig.TriggerThreshold = 1_s;
         intakeConfig.TriggerThresholdTime = 1_s;
         intakeConfig.ClosedLoopRampRate = 0.05_s;
         intakeConfig.OpenLoopRampRate = 0.05_s;

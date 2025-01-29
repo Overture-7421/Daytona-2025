@@ -5,120 +5,162 @@
     "data": {
       "commands": [
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "AlgaeInNet1"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeInNet1"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL1"
+                      }
+                    }
+                  ]
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "coralL1"
+                  "name": "lowAlgae"
                 }
               }
             ]
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "lowAlgae"
-          }
-        },
-        {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "AlgaeInNet2"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeNet"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeInNet2"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeNet"
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "AlgaeInNet3"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "highAlgae"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeInNet3"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "highAlgae"
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "AlgaeInNet4"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeNet"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeInNet4"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeNet"
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "AlgaeInNet5"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "highAlgae"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeInNet5"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "highAlgae"
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "AlgaeInNet6"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "algaeNet"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeInNet6"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeNet"
+                      }
+                    }
+                  ]
                 }
               }
             ]

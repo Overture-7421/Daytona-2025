@@ -5,82 +5,110 @@
     "data": {
       "commands": [
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "FreeAlgae1"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "FreeAlgae1"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL1"
+                      }
+                    }
+                  ]
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "coralL1"
+                  "name": "lowAlgae"
                 }
               }
             ]
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "lowAlgae"
-          }
-        },
-        {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "FreeAlgae2"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "processor"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "FreeAlgae2"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "processor"
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "FreeAlgae3"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "highAlgae"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "FreeAlgae3"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "highAlgae"
+                      }
+                    }
+                  ]
                 }
               }
             ]
           }
         },
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "FreeAlgae4"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "processor"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "FreeAlgae4"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "processor"
+                      }
+                    }
+                  ]
                 }
               }
             ]

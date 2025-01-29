@@ -5,34 +5,48 @@
     "data": {
       "commands": [
         {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "Basicleave1"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Basicleave1"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
                 }
               },
               {
-                "type": "named",
+                "type": "wait",
                 "data": {
-                  "name": "coralL4"
+                  "waitTime": 2.0
                 }
               }
             ]
           }
         },
         {
-          "type": "wait",
+          "type": "sequential",
           "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Basicleave2"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Basicleave2"
+                }
+              }
+            ]
           }
         }
       ]

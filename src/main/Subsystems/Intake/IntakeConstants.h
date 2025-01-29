@@ -35,4 +35,21 @@ public:
         return intakeConfig;
     }
 
+    constexpr static const OverTalonFXConfig IntakeJawConfig() {
+        OverTalonFXConfig intakeJawConfig;
+        intakeJawConfig.MotorId = 21;
+        intakeJawConfig.NeutralMode = ControllerNeutralMode::Brake;
+        intakeJawConfig.useFOC = true;
+
+        intakeJawConfig.ClosedLoopRampRate = 0.05_s;
+        intakeJawConfig.CurrentLimit = 30_A;
+        intakeJawConfig.StatorCurrentLimit = 30_A;
+        intakeJawConfig.TriggerThreshold = 90_A;
+        intakeJawConfig.TriggerThresholdTime = 1_s;
+        intakeJawConfig.OpenLoopRampRate = 0.05_s;
+        intakeJawConfig.PIDConfigs.WithKP(10.0);
+
+        return intakeJawConfig;
+    }
+
 };

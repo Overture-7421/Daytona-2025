@@ -28,4 +28,5 @@ public:
 private:
     //ID 20
     OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
+    OverTalonFX intakeJawMotor {IntakeConstants::IntakeJawConfig(), "rio"};
 };

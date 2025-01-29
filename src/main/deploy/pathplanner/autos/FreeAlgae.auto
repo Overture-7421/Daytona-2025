@@ -5,27 +5,85 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "FreeAlgae1"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "FreeAlgae1"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL1"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "FreeAlgae2"
+            "name": "lowAlgae"
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "FreeAlgae3"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "FreeAlgae2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "processor"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "FreeAlgae4"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "FreeAlgae3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "highAlgae"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "FreeAlgae4"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "processor"
+                }
+              }
+            ]
           }
         }
       ]

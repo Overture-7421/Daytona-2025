@@ -7,7 +7,7 @@
 #include <frc2/command/Commands.h>
 
 RobotContainer::RobotContainer() {
-    
+
     pathplanner::NamedCommands::registerCommand("coralL4", std::move(
     frc2::cmd::Sequence(
       L4Command(&arm, &elevator),
@@ -19,8 +19,7 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL1", std::move(
     frc2::cmd::Sequence(
       L1Command(&arm, &elevator),
-      frc2::cmd::WaitUntil([&] {return elevator.isElevatorAtPosition(ElevatorConstants::L1Position) && arm.isArmAtPosition(ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef);}),
-      ClosedCommand(&arm, &elevator)
+      frc2::cmd::WaitUntil([&] {return elevator.isElevatorAtPosition(ElevatorConstants::L1Position) && arm.isArmAtPosition(ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef);})
     )));
 
     pathplanner::NamedCommands::registerCommand("lowAlgae", std::move(

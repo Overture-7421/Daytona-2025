@@ -37,7 +37,8 @@ void RobotContainer::ConfigDriverBindings() {
     // driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
     //  driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
 
-    //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
+    driver.A().OnTrue(intake.setIntakeCommand(12_V, -90_deg));
+    driver.A().OnFalse(intake.setIntakeCommand(0_V, 0_deg));
 
 }
 

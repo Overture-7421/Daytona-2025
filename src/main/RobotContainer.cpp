@@ -52,10 +52,9 @@ void RobotContainer::ConfigOperatorBindings() {
 
      oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
 
-
      oprtr.A().OnTrue(intake.moveIntake(0_V));
 
-     */
+    */
 
 }
 

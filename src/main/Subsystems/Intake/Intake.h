@@ -18,14 +18,11 @@ public:
     Intake();
 
     void setMotorVoltage(units::volt_t voltage);
+    void setToAngle(units::degree_t jawAngle);
     double getVoltage();
-    void setToAngle(units::volt_t voltage, units::degree_t jawAngle);
     bool isJawAtPosition(units::degree_t jawAngle);
     frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle);
 
-    /**
-     * Will be called periodically whenever the CommandScheduler runs.
-     */
     void Periodic() override;
     frc2::CommandPtr moveIntake(units::volt_t voltage);
 

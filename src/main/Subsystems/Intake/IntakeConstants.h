@@ -18,6 +18,7 @@ public:
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -6.0_V;
+
     constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 2.5_tps;
     constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 7_tr_per_s_sq;
 
@@ -51,7 +52,7 @@ public:
         intakeJawConfig.TriggerThreshold = 90_A;
         intakeJawConfig.TriggerThresholdTime = 1_s;
         intakeJawConfig.OpenLoopRampRate = 0.05_s;
-        intakeJawConfig.PIDConfigs.WithKP(20.0);
+        intakeJawConfig.PIDConfigs.WithKP(1.0);
 
         return intakeJawConfig;
     }

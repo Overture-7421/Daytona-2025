@@ -15,45 +15,13 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "FreeAlgae1"
+                        "pathName": "Chokeholdleft1"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "coralL1"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "lowAlgae"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "FreeAlgae2"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "processor"
+                        "name": "coralL4"
                       }
                     }
                   ]
@@ -73,13 +41,13 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "FreeAlgae3"
+                        "pathName": "Chokeholdleft2"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "highAlgae"
+                        "name": "coralStation"
                       }
                     }
                   ]
@@ -99,13 +67,117 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "FreeAlgae4"
+                        "pathName": "Chokeholdleft3"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "processor"
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Chokeholdleft4"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Chokeholdleft5"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Chokeholdleft6"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Chokeholdleft7"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
                       }
                     }
                   ]
@@ -118,6 +190,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "FreeAlgae",
+  "folder": "ChokeHoldLeft",
   "choreoAuto": false
 }

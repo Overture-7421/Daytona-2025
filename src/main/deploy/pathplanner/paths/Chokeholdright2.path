@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 5.306290870949073,
+        "y": 4.996136067708333
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.054198232367635,
+        "y": 5.073306383919588
+      },
+      "isLocked": false,
+      "linkedName": "Chokehold1"
+    },
+    {
+      "anchor": {
+        "x": 1.6982906539351843,
+        "y": 7.469018735532408
+      },
+      "prevControl": {
+        "x": 2.5437206758870397,
+        "y": 6.7443570586626365
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Chokehold2"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -54.07678621566964
+  },
+  "reversed": false,
+  "folder": "ChokeHoldRight",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -121.26727453964878
+  },
+  "useDefaultConstraints": true
+}

@@ -5,16 +5,16 @@
   "pathFolders": [
     "AlgaeInNet",
     "BasicLeave",
-    "ChokeHoldRight",
-    "FreeAlgae",
-    "ChokeHoldLeft"
+    "ChokeholdLeft",
+    "ChokeholdRight",
+    "FreeAlgae"
   ],
   "autoFolders": [
     "AlgaeInNet",
     "BasicLeave",
-    "ChokeHoldRight",
-    "FreeAlgae",
-    "ChokeHoldLeft"
+    "ChokeholdLeft",
+    "ChokeholdRight",
+    "FreeAlgae"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,

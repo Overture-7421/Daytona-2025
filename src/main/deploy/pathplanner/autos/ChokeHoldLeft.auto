@@ -5,182 +5,133 @@
     "data": {
       "commands": [
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft1"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft1"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft2"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralStation"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralStation"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft3"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft4"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralStation"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft4"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralStation"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft5"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft5"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft6"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralStation"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft6"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralStation"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft7"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
+                  "pathName": "ChokeholdLeft7"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
                 }
               }
             ]
@@ -190,6 +141,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "ChokeHoldLeft",
+  "folder": "ChokeholdLeft",
   "choreoAuto": false
 }

@@ -11,21 +11,26 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Subsystems/Intake/IntakeConstants.h"
+#include <frc2/command/FunctionalCommand.h>
+#include <units/math.h>
 
 class Intake: public frc2::SubsystemBase {
 public:
     Intake();
 
     void setMotorVoltage(units::volt_t voltage);
+    void setToAngle(units::degree_t jawAngle);
     double getVoltage();
+    bool isJawAtPosition(units::degree_t jawAngle);
+    frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle);
 
-    /**
-     * Will be called periodically whenever the CommandScheduler runs.
-     */
     void Periodic() override;
     frc2::CommandPtr moveIntake(units::volt_t voltage);
 
 private:
     //ID 20
+    MotionMagicVoltage jawVoltage {0_tr};
+
     OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
+    OverTalonFX intakeJawMotor {IntakeConstants::IntakeJawConfig(), "rio"};
 };

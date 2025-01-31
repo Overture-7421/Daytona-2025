@@ -19,6 +19,11 @@ public:
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 25.5_tps;
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 35_tr_per_s_sq;
+
+    constexpr static const double RotorToSensor = 1.0;
+
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
         intakeConfig.MotorId = 54;
@@ -33,6 +38,23 @@ public:
         intakeConfig.OpenLoopRampRate = 0.05_s;
 
         return intakeConfig;
+    }
+
+    constexpr static const OverTalonFXConfig IntakeJawConfig() {
+        OverTalonFXConfig intakeJawConfig;
+        intakeJawConfig.MotorId = 58;
+        intakeJawConfig.NeutralMode = ControllerNeutralMode::Brake;
+        intakeJawConfig.useFOC = true;
+
+        intakeJawConfig.ClosedLoopRampRate = 0.05_s;
+        intakeJawConfig.CurrentLimit = 30_A;
+        intakeJawConfig.StatorCurrentLimit = 30_A;
+        intakeJawConfig.TriggerThreshold = 90_A;
+        intakeJawConfig.TriggerThresholdTime = 1_s;
+        intakeJawConfig.OpenLoopRampRate = 0.05_s;
+        intakeJawConfig.PIDConfigs.WithKP(0.3);
+
+        return intakeJawConfig;
     }
 
 };

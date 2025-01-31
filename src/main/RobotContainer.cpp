@@ -53,6 +53,14 @@ void RobotContainer::ConfigDriverBindings() {
 
     //Palllet Execute Commands
 
+  /*
+    driver.A().OnTrue(intake.setIntakeCommand(12_V, -90_deg));
+    driver.A().OnFalse(intake.setIntakeCommand(0_V, 0_deg));
+
+    driver.B().OnTrue(intake.setIntakeCommand(12_V, -180_deg));
+    driver.B().OnFalse(intake.setIntakeCommand(0_V, 0_deg));
+  */
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {

@@ -4,9 +4,10 @@
 
 #include "NetCommand.h"
 #include "Commands/ArmMotion/ArmMotion.h"
+#include "OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h"
 
-frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::NetPosition),
-
-    ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet, ElevatorConstants::NetPosition).ToPtr());
+frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, Chassis *chassis, frc::Pose2d pose2d) {
+    return frc2::cmd::Parallel(AlignToNet(chassis, pose2d).ToPtr(),
+            elevator->setElevatorCommand(ElevatorConstants::NetPosition),
+            ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet, ElevatorConstants::NetPosition).ToPtr());
 }

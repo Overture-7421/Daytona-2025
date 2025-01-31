@@ -11,6 +11,7 @@ AlignToNet::AlignToNet(Chassis *chassis, frc::Pose2d pose2d) : alignNetSpeedHelp
 }
 
 void AlignToNet::Initialize() {
+    alignNetSpeedHelper.initialize();
     chassis->enableSpeedHelper(&alignNetSpeedHelper);
 }
 

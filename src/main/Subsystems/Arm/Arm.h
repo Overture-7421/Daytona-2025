@@ -27,6 +27,8 @@ public:
 
     void blockedWrist(units::degree_t armAngle, units::degree_t wristAngle);
 
+    units::degree_t getArmAngle();
+
     void Periodic() override;
 
 private:

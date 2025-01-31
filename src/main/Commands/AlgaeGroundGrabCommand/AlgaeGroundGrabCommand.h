@@ -10,4 +10,4 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 #include <frc2/command/Commands.h>
 
-frc2::CommandPtr GroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake);
+frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake);

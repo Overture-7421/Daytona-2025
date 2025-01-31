@@ -37,78 +37,57 @@
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "FreeAlgae2"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "processor"
-                      }
-                    }
-                  ]
+                  "pathName": "FreeAlgae2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "processor"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "FreeAlgae3"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "highAlgae"
-                      }
-                    }
-                  ]
+                  "pathName": "FreeAlgae3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "highAlgae"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "FreeAlgae4"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "processor"
-                      }
-                    }
-                  ]
+                  "pathName": "FreeAlgae4"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "processor"
                 }
               }
             ]

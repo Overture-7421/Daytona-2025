@@ -37,130 +37,95 @@
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "AlgaeInNet2"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeNet"
-                      }
-                    }
-                  ]
+                  "pathName": "AlgaeInNet2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeNet"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "AlgaeInNet3"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "highAlgae"
-                      }
-                    }
-                  ]
+                  "pathName": "AlgaeInNet3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "highAlgae"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "AlgaeInNet4"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeNet"
-                      }
-                    }
-                  ]
+                  "pathName": "AlgaeInNet4"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeNet"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "AlgaeInNet5"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "highAlgae"
-                      }
-                    }
-                  ]
+                  "pathName": "AlgaeInNet5"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "highAlgae"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "AlgaeInNet6"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "algaeNet"
-                      }
-                    }
-                  ]
+                  "pathName": "AlgaeInNet6"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "algaeNet"
                 }
               }
             ]

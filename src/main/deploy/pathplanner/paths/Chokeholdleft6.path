@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.727249346220272,
-        "y": 3.025700578765759
+        "x": 3.7272120949074066,
+        "y": 5.019079499421296
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.974073239848997,
-        "y": 3.065424193077097
+        "x": 3.4622169784362917,
+        "y": 5.279092592770559
       },
       "isLocked": false,
-      "linkedName": "Chokeholdleft5"
+      "linkedName": "Chokehold5"
     },
     {
       "anchor": {
-        "x": 1.6470661278129533,
-        "y": 0.5814409938555548
+        "x": 1.6805881076388878,
+        "y": 7.499823495370371
       },
       "prevControl": {
-        "x": 1.3149586842842187,
-        "y": 0.24634396516427842
+        "x": 2.24897765957318,
+        "y": 6.835273015897338
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokeholdleft6"
+      "linkedName": "Chokehold6"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 54.490915866739506
+    "rotation": -53.98898835330499
   },
   "reversed": false,
-  "folder": "ChokeHoldLeft",
+  "folder": "ChokeholdLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.98785885772607
+    "rotation": -59.98327590760987
   },
   "useDefaultConstraints": true
 }

@@ -12,6 +12,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Subsystems/Intake/IntakeConstants.h"
 #include <frc2/command/FunctionalCommand.h>
+#include <units/math.h>
 
 class Intake: public frc2::SubsystemBase {
 public:

@@ -19,8 +19,8 @@ public:
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -6.0_V;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 2.5_tps;
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 7_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 25.5_tps;
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 35_tr_per_s_sq;
 
     constexpr static const double RotorToSensor = 1.0;
 
@@ -52,7 +52,7 @@ public:
         intakeJawConfig.TriggerThreshold = 90_A;
         intakeJawConfig.TriggerThresholdTime = 1_s;
         intakeJawConfig.OpenLoopRampRate = 0.05_s;
-        intakeJawConfig.PIDConfigs.WithKP(1.0);
+        intakeJawConfig.PIDConfigs.WithKP(0.3);
 
         return intakeJawConfig;
     }

@@ -6,10 +6,9 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 
 
+frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Chassis *chassis) {
+    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::HighAlgae),
 
-frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Parallel(
-            elevator->setElevatorCommand(ElevatorConstants::HighAlgae),
             ArmMotion(elevator, arm, ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae,
                     ElevatorConstants::HighAlgae).ToPtr());
 }

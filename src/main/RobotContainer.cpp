@@ -88,36 +88,25 @@ void RobotContainer::ConfigDriverBindings() {
     // driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
     //  driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
 
-    driver.A().OnTrue(L1Command(&arm, &elevator));
-    driver.A().OnFalse(ClosedCommand(&arm, &elevator));
+    driver.A().OnTrue(intake.setIntakeCommand(12_V, -90_deg));
+    driver.A().OnFalse(intake.setIntakeCommand(0_V, 0_deg));
 
-    driver.B().OnTrue(L2Command(&arm, &elevator));
-    driver.B().OnFalse(ClosedCommand(&arm, &elevator));
-
-    driver.Y().OnTrue(L3Command(&arm, &elevator));
-    driver.Y().OnFalse(ClosedCommand(&arm, &elevator));
-
-    driver.X().OnTrue(GroundGrabCommand(&arm, &elevator, &intake));
-    driver.X().OnFalse(ClosedCommand(&arm, &elevator));
-
-    //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
+    driver.B().OnTrue(intake.setIntakeCommand(12_V, -180_deg));
+    driver.B().OnFalse(intake.setIntakeCommand(0_V, 0_deg));
 
 }
 
 void RobotContainer::ConfigOperatorBindings() {
 
-    /*
-     oprtr.X().WhileTrue(intake.moveIntake(-8_V));
-     oprtr.Y().WhileTrue(intake.moveIntake(8_V));
+    oprtr.X().WhileTrue(intake.moveIntake(-8_V));
+    oprtr.Y().WhileTrue(intake.moveIntake(8_V));
 
-     oprtr.B().WhileTrue(intake.moveIntake(-6_V));
+    oprtr.LeftBumper().WhileTrue(intake.moveIntake(-7_V));
+    oprtr.B().WhileTrue(intake.moveIntake(-6_V));
 
-     oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
+    oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
 
-
-     oprtr.A().OnTrue(intake.moveIntake(0_V));
-
-     */
+    oprtr.A().OnTrue(intake.moveIntake(0_V));
 
 }
 

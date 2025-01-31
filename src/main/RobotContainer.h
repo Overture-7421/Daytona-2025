@@ -31,6 +31,7 @@
 #include "Commands/Processor/Processor.h"
 #include "Commands/AlignToPose/AlignToPose.h"
 #include "Commands/NetCommand/NetCommand.h"
+#include "Commands/AlignToPose/AlignPositions.h"
 
 class RobotContainer: public OverContainer {
 public:

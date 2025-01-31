@@ -44,3 +44,7 @@ frc2::CommandPtr stationPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayou
     std::pair {StationLocation::Left, AlignToPose(chassis, stationLeft).ToPtr()}, std::pair {StationLocation::Right,
             AlignToPose(chassis, stationRight).ToPtr()});
 }
+
+frc2::CommandPtr processorPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
+    return AlignToPose(chassis, processor).ToPtr();
+}

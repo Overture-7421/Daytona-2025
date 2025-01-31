@@ -4,10 +4,10 @@
 
 #include "Intake.h"
 
-Intake::Intake(){
+Intake::Intake() {
     intakeJawMotor.setRotorToSensorRatio(IntakeConstants::RotorToSensor);
-    intakeJawMotor.configureMotionMagic(IntakeConstants::IntakeCruiseVelocity, IntakeConstants::IntakeCruiseAcceleration,
-            0.0_tr_per_s_cu);
+    intakeJawMotor.configureMotionMagic(IntakeConstants::IntakeCruiseVelocity,
+            IntakeConstants::IntakeCruiseAcceleration, 0.0_tr_per_s_cu);
 }
 
 void Intake::setToAngle(units::degree_t jawAngle) {
@@ -22,7 +22,7 @@ void Intake::setMotorVoltage(units::volt_t voltage) {
 
 frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle) {
     return frc2::FunctionalCommand([this, voltage, jawAngle]() {
-        setToAngle(jawAngle), setMotorVoltage(voltage);
+        setToAngle (jawAngle), setMotorVoltage(voltage);
     }, []() {
     }, [](bool interupted) {
     }, [this, voltage, jawAngle]() {
@@ -31,24 +31,20 @@ frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t
     {this}).ToPtr();
 }
 
-
 bool Intake::isJawAtPosition(units::degree_t jawAngle) {
     units::degree_t jawError = jawAngle - intakeJawMotor.GetPosition().GetValue();
     return (units::math::abs(jawError) < 1.0_deg);
 }
 
-
 double Intake::getVoltage() {
     return intakeMotor.GetMotorVoltage().GetValueAsDouble();
 }
-
 
 frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {
         this->setMotorVoltage(voltage);
     });
 }
-
 
 void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);

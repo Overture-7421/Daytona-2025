@@ -41,7 +41,7 @@ RobotContainer::RobotContainer() {
                                                 && arm.isArmAtPosition(ArmConstants::ArmLowAlgae,
                                                         ArmConstants::WristLowAlgae);
                                     }),
-                            intake.moveIntake(IntakeConstants::AlgeaGrab).WithTimeout(0.5_s),
+                            intake.moveIntake(IntakeConstants::AlgaeGrab).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
@@ -53,7 +53,7 @@ RobotContainer::RobotContainer() {
                                                 && arm.isArmAtPosition(ArmConstants::ArmHighAlgae,
                                                         ArmConstants::WristHighAlgae);
                                     }),
-                            intake.moveIntake(IntakeConstants::AlgeaGrab).WithTimeout(0.5_s),
+                            intake.moveIntake(IntakeConstants::AlgaeGrab).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("processor",
@@ -65,18 +65,18 @@ RobotContainer::RobotContainer() {
                                                 && arm.isArmAtPosition(ArmConstants::ArmProcessor,
                                                         ArmConstants::WristProcessor);
                                     }),
-                            intake.moveIntake(IntakeConstants::AlgeaRelease).WithTimeout(0.5_s),
+                            intake.moveIntake(IntakeConstants::AlgaeRelease).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(
-                    frc2::cmd::Sequence(NetCommand(&arm, &elevator),
+                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &chassis, NetPose::pose),
                             frc2::cmd::WaitUntil(
                                     [&] {
                                         return elevator.isElevatorAtPosition(ElevatorConstants::NetPosition)
                                                 && arm.isArmAtPosition(ArmConstants::ArmNet, ArmConstants::WristNet);
                                     }),
-                            intake.moveIntake(IntakeConstants::AlgeaRelease).WithTimeout(0.5_s),
+                            intake.moveIntake(IntakeConstants::AlgaeRelease).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",

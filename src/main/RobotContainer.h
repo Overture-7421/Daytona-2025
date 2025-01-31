@@ -24,7 +24,6 @@
 #include "Commands/L4Command/L4Command.h"
 #include "Commands/CoralGroundGrabCommand/CoralGroundGrabCommand.h"
 #include "Commands/ArmMotion/ArmMotion.h"
-#include "Commands/GroundGrabCommand/GroundGrabCommand.h"
 #include "Commands/ClosedCommand/ClosedCommand.h"
 #include "Commands/LowAlgae/LowAlgae.h"
 #include "Commands/HighAlgae/HighAlgae.h"

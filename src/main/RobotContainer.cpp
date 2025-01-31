@@ -5,6 +5,7 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/Commands.h>
+#include "Commands/NetCommand/NetPose.h"
 
 RobotContainer::RobotContainer() {
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
@@ -19,6 +20,7 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureBindings() {
     ConfigDriverBindings();
     ConfigOperatorBindings();
+    ConfigMixedBindigs();
     ConfigDefaultCommands();
     //ConfigCharacterizationBindings();
 }
@@ -31,31 +33,76 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
+    driver.Back().OnTrue(ResetHeading(&chassis));
 
-    // driver.Back().OnTrue(ResetHeading(&chassis));
+    driver.Y().WhileTrue(NetCommand(&arm, &elevator, &chassis, NetPose::pose));
+    driver.Y().WhileFalse(ClosedCommand(&arm, &elevator));
 
-    // driver.RightBumper().OnTrue(elevator.setElevatorCommand(0.30_m));
-    //  driver.LeftBumper().OnTrue(elevator.setElevatorCommand(0.0_m));
+    driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake));
+    driver.B().WhileFalse(ClosedCommand(&arm, &elevator));
 
-    //driver.A().WhileTrue(HighAlgae(&arm, &elevator, &chassis));
+    driver.X().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake));
+    driver.X().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake));
+    driver.A().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    //Spit Game piece
+    driver.Start().WhileTrue(intake.moveIntake(IntakeConstants::ReverseVolts));
+    driver.Start().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    //Palllet Execute Commands
 
 }
 
 void RobotContainer::ConfigOperatorBindings() {
 
-    oprtr.X().WhileTrue(intake.moveIntake(-8_V));
-    oprtr.Y().WhileTrue(intake.moveIntake(8_V));
+    /* Intake Testing
+     oprtr.X().WhileTrue(intake.moveIntake(-8_V));
+     oprtr.Y().WhileTrue(intake.moveIntake(8_V));
 
-    oprtr.LeftBumper().WhileTrue(intake.moveIntake(-7_V));
-    oprtr.B().WhileTrue(intake.moveIntake(-6_V));
+     oprtr.LeftBumper().WhileTrue(intake.moveIntake(-7_V));
+     oprtr.B().WhileTrue(intake.moveIntake(-6_V));
 
-    oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
+     oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
 
-    oprtr.A().OnTrue(intake.moveIntake(0_V));
+     oprtr.A().OnTrue(intake.moveIntake(0_V));
+     */
+
+    oprtr.A().WhileTrue(L1Command(&arm, &elevator));
+    oprtr.A().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.B().WhileTrue(L2Command(&arm, &elevator));
+    oprtr.B().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.X().WhileTrue(L3Command(&arm, &elevator));
+    oprtr.B().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.Y().WhileTrue(L4Command(&arm, &elevator));
+    oprtr.Y().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake));
+    oprtr.RightTrigger().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator));
+    oprtr.POVDown().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.POVUp().WhileTrue(HighAlgae(&arm, &elevator));
+    oprtr.POVUp().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.LeftBumper().WhileTrue(Processor(&arm, &elevator));
+    oprtr.LeftBumper().WhileFalse(ClosedCommand(&arm, &elevator));
+
+    oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
+    oprtr.Start().WhileFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
 
 }
 
+void RobotContainer::ConfigMixedBindigs() {
+}
+
 void RobotContainer::ConfigDefaultCommands() {
+    climber.setClimberCommand(ClimberConstants::ClosedPosition);
 
 }
 

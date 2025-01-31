@@ -11,6 +11,7 @@ AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : alignSpeedHelpe
 }
 
 void AlignToPose::Initialize() {
+    alignSpeedHelper.initialize();
     chassis->enableSpeedHelper(&alignSpeedHelper);
 }
 

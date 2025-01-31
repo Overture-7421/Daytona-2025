@@ -12,12 +12,12 @@ public:
 
     constexpr static const units::volt_t CoralGrab = 4.0_V;
     constexpr static const units::volt_t CoralRelease = -4.0_V;
-    constexpr static const units::volt_t AlgeaGrab = 6.0_V;
-    constexpr static const units::volt_t AlgeaRelease = -6.0_V;
+    constexpr static const units::volt_t AlgeaGrab = 4.0_V;
+    constexpr static const units::volt_t AlgeaRelease = -4.0_V;
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
-    constexpr static const units::volt_t ReverseVolts = -6.0_V;
+    constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
     constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 25.5_tps;
     constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 35_tr_per_s_sq;
@@ -30,11 +30,11 @@ public:
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.Inverted = true;
 
-        intakeConfig.CurrentLimit = 30_A;
-        intakeConfig.StatorCurrentLimit = 30_A;
-        intakeConfig.TriggerThreshold = 90_A;
+        intakeConfig.CurrentLimit = 20_A;
+        intakeConfig.StatorCurrentLimit = 120_A;
+        intakeConfig.TriggerThreshold = 60_A;
         intakeConfig.TriggerThresholdTime = 1_s;
-        intakeConfig.ClosedLoopRampRate = 0.05_s;
+        intakeConfig.ClosedLoopRampRate = 0.0_s;
         intakeConfig.OpenLoopRampRate = 0.05_s;
 
         return intakeConfig;

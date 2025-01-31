@@ -6,10 +6,10 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake) {
-    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::SourcePosition),
+    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
 
             ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
-                    ElevatorConstants::SourcePosition).ToPtr(),
+                    ElevatorConstants::CoralStationPosition).ToPtr(),
 
             intake->moveIntake(IntakeConstants::CoralGrab).FinallyDo([=]() {
                 intake->moveIntake(IntakeConstants::StopIntake);

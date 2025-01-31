@@ -7,10 +7,6 @@
 
 frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator) {
     return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
-            frc2::cmd::WaitUntil([elevator] {
-                return elevator->isElevatorAtPosition(ElevatorConstants::LowAlgae);
-            })
-            ,
             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristLowAlgae,
                     ElevatorConstants::LowAlgae).ToPtr());
 }

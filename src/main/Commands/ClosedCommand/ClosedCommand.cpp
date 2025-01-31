@@ -9,10 +9,5 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator) {
     return frc2::cmd::Parallel(
             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                     ElevatorConstants::ClosedPosition).ToPtr(),
-            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition), frc2::cmd::WaitUntil([elevator] {
-                return elevator->isElevatorAtPosition(ElevatorConstants::ClosedPosition);
-
-            })
-
-    );
+            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition));
 }

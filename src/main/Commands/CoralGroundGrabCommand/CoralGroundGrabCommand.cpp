@@ -6,12 +6,6 @@
 
 frc2::CommandPtr CoralGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake) {
     return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPosition),
-            frc2::cmd::WaitUntil([elevator] {
-                return elevator->isElevatorAtPosition(ElevatorConstants::CoralGroundGrabPosition);
-
-            })
-            ,
-
             ArmMotion(elevator, arm, ArmConstants::ArmCoralGround, ArmConstants::WristCoralGround,
                     ElevatorConstants::CoralGroundGrabPosition).ToPtr(),
 

@@ -12,83 +12,37 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL4",
             std::move(
                     frc2::cmd::Sequence(L4Command(&arm, &elevator),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::L4Position)
-                                                && arm.isArmAtPosition(ArmConstants::ArmL4Reef,
-                                                        ArmConstants::WristL4Reef);
-                                    }),
                             intake.moveIntake(IntakeConstants::CoralRelease).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
-    pathplanner::NamedCommands::registerCommand("coralL1",
-            std::move(
-                    frc2::cmd::Sequence(L1Command(&arm, &elevator),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::L1Position)
-                                                && arm.isArmAtPosition(ArmConstants::ArmL1Reef,
-                                                        ArmConstants::WristL1Reef);
-                                    })
-                    )));
+    pathplanner::NamedCommands::registerCommand("coralL1", std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("lowAlgae",
             std::move(
                     frc2::cmd::Sequence(LowAlgae(&arm, &elevator),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::LowAlgae)
-                                                && arm.isArmAtPosition(ArmConstants::ArmLowAlgae,
-                                                        ArmConstants::WristLowAlgae);
-                                    }),
                             intake.moveIntake(IntakeConstants::AlgaeGrab).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
                     frc2::cmd::Sequence(HighAlgae(&arm, &elevator),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::HighAlgae)
-                                                && arm.isArmAtPosition(ArmConstants::ArmHighAlgae,
-                                                        ArmConstants::WristHighAlgae);
-                                    }),
                             intake.moveIntake(IntakeConstants::AlgaeGrab).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("processor",
             std::move(
                     frc2::cmd::Sequence(Processor(&arm, &elevator),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::ProcessorPosition)
-                                                && arm.isArmAtPosition(ArmConstants::ArmProcessor,
-                                                        ArmConstants::WristProcessor);
-                                    }),
                             intake.moveIntake(IntakeConstants::AlgaeRelease).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(
                     frc2::cmd::Sequence(NetCommand(&arm, &elevator, &chassis, NetPose::pose),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::NetPosition)
-                                                && arm.isArmAtPosition(ArmConstants::ArmNet, ArmConstants::WristNet);
-                                    }),
                             intake.moveIntake(IntakeConstants::AlgaeRelease).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
-            std::move(
-                    frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake),
-                            frc2::cmd::WaitUntil(
-                                    [&] {
-                                        return elevator.isElevatorAtPosition(ElevatorConstants::CoralStationPosition)
-                                                && arm.isArmAtPosition(ArmConstants::ArmCoralStation,
-                                                        ArmConstants::WristCoralStation);
-                                    }),
-                            ClosedCommand(&arm, &elevator))));
+            std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake), ClosedCommand(&arm, &elevator))));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);

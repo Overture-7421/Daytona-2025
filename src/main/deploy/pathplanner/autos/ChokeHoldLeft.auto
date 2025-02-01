@@ -136,6 +136,44 @@
               }
             ]
           }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Chokeholdleft8"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralStation"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Chokeholdleft9"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
+                }
+              }
+            ]
+          }
         }
       ]
     }

@@ -10,24 +10,22 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake) {
             > ([intake] {
                 return intake->getState();
             },
-            std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(intake->setState(IntakeStates::EnterCoral),
+            std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(
                     elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                             ElevatorConstants::CoralStationPosition).ToPtr(),
-                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen).FinallyDo(
+                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen, IntakeStates::EnterCoral).FinallyDo(
                             [=]() {
-                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose);
-                                intake->setState(IntakeStates::HoldCoral);
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral);
                             })
 
-            )}, std::pair {IntakeStates::EnterAlgae, frc2::cmd::Parallel(intake->setState(IntakeStates::EnterCoral),
+            )}, std::pair {IntakeStates::EnterAlgae, frc2::cmd::Parallel(
                     elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                             ElevatorConstants::CoralStationPosition).ToPtr(),
-                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen).FinallyDo(
+                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen, IntakeStates::EnterCoral).FinallyDo(
                             [=]() {
-                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose);
-                                intake->setState(IntakeStates::HoldCoral);
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral);
                             })
 
             )}

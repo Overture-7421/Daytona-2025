@@ -37,20 +37,20 @@ bool Intake::isAlgaeIn(units::degree_t jawAngle) {
     return ((canRange.GetDistance(0.10).GetValue() == 0.10_m) && (isJawAtPosition(jawAngle)));
 }
 
-frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle) {
-    return frc2::FunctionalCommand([this, voltage, jawAngle]() {
-        setToAngle (jawAngle), setMotorVoltage(voltage);
+frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle, IntakeStates state) {
+    return frc2::FunctionalCommand([this, voltage, jawAngle, state]() {
+        setToAngle (jawAngle), setMotorVoltage(voltage), setState(state);
     }, []() {
     }, [](bool interupted) {
-    }, [this, voltage, jawAngle]() {
+    }, [this, jawAngle]() {
         return isJawAtPosition(jawAngle);
     },
     {this}).ToPtr();
 }
 
-frc2::CommandPtr Intake::setJawCommand(units::degree_t jawAngle) {
-    return frc2::FunctionalCommand([this, jawAngle]() {
-        setToAngle(jawAngle);
+frc2::CommandPtr Intake::setJawCommand(units::degree_t jawAngle, IntakeStates state) {
+    return frc2::FunctionalCommand([this, jawAngle, state]() {
+        setToAngle(jawAngle), setState(state);
     }, []() {
     }, [](bool interupted) {
     }, [this, jawAngle]() {
@@ -65,13 +65,13 @@ frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     });
 }
 
-frc2::CommandPtr Intake::setState(IntakeStates state) {
-    return this->RunOnce([this, state] {
-        this->state = state;
-    });
+void Intake::setState(IntakeStates state) {
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeSetState", state);
+    state = state;
 }
 
 IntakeStates Intake::getState() {
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeGetState", state);
     return state;
 }
 
@@ -79,5 +79,6 @@ void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
     double jawCurrentAngle = intakeJawMotor.GetPosition().GetValueAsDouble() * 360;
     frc::SmartDashboard::PutNumber("Intake/CurrentJawAngle", jawCurrentAngle);
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeState", state);
 
 }

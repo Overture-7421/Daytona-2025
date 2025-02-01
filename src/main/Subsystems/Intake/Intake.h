@@ -31,11 +31,11 @@ public:
     bool isCoralIn(units::degree_t jawAngle);
     bool isAlgaeIn(units::degree_t jawAngle);
 
-    frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle);
-    frc2::CommandPtr setJawCommand(units::degree_t jawAngle);
+    frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle, IntakeStates state);
+    frc2::CommandPtr setJawCommand(units::degree_t jawAngle, IntakeStates state);
     frc2::CommandPtr moveIntake(units::volt_t voltage);
 
-    frc2::CommandPtr setState(IntakeStates state);
+    void setState(IntakeStates state);
     IntakeStates getState();
 
     void Periodic() override;

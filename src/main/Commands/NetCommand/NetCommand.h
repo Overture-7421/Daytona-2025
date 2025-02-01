@@ -7,7 +7,6 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
 #include <frc2/command/Commands.h>
-#include "Commands/AlignToNet/AlignToNet.h"
-#include "Commands/NetCommand/NetPose.h"
+#include "Subsystems/Intake/Intake.h"
 
-frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, Chassis *chassis, frc::Pose2d pose2d);
+frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, Intake *intake);

@@ -6,12 +6,32 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake) {
-    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
+    return frc2::cmd::Select < IntakeStates
+            > ([intake] {
+                return intake->getState();
+            },
+            std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(intake->setState(IntakeStates::EnterCoral),
+                    elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
+                    ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
+                            ElevatorConstants::CoralStationPosition).ToPtr(),
+                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen).FinallyDo(
+                            [=]() {
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose);
+                                intake->setState(IntakeStates::HoldCoral);
+                            })
 
-            ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
-                    ElevatorConstants::CoralStationPosition).ToPtr(),
+            )}, std::pair {IntakeStates::EnterAlgae, frc2::cmd::Parallel(intake->setState(IntakeStates::EnterCoral),
+                    elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
+                    ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
+                            ElevatorConstants::CoralStationPosition).ToPtr(),
+                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen).FinallyDo(
+                            [=]() {
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose);
+                                intake->setState(IntakeStates::HoldCoral);
+                            })
 
-            intake->moveIntake(IntakeConstants::CoralGrab).FinallyDo([=]() {
-                intake->moveIntake(IntakeConstants::StopIntake);
-            }));
+            )}
+
+            );
+
 }

@@ -20,6 +20,23 @@ void Intake::setMotorVoltage(units::volt_t voltage) {
     intakeMotor.SetVoltage(voltage);
 }
 
+bool Intake::isJawAtPosition(units::degree_t jawAngle) {
+    units::degree_t jawError = jawAngle - intakeJawMotor.GetPosition().GetValue();
+    return (units::math::abs(jawError) < 1.0_deg);
+}
+
+double Intake::getVoltage() {
+    return intakeMotor.GetMotorVoltage().GetValueAsDouble();
+}
+
+bool Intake::isCoralIn(units::degree_t jawAngle) {
+    return ((canRange.GetDistance(0.30).GetValue() == 0.30_m) && (isJawAtPosition(jawAngle)));
+}
+
+bool Intake::isAlgaeIn(units::degree_t jawAngle) {
+    return ((canRange.GetDistance(0.10).GetValue() == 0.10_m) && (isJawAtPosition(jawAngle)));
+}
+
 frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle) {
     return frc2::FunctionalCommand([this, voltage, jawAngle]() {
         setToAngle (jawAngle), setMotorVoltage(voltage);
@@ -31,19 +48,31 @@ frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t
     {this}).ToPtr();
 }
 
-bool Intake::isJawAtPosition(units::degree_t jawAngle) {
-    units::degree_t jawError = jawAngle - intakeJawMotor.GetPosition().GetValue();
-    return (units::math::abs(jawError) < 1.0_deg);
-}
-
-double Intake::getVoltage() {
-    return intakeMotor.GetMotorVoltage().GetValueAsDouble();
+frc2::CommandPtr Intake::setJawCommand(units::degree_t jawAngle) {
+    return frc2::FunctionalCommand([this, jawAngle]() {
+        setToAngle(jawAngle);
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, jawAngle]() {
+        return isJawAtPosition(jawAngle);
+    },
+    {this}).ToPtr();
 }
 
 frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {
         this->setMotorVoltage(voltage);
     });
+}
+
+frc2::CommandPtr Intake::setState(IntakeStates state) {
+    return this->RunOnce([this, state] {
+        this->state = state;
+    });
+}
+
+IntakeStates Intake::getState() {
+    return state;
 }
 
 void Intake::Periodic() {

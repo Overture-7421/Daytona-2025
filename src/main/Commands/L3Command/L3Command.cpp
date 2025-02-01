@@ -4,7 +4,16 @@
 
 #include "L3Command.h"
 
-frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator) {
-    return frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L3Position),
-            ArmMotion(elevator, arm, ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef, ElevatorConstants::L3Position).ToPtr());
+frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator, Intake *intake) {
+    return frc2::cmd::Select < IntakeStates
+            > ([intake] {
+                return intake->getState();
+            },
+            std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(
+                    elevator->setElevatorCommand(ElevatorConstants::L3Position),
+                    ArmMotion(elevator, arm, ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef,
+                            ElevatorConstants::L3Position).ToPtr())}
+
+            );
+
 }

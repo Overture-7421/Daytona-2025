@@ -12,8 +12,9 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL4",
             std::move(
                     frc2::cmd::Sequence(L4Command(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen, IntakeStates::SpitCoral).WithTimeout(
-                                    0.5_s), ClosedCommand(&arm, &elevator, &intake))));
+                            intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen,
+                                    IntakeStates::SpitCoral).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake))));
 
     pathplanner::NamedCommands::registerCommand("coralL1",
             std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator, &intake))));
@@ -21,27 +22,30 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("lowAlgae",
             std::move(
                     frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae, IntakeStates::HoldAlgae).WithTimeout(
-                                    0.5_s), ClosedCommand(&arm, &elevator, &intake))));
+                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,
+                                    IntakeStates::HoldAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
                     frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,IntakeStates::HoldAlgae).WithTimeout(
-                                    0.5_s), ClosedCommand(&arm, &elevator, &intake))));
+                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,
+                                    IntakeStates::HoldAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake))));
 
     pathplanner::NamedCommands::registerCommand("processor",
             std::move(
                     frc2::cmd::Sequence(Processor(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae, IntakeStates::SpitAlgae).WithTimeout(
-                                    0.5_s), ClosedCommand(&arm, &elevator, &intake))));
+                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae,
+                                    IntakeStates::SpitAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(
-                    frc2::cmd::Sequence(
-                            NetCommand(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae, IntakeStates::SpitAlgae).WithTimeout(
-                                    0.5_s), ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &intake),
+                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae,
+                                    IntakeStates::SpitAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
             std::move(
@@ -113,8 +117,6 @@ void RobotContainer::ConfigOperatorBindings() {
      oprtr.A().OnTrue(intake.moveIntake(0_V));
      */
 
-
-    
     oprtr.A().WhileTrue(L1Command(&arm, &elevator, &intake));
     oprtr.A().OnFalse(ClosedCommand(&arm, &elevator, &intake));
 
@@ -141,7 +143,6 @@ void RobotContainer::ConfigOperatorBindings() {
 
     oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
     oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
-    
 
 }
 

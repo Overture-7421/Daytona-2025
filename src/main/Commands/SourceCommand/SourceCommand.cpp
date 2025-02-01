@@ -14,18 +14,22 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake) {
                     elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                             ElevatorConstants::CoralStationPosition).ToPtr(),
-                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen, IntakeStates::EnterCoral).FinallyDo(
+                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen,
+                            IntakeStates::EnterCoral).FinallyDo(
                             [=]() {
-                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral);
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                                        IntakeStates::HoldCoral);
                             })
 
             )}, std::pair {IntakeStates::EnterAlgae, frc2::cmd::Parallel(
                     elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                             ElevatorConstants::CoralStationPosition).ToPtr(),
-                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen, IntakeStates::EnterCoral).FinallyDo(
+                    intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen,
+                            IntakeStates::EnterCoral).FinallyDo(
                             [=]() {
-                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral);
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                                        IntakeStates::HoldCoral);
                             })
 
             )}

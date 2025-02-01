@@ -10,9 +10,10 @@ frc2::CommandPtr SpitGamePiece(Intake *intake) {
                 return intake->getState();
             },
             std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(
-                    intake->setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen, IntakeStates::SpitCoral))}, std::pair {
-                    IntakeStates::HoldAlgae, frc2::cmd::Parallel(
-                            intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae, IntakeStates::SpitAlgae))}
+                    intake->setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen,
+                            IntakeStates::SpitCoral))}, std::pair {IntakeStates::HoldAlgae, frc2::cmd::Parallel(
+                    intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae,
+                            IntakeStates::SpitAlgae))}
 
             );
 

@@ -11,31 +11,35 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake) {
                 return intake->getState();
             },
             std::pair {IntakeStates::EnterCoral, frc2::cmd::Parallel(
-                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral),
+                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                            IntakeStates::HoldCoral),
                     ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                             ElevatorConstants::ClosedPosition).ToPtr(),
                     elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))}, std::pair {
                     IntakeStates::EnterAlgae, frc2::cmd::Parallel(
-                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral),
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                                    IntakeStates::HoldCoral),
                             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                                     ElevatorConstants::ClosedPosition).ToPtr(),
                             elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))}, std::pair {
                     IntakeStates::SpitCoral, frc2::cmd::Parallel(
-                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral),
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                                    IntakeStates::HoldCoral),
                             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                                     ElevatorConstants::ClosedPosition).ToPtr(),
                             elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))}, std::pair {
                     IntakeStates::SpitAlgae, frc2::cmd::Parallel(
-                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral),
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                                    IntakeStates::HoldCoral),
                             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                                     ElevatorConstants::ClosedPosition).ToPtr(),
-                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))},
-                            std::pair{IntakeStates::HoldCoral, frc2::cmd::Parallel(
-                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose, IntakeStates::HoldCoral),
+                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))}, std::pair {
+                    IntakeStates::HoldCoral, frc2::cmd::Parallel(
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose,
+                                    IntakeStates::HoldCoral),
                             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                                     ElevatorConstants::ClosedPosition).ToPtr(),
-                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)
-                            )}
+                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))}
 
             );
 

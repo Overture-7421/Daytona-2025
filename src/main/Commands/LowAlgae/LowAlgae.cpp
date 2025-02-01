@@ -15,8 +15,7 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake) {
                     elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                     ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristLowAlgae,
                             ElevatorConstants::LowAlgae).ToPtr())}, std::pair {IntakeStates::HoldCoral,
-                    frc2::cmd::Parallel(
-                            intake->setJawCommand(IntakeConstants::JawAlgae, IntakeStates::EnterAlgae),
+                    frc2::cmd::Parallel(intake->setJawCommand(IntakeConstants::JawAlgae, IntakeStates::EnterAlgae),
                             elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristLowAlgae,
                                     ElevatorConstants::LowAlgae).ToPtr())}

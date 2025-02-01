@@ -14,15 +14,19 @@ frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *in
                     ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                             ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
 
-                    intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae, IntakeStates::EnterAlgae).FinallyDo([=]() {
-                        intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgae, IntakeStates::HoldAlgae);
-                    })
+                    intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,
+                            IntakeStates::EnterAlgae).FinallyDo(
+                            [=]() {
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgae,
+                                        IntakeStates::HoldAlgae);
+                            })
             )}, std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(
                     elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                             ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
 
-                    intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae, IntakeStates::EnterAlgae).FinallyDo([=]() {
+                    intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,
+                            IntakeStates::EnterAlgae).FinallyDo([=]() {
                         intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgae, HoldAlgae);
                     })
             )});

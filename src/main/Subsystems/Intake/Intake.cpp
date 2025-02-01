@@ -50,7 +50,7 @@ frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t
 
 frc2::CommandPtr Intake::setJawCommand(units::degree_t jawAngle, IntakeStates state) {
     return frc2::FunctionalCommand([this, jawAngle, state]() {
-        setToAngle(jawAngle), setState(state);
+        setToAngle (jawAngle), setState(state);
     }, []() {
     }, [](bool interupted) {
     }, [this, jawAngle]() {

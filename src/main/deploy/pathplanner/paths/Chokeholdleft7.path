@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 3.222048972800925,
-        "y": 4.254143156828703
+        "x": 3.219253833912036,
+        "y": 4.183682364004629
       },
       "prevControl": {
-        "x": 3.0984274769928373,
-        "y": 4.5185874503595205
+        "x": 3.095632338103948,
+        "y": 4.448126657535447
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokehold7"
+      "linkedName": "Chokeholdleft7"
     }
   ],
   "rotationTargets": [],
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 5.45,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

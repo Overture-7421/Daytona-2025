@@ -3,10 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-#include <frc/DigitalInput.h>
-#include <frc2/command/Commands.h>
-#include "Subsystems/Arm/Arm.h"
-#include "Subsystems/Elevator/Elevator.h"
-#include "Subsystems/Intake/Intake.h"
 
-frc2::CommandPtr Processor(Arm *arm, Elevator *elevator, Intake *intake);
+#include "Subsystems/Intake/Intake.h"
+#include <frc2/command/Commands.h>
+
+frc2::CommandPtr SpitGamePiece(Intake *intake);

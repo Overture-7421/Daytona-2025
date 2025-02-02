@@ -10,6 +10,10 @@
 struct IntakeConstants {
 public:
 
+    constexpr static const units::degree_t JawAlgae = 90_deg;
+    constexpr static const units::degree_t JawCoralOpen = 40_deg;
+    constexpr static const units::degree_t JawCoralClose = 20_deg;
+
     constexpr static const units::volt_t CoralGrab = 4.0_V;
     constexpr static const units::volt_t CoralRelease = -4.0_V;
 

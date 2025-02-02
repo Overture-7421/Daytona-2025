@@ -20,17 +20,6 @@ void Intake::setMotorVoltage(units::volt_t voltage) {
     intakeMotor.SetVoltage(voltage);
 }
 
-frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle) {
-    return frc2::FunctionalCommand([this, voltage, jawAngle]() {
-        setToAngle (jawAngle), setMotorVoltage(voltage);
-    }, []() {
-    }, [](bool interupted) {
-    }, [this, voltage, jawAngle]() {
-        return isJawAtPosition(jawAngle);
-    },
-    {this}).ToPtr();
-}
-
 bool Intake::isJawAtPosition(units::degree_t jawAngle) {
     units::degree_t jawError = jawAngle - intakeJawMotor.GetPosition().GetValue();
     return (units::math::abs(jawError) < 1.0_deg);
@@ -40,15 +29,56 @@ double Intake::getVoltage() {
     return intakeMotor.GetMotorVoltage().GetValueAsDouble();
 }
 
+bool Intake::isCoralIn(units::degree_t jawAngle) {
+    return ((canRange.GetDistance(0.30).GetValue() == 0.30_m) && (isJawAtPosition(jawAngle)));
+}
+
+bool Intake::isAlgaeIn(units::degree_t jawAngle) {
+    return ((canRange.GetDistance(0.10).GetValue() == 0.10_m) && (isJawAtPosition(jawAngle)));
+}
+
+frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle, IntakeStates state) {
+    return frc2::FunctionalCommand([this, voltage, jawAngle, state]() {
+        setToAngle (jawAngle), setMotorVoltage(voltage), setState(state);
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, jawAngle]() {
+        return isJawAtPosition(jawAngle);
+    },
+    {this}).ToPtr();
+}
+
+frc2::CommandPtr Intake::setJawCommand(units::degree_t jawAngle, IntakeStates state) {
+    return frc2::FunctionalCommand([this, jawAngle, state]() {
+        setToAngle (jawAngle), setState(state);
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, jawAngle]() {
+        return isJawAtPosition(jawAngle);
+    },
+    {this}).ToPtr();
+}
+
 frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {
         this->setMotorVoltage(voltage);
     });
 }
 
+void Intake::setState(IntakeStates state) {
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeSetState", state);
+    state = state;
+}
+
+IntakeStates Intake::getState() {
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeGetState", state);
+    return state;
+}
+
 void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
     double jawCurrentAngle = intakeJawMotor.GetPosition().GetValueAsDouble() * 360;
     frc::SmartDashboard::PutNumber("Intake/CurrentJawAngle", jawCurrentAngle);
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeState", state);
 
 }

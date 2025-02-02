@@ -30,9 +30,11 @@
 #include "Commands/SourceCommand/SourceCommand.h"
 #include "Commands/Processor/Processor.h"
 #include "Commands/AlignToPose/AlignToPose.h"
+#include "Commands/AlignToNet/AlignToNet.h"
 #include "Commands/NetCommand/NetCommand.h"
 #include "Commands/AlignToPose/AlignPositions.h"
 #include "Commands/AlgaeGroundGrabCommand/AlgaeGroundGrabCommand.h"
+#include "Commands/SpitGamePiece/SpitGamePiece.h"
 
 class RobotContainer: public OverContainer {
 public:

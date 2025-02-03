@@ -20,27 +20,7 @@ jobs:
     # Grant execute permission for gradlew
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    # Apply Spotless formatting if needed
-    - name: Apply Spotless formatting
+    # Check if Spotless has been apploed
+    - name: Check Spotless formatting
       if: github.ref
-      run: ./gradlew spotlessApply
-    # Check if there are any changes after applying Spotless formatting
-    - name: Check for changes
-      if: github.ref
-      id: git_diff
-      run: |
-        if git diff --exit-code; then
-          echo "No changes to commit"
-          echo "::set-output name=changes::false"
-        else
-          echo "Changes detected"
-          echo "::set-output name=changes::true"
-        fi
-    # Commit and push changes if there are any
-    - name: Commit and push changes
-      if: steps.git_diff.outputs.changes == 'true'
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git commit -am "Apply Spotless formatting"
-        git push origin HEAD:${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+      run: ./gradlew spotlessCheck

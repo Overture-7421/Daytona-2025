@@ -5,13 +5,13 @@
 #include "Intake.h"
 
 Intake::Intake() {
-    intakeJawMotor.setRotorToSensorRatio(IntakeConstants::RotorToSensor);
+    intakeJawMotor.setSensorToMechanism(IntakeConstants::SensorToMechanism);
     intakeJawMotor.configureMotionMagic(IntakeConstants::IntakeCruiseVelocity,
             IntakeConstants::IntakeCruiseAcceleration, 0.0_tr_per_s_cu);
 }
 
 void Intake::setToAngle(units::degree_t jawAngle) {
-    frc::SmartDashboard::PutNumber("IntakeTarget/JawTargetPosition", jawAngle.value());
+    frc::SmartDashboard::PutNumber("IntakeJaw/JawTargetPosition", jawAngle.value());
     intakeJawMotor.SetControl(jawVoltage.WithPosition(jawAngle).WithEnableFOC(true));
 }
 
@@ -78,7 +78,7 @@ IntakeStates Intake::getState() {
 void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
     double jawCurrentAngle = intakeJawMotor.GetPosition().GetValueAsDouble() * 360;
-    frc::SmartDashboard::PutNumber("Intake/CurrentJawAngle", jawCurrentAngle);
+    frc::SmartDashboard::PutNumber("IntakeJaw/CurrentJawAngle", jawCurrentAngle);
     frc::SmartDashboard::PutNumber("IntakeState/IntakeState", state);
 
 }

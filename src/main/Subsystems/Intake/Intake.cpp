@@ -8,7 +8,6 @@ Intake::Intake() {
     intakeJawMotor.setSensorToMechanism(IntakeConstants::SensorToMechanism);
     intakeJawMotor.configureMotionMagic(IntakeConstants::IntakeCruiseVelocity,
             IntakeConstants::IntakeCruiseAcceleration, 0.0_tr_per_s_cu);
-    intakeJawMotor.SetPosition(0_tr);
 }
 
 void Intake::setToAngle(units::degree_t jawAngle) {

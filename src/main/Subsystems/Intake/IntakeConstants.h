@@ -27,7 +27,7 @@ public:
     constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 25.5_tps;
     constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 35_tr_per_s_sq;
 
-    constexpr static const double SensorToMechanism = 1.5; //Emi will tell us
+    constexpr static const double SensorToMechanism = 1.5; //Emi will tell us probably 1.5
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
@@ -49,16 +49,15 @@ public:
         OverTalonFXConfig intakeJawConfig;
         intakeJawConfig.MotorId = 58;
         intakeJawConfig.NeutralMode = ControllerNeutralMode::Brake;
-        intakeJawConfig.useFOC = true;
         intakeJawConfig.Inverted = true;
 
         intakeJawConfig.ClosedLoopRampRate = 0.05_s;
-        intakeJawConfig.CurrentLimit = 30_A;
-        intakeJawConfig.StatorCurrentLimit = 30_A;
-        intakeJawConfig.TriggerThreshold = 90_A;
+        intakeJawConfig.CurrentLimit = 40_A;
+        intakeJawConfig.StatorCurrentLimit = 120_A;
+        intakeJawConfig.TriggerThreshold = 60_A;
         intakeJawConfig.TriggerThresholdTime = 1_s;
-        intakeJawConfig.OpenLoopRampRate = 0.05_s;
-        intakeJawConfig.PIDConfigs.WithKP(4.0);
+        intakeJawConfig.OpenLoopRampRate = 0.0_s;
+        intakeJawConfig.PIDConfigs.WithKP(2);
 
         return intakeJawConfig;
     }

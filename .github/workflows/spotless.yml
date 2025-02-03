@@ -20,7 +20,7 @@ jobs:
     # Grant execute permission for gradlew
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    # Check if Spotless has been apploed
+    # Check if Spotless has been applied
     - name: Check Spotless formatting
       if: github.ref
       run: ./gradlew spotlessCheck

@@ -122,7 +122,7 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.B().OnFalse(ClosedCommand(&arm, &elevator, &intake));
 
     oprtr.X().WhileTrue(L3Command(&arm, &elevator, &intake));
-    oprtr.B().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.X().OnFalse(ClosedCommand(&arm, &elevator, &intake));
 
     oprtr.Y().WhileTrue(L4Command(&arm, &elevator, &intake));
     oprtr.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake));

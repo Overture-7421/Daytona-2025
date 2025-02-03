@@ -30,11 +30,11 @@ double Intake::getVoltage() {
 }
 
 bool Intake::isCoralIn(units::degree_t jawAngle) {
-    return ((canRange.GetDistance(0.30).GetValue() == 0.30_m) && (isJawAtPosition(jawAngle)));
+    return ((canRange.GetDistance().GetValue() == 0.30_m) && (isJawAtPosition(jawAngle)));
 }
 
 bool Intake::isAlgaeIn(units::degree_t jawAngle) {
-    return ((canRange.GetDistance(0.10).GetValue() == 0.10_m) && (isJawAtPosition(jawAngle)));
+    return ((canRange.GetDistance().GetValue() == 0.10_m) && (isJawAtPosition(jawAngle)));
 }
 
 frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle, IntakeStates state) {

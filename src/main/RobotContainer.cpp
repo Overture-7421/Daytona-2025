@@ -93,13 +93,11 @@ void RobotContainer::ConfigDriverBindings() {
 
     //Palllet Execute Aligns
 
-    
-     driver.LeftBumper().WhileTrue(intake.setIntakeCommand(12_V, 100_deg, IntakeStates::EnterAlgae));
-     driver.LeftBumper().OnFalse(intake.setIntakeCommand(0_V, 0_deg, IntakeStates::HoldCoral));
+    driver.LeftBumper().WhileTrue(intake.setIntakeCommand(12_V, 100_deg, IntakeStates::EnterAlgae));
+    driver.LeftBumper().OnFalse(intake.setIntakeCommand(0_V, 0_deg, IntakeStates::HoldCoral));
 
-     driver.RightBumper().WhileTrue(intake.setIntakeCommand(6_V, 10_deg, IntakeStates::EnterCoral));
-     driver.RightBumper().OnFalse(intake.setIntakeCommand(0_V, 0_deg, IntakeStates::HoldCoral));
-     
+    driver.RightBumper().WhileTrue(intake.setIntakeCommand(6_V, 10_deg, IntakeStates::EnterCoral));
+    driver.RightBumper().OnFalse(intake.setIntakeCommand(0_V, 0_deg, IntakeStates::HoldCoral));
 
 }
 

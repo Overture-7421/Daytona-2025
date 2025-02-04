@@ -35,7 +35,7 @@ public:
     frc2::CommandPtr setJawCommand(units::degree_t jawAngle, IntakeStates state);
     frc2::CommandPtr moveIntake(units::volt_t voltage);
 
-    void setState(IntakeStates state);
+    void setState(IntakeStates target);
     IntakeStates getState();
 
     void Periodic() override;

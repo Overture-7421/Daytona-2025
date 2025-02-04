@@ -65,9 +65,9 @@ frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
     });
 }
 
-void Intake::setState(IntakeStates state) {
-    frc::SmartDashboard::PutNumber("IntakeState/IntakeSetState", state);
-    state = state;
+void Intake::setState(IntakeStates target) {
+    frc::SmartDashboard::PutNumber("IntakeState/IntakeSetState", target);
+    this->state = target;
 }
 
 IntakeStates Intake::getState() {

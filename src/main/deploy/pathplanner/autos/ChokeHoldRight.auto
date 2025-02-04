@@ -13,12 +13,6 @@
                 "data": {
                   "pathName": "Chokeholdright1"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralL4"
-                }
               }
             ]
           }
@@ -31,12 +25,6 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright2"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralStation"
                 }
               }
             ]
@@ -51,12 +39,6 @@
                 "data": {
                   "pathName": "Chokeholdright3"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralL4"
-                }
               }
             ]
           }
@@ -69,12 +51,6 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright4"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralStation"
                 }
               }
             ]
@@ -89,12 +65,6 @@
                 "data": {
                   "pathName": "Chokeholdright5"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralL4"
-                }
               }
             ]
           }
@@ -107,12 +77,6 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright6"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralStation"
                 }
               }
             ]
@@ -127,12 +91,6 @@
                 "data": {
                   "pathName": "Chokeholdright7"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralL4"
-                }
               }
             ]
           }
@@ -146,12 +104,6 @@
                 "data": {
                   "pathName": "Chokeholdright8"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralStation"
-                }
               }
             ]
           }
@@ -164,12 +116,6 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright9"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "coralL4"
                 }
               }
             ]

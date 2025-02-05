@@ -145,27 +145,38 @@ void RobotContainer::ConfigOperatorBindings() {
 }
 
 void RobotContainer::ConfigMixedBindigs() {
-        (console.Button(0) && driver.POVRight()).OnTrue(L1Command(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+    (console.Button(0) && driver.POVRight()).OnTrue(
+            L1Command(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
 
-        (console.Button(1) && driver.POVRight()).OnTrue(L2Command(&arm , &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-        (console.Button(2) && driver.POVRight()).OnTrue(L2Command(&arm , &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+    (console.Button(1) && driver.POVRight()).OnTrue(
+            L2Command(&arm, &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+    (console.Button(2) && driver.POVRight()).OnTrue(
+            L2Command(&arm, &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
-        (console.Button(3) && driver.POVRight()).OnTrue(L3Command(&arm , &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-        (console.Button(4) && driver.POVRight()).OnTrue(L3Command(&arm , &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+    (console.Button(3) && driver.POVRight()).OnTrue(
+            L3Command(&arm, &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+    (console.Button(4) && driver.POVRight()).OnTrue(
+            L3Command(&arm, &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
-        (console.Button(5) && driver.POVRight()).OnTrue(L4Command(&arm , &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-        (console.Button(6) && driver.POVRight()).OnTrue(L4Command(&arm , &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+    (console.Button(5) && driver.POVRight()).OnTrue(
+            L4Command(&arm, &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+    (console.Button(6) && driver.POVRight()).OnTrue(
+            L4Command(&arm, &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
-        (console.Button(7) && driver.POVRight()).OnTrue(LowAlgae(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
-        (console.Button(8) && driver.POVRight()).OnTrue(HighAlgae(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+    (console.Button(7) && driver.POVRight()).OnTrue(
+            LowAlgae(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+    (console.Button(8) && driver.POVRight()).OnTrue(
+            HighAlgae(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
 
-        (console.Button(9) && driver.POVRight()).OnTrue(SourceCommand(&arm, &elevator, &intake).AlongWith(stationPos(&chassis, &tagLayout)));
+    (console.Button(9) && driver.POVRight()).OnTrue(
+            SourceCommand(&arm, &elevator, &intake).AlongWith(stationPos(&chassis, &tagLayout)));
 
-        (console.Button(10) && driver.POVRight()).OnTrue(Processor(&arm, &elevator, &intake).AlongWith(processorPos(&chassis, &tagLayout)));
+    (console.Button(10) && driver.POVRight()).OnTrue(
+            Processor(&arm, &elevator, &intake).AlongWith(processorPos(&chassis, &tagLayout)));
 
-        (console.Button(11) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
+    (console.Button(11) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
 
-        driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake));
 
 }
 

@@ -32,10 +32,10 @@ constexpr static const frc::Pose2d fLeft = { {4.987_m, 2.820_m}, {120_deg}};
 constexpr static const frc::Pose2d fCenter = { {5.131_m, 2.904_m}, {120_deg}};
 constexpr static const frc::Pose2d fRight = { {5.287_m, 3.000_m}, {120_deg}};
 
-constexpr static const frc::Pose2d stationLeft = { {1.666_m, 7.400_m}, {126_deg}};
-constexpr static const frc::Pose2d stationRight = { {1.582_m, 0.662_m}, {-126_deg}};
+constexpr static const frc::Pose2d stationLeft = { {1.666_m, 7.400_m}, {-54_deg}};
+constexpr static const frc::Pose2d stationRight = { {1.582_m, 0.662_m}, {54_deg}};
 
-constexpr static const frc::Pose2d processor = { {6.341_m, 0.579_m}, {-90_deg}};
+constexpr static const frc::Pose2d processor = { {6.341_m, 0.579_m}, {90_deg}};
 
 frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
 frc2::CommandPtr centerAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);

@@ -8,6 +8,8 @@
 #include <units/time.h>
 
 struct ElevatorConstants {
+    constexpr static const units::meter_t RangeError = 0.02_m;
+
     constexpr static const double LowerSensorToMechanism = 5.6;
     constexpr static const units::meter_t Diameter = 0.07366_m;
 

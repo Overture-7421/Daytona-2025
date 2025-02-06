@@ -11,46 +11,46 @@ RobotContainer::RobotContainer() {
 
     pathplanner::NamedCommands::registerCommand("coralL4",
             std::move(
-                    frc2::cmd::Sequence(L4Command(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen,
-                                    IntakeStates::SpitCoral).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(L4Command(&arm, &elevator, &superStructure),
+                            intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen),
+                            superStructure.setState(SuperStructureStates::SpitCoral).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralL1",
-            std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator, &intake))));
+            std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("lowAlgae",
             std::move(
-                    frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,
-                                    IntakeStates::HoldAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake, &superStructure),
+                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
+                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
-                    frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae,
-                                    IntakeStates::HoldAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
+                            intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
+                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("processor",
             std::move(
-                    frc2::cmd::Sequence(Processor(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae,
-                                    IntakeStates::SpitAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(Processor(&arm, &elevator, &superStructure),
+                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
+                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(
-                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &intake),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae,
-                                    IntakeStates::SpitAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure),
+                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
+                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
+                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
             std::move(
-                    frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake),
-                            ClosedCommand(&arm, &elevator, &intake))));
+                    frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure),
+                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -76,28 +76,23 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.Y().WhileTrue(NetCommand(&arm, &elevator, &intake).AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr()));
-    driver.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.Y().WhileTrue(
+            NetCommand(&arm, &elevator, &superStructure).AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr()));
+    driver.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake));
-    driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
+    driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.X().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake));
-    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.X().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake));
-    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.Start().WhileTrue(SpitGamePiece(&intake));
-    driver.Start().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure));
+    driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //Palllet Execute Aligns
-
-    driver.LeftBumper().WhileTrue(intake.setIntakeCommand(12_V, 100_deg, IntakeStates::EnterAlgae));
-    driver.LeftBumper().OnFalse(intake.setIntakeCommand(0_V, 0_deg, IntakeStates::HoldCoral));
-
-    driver.RightBumper().WhileTrue(intake.setIntakeCommand(6_V, 10_deg, IntakeStates::EnterCoral));
-    driver.RightBumper().OnFalse(intake.setIntakeCommand(0_V, 0_deg, IntakeStates::HoldCoral));
 
 }
 
@@ -115,29 +110,29 @@ void RobotContainer::ConfigOperatorBindings() {
      oprtr.A().OnTrue(intake.moveIntake(0_V));
      */
 
-    oprtr.A().WhileTrue(L1Command(&arm, &elevator, &intake));
-    oprtr.A().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.A().WhileTrue(L1Command(&arm, &elevator, &superStructure));
+    oprtr.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.B().WhileTrue(L2Command(&arm, &elevator, &intake));
-    oprtr.B().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.B().WhileTrue(L2Command(&arm, &elevator, &superStructure));
+    oprtr.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.X().WhileTrue(L3Command(&arm, &elevator, &intake));
-    oprtr.X().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.X().WhileTrue(L3Command(&arm, &elevator, &superStructure));
+    oprtr.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.Y().WhileTrue(L4Command(&arm, &elevator, &intake));
-    oprtr.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.Y().WhileTrue(L4Command(&arm, &elevator, &superStructure));
+    oprtr.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake));
-    oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
+    oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator, &intake));
-    oprtr.POVDown().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
+    oprtr.POVDown().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.POVUp().WhileTrue(HighAlgae(&arm, &elevator, &intake));
-    oprtr.POVUp().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.POVUp().WhileTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
+    oprtr.POVUp().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.LeftBumper().WhileTrue(Processor(&arm, &elevator, &intake));
-    oprtr.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    oprtr.LeftBumper().WhileTrue(Processor(&arm, &elevator, &superStructure));
+    oprtr.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
     oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
@@ -146,37 +141,37 @@ void RobotContainer::ConfigOperatorBindings() {
 
 void RobotContainer::ConfigMixedBindigs() {
     (console.Button(0) && driver.POVRight()).OnTrue(
-            L1Command(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+            L1Command(&arm, &elevator, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
 
     (console.Button(1) && driver.POVRight()).OnTrue(
-            L2Command(&arm, &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+            L2Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
     (console.Button(2) && driver.POVRight()).OnTrue(
-            L2Command(&arm, &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+            L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
     (console.Button(3) && driver.POVRight()).OnTrue(
-            L3Command(&arm, &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+            L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
     (console.Button(4) && driver.POVRight()).OnTrue(
-            L3Command(&arm, &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+            L3Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
     (console.Button(5) && driver.POVRight()).OnTrue(
-            L4Command(&arm, &elevator, &intake).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+            L4Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
     (console.Button(6) && driver.POVRight()).OnTrue(
-            L4Command(&arm, &elevator, &intake).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+            L4Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
     (console.Button(7) && driver.POVRight()).OnTrue(
-            LowAlgae(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+            LowAlgae(&arm, &elevator, &intake, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
     (console.Button(8) && driver.POVRight()).OnTrue(
-            HighAlgae(&arm, &elevator, &intake).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+            HighAlgae(&arm, &elevator, &intake, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
 
     (console.Button(9) && driver.POVRight()).OnTrue(
-            SourceCommand(&arm, &elevator, &intake).AlongWith(stationPos(&chassis, &tagLayout)));
+            SourceCommand(&arm, &elevator, &intake, &superStructure).AlongWith(stationPos(&chassis, &tagLayout)));
 
     (console.Button(10) && driver.POVRight()).OnTrue(
-            Processor(&arm, &elevator, &intake).AlongWith(processorPos(&chassis, &tagLayout)));
+            Processor(&arm, &elevator, &superStructure).AlongWith(processorPos(&chassis, &tagLayout)));
 
     (console.Button(11) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
 
-    driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake));
+    driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
 }
 

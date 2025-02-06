@@ -8,6 +8,6 @@
 #include "Subsystems/Elevator/Elevator.h"
 #include "Commands/ArmMotion/ArmMotion.h"
 #include <frc2/command/Commands.h>
-#include "Subsystems/Intake/Intake.h"
+#include "Subsystems/SuperStructure/SuperStructure.h"
 
-frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, Intake *intake);
+frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure);

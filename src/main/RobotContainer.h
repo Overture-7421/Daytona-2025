@@ -18,6 +18,7 @@
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
+#include "Subsystems/SuperStructure/SuperStructure.h"
 
 #include "Commands/L1Command/L1Command.h"
 #include "Commands/L2Command/L2Command.h"
@@ -69,6 +70,7 @@ private:
     Elevator elevator;
     Arm arm;
     Climber climber;
+    SuperStructure superStructure;
 
     static AprilTags::Config frontRightCamera();
     static AprilTags::Config frontLeftCamera();

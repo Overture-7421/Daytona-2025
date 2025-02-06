@@ -14,7 +14,6 @@
 #include <units/math.h>
 
 #include "Subsystems/Intake/IntakeConstants.h"
-#include "Subsystems/Intake/IntakeStates.h"
 
 #include <ctre/phoenix6/CANrange.hpp>
 
@@ -31,12 +30,9 @@ public:
     bool isCoralIn(units::degree_t jawAngle);
     bool isAlgaeIn(units::degree_t jawAngle);
 
-    frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle, IntakeStates state);
-    frc2::CommandPtr setJawCommand(units::degree_t jawAngle, IntakeStates state);
+    frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle);
+    frc2::CommandPtr setJawCommand(units::degree_t jawAngle);
     frc2::CommandPtr moveIntake(units::volt_t voltage);
-
-    void setState(IntakeStates state);
-    IntakeStates getState();
 
     void Periodic() override;
 
@@ -49,5 +45,4 @@ private:
 
     CANrange canRange {55, "rio"};
 
-    IntakeStates state = IntakeStates::HoldCoral;
 };

@@ -10,6 +10,9 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmAngleRange = 1.5_deg;
     constexpr static const units::degree_t WristAngleRange = 1.5_deg;
 
+    constexpr static const units::degree_t ArmCoralInter = 15_deg;
+    constexpr static const units::degree_t ArmAlgaeInter = 60_deg;
+
     constexpr static const units::degree_t ArmL1Reef = 100.0_deg;
     constexpr static const units::degree_t WristL1Reef = 90.0_deg;
 
@@ -49,8 +52,8 @@ struct ArmConstants {
     constexpr static const double ArmRotorToSensor = 80.88888;
     constexpr static const double WristRotorToSensor = 27;
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 2.5_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 7_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 8_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 16_tr_per_s_sq;
     constexpr static const units::turns_per_second_t WristCruiseVelocity = 10.0_tps;
     constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 18_tr_per_s_sq;
 

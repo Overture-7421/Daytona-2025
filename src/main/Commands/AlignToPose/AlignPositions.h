@@ -28,7 +28,6 @@ constexpr static const frc::Pose2d eCenter = { {5.802_m, 4.019_m}, {-180_deg}};
 constexpr static const frc::Pose2d eRight = { {5.802_m, 4.187_m}, {-180_deg}};
 
 constexpr static const frc::Pose2d fLeft = { {4.987_m, 2.820_m}, {120_deg}};
-
 constexpr static const frc::Pose2d fCenter = { {5.131_m, 2.904_m}, {120_deg}};
 constexpr static const frc::Pose2d fRight = { {5.287_m, 3.000_m}, {120_deg}};
 

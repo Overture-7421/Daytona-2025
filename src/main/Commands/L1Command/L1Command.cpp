@@ -5,15 +5,20 @@
 #include "L1Command.h"
 #include "Commands/ArmMotion/ArmMotion.h"
 
-frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, Intake *intake) {
-    return frc2::cmd::Select < IntakeStates
-            > ([intake] {
-                return intake->getState();
+frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure) {
+    return frc2::cmd::Select < SuperStructureStates
+            > ([superStructure] {
+                return superStructure->getState();
             },
-            std::pair {IntakeStates::HoldCoral, frc2::cmd::Parallel(
-                    elevator->setElevatorCommand(ElevatorConstants::L1Position),
-                    ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef,
-                            ElevatorConstants::L1Position).ToPtr())}
+            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
+
+                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L1Position),
+                            ArmMotion(elevator, arm, ArmConstants::ArmCoralInter, ArmConstants::WristL1Reef,
+                                    ElevatorConstants::L1Position).ToPtr()),
+
+                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L1Position),
+                            ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef,
+                                    ElevatorConstants::L1Position).ToPtr()))}
 
             );
 

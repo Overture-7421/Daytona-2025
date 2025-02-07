@@ -8,6 +8,7 @@
 #include <pathplanner/lib/pathfinding/Pathfinder.h>
 #include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
     this->chassis = chassis;
@@ -25,6 +26,10 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
+    frc::SmartDashboard::PutNumber("AlignTarget/XTarget", targetPose.X().value());
+    frc::SmartDashboard::PutNumber("AlignTarget/YTarget", targetPose.Y().value());
+    frc::SmartDashboard::PutNumber("AlignTarget/RTarget", targetPose.Rotation().Degrees().value());
+
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), targetPose.X()));
     auto yOut = units::meters_per_second_t(yPIDController.Calculate(pose.Y(), targetPose.Y()));
     auto rotationOut = units::degrees_per_second_t(
@@ -41,6 +46,10 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     if (headingPIDController.AtGoal()) {
         rotationOut = 0_deg_per_s;
     }
+
+    frc::SmartDashboard::PutNumber("AlignCurrent/XCurrent", pose.X().value());
+    frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
+    frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", pose.Rotation().Degrees().value());
 
     inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, yOut, rotationOut,
             chassis->getEstimatedPose().Rotation());

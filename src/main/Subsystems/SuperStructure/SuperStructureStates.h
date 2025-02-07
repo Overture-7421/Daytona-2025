@@ -4,6 +4,17 @@
 
 #pragma once
 
-enum IntakeStates {
-    EnterCoral, HoldCoral, SpitCoral, EnterAlgae, HoldAlgae, SpitAlgae
+enum SuperStructureStates {
+    HoldCoral, HoldAlgae,
+
+    EnterCoralStation,
+
+    EnterCoralGround,
+
+    EnterAlgaeGround,
+
+    EnterLowAlgae, EnterHighAlgae,
+
+    SpitAlgae, SpitCoral
+
 };

@@ -9,5 +9,6 @@
 #include "Subsystems/Intake/Intake.h"
 #include "Commands/ArmMotion/ArmMotion.h"
 #include <frc2/command/Commands.h>
+#include "Subsystems/SuperStructure/SuperStructure.h"
 
-frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake);
+frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);

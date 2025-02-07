@@ -11,6 +11,7 @@ Elevator::Elevator() {
 }
 
 void Elevator::setPosition(units::meter_t position) {
+    frc::SmartDashboard::PutNumber("Elevator/TargetPosition", position.value());
 
     units::turn_t positionInRotations {position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
     leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
@@ -28,7 +29,7 @@ bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
     units::meter_t elevatorError = elevatorPosition
             - units::meter_t(
                     leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
-    return (units::math::abs(elevatorError) < 0.015_m);
+    return (units::math::abs(elevatorError) < ElevatorConstants::RangeError);
 
 }
 

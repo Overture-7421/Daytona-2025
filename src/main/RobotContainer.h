@@ -8,6 +8,7 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <OvertureLib/Robots/OverContainer/OverContainer.h>
 #include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
+#include <frc2/command/button/CommandGenericHID.h>
 #include <OvertureLib/Subsystems/Vision/AprilTags/AprilTags.h>
 #include "Subsystems/Chassis/Chassis.h"
 #include "Commands/DriveCommand/DriveCommand.h"
@@ -17,6 +18,7 @@
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
+#include "Subsystems/SuperStructure/SuperStructure.h"
 
 #include "Commands/L1Command/L1Command.h"
 #include "Commands/L2Command/L2Command.h"
@@ -54,6 +56,7 @@ private:
 
     OverXboxController driver {0, 0.20, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
+    frc2::CommandGenericHID console {2};
 
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
@@ -67,6 +70,7 @@ private:
     Elevator elevator;
     Arm arm;
     Climber climber;
+    SuperStructure superStructure;
 
     static AprilTags::Config frontRightCamera();
     static AprilTags::Config frontLeftCamera();

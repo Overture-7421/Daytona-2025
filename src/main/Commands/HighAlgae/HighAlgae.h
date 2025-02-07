@@ -8,6 +8,7 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Intake/Intake.h"
+#include "Subsystems/SuperStructure/SuperStructure.h"
 
-frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake);
+frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);
 

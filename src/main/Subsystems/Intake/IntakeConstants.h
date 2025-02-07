@@ -10,9 +10,11 @@
 struct IntakeConstants {
 public:
 
-    constexpr static const units::degree_t JawAlgae = 50_deg;
-    constexpr static const units::degree_t JawCoralOpen = 30_deg;
-    constexpr static const units::degree_t JawCoralClose = 20_deg;
+    constexpr static const units::degree_t RangeError = 1.0_deg;
+
+    constexpr static const units::degree_t JawAlgae = 40_deg;
+    constexpr static const units::degree_t JawCoralOpen = 10_deg;
+    constexpr static const units::degree_t JawCoralClose = 3_deg;
 
     constexpr static const units::volt_t CoralGrab = 4.0_V;
     constexpr static const units::volt_t CoralRelease = -4.0_V;
@@ -57,7 +59,8 @@ public:
         intakeJawConfig.TriggerThreshold = 60_A;
         intakeJawConfig.TriggerThresholdTime = 1_s;
         intakeJawConfig.OpenLoopRampRate = 0.0_s;
-        intakeJawConfig.PIDConfigs.WithKP(3);
+
+        intakeJawConfig.PIDConfigs.WithKP(3.5);
 
         return intakeJawConfig;
     }

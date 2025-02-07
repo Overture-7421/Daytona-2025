@@ -6,5 +6,6 @@
 
 #include "Subsystems/Intake/Intake.h"
 #include <frc2/command/Commands.h>
+#include "Subsystems/SuperStructure/SuperStructure.h"
 
-frc2::CommandPtr SpitGamePiece(Intake *intake);
+frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure);

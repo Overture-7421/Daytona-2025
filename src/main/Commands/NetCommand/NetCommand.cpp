@@ -6,12 +6,12 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 #include "OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h"
 
-frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, Intake *intake) {
-    return frc2::cmd::Select < IntakeStates
-            > ([intake] {
-                return intake->getState();
+frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, SuperStructure *superStructure) {
+    return frc2::cmd::Select < SuperStructureStates
+            > ([superStructure] {
+                return superStructure->getState();
             },
-            std::pair {IntakeStates::HoldAlgae, frc2::cmd::Parallel(
+            std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
                     elevator->setElevatorCommand(ElevatorConstants::NetPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet,
                             ElevatorConstants::NetPosition).ToPtr())}

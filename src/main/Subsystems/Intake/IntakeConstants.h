@@ -59,6 +59,7 @@ public:
         intakeJawConfig.TriggerThreshold = 60_A;
         intakeJawConfig.TriggerThresholdTime = 1_s;
         intakeJawConfig.OpenLoopRampRate = 0.0_s;
+
         intakeJawConfig.PIDConfigs.WithKP(3.5);
 
         return intakeJawConfig;

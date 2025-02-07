@@ -46,7 +46,7 @@ RobotContainer::RobotContainer() {
                             intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
                             superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
                             ClosedCommand(&arm, &elevator, &intake, &superStructure))));
-  
+
     pathplanner::NamedCommands::registerCommand("coralStation",
             std::move(
                     frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure),

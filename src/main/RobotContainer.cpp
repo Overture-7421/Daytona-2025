@@ -13,7 +13,7 @@ RobotContainer::RobotContainer() {
             std::move(
                     frc2::cmd::Sequence(L4Command(&arm, &elevator, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen),
-                            superStructure.setState(SuperStructureStates::SpitCoral).WithTimeout(0.5_s),
+                            superStructure.setState(SuperStructureStates::SpitCoral),
                             ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralL1",
@@ -23,28 +23,28 @@ RobotContainer::RobotContainer() {
             std::move(
                     frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.5_s),
+                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.3_s),
                             ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
                     frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.5_s),
+                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.3_s),
                             ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("processor",
             std::move(
                     frc2::cmd::Sequence(Processor(&arm, &elevator, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
+                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.3_s),
                             ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(
                     frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
+                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.3_s),
                             ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",

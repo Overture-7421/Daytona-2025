@@ -34,9 +34,14 @@
   "eventMarkers": [
     {
       "name": "coralStation",
-      "waypointRelativePos": 0.0593542260208924,
+      "waypointRelativePos": 0.537986704653372,
       "endWaypointRelativePos": 1.0,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "coralStation"
+        }
+      }
     }
   ],
   "globalConstraints": {

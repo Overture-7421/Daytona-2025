@@ -31,7 +31,19 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "algaeNet",
+      "waypointRelativePos": 0.4209665697674419,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "algaeNet"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.45,
     "maxAcceleration": 5.0,

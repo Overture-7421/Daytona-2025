@@ -31,7 +31,19 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "coralL4",
+      "waypointRelativePos": 0.42988216362126247,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "coralL4"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.45,
     "maxAcceleration": 5.0,

@@ -29,17 +29,17 @@
                       "data": {
                         "name": "coralL4"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "spitCoral"
+                      }
                     }
                   ]
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "spitCoral"
           }
         },
         {

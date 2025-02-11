@@ -16,7 +16,7 @@ RobotContainer::RobotContainer() {
             std::move(
                     frc2::cmd::Sequence(L4Command(&arm, &elevator, &superStructure))));
 
-        pathplanner::NamedCommands::registerCommand("spitCoral", std::move(frc2::cmd::Sequence(intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen),
+        pathplanner::NamedCommands::registerCommand("spitCoral", std::move(frc2::cmd::Parallel(intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen),
                             superStructure.setState(SuperStructureStates::SpitCoral))));
 
     pathplanner::NamedCommands::registerCommand("coralL1",

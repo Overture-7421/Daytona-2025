@@ -13,8 +13,39 @@
                 "data": {
                   "pathName": "Chokeholdleft1"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -26,8 +57,33 @@
                 "data": {
                   "pathName": "Chokeholdleft2"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -39,8 +95,39 @@
                 "data": {
                   "pathName": "Chokeholdleft3"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -52,8 +139,33 @@
                 "data": {
                   "pathName": "Chokeholdleft4"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -65,8 +177,39 @@
                 "data": {
                   "pathName": "Chokeholdleft5"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -78,8 +221,33 @@
                 "data": {
                   "pathName": "Chokeholdleft6"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -91,8 +259,39 @@
                 "data": {
                   "pathName": "Chokeholdleft7"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -104,8 +303,33 @@
                 "data": {
                   "pathName": "Chokeholdleft8"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         },
         {
@@ -117,8 +341,39 @@
                 "data": {
                   "pathName": "Chokeholdleft9"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         }
       ]

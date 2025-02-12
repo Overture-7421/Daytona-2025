@@ -26,12 +26,6 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
                       "type": "named",
                       "data": {
                         "name": "coralL1"
@@ -56,12 +50,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "closed"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -76,9 +64,9 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "wait",
+                      "type": "named",
                       "data": {
-                        "waitTime": 0.5
+                        "name": "closed"
                       }
                     },
                     {
@@ -100,12 +88,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "closed"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -120,9 +102,9 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "wait",
+                      "type": "named",
                       "data": {
-                        "waitTime": 0.5
+                        "name": "closed"
                       }
                     },
                     {
@@ -135,12 +117,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "closed"
           }
         },
         {
@@ -158,9 +134,9 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "wait",
+                      "type": "named",
                       "data": {
-                        "waitTime": 0.5
+                        "name": "closed"
                       }
                     },
                     {

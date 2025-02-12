@@ -48,12 +48,6 @@ bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle) 
     units::degree_t armError = armAngle - armLeftMotor.GetPosition().GetValue();
     units::degree_t wristError = wristAngle - wristMotor.GetPosition().GetValue();
 
-    frc::SmartDashboard::PutNumber("ArmDebugging/armAngle", armAngle.value());
-    frc::SmartDashboard::PutNumber("ArmDebugging/armLeftMotor", armLeftMotor.GetPosition().GetValueAsDouble() * 360);
-
-    frc::SmartDashboard::PutNumber("ArmError/ArmError", armError.value());
-    frc::SmartDashboard::PutNumber("ArmError/WristError", wristError.value());
-
     return ((units::math::abs(armError) < ArmConstants::ArmAngleRange)
             && (units::math::abs(wristError) < ArmConstants::WristAngleRange));
 }
@@ -65,7 +59,6 @@ frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wr
     }, []() {
     }, [](bool interupted) {
     }, [this, armAngle, wristAngle]() {
-        frc::SmartDashboard::PutBoolean("ArmError/isAtPosition", isArmAtPosition(armAngle, wristAngle));
         return isArmAtPosition(armAngle, wristAngle);
     },
     {this}).ToPtr();

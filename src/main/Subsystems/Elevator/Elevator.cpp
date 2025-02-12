@@ -29,7 +29,6 @@ bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
     units::meter_t elevatorError = elevatorPosition
             - units::meter_t(
                     leftElevatorMotor.GetPosition().GetValueAsDouble() * (ElevatorConstants::Diameter.value() * M_PI));
-    frc::SmartDashboard::PutNumber("Elevator/RangeError", elevatorError.value());
     return (units::math::abs(elevatorError) < ElevatorConstants::RangeError);
 
 }
@@ -43,7 +42,6 @@ frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
     [](bool interrupted) {
     },
     [this, elevatorPosition]() {
-        frc::SmartDashboard::PutBoolean("Elevator/isAtPosition", isElevatorAtPosition(elevatorPosition));
         return isElevatorAtPosition(elevatorPosition);
     },
     {this}).ToPtr();

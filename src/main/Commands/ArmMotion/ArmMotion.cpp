@@ -21,11 +21,11 @@ void ArmMotion::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void ArmMotion::Execute() {
 
-    if (elevator->getPosition() < ElevatorConstants::HighMotionAllowed) {
+    // if (elevator->getPosition() < ElevatorConstants::HighMotionAllowed) {
         arm->blockedWrist(armAngle, wristAngle);
-    } else {
-        arm->setArmCommand(armAngle, wristAngle);
-    }
+    // } else {
+        // arm->setArmCommand(armAngle, wristAngle);
+    // }
 }
 
 // Called once the command ends or is interrupted.

@@ -13,7 +13,7 @@ RobotContainer::RobotContainer() {
             std::move(frc2::cmd::Sequence(ClosedCommand(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralL4",
-            std::move(frc2::cmd::Sequence(L4Command(&arm, &elevator, &superStructure))));
+            std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("spitCoral",
             std::move(

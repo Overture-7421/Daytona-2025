@@ -102,6 +102,12 @@
                 "data": {
                   "commands": [
                     {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.2
+                      }
+                    },
+                    {
                       "type": "named",
                       "data": {
                         "name": "closed"
@@ -154,13 +160,45 @@
         {
           "type": "named",
           "data": {
-            "name": "spitAlgae"
+            "name": "processor"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "closed"
+            "name": "spitAlgae"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "FreeAlgae5"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.2
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         }
       ]

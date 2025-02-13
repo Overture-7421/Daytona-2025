@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.117618995949074,
-        "y": 2.94339771412037
+        "x": 5.789,
+        "y": 0.584
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.3445587651570605,
-        "y": 2.6538476616924456
+        "x": 5.78175,
+        "y": 1.0414999999999999
       },
       "isLocked": false,
-      "linkedName": "Freealgae3"
+      "linkedName": "Freealgae4"
     },
     {
       "anchor": {
         "x": 5.789,
-        "y": 0.584
+        "y": 1.4704999999999995
       },
       "prevControl": {
-        "x": 5.661767364658922,
-        "y": 0.8015220827965848
+        "x": 5.78175,
+        "y": 1.0219999999999994
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Freealgae4"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -38,17 +38,17 @@
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
-    "unlimited": true
+    "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0254715816389
+    "rotation": -90.0
   },
   "reversed": false,
   "folder": "FreeAlgae",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": -90.0254715816389
   },
   "useDefaultConstraints": true
 }

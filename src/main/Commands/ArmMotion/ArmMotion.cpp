@@ -22,9 +22,9 @@ void ArmMotion::Initialize() {
 void ArmMotion::Execute() {
 
     // if (elevator->getPosition() < ElevatorConstants::HighMotionAllowed) {
-        arm->blockedWrist(armAngle, wristAngle);
+    arm->blockedWrist(armAngle, wristAngle);
     // } else {
-        // arm->setArmCommand(armAngle, wristAngle);
+    // arm->setArmCommand(armAngle, wristAngle);
     // }
 }
 

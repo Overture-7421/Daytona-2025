@@ -10,7 +10,8 @@
 RobotContainer::RobotContainer() {
 
     pathplanner::NamedCommands::registerCommand("closed",
-            std::move(frc2::cmd::Sequence(ClosedCommand(&arm, &elevator, &intake, &superStructure).WithTimeout(0.2_s))));
+            std::move(
+                    frc2::cmd::Sequence(ClosedCommand(&arm, &elevator, &intake, &superStructure).WithTimeout(0.2_s))));
 
     pathplanner::NamedCommands::registerCommand("coralL4",
             std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure))));
@@ -42,7 +43,8 @@ RobotContainer::RobotContainer() {
                             superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
-            std::move(frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
+            std::move(
+                    frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
                             superStructure.setState(SuperStructureStates::HoldAlgae))));
 

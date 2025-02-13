@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.122999999999999,
-        "y": 0.49549999999999955
+        "x": 5.789,
+        "y": 0.584
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.123000000000004,
-        "y": 0.49549999999999955
+        "x": 5.78175,
+        "y": 1.0414999999999999
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Freealgae4"
     },
     {
       "anchor": {
-        "x": 6.9225,
-        "y": 6.2285
+        "x": 5.789,
+        "y": 1.4704999999999995
       },
       "prevControl": {
-        "x": 5.9225,
-        "y": 6.2285
+        "x": 5.78175,
+        "y": 1.0219999999999994
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "FreeAlgae",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": -90.0254715816389
   },
   "useDefaultConstraints": true
 }

@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 6.360174696180556,
-        "y": 0.486121238425925
+        "x": 5.789,
+        "y": 0.584
       },
       "prevControl": {
-        "x": 6.232722680328499,
-        "y": 0.7040183830574314
+        "x": 5.661767364658922,
+        "y": 0.8015220827965848
       },
       "nextControl": null,
       "isLocked": false,
@@ -38,7 +38,7 @@
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
-    "unlimited": false
+    "unlimited": true
   },
   "goalEndState": {
     "velocity": 0,
@@ -48,7 +48,7 @@
   "folder": "FreeAlgae",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -60.08532527027036
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true
 }

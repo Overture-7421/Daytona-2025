@@ -9,12 +9,24 @@
 
 RobotContainer::RobotContainer() {
 
-    pathplanner::NamedCommands::registerCommand("coralL4",
+    pathplanner::NamedCommands::registerCommand("closed",
             std::move(
-                    frc2::cmd::Sequence(L4Command(&arm, &elevator, &superStructure),
+                    frc2::cmd::Sequence(ClosedCommand(&arm, &elevator, &intake, &superStructure).WithTimeout(0.2_s))));
+
+    pathplanner::NamedCommands::registerCommand("coralL4",
+            std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure))));
+
+    pathplanner::NamedCommands::registerCommand("spitCoral",
+            std::move(
+                    frc2::cmd::Parallel(
                             intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen),
-                            superStructure.setState(SuperStructureStates::SpitCoral).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
+                            superStructure.setState(SuperStructureStates::SpitCoral))));
+
+    pathplanner::NamedCommands::registerCommand("spitAlgae",
+            std::move(
+                    frc2::cmd::Sequence(
+                            intake.setIntakeCommand(IntakeConstants::CoralRelease, IntakeConstants::JawCoralOpen),
+                            superStructure.setState(SuperStructureStates::SpitAlgae))));
 
     pathplanner::NamedCommands::registerCommand("coralL1",
             std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator, &superStructure))));
@@ -23,34 +35,27 @@ RobotContainer::RobotContainer() {
             std::move(
                     frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
+                            superStructure.setState(SuperStructureStates::HoldAlgae))));
+
+    pathplanner::NamedCommands::registerCommand("spitAlgae",
+            std::move(
+                    frc2::cmd::Sequence(intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
+                            superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
                     frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
                             intake.setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::HoldAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
+                            superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("processor",
-            std::move(
-                    frc2::cmd::Sequence(Processor(&arm, &elevator, &superStructure),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
+            std::move(frc2::cmd::Sequence(Processor(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
-            std::move(
-                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure),
-                            intake.setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
-                            superStructure.setState(SuperStructureStates::SpitAlgae).WithTimeout(0.5_s),
-                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
+            std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
-            std::move(
-                    frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure),
-                            ClosedCommand(&arm, &elevator, &intake, &superStructure))));
+            std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure))));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);

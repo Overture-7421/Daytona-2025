@@ -53,6 +53,7 @@ bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle) 
 }
 
 frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wristAngle) {
+
     return frc2::FunctionalCommand([this, armAngle, wristAngle]() {
         setToAngle(armAngle, wristAngle);
     }, []() {

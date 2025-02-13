@@ -17,7 +17,14 @@
                       "data": {
                         "pathName": "Basicleave1"
                       }
-                    },
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
                     {
                       "type": "named",
                       "data": {
@@ -31,6 +38,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -38,6 +51,12 @@
                 "type": "path",
                 "data": {
                   "pathName": "Basicleave2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "closed"
                 }
               }
             ]

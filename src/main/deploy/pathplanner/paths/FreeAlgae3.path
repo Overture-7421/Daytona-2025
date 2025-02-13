@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.338745298032406,
-        "y": 0.5143055555555542
+        "x": 5.789,
+        "y": 0.584
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.904141938172264,
-        "y": 1.4600487521810932
+        "x": 5.354396640139858,
+        "y": 1.529743196625539
       },
       "isLocked": false,
       "linkedName": "Freealgae2"
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -60.08532527027036
+    "rotation": 119.99999999999999
   },
   "reversed": false,
   "folder": "FreeAlgae",

@@ -22,6 +22,7 @@ void Intake::setMotorVoltage(units::volt_t voltage) {
 
 bool Intake::isJawAtPosition(units::degree_t jawAngle) {
     units::degree_t jawError = jawAngle - intakeJawMotor.GetPosition().GetValue();
+    frc::SmartDashboard::PutNumber("JawError/JawError", jawError.value());
     return (units::math::abs(jawError) < IntakeConstants::RangeError);
 }
 
@@ -43,6 +44,7 @@ frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t
     }, []() {
     }, [](bool interupted) {
     }, [this, jawAngle]() {
+        frc::SmartDashboard::PutBoolean("JawError/isAtPosition", isJawAtPosition(jawAngle));
         return isJawAtPosition(jawAngle);
     },
     {this}).ToPtr();

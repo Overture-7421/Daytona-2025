@@ -11,3 +11,4 @@
 #include "Subsystems/SuperStructure/SuperStructure.h"
 
 frc2::CommandPtr L4Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure);
+frc2::CommandPtr L4AutoCommand(Arm *arm, Elevator *elevator, SuperStructure *superStructure);

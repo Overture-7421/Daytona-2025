@@ -15,12 +15,25 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralL4"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -34,9 +47,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralStation"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -53,12 +79,31 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralL4"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -72,9 +117,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralStation"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -91,12 +149,31 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralL4"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -110,9 +187,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralStation"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -129,12 +219,31 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralL4"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -148,9 +257,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralStation"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -167,12 +289,37 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "coralL4"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         }
       ]

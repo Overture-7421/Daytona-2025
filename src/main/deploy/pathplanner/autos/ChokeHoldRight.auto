@@ -13,8 +13,27 @@
                 "data": {
                   "pathName": "Chokeholdright1"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -25,6 +44,25 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright2"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -39,8 +77,33 @@
                 "data": {
                   "pathName": "Chokeholdright3"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -51,6 +114,25 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright4"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -65,8 +147,33 @@
                 "data": {
                   "pathName": "Chokeholdright5"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -77,6 +184,25 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright6"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -91,8 +217,33 @@
                 "data": {
                   "pathName": "Chokeholdright7"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
           }
         },
         {
@@ -103,6 +254,25 @@
                 "type": "path",
                 "data": {
                   "pathName": "Chokeholdright8"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralStation"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -117,8 +287,39 @@
                 "data": {
                   "pathName": "Chokeholdright9"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "coralL4"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         }
       ]

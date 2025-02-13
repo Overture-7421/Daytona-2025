@@ -19,21 +19,34 @@
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "sequential",
                       "data": {
-                        "name": "coralL1"
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "coralL1"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "lowAlgae"
-                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitCoral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "lowAlgae"
           }
         },
         {
@@ -47,12 +60,31 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "algaeNet"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeNet"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitAlgae"
           }
         },
         {
@@ -66,9 +98,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "highAlgae"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "highAlgae"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -85,12 +130,31 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "algaeNet"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeNet"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitAlgae"
           }
         },
         {
@@ -104,9 +168,22 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "highAlgae"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "highAlgae"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -123,12 +200,37 @@
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "algaeNet"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "algaeNet"
+                      }
+                    }
+                  ]
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spitAlgae"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "closed"
           }
         }
       ]

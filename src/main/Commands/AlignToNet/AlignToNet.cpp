@@ -7,7 +7,7 @@
 AlignToNet::AlignToNet(Chassis *chassis, frc::Pose2d pose2d) : alignNetSpeedHelper(chassis, pose2d) {
     this->chassis = chassis;
 
-    AddRequirements( {chassis});
+    AddRequirements( {});
 }
 
 void AlignToNet::Initialize() {
@@ -23,5 +23,5 @@ void AlignToNet::End(bool interrupted) {
 }
 
 bool AlignToNet::IsFinished() {
-    return alignNetSpeedHelper.atGoal();
+    return false;
 }

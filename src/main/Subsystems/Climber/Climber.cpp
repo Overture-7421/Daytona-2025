@@ -7,8 +7,6 @@
 
 Climber::Climber() {
 
-    armLeftMotor.setFollow(armRightMotor.GetDeviceID(), true);
-
     armRightMotor.setSensorToMechanism(ClimberConstants::ArmSensorToMechanism);
     armRightMotor.configureMotionMagic(ClimberConstants::ArmCruiseVelocity, ClimberConstants::ArmCruiseAcceleration,
             0.0_tr_per_s_cu);

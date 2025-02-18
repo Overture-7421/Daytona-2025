@@ -27,7 +27,6 @@ public:
 
 private:
     OverTalonFX armRightMotor {ClimberConstants::RightConfig(), "rio"};
-    OverTalonFX armLeftMotor {ClimberConstants::LeftConfig(), "rio"};
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine
     {   frc2::sysid::Config

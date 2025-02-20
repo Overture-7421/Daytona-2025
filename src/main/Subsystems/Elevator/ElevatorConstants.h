@@ -13,8 +13,8 @@ struct ElevatorConstants {
     constexpr static const double LowerSensorToMechanism = 5.6;
     constexpr static const units::meter_t Diameter = 0.07366_m;
 
-    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 5.0_tps;
-    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 15_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps; //5
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 35_tr_per_s_sq; //15
 
     constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m;
     constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m;
@@ -32,34 +32,31 @@ struct ElevatorConstants {
 
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;
-        right.MotorId = 15;
+        right.MotorId = 21;
         right.NeutralMode = ControllerNeutralMode::Brake;
         right.Inverted = true;
         right.useFOC = true;
-        right.PIDConfigs.WithKP(8);
-        right.CurrentLimit = 30_A;
-        right.StatorCurrentLimit = 30_A;
+        right.CurrentLimit = 40_A;
+        right.StatorCurrentLimit = 120_A;
         right.TriggerThreshold = 90_A;
         right.TriggerThresholdTime = 1_s;
         right.ClosedLoopRampRate = 0.05_s;
-        right.OpenLoopRampRate = 0.05_s;
 
         return right;
     }
 
     constexpr static const OverTalonFXConfig LeftConfig() {
         OverTalonFXConfig left;
-        left.MotorId = 14;
+        left.MotorId = 20;
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKP(8);
-        left.CurrentLimit = 30_A;
-        left.StatorCurrentLimit = 30_A;
+        left.PIDConfigs.WithKG(0.4).WithKV(1.5).WithKP(10.0);
+        left.CurrentLimit = 40_A;
+        left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 90_A;
         left.TriggerThresholdTime = 1_s;
         left.ClosedLoopRampRate = 0.05_s;
-        left.OpenLoopRampRate = 0.05_s;
 
         return left;
 

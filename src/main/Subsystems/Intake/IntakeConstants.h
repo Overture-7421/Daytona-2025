@@ -12,6 +12,9 @@ public:
 
     constexpr static const units::degree_t RangeError = 1.0_deg;
 
+    constexpr static const units::meter_t SensorCoralDistance = 0.10_m;
+    constexpr static const units::meter_t SensorAlgaeDistance = 0.10_m;
+
     constexpr static const units::degree_t JawAlgae = 40_deg;
     constexpr static const units::degree_t JawCoralOpen = 10_deg;
     constexpr static const units::degree_t JawCoralClose = 3_deg;
@@ -26,14 +29,14 @@ public:
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 25.5_tps;
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 35_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 15_tps; //25.5
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 12_tr_per_s_sq; //35
 
     constexpr static const double SensorToMechanism = 1.5; //Emi will tell us probably 1.5
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = 54;
+        intakeConfig.MotorId = 28;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.Inverted = true;
 
@@ -49,7 +52,7 @@ public:
 
     constexpr static const OverTalonFXConfig IntakeJawConfig() {
         OverTalonFXConfig intakeJawConfig;
-        intakeJawConfig.MotorId = 58;
+        intakeJawConfig.MotorId = 29;
         intakeJawConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeJawConfig.Inverted = true;
 
@@ -60,7 +63,7 @@ public:
         intakeJawConfig.TriggerThresholdTime = 1_s;
         intakeJawConfig.OpenLoopRampRate = 0.0_s;
 
-        intakeJawConfig.PIDConfigs.WithKP(4.3);
+        intakeJawConfig.PIDConfigs.WithKV(0.0).WithKP(0.0);
 
         return intakeJawConfig;
     }

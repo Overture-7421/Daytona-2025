@@ -37,12 +37,12 @@ public:
     void Periodic() override;
 
 private:
-    //ID 20
+
     MotionMagicVoltage jawVoltage {0_tr};
 
     OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
     OverTalonFX intakeJawMotor {IntakeConstants::IntakeJawConfig(), "rio"};
 
-    CANrange canRange {55, "rio"};
+    CANrange canRange {30, "rio"};
 
 };

@@ -64,11 +64,11 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
-    ConfigDriverBindings();
-    ConfigOperatorBindings();
-    ConfigMixedBindigs();
-    ConfigDefaultCommands();
-    //ConfigCharacterizationBindings();
+    //ConfigDriverBindings();
+    //ConfigOperatorBindings();
+    //ConfigMixedBindigs();
+    //ConfigDefaultCommands();
+    ConfigCharacterizationBindings();
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -97,23 +97,9 @@ void RobotContainer::ConfigDriverBindings() {
     driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    //Palllet Execute Aligns
-
 }
 
 void RobotContainer::ConfigOperatorBindings() {
-
-    /* Intake Testing
-     oprtr.X().WhileTrue(intake.moveIntake(-8_V));
-     oprtr.Y().WhileTrue(intake.moveIntake(8_V));
-
-     oprtr.LeftBumper().WhileTrue(intake.moveIntake(-7_V));
-     oprtr.B().WhileTrue(intake.moveIntake(-6_V));
-
-     oprtr.RightBumper().WhileTrue(intake.moveIntake(-4_V));
-
-     oprtr.A().OnTrue(intake.moveIntake(0_V));
-     */
 
     oprtr.A().WhileTrue(L1Command(&arm, &elevator, &superStructure));
     oprtr.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -186,6 +172,27 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
+
+        
+    test.A().WhileTrue(elevator.setElevatorCommand(1.3_m));
+    test.A().OnFalse(elevator.setElevatorCommand(0.30_m));
+
+    test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
+    test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+
+
+    
+
+
+
+        /*
+    test.POVUp().WhileTrue(arm.setArmCommand(40_deg, 60_deg));
+    test.POVUp().OnFalse(arm.setArmCommand(40_deg, 0_deg));
+
+    test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 30_deg));
+    test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
+    */
+
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

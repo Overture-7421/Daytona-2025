@@ -34,7 +34,6 @@ public:
 private:
 
     OverTalonFX armLeftMotor {ArmConstants::ArmLeftConfig(), "rio"};
-    OverTalonFX armRightMotor {ArmConstants::ArmRightConfig(), "rio"};
     OverCANCoder armCANCoder {ArmConstants::ArmCANConfig(), "rio"};
     OverTalonFX wristMotor {ArmConstants::WristConfig(), "rio"};
     OverCANCoder wristCANCoder {ArmConstants::WristCANConfig(), "rio"};

@@ -15,38 +15,37 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                                     ElevatorConstants::CoralStationPosition).ToPtr(),
                             intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen),
-                            superStructure->setState(SuperStructureStates::EnterCoralStation).FinallyDo(
-                                    [=]() {
-                                        intake->setIntakeCommand(IntakeConstants::StopIntake,
-                                                IntakeConstants::JawCoralClose), superStructure->setState(
-                                                SuperStructureStates::HoldCoral);
-                                    })
-
-                    )}, std::pair {SuperStructureStates::EnterCoralGround,
+                            superStructure->setState(SuperStructureStates::EnterCoralStation)).Until([intake] {
+                        return intake->isCoralIn(IntakeConstants::JawCoralOpen);
+                    }).FinallyDo(
+                            [=]() {
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose), superStructure->setState(
+                                        SuperStructureStates::HoldCoral);
+                            })}, std::pair {SuperStructureStates::EnterCoralGround,
                     frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                                     ElevatorConstants::CoralStationPosition).ToPtr(),
                             intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen),
-                            superStructure->setState(SuperStructureStates::EnterCoralStation).FinallyDo(
-                                    [=]() {
-                                        intake->setIntakeCommand(IntakeConstants::StopIntake,
-                                                IntakeConstants::JawCoralClose), superStructure->setState(
-                                                SuperStructureStates::HoldCoral);
-                                    })
-
-                    )}, std::pair {SuperStructureStates::EnterAlgaeGround,
+                            superStructure->setState(SuperStructureStates::EnterCoralStation)).Until([intake] {
+                        return intake->isCoralIn(IntakeConstants::JawCoralOpen);
+                    }).FinallyDo(
+                            [=]() {
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose), superStructure->setState(
+                                        SuperStructureStates::HoldCoral);
+                            })}, std::pair {SuperStructureStates::EnterAlgaeGround,
                     frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                                     ElevatorConstants::CoralStationPosition).ToPtr(),
                             intake->setIntakeCommand(IntakeConstants::CoralGrab, IntakeConstants::JawCoralOpen),
-                            superStructure->setState(SuperStructureStates::EnterCoralStation).FinallyDo(
-                                    [=]() {
-                                        intake->setIntakeCommand(IntakeConstants::StopIntake,
-                                                IntakeConstants::JawCoralClose), superStructure->setState(
-                                                SuperStructureStates::HoldCoral);
-                                    })
+                            superStructure->setState(SuperStructureStates::EnterCoralStation)
 
-                    )}
+                            ).Until([intake] {
+                        return intake->isCoralIn(IntakeConstants::JawCoralOpen);
+                    }).FinallyDo(
+                            [=]() {
+                                intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose), superStructure->setState(
+                                        SuperStructureStates::HoldCoral);
+                            })}
 
             );
 

@@ -14,7 +14,7 @@ struct ElevatorConstants {
     constexpr static const units::meter_t Diameter = 0.07366_m;
 
     constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps;
-    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 30_tr_per_s_sq;
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 20_tr_per_s_sq; //Bajar Acceleracion 30 es mucho
 
     constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m; //Falta
     constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m; //falta
@@ -33,7 +33,7 @@ struct ElevatorConstants {
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;
         right.MotorId = 21;
-        right.NeutralMode = ControllerNeutralMode::Brake;
+        right.NeutralMode = ControllerNeutralMode::Coast;
         right.Inverted = true;
         right.useFOC = true;
         right.CurrentLimit = 40_A;

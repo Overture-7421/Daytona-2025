@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.74885452835648,
-        "y": 3.9960586660879627
+        "x": 5.810999999999999,
+        "y": 4.346749999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.820926985826177,
-        "y": 4.235444465320663
+        "x": 6.0059999999999985,
+        "y": 3.946999999999999
       },
       "isLocked": false,
       "linkedName": "Freealgae1"
     },
     {
       "anchor": {
-        "x": 5.789,
-        "y": 0.584
+        "x": 5.6354999999999995,
+        "y": 0.6319999999999993
       },
       "prevControl": {
-        "x": 5.250801658335338,
-        "y": 1.8327789587164631
+        "x": 5.7524999999999995,
+        "y": 1.2072499999999993
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "folder": "FreeAlgae",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 179.80992261883543
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

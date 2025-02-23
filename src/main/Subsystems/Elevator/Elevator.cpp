@@ -58,6 +58,7 @@ void Elevator::Periodic() {
 
     frc::SmartDashboard::PutNumber("ElevatorCurrent/CurrentElevatorMotor", getPosition().value());
     frc::SmartDashboard::PutNumber("ElevatorCurrent/Voltage", leftElevatorMotor.GetMotorVoltage().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("ElevatorCurrent/Curent-Amps", leftElevatorMotor.GetSupplyCurrent().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("ElevatorCurrent/Curent-Amps",
+            leftElevatorMotor.GetSupplyCurrent().GetValueAsDouble());
 
 }

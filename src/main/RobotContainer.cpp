@@ -16,6 +16,9 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL4",
             std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure))));
 
+        pathplanner::NamedCommands::registerCommand("coralL3",
+            std::move(frc2::cmd::Sequence(L3Command(&arm, &elevator, &superStructure))));
+
     pathplanner::NamedCommands::registerCommand("spitCoral",
             std::move(
                     frc2::cmd::Parallel(
@@ -64,11 +67,11 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
-    //ConfigDriverBindings();
-    //ConfigOperatorBindings();
-    //ConfigMixedBindigs();
-    //ConfigDefaultCommands();
-    ConfigCharacterizationBindings();
+    ConfigDriverBindings();
+    ConfigOperatorBindings();
+    ConfigMixedBindigs();
+    ConfigDefaultCommands();
+    //ConfigCharacterizationBindings();
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -125,101 +128,101 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.LeftBumper().WhileTrue(Processor(&arm, &elevator, &superStructure));
     oprtr.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
-    oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
+    //oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
+    //oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
+
+    oprtr.POVRight().WhileTrue(NetCommand(&arm, &elevator, &superStructure));
+    oprtr.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
 }
 
 void RobotContainer::ConfigMixedBindigs() {
-    (console.Button(0) && driver.POVRight()).OnTrue(
-            L1Command(&arm, &elevator, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+    (console.Button(7) && driver.POVRight()).OnTrue(L1Command(&arm, &elevator, &superStructure));
 
-    (console.Button(1) && driver.POVRight()).OnTrue(
+    (console.Button(6) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-    (console.Button(2) && driver.POVRight()).OnTrue(
+    (console.Button(3) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
-    (console.Button(3) && driver.POVRight()).OnTrue(
+    (console.Button(5) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-    (console.Button(4) && driver.POVRight()).OnTrue(
+    (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
-    (console.Button(5) && driver.POVRight()).OnTrue(
+    (console.Button(4) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-    (console.Button(6) && driver.POVRight()).OnTrue(
+    (console.Button(9) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
-    (console.Button(7) && driver.POVRight()).OnTrue(
+    (console.Button(12) && driver.POVRight()).OnTrue(
             LowAlgae(&arm, &elevator, &intake, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
-    (console.Button(8) && driver.POVRight()).OnTrue(
+    (console.Button(11) && driver.POVRight()).OnTrue(
             HighAlgae(&arm, &elevator, &intake, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
 
-    (console.Button(9) && driver.POVRight()).OnTrue(
+    (console.Button(10) && driver.POVRight()).OnTrue(
             SourceCommand(&arm, &elevator, &intake, &superStructure).AlongWith(stationPos(&chassis, &tagLayout)));
 
-    (console.Button(10) && driver.POVRight()).OnTrue(
+    (console.Button(1) && driver.POVRight()).OnTrue(
             Processor(&arm, &elevator, &superStructure).AlongWith(processorPos(&chassis, &tagLayout)));
 
-    (console.Button(11) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
+    //(console.Button(2) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
 
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
 }
 
 void RobotContainer::ConfigDefaultCommands() {
-    climber.setClimberCommand(ClimberConstants::ClosedPosition);
+    //climber.setClimberCommand(ClimberConstants::ClosedPosition);
 
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-        
-    test.A().WhileTrue(elevator.setElevatorCommand(1.3_m));
-    test.A().OnFalse(elevator.setElevatorCommand(0.30_m));
-
-    test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
-    test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
+    //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
+    //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
 
     
+     //test.A().WhileTrue(elevator.setElevatorCommand(1.00_m));
+     //test.A().OnFalse(elevator.setElevatorCommand(0.20_m));
 
-
+     //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
+     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+     
 
         /*
-    test.POVUp().WhileTrue(arm.setArmCommand(40_deg, 60_deg));
-    test.POVUp().OnFalse(arm.setArmCommand(40_deg, 0_deg));
+    test.A().WhileTrue(arm.setArmCommand(90_deg, 90_deg));
+    test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
-    test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 30_deg));
+    test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
-    */
-
+        */
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot = {10.5408175_in, -9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, -30_deg}};
+    config.cameraToRobot = {11.217641_in, -7.333535_in, 10.682798_in, {0_deg, -28.125_deg, -60_deg}};
     return config;
 }
 
 AprilTags::Config RobotContainer::frontLeftCamera() {
     AprilTags::Config config;
-    config.cameraName = "Global_Shutter_Camera_2";
-    config.cameraToRobot = {10.5408175_in, 9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, 30_deg}};
+    config.cameraName = "FrontLeft";
+    config.cameraToRobot = {9.648405_in, 8.631463_in, 8.410513_in, {0_deg, -28.125_deg, 60_deg}};
     return config;
 }
 
 AprilTags::Config RobotContainer::backRightCamera() {
     AprilTags::Config config;
-    config.cameraName = "Global_Shutter_Camera_3";
-    config.cameraToRobot = {-10.5408175_in, -9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, 150_deg}};
+    config.cameraName = "BackRight (1)";
+    config.cameraToRobot = {-11.217641_in, -7.333535_in, 10.682798_in, {0_deg, -28.125_deg, -30_deg}};
     return config;
 }
 
 AprilTags::Config RobotContainer::backLeftCamera() {
     AprilTags::Config config;
-    config.cameraName = "Global_Shutter_Camera_4";
-    config.cameraToRobot = {-10.5408175_in, -9.8155955_in, 8.358231_in, {0_deg, -28.125_deg, -150_deg}};
+    config.cameraName = "BackLeft (1)";
+    config.cameraToRobot = {-9.648405_in, 8.631463_in, 8.410513_in, {0_deg, -28.125_deg, 30_deg}};
     return config;
 }
 void RobotContainer::UpdateTelemetry() {

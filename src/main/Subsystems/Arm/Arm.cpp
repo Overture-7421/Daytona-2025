@@ -72,21 +72,20 @@ frc2::CommandPtr Arm::SysIdDynamic(frc2::sysid::Direction direction) {
 }
 
 void Arm::Periodic() {
-    /*
+
     units::degree_t armCurrentAngleMotor = armLeftMotor.GetPosition().GetValue();
     units::degree_t armCurrentAngleCANCODER = armCANCoder.GetPosition().GetValue();
-    double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
+    //double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
     frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleMotor", armCurrentAngleMotor.value());
     frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleEncoder", armCurrentAngleCANCODER.value());
     frc::SmartDashboard::PutNumber("ArmCurrent/Voltage", armLeftMotor.GetMotorVoltage().GetValueAsDouble());
     frc::SmartDashboard::PutNumber("ArmCurrent/Curent-Amps", armLeftMotor.GetSupplyCurrent().GetValueAsDouble());
-    */
 
     units::degree_t wristCurrentAngleMotor = wristMotor.GetPosition().GetValue();
     units::degree_t wristCurrentAngleCANCODER = wristCANCoder.GetPosition().GetValue();
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleMotor", wristCurrentAngleMotor.value());
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleEncoder", wristCurrentAngleCANCODER.value());
-    frc::SmartDashboard::PutNumber("ArmCurrent/Voltage", wristMotor.GetMotorVoltage().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("ArmCurrent/Curent-Amps", wristMotor.GetSupplyCurrent().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleMotor", wristCurrentAngleMotor.value());
+    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleEncoder", wristCurrentAngleCANCODER.value());
+    frc::SmartDashboard::PutNumber("WristCurrent/Voltage", wristMotor.GetMotorVoltage().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("WristCurrent/Curent-Amps", wristMotor.GetSupplyCurrent().GetValueAsDouble());
 
 }

@@ -8,27 +8,27 @@
 #include <units/time.h>
 
 struct ElevatorConstants {
-    constexpr static const units::meter_t RangeError = 0.02_m; // The math of the meter is wrong LOL
+    constexpr static const units::meter_t RangeError = 0.03_m;
 
     constexpr static const double LowerSensorToMechanism = 5.6;
     constexpr static const units::meter_t Diameter = 0.07366_m;
 
-    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps; //5
-    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 35_tr_per_s_sq; //15
+    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps;
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 30_tr_per_s_sq;
 
-    constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m;
-    constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m;
+    constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m; //Falta
+    constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m; //falta
     constexpr static const units::meter_t CoralStationPosition = 0.01_m;
-    constexpr static const units::meter_t ClosedPosition = 0.02_m;
-    constexpr static const units::meter_t L1Position = 0.2_m;
-    constexpr static const units::meter_t L2Position = 0.03_m;
-    constexpr static const units::meter_t L3Position = 0.16_m;
-    constexpr static const units::meter_t L4Position = 0.37_m;
-    constexpr static const units::meter_t NetPosition = 0.36_m;
-    constexpr static const units::meter_t ProcessorPosition = 0.05_m;
-    constexpr static const units::meter_t LowAlgae = 0.15_m;
-    constexpr static const units::meter_t HighAlgae = 0.25_m;
-    constexpr static const units::meter_t HighMotionAllowed = 0.20_m;
+    constexpr static const units::meter_t ClosedPosition = 0.04_m;
+    constexpr static const units::meter_t L1Position = 0.35_m;
+    constexpr static const units::meter_t L2Position = 0.15_m;
+    constexpr static const units::meter_t L3Position = 0.70_m;
+    constexpr static const units::meter_t L4Position = 1.53_m;
+    constexpr static const units::meter_t NetPosition = 1.65_m;
+    constexpr static const units::meter_t ProcessorPosition = 0.05_m; //Falta
+    constexpr static const units::meter_t LowAlgae = 0.75_m;
+    constexpr static const units::meter_t HighAlgae = 1.20_m;
+    constexpr static const units::meter_t HighMotionAllowed = 0.20_m; //Cambiar
 
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;
@@ -51,7 +51,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKG(0.4).WithKV(1.5).WithKP(10.0);
+        left.PIDConfigs.WithKG(0.5).WithKV(1.5).WithKP(12.0);
         left.CurrentLimit = 40_A;
         left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 90_A;

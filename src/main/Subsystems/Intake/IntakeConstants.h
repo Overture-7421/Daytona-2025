@@ -12,33 +12,35 @@ public:
 
     constexpr static const units::degree_t RangeError = 1.0_deg;
 
-    constexpr static const units::meter_t SensorCoralDistance = 0.10_m;
-    constexpr static const units::meter_t SensorAlgaeDistance = 0.10_m;
+    constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
+    constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
 
-    constexpr static const units::degree_t JawAlgae = 40_deg;
-    constexpr static const units::degree_t JawCoralOpen = 10_deg;
-    constexpr static const units::degree_t JawCoralClose = 3_deg;
+    constexpr static const units::degree_t JawAlgae = 85_deg;
+    constexpr static const units::degree_t JawCoralOpen = 40_deg; //20
+    constexpr static const units::degree_t JawCoralStation = 20_deg;
+    constexpr static const units::degree_t JawCoralClose = 11_deg;
 
-    constexpr static const units::volt_t CoralGrab = 4.0_V;
+    constexpr static const units::volt_t CoralGrab = 4.0_V; //Positivo es para adentro
     constexpr static const units::volt_t CoralRelease = -4.0_V;
+    constexpr static const units::volt_t CoralSpit = 0.0_V;
 
-    constexpr static const units::volt_t AlgaeGrab = 4.0_V;
+    constexpr static const units::volt_t AlgaeGrab = 6.0_V;
     constexpr static const units::volt_t AlgaeRelease = -4.0_V;
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 15_tps; //25.5
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 12_tr_per_s_sq; //35
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 40_tps;
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 30_tr_per_s_sq;
 
-    constexpr static const double SensorToMechanism = 1.5; //Emi will tell us probably 1.5
+    constexpr static const double SensorToMechanism = 9.9519621;
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
         intakeConfig.MotorId = 28;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
-        intakeConfig.Inverted = true;
+        intakeConfig.Inverted = false;
 
         intakeConfig.CurrentLimit = 20_A;
         intakeConfig.StatorCurrentLimit = 120_A;
@@ -63,7 +65,7 @@ public:
         intakeJawConfig.TriggerThresholdTime = 1_s;
         intakeJawConfig.OpenLoopRampRate = 0.0_s;
 
-        intakeJawConfig.PIDConfigs.WithKV(0.0).WithKP(0.0);
+        intakeJawConfig.PIDConfigs.WithKV(0.8).WithKP(95.0);
 
         return intakeJawConfig;
     }

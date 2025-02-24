@@ -97,7 +97,7 @@ void RobotContainer::ConfigDriverBindings() {
     driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
     driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure));
+    driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     driver.Start().WhileTrue(SpitL1(&intake, &superStructure));
@@ -190,16 +190,15 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
-    
-     //test.A().WhileTrue(arm.setArmCommand(90_deg, 90_deg));
-     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+    //test.A().WhileTrue(arm.setArmCommand(90_deg, 90_deg));
+    //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
-     //test.B().WhileTrue(arm.setArmCommand(130_deg, 0_deg));
-     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+    //test.B().WhileTrue(arm.setArmCommand(130_deg, 0_deg));
+    //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
-     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
-     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
-     
+    //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
+    //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
+
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

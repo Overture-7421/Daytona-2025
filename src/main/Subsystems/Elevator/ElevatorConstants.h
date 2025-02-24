@@ -23,9 +23,9 @@ struct ElevatorConstants {
     constexpr static const units::meter_t CoralStationPosition = 0.01_m;
     constexpr static const units::meter_t ClosedPosition = 0.00_m;
     constexpr static const units::meter_t L1Position = 0.00_m;
-    constexpr static const units::meter_t L2Position = 0.23_m;
-    constexpr static const units::meter_t L3Position = 0.72_m;
-    constexpr static const units::meter_t L4Position = 1.53_m;
+    constexpr static const units::meter_t L2Position = 0.20_m;
+    constexpr static const units::meter_t L3Position = 0.69_m;
+    constexpr static const units::meter_t L4Position = 1.50_m;
     constexpr static const units::meter_t NetPosition = 1.65_m;
     constexpr static const units::meter_t ProcessorPosition = 0.05_m; //Falta
     constexpr static const units::meter_t LowAlgae = 0.05_m;
@@ -53,7 +53,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKV(1.5).WithKP(21);
+        left.PIDConfigs.WithKV(1.5).WithKP(23);
         left.CurrentLimit = 40_A;
         left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 90_A;

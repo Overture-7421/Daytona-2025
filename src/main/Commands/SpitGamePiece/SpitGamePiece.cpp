@@ -4,14 +4,17 @@
 
 #include "SpitGamePiece.h"
 
-frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure) {
+frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm) {
     return frc2::cmd::Select < SuperStructureStates
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Parallel(
-                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
-                    superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
+            std::pair {SuperStructureStates::HoldCoral,
+                    frc2::cmd::Sequence(
+                            ArmMotion(elevator, arm, 45_deg, arm->getWristAngle(),
+                                    elevator->getPosition()).ToPtr(),
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
+                            superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
                     SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
                             intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
                             superStructure->setState(SuperStructureStates::SpitAlgae))}

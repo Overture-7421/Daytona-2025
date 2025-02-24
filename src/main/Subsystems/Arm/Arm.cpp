@@ -71,6 +71,14 @@ frc2::CommandPtr Arm::SysIdDynamic(frc2::sysid::Direction direction) {
     return m_sysIdRoutine.Dynamic(direction);
 }
 
+units::degree_t Arm::getArmAngle() {
+    return armLeftMotor.GetPosition().GetValue();
+}
+
+units::degree_t Arm::getWristAngle() {
+    return wristMotor.GetPosition().GetValue();
+}
+
 void Arm::Periodic() {
 
     units::degree_t armCurrentAngleMotor = armLeftMotor.GetPosition().GetValue();

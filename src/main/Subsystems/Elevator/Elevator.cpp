@@ -20,7 +20,9 @@ void Elevator::setPosition(units::meter_t position) {
     frc::SmartDashboard::PutNumber("Elevator/TargetPosition", position.value());
 
     units::turn_t positionInRotations {position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
-    leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true).WithFeedForward(ElevatorConstants::feedForward));
+    leftElevatorMotor.SetControl(
+            elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true).WithFeedForward(
+                    ElevatorConstants::feedForward));
 
 }
 ;

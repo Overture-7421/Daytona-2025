@@ -16,7 +16,7 @@ frc2::CommandPtr L4Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                      ElevatorConstants::L4Position).ToPtr()),
                      */
 
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L4Position),
+                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L4Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL4Reef, ArmConstants::WristL4Reef,
                                     ElevatorConstants::L4Position).ToPtr()))}
 
@@ -31,7 +31,7 @@ frc2::CommandPtr L4AutoCommand(Arm *arm, Elevator *elevator, SuperStructure *sup
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
 
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L4Position),
+                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L4Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL4Reef, ArmConstants::WristL4Reef,
                                     ElevatorConstants::L4Position).ToPtr()))}
 

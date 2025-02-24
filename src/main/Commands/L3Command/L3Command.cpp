@@ -16,7 +16,7 @@ frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                      ElevatorConstants::L3Position).ToPtr()),
                      */
 
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L3Position),
+                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L3Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef,
                                     ElevatorConstants::L3Position).ToPtr()))}
 

@@ -16,7 +16,7 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL4",
             std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure))));
 
-        pathplanner::NamedCommands::registerCommand("coralL3",
+    pathplanner::NamedCommands::registerCommand("coralL3",
             std::move(frc2::cmd::Sequence(L3Command(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("spitCoral",
@@ -100,6 +100,9 @@ void RobotContainer::ConfigDriverBindings() {
     driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
+    driver.Start().WhileTrue(SpitL1(&intake, &superStructure));
+    driver.Start().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {
@@ -181,21 +184,22 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
 
+    //test.A().WhileTrue(elevator.setElevatorCommand(0.60_m));
+    //test.A().OnFalse(elevator.setElevatorCommand(0.00_m));
+
+    //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
+    //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+
     
-     //test.A().WhileTrue(elevator.setElevatorCommand(1.00_m));
-     //test.A().OnFalse(elevator.setElevatorCommand(0.20_m));
+     //test.A().WhileTrue(arm.setArmCommand(90_deg, 90_deg));
+     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
-     //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
+     //test.B().WhileTrue(arm.setArmCommand(130_deg, 0_deg));
      //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+
+     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
+     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
      
-
-        /*
-    test.A().WhileTrue(arm.setArmCommand(90_deg, 90_deg));
-    test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
-    test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
-    test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
-        */
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

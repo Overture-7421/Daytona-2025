@@ -37,6 +37,7 @@
 #include "Commands/AlignToPose/AlignPositions.h"
 #include "Commands/AlgaeGroundGrabCommand/AlgaeGroundGrabCommand.h"
 #include "Commands/SpitGamePiece/SpitGamePiece.h"
+#include "Commands/SpitL1/SpitL1.h"
 
 class RobotContainer: public OverContainer {
 public:

@@ -11,7 +11,7 @@ frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, SuperStructure *superS
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
+            std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Sequence(
                     elevator->setElevatorCommand(ElevatorConstants::NetPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet,
                             ElevatorConstants::NetPosition).ToPtr())}

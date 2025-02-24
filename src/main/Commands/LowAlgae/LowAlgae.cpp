@@ -18,11 +18,10 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                      ArmMotion(elevator, arm, ArmConstants::ArmAlgaeInter, ArmConstants::WristLowAlgae,
                                      ElevatorConstants::LowAlgae).ToPtr()),
                                      */
-                                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterLowAlgae),
+                                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterLowAlgae),
                                             elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae,
                                                     ArmConstants::WristLowAlgae, ElevatorConstants::LowAlgae).ToPtr(),
-
                                             intake->setIntakeCommand(IntakeConstants::AlgaeGrab,
                                                     IntakeConstants::JawAlgae)))).Until([intake] {
                         return intake->isAlgaeIn(IntakeConstants::JawAlgae);
@@ -34,7 +33,7 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                      ArmMotion(elevator, arm, ArmConstants::ArmAlgaeInter, ArmConstants::WristLowAlgae,
                                      ElevatorConstants::LowAlgae).ToPtr()),
                                      */
-                                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterLowAlgae),
+                                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterLowAlgae),
                                             elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae,
                                                     ArmConstants::WristLowAlgae, ElevatorConstants::LowAlgae).ToPtr(),
@@ -49,7 +48,7 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                      ArmMotion(elevator, arm, ArmConstants::ArmAlgaeInter, ArmConstants::WristLowAlgae,
                                      ElevatorConstants::LowAlgae).ToPtr()),
                                      */
-                                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterLowAlgae),
+                                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterLowAlgae),
                                             elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae,
                                                     ArmConstants::WristLowAlgae, ElevatorConstants::LowAlgae).ToPtr(),
@@ -61,10 +60,13 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
             ).AndThen(
                     frc2::cmd::Sequence(frc2::cmd::Wait(0.8_s),
 
-                            frc2::cmd::Parallel(
-                                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgae),
-                                    superStructure->setState(SuperStructureStates::HoldAlgae),
-                                    arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-                                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))));
+                            frc2::cmd::Sequence(
+                                    frc2::cmd::Parallel(
+                                            intake->setIntakeCommand(IntakeConstants::StopIntake,
+                                                    IntakeConstants::JawAlgae),
+                                            superStructure->setState(SuperStructureStates::HoldAlgae)),
+                                    frc2::cmd::Sequence(
+                                            arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+                                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)))));
 
 }

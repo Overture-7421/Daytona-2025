@@ -10,7 +10,7 @@ frc2::CommandPtr Processor(Arm *arm, Elevator *elevator, SuperStructure *superSt
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
+            std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Sequence(
                     elevator->setElevatorCommand(ElevatorConstants::ProcessorPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristProcessor,
                             ElevatorConstants::ProcessorPosition).ToPtr())}

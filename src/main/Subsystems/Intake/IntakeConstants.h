@@ -17,12 +17,13 @@ public:
 
     constexpr static const units::degree_t JawAlgae = 85_deg;
     constexpr static const units::degree_t JawCoralOpen = 40_deg; //20
-    constexpr static const units::degree_t JawCoralStation = 20_deg;
-    constexpr static const units::degree_t JawCoralClose = 11_deg;
+    constexpr static const units::degree_t JawCoralSpitL1 = 20_deg; //20
+    constexpr static const units::degree_t JawCoralStation = 22_deg; //30
+    constexpr static const units::degree_t JawCoralClose = 15_deg;
 
     constexpr static const units::volt_t CoralGrab = 4.0_V; //Positivo es para adentro
     constexpr static const units::volt_t CoralRelease = -4.0_V;
-    constexpr static const units::volt_t CoralSpit = 0.0_V;
+    constexpr static const units::volt_t CoralSpit = -1.8_V;
 
     constexpr static const units::volt_t AlgaeGrab = 6.0_V;
     constexpr static const units::volt_t AlgaeRelease = -4.0_V;

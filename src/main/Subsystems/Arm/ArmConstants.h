@@ -7,31 +7,31 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct ArmConstants {
-    constexpr static const units::degree_t ArmAngleRange = 1.6_deg;
-    constexpr static const units::degree_t WristAngleRange = 2.2_deg;
+    constexpr static const units::degree_t ArmAngleRange = 1.7_deg;
+    constexpr static const units::degree_t WristAngleRange = 4.5_deg; //Bajar tolerancia
 
     constexpr static const units::degree_t ArmCoralInter = 75_deg; //15
     constexpr static const units::degree_t ArmAlgaeInter = 60_deg;
 
-    constexpr static const units::degree_t ArmL1Reef = -8.0_deg; // Antes era 100_deg
-    constexpr static const units::degree_t WristL1Reef = 90.0_deg;
+    constexpr static const units::degree_t ArmL1Reef = 141.0_deg; //58
+    constexpr static const units::degree_t WristL1Reef = 90.0_deg; //90
 
-    constexpr static const units::degree_t ArmL2Reef = 60.0_deg; 
+    constexpr static const units::degree_t ArmL2Reef = 58.0_deg;
     constexpr static const units::degree_t WristL2Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmL3Reef = 50.0_deg; //50
+    constexpr static const units::degree_t ArmL3Reef = 58.0_deg; //50
     constexpr static const units::degree_t WristL3Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmL4Reef = 65.0_deg;
+    constexpr static const units::degree_t ArmL4Reef = 61.0_deg; //65
     constexpr static const units::degree_t WristL4Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmHighAlgae = 2.0_deg; 
+    constexpr static const units::degree_t ArmHighAlgae = 0.0_deg; //2
     constexpr static const units::degree_t WristHighAlgae = 0.0_deg;
 
-    constexpr static const units::degree_t ArmLowAlgae = 2.0_deg; 
+    constexpr static const units::degree_t ArmLowAlgae = 0.0_deg; //2
     constexpr static const units::degree_t WristLowAlgae = 0.0_deg;
 
-    constexpr static const units::degree_t ArmCoralStation = 121_deg; //-31
+    constexpr static const units::degree_t ArmCoralStation = 121_deg; //95
     constexpr static const units::degree_t WristCoralStation = 90.0_deg;
 
     constexpr static const units::degree_t ArmProcessor = 0.0_deg; //90
@@ -93,7 +93,7 @@ struct ArmConstants {
         wristConfig.StatorCurrentLimit = 120_A;
         wristConfig.TriggerThreshold = 90_A;
         wristConfig.TriggerThresholdTime = 1_s;
-        wristConfig.PIDConfigs.WithKV(1.8).WithKP(65.0);
+        wristConfig.PIDConfigs.WithKV(1.8).WithKP(25.8);
 
         return wristConfig;
     }

@@ -60,7 +60,8 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
                             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                                     ElevatorConstants::ClosedPosition).ToPtr(),
                             frc2::cmd::Parallel(
-                                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose),
+                                    intake->setIntakeCommand(IntakeConstants::StopIntake,
+                                            IntakeConstants::JawCoralClose),
                                     superStructure->setState(SuperStructureStates::HoldCoral)),
                             elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)))
 

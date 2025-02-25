@@ -11,25 +11,23 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Intake/Intake.h"
 
-class TabulateCommand
-    : public frc2::CommandHelper<frc2::Command, TabulateCommand> {
- public:
-  
-  TabulateCommand( Elevator* elevator, Arm* arm, Intake* intake);
+class TabulateCommand: public frc2::CommandHelper<frc2::Command, TabulateCommand> {
+public:
 
-  void Initialize() override;
+    TabulateCommand(Elevator *elevator, Arm *arm, Intake *intake);
 
-  void Execute() override;
+    void Initialize() override;
 
-  void End(bool interrupted) override;
+    void Execute() override;
 
-  bool IsFinished() override;
+    void End(bool interrupted) override;
+
+    bool IsFinished() override;
 
 private:
 
-  Elevator* elevator;
-  Arm* arm;
-  Intake* intake;
-
+    Elevator *elevator;
+    Arm *arm;
+    Intake *intake;
 
 };

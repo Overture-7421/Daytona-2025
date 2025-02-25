@@ -181,13 +181,13 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-        test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
+    //test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
 
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
 
-    //test.A().WhileTrue(elevator.setElevatorCommand(0.60_m));
-    //test.A().OnFalse(elevator.setElevatorCommand(0.00_m));
+    test.A().WhileTrue(elevator.setElevatorCommand(0.50_m));
+    test.A().OnFalse(elevator.setElevatorCommand(0.00_m));
 
     //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));

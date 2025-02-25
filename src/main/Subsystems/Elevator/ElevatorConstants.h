@@ -13,10 +13,10 @@ struct ElevatorConstants {
     constexpr static const double LowerSensorToMechanism = 5.6;
     constexpr static const units::meter_t Diameter = 0.07366_m;
 
-    constexpr static const units::volt_t feedForward = 0.25_V;
+    constexpr static const units::volt_t feedForward = 0.36_V;
 
     constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 35.0_tps;
-    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 16.0_tr_per_s_sq; //Bajar Acceleracion 30 es mucho
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 14.5_tr_per_s_sq; //Bajar Acceleracion 30 es mucho
 
     constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m; //Falta
     constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m; //falta
@@ -35,7 +35,7 @@ struct ElevatorConstants {
     constexpr static const OverTalonFXConfig RightConfig() {
         OverTalonFXConfig right;
         right.MotorId = 21;
-        right.NeutralMode = ControllerNeutralMode::Coast;
+        right.NeutralMode = ControllerNeutralMode::Brake;
         right.Inverted = true;
         right.useFOC = true;
         right.CurrentLimit = 40_A;
@@ -53,7 +53,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKV(1.5).WithKP(23);
+        left.PIDConfigs.WithKV(1.7).WithKP(14.1);
         left.CurrentLimit = 40_A;
         left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 90_A;

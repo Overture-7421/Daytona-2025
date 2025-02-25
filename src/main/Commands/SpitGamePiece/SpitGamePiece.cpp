@@ -11,7 +11,7 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
             },
             std::pair {SuperStructureStates::HoldCoral,
                     frc2::cmd::Sequence(
-                            ArmMotion(elevator, arm, 45_deg, arm->getWristAngle(),
+                            ArmMotion(elevator, arm, ArmConstants::ArmScore, arm->getWristAngle(),
                                     elevator->getPosition()).ToPtr(),
                             intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
                             superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {

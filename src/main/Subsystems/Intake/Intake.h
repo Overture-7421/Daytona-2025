@@ -25,6 +25,7 @@ public:
     void setToAngle(units::degree_t jawAngle);
 
     double getVoltage();
+    units::degree_t getJawAngle();
     bool isJawAtPosition(units::degree_t jawAngle);
 
     bool isCoralIn(units::degree_t jawAngle);

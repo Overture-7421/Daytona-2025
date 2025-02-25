@@ -71,7 +71,7 @@ void RobotContainer::ConfigureBindings() {
     ConfigOperatorBindings();
     ConfigMixedBindigs();
     ConfigDefaultCommands();
-    //ConfigCharacterizationBindings();
+    ConfigCharacterizationBindings();
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -180,6 +180,8 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
+
+        test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
 
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));

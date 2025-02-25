@@ -31,6 +31,10 @@ double Intake::getVoltage() {
     return intakeMotor.GetMotorVoltage().GetValueAsDouble();
 }
 
+units::degree_t Intake::getJawAngle() {
+    return intakeJawMotor.GetPosition().GetValue();
+}
+
 bool Intake::isCoralIn(units::degree_t jawAngle) {
     // return ((canRange.GetDistance().GetValue() <= IntakeConstants::SensorCoralDistance));
 

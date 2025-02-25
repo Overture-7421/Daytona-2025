@@ -39,6 +39,8 @@
 #include "Commands/SpitGamePiece/SpitGamePiece.h"
 #include "Commands/SpitL1/SpitL1.h"
 
+#include "Commands/TabulateCommand/TabulateCommand.h"
+
 class RobotContainer: public OverContainer {
 public:
     RobotContainer();

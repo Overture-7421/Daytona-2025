@@ -10,6 +10,8 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmAngleRange = 1.7_deg;
     constexpr static const units::degree_t WristAngleRange = 4.5_deg; //Bajar tolerancia
 
+    constexpr static const units::degree_t ArmScore = 40_deg;
+
     constexpr static const units::degree_t ArmCoralInter = 75_deg; //15
     constexpr static const units::degree_t ArmAlgaeInter = 60_deg;
 

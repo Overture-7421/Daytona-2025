@@ -76,8 +76,8 @@ struct ArmConstants {
         armLeftConfig.ClosedLoopRampRate = 0.05_s;
         armLeftConfig.CurrentLimit = 30_A;
         armLeftConfig.StatorCurrentLimit = 120_A;
-        armLeftConfig.TriggerThreshold = 90_A;
-        armLeftConfig.TriggerThresholdTime = 1_s;
+        armLeftConfig.TriggerThreshold = 35_A;
+        armLeftConfig.TriggerThresholdTime = 0.5_s;
         armLeftConfig.PIDConfigs.GravityType = 1;
         armLeftConfig.PIDConfigs.WithKG(0.2).WithKV(2.0).WithKP(75.0);
 
@@ -93,8 +93,8 @@ struct ArmConstants {
         wristConfig.ClosedLoopRampRate = 0.05_s;
         wristConfig.CurrentLimit = 30_A;
         wristConfig.StatorCurrentLimit = 120_A;
-        wristConfig.TriggerThreshold = 90_A;
-        wristConfig.TriggerThresholdTime = 1_s;
+        wristConfig.TriggerThreshold = 35_A;
+        wristConfig.TriggerThresholdTime = 0.5_s;
         wristConfig.PIDConfigs.WithKV(1.8).WithKP(25.8);
 
         return wristConfig;

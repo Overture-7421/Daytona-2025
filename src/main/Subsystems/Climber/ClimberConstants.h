@@ -21,8 +21,8 @@ struct ClimberConstants {
         rightConfig.Inverted = false;
         rightConfig.useFOC = true;
         rightConfig.CurrentLimit = 30_A;
-        rightConfig.StatorCurrentLimit = 30_A;
-        rightConfig.TriggerThreshold = 90_A;
+        rightConfig.StatorCurrentLimit = 120_A;
+        rightConfig.TriggerThreshold = 40_A;
         rightConfig.TriggerThresholdTime = 1_s;
         rightConfig.ClosedLoopRampRate = 0.05_s;
         rightConfig.OpenLoopRampRate = 0.05_s;

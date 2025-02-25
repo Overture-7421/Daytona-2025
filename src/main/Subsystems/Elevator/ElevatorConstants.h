@@ -38,10 +38,10 @@ struct ElevatorConstants {
         right.NeutralMode = ControllerNeutralMode::Brake;
         right.Inverted = true;
         right.useFOC = true;
-        right.CurrentLimit = 40_A;
+        right.CurrentLimit = 35_A;
         right.StatorCurrentLimit = 120_A;
-        right.TriggerThreshold = 90_A;
-        right.TriggerThresholdTime = 1_s;
+        right.TriggerThreshold = 40_A;
+        right.TriggerThresholdTime = 0.5_s;
         right.ClosedLoopRampRate = 0.05_s;
 
         return right;
@@ -54,10 +54,10 @@ struct ElevatorConstants {
         left.Inverted = false;
         left.useFOC = true;
         left.PIDConfigs.WithKV(1.7).WithKP(14.1);
-        left.CurrentLimit = 40_A;
+        left.CurrentLimit = 35_A;
         left.StatorCurrentLimit = 120_A;
-        left.TriggerThreshold = 90_A;
-        left.TriggerThresholdTime = 1_s;
+        left.TriggerThreshold = 40_A;
+        left.TriggerThresholdTime = 0.5_s;
         left.ClosedLoopRampRate = 0.05_s;
 
         return left;

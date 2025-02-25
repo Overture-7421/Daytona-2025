@@ -43,9 +43,9 @@ public:
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.Inverted = false;
 
-        intakeConfig.CurrentLimit = 20_A;
+        intakeConfig.CurrentLimit = 30_A;
         intakeConfig.StatorCurrentLimit = 120_A;
-        intakeConfig.TriggerThreshold = 60_A;
+        intakeConfig.TriggerThreshold = 35_A;
         intakeConfig.TriggerThresholdTime = 1_s;
         intakeConfig.ClosedLoopRampRate = 0.0_s;
         intakeConfig.OpenLoopRampRate = 0.05_s;
@@ -60,10 +60,10 @@ public:
         intakeJawConfig.Inverted = true;
 
         intakeJawConfig.ClosedLoopRampRate = 0.05_s;
-        intakeJawConfig.CurrentLimit = 40_A;
+        intakeJawConfig.CurrentLimit = 30_A;
         intakeJawConfig.StatorCurrentLimit = 120_A;
-        intakeJawConfig.TriggerThreshold = 60_A;
-        intakeJawConfig.TriggerThresholdTime = 1_s;
+        intakeJawConfig.TriggerThreshold = 40_A;
+        intakeJawConfig.TriggerThresholdTime = 0.5_s;
         intakeJawConfig.OpenLoopRampRate = 0.0_s;
 
         intakeJawConfig.PIDConfigs.WithKV(0.8).WithKP(95.0);

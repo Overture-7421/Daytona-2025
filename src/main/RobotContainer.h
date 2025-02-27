@@ -43,52 +43,52 @@
 
 #include "Commands/TabulateCommand/TabulateCommand.h"
 
-class RobotContainer : public OverContainer {
+class RobotContainer: public OverContainer {
 public:
-	RobotContainer();
+    RobotContainer();
 
-	frc2::Command* GetAutonomousCommand();
-	void UpdateTelemetry();
+    frc2::Command* GetAutonomousCommand();
+    void UpdateTelemetry();
 
 private:
 
-	void ConfigureBindings();
-	void ConfigDriverBindings();
-	void ConfigOperatorBindings();
-	void ConfigMixedBindigs();
-	void ConfigDefaultCommands();
-	void ConfigCharacterizationBindings();
+    void ConfigureBindings();
+    void ConfigDriverBindings();
+    void ConfigOperatorBindings();
+    void ConfigMixedBindigs();
+    void ConfigDefaultCommands();
+    void ConfigCharacterizationBindings();
 
-	OverXboxController driver{ 0, 0.20, 0.2 };
-	OverXboxController oprtr{ 1, 0.20, 0.2 };
-	frc2::CommandGenericHID console{ 2 };
-	// OverXboxController test{ 3, 0.20, 0.2 };
+    OverXboxController driver {0, 0.20, 0.2};
+    OverXboxController oprtr {1, 0.20, 0.2};
+    frc2::CommandGenericHID console {2};
+    // OverXboxController test{ 3, 0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
-	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+    frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
 	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeAndyMark);
 	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 
 #endif 
-	//Subsystems
-	Chassis chassis;
-	Intake intake;
-	Elevator elevator;
-	Arm arm;
-	//Climber climber;
-	SuperStructure superStructure;
+    //Subsystems
+    Chassis chassis;
+    Intake intake;
+    Elevator elevator;
+    Arm arm;
+    //Climber climber;
+    SuperStructure superStructure;
 
-	static AprilTags::Config frontRightCamera();
-	static AprilTags::Config frontLeftCamera();
-	static AprilTags::Config backRightCamera();
-	static AprilTags::Config backLeftCamera();
+    static AprilTags::Config frontRightCamera();
+    static AprilTags::Config frontLeftCamera();
+    static AprilTags::Config backRightCamera();
+    static AprilTags::Config backLeftCamera();
 
-	AprilTags frontRightCam{ &tagLayout, &chassis, frontRightCamera() };
-	AprilTags frontLeftCam{ &tagLayout, &chassis, frontLeftCamera() };
-	AprilTags backRightCam{ &tagLayout, &chassis, backRightCamera() };
-	AprilTags backLeftCam{ &tagLayout, &chassis, backLeftCamera() };
+    AprilTags frontRightCam {&tagLayout, &chassis, frontRightCamera()};
+    AprilTags frontLeftCam {&tagLayout, &chassis, frontLeftCamera()};
+    AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
+    AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
 
-	frc::SendableChooser<frc2::Command*> autoChooser;
+    frc::SendableChooser<frc2::Command*> autoChooser;
 
 };

@@ -18,8 +18,18 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                     SuperStructureStates::HoldAlgae,
                     frc2::cmd::Sequence(
                             frc2::cmd::Parallel(
-                                    ArmMotion(elevator, arm, 30_deg, ArmConstants::WristClosed, elevator->getPosition()).ToPtr(),
-                                    intake->setIntakeCommand(8_V, IntakeConstants::JawAlgae)),
+                                    ArmMotion(elevator, arm, 30_deg, ArmConstants::WristClosed, elevator->getPosition()).ToPtr().BeforeStarting(
+                                            [arm] {
+                                                arm->changeArmSpeeds(ArmConstants::SlowVelocity,
+                                                        ArmConstants::SlowAccelerationa);
+                                            }
+                                    ).FinallyDo(
+                                            [arm] {
+                                                arm->changeArmSpeeds(ArmConstants::ArmCruiseVelocity,
+                                                        ArmConstants::ArmCruiseAcceleration);
+                                            }
+                                    ),
+                                    intake->setIntakeCommand(8_V, IntakeConstants::JawAlgae)), frc2::cmd::Wait(0.3_s),
                             intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
                             superStructure->setState(SuperStructureStates::SpitAlgae))}
 

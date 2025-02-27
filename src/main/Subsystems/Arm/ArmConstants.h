@@ -59,6 +59,9 @@ struct ArmConstants {
     constexpr static const units::turns_per_second_t WristCruiseVelocity = 80.0_tps;
     constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 30_tr_per_s_sq;
 
+    constexpr static const units::turns_per_second_t SlowVelocity = 3_tps;
+    constexpr static const units::turns_per_second_squared_t SlowAccelerationa = 1_tr_per_s_sq;
+
     constexpr static const double ArmCANCoderId = 25;
     constexpr static const double WristCANCoderId = 27;
 

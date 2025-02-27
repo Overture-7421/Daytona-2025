@@ -9,9 +9,10 @@ frc2::CommandPtr SpitL1(Intake *intake, SuperStructure *superStructure) {
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Parallel(
-                    intake->setIntakeCommand(IntakeConstants::CoralSpit, IntakeConstants::JawCoralSpitL1),
-                    superStructure->setState(SuperStructureStates::SpitCoral))}
+            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
+                    superStructure->setState(SuperStructureStates::SpitCoral),
+                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralSpitL1),
+                    intake->setIntakeCommand(IntakeConstants::CoralSpit, IntakeConstants::JawCoralSpitL1))}
 
             );
 

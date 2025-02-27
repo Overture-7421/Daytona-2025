@@ -158,9 +158,9 @@ void RobotContainer::ConfigMixedBindigs() {
 		L4Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
 
 	(console.Button(12) && driver.POVRight()).OnTrue(
-		LowAlgae(&arm, &elevator, &intake, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+		LowAlgae(&arm, &elevator, &intake, &superStructure));
 	(console.Button(11) && driver.POVRight()).OnTrue(
-		HighAlgae(&arm, &elevator, &intake, &superStructure).AlongWith(centerAlignPos(&chassis, &tagLayout)));
+		HighAlgae(&arm, &elevator, &intake, &superStructure));
 
 	(console.Button(10) && driver.POVRight()).OnTrue(
 		SourceCommand(&arm, &elevator, &intake, &superStructure).AlongWith(stationPos(&chassis, &tagLayout)));

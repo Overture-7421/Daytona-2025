@@ -30,6 +30,8 @@ public:
     units::degree_t getArmAngle();
     units::degree_t getWristAngle();
 
+    void changeArmSpeeds(units::turns_per_second_t velocity, units::turns_per_second_squared_t acceleration);
+
     void Periodic() override;
 
 private:

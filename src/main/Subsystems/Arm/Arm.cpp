@@ -79,6 +79,10 @@ units::degree_t Arm::getWristAngle() {
     return wristMotor.GetPosition().GetValue();
 }
 
+void Arm::changeArmSpeeds(units::turns_per_second_t velocity, units::turns_per_second_squared_t acceleration) {
+    armLeftMotor.configureMotionMagic(velocity, acceleration, 0.0_tr_per_s_cu);
+}
+
 void Arm::Periodic() {
 
     units::degree_t armCurrentAngleMotor = armLeftMotor.GetPosition().GetValue();

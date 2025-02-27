@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-#include <frc2/command/Commands.h>
 #include "Commands/NetCommand/NetPose.h"
 
 RobotContainer::RobotContainer() {
@@ -82,7 +81,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::ConfigDriverBindings() {
-	chassis.SetDefaultCommand(DriveCommand(&chassis, &test).ToPtr());
+	chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
 	driver.Back().OnTrue(ResetHeading(&chassis));
 
 	driver.Y().WhileTrue(
@@ -202,8 +201,8 @@ void RobotContainer::ConfigCharacterizationBindings() {
 	//test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
 	//test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
 
-	test.A().WhileTrue(
-		L4Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPP(&chassis, &tagLayout, &frontRightCam)));
+	// test.A().WhileTrue(
+	// 	L4Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPP(&chassis, &tagLayout, &frontRightCam)));
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

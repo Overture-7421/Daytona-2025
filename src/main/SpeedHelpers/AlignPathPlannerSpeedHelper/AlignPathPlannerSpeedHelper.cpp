@@ -4,9 +4,6 @@
 
 #include "AlignPathPlannerSpeedHelper.h"
 
-#include <pathplanner/lib/pathfinding/Pathfinding.h>
-#include <pathplanner/lib/pathfinding/Pathfinder.h>
-#include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 

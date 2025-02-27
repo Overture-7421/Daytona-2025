@@ -10,6 +10,7 @@
 #include "Subsystems/Chassis/Chassis.h"
 #include <frc/geometry/Pose2d.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <pathplanner/lib/util/FlippingUtil.h>
 
 class AlignPathPlannerSpeedHelper: public SpeedsHelper {
 public:

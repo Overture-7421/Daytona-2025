@@ -4,9 +4,6 @@
 
 #include "AlignNetSpeedHelper.h"
 
-#include <pathplanner/lib/pathfinding/Pathfinding.h>
-#include <pathplanner/lib/pathfinding/Pathfinder.h>
-#include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 
 AlignNetSpeedHelper::AlignNetSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {

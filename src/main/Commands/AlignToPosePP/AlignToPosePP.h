@@ -11,7 +11,7 @@
 
 class AlignToPosePP: public frc2::CommandHelper<frc2::Command, AlignToPosePP> {
 public:
-    AlignToPosePP(Chassis *chassis, frc::Pose2d pose2d, AprilTags *frontRightCamera);
+    AlignToPosePP(Chassis *chassis, frc::Pose2d pose2d, photon::PhotonCamera *frontLeftCamera);
 
     void Initialize() override;
 

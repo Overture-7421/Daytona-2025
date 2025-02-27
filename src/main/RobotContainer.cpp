@@ -199,8 +199,7 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
 
-    //test.A().WhileTrue(
-     //       leftAlignPP(&chassis, &tagLayout, &frontLeftCam));
+    //test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

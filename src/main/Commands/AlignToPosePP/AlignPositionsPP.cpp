@@ -4,7 +4,7 @@
 
 #include "AlignPositionsPP.h"
 
-frc2::CommandPtr leftAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, AprilTags *frontLeftCamera) {
+frc2::CommandPtr leftAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, photon::PhotonCamera *frontLeftCamera) {
     return frc2::cmd::Select < ReefLocation
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);
@@ -18,7 +18,7 @@ frc2::CommandPtr leftAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayo
                     AlignToPosePP(chassis, left, frontLeftCamera).ToPtr());
 }
 
-frc2::CommandPtr centerAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, AprilTags *frontLeftCamera) {
+frc2::CommandPtr centerAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, photon::PhotonCamera *frontLeftCamera) {
     return frc2::cmd::Select < ReefLocation
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);
@@ -32,7 +32,7 @@ frc2::CommandPtr centerAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLa
                     AlignToPosePP(chassis, center, frontLeftCamera).ToPtr());
 }
 
-frc2::CommandPtr rightAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, AprilTags *frontLeftCamera) {
+frc2::CommandPtr rightAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, photon::PhotonCamera *frontLeftCamera) {
     return frc2::cmd::Select < ReefLocation
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);

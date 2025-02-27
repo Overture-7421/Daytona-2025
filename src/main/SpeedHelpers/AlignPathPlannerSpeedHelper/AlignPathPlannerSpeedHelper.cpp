@@ -8,9 +8,9 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 AlignPathPlannerSpeedHelper::AlignPathPlannerSpeedHelper(Chassis *chassis, frc::Pose2d targetPose,
-        AprilTags *frontRightCamera) {
+        photon::PhotonCamera *frontLeftCamera) {
     this->chassis = chassis;
-    this->frontRightCamera = frontRightCamera;
+    this->frontLeftCamera = frontLeftCamera;
     this->targetPose = targetPose;
 
     this->xPIDController.SetTolerance(0.03_m);
@@ -20,15 +20,14 @@ AlignPathPlannerSpeedHelper::AlignPathPlannerSpeedHelper(Chassis *chassis, frc::
 }
 
 void AlignPathPlannerSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
-    std::optional < photon::PhotonPipelineResult > optionalResult = frontRightCamera->getCameraResult();
-    if (!optionalResult.has_value()) {
+    std::vector<photon::PhotonPipelineResult> vectorResult = frontLeftCamera->GetAllUnreadResults();
+
+    if (vectorResult.empty()){
         return;
     }
 
-    photon::PhotonPipelineResult result = optionalResult.value();
-    if (!result.HasTargets()) {
-        return;
-    }
+    photon::PhotonPipelineResult result = vectorResult[0];
+
 
     frc::Transform3d cameraToTarget = result.GetBestTarget().GetBestCameraToTarget();
     frc::Translation2d targetTranslation = cameraToTarget.Translation().ToTranslation2d();
@@ -59,15 +58,21 @@ void AlignPathPlannerSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", targetTranslation.Y().value());
     frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", targetRotation.Degrees().value());
 
-    inputSpeed = frc::ChassisSpeeds::FromRobotRelativeSpeeds(xOut, yOut, rotationOut,
-            chassis->getEstimatedPose().Rotation());
+    inputSpeed.vx = xOut;
+    inputSpeed.vy = yOut;
+    inputSpeed.omega = rotationOut;
+
+
 }
 
 void AlignPathPlannerSpeedHelper::initialize() {
-    photon::PhotonPipelineResult result = frontRightCamera->getCameraResult().value();
-    if (!result.HasTargets()) {
+    std::vector<photon::PhotonPipelineResult> vectorResult = frontLeftCamera->GetAllUnreadResults();
+
+    if (vectorResult.empty()){
         return;
     }
+
+    photon::PhotonPipelineResult result = vectorResult[0];
 
     frc::Transform3d cameraToTarget = result.GetBestTarget().GetBestCameraToTarget();
     frc::Translation2d targetTranslation = cameraToTarget.Translation().ToTranslation2d();

@@ -14,7 +14,7 @@
 
 class AlignPathPlannerSpeedHelper: public SpeedsHelper {
 public:
-    AlignPathPlannerSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, AprilTags *frontRightCamera);
+    AlignPathPlannerSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, photon::PhotonCamera *frontLeftCamera);
     void alterSpeed(frc::ChassisSpeeds &inputSpeed) override;
     bool atGoal();
 
@@ -22,14 +22,15 @@ public:
 
 private:
 
-    frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, {2.0_mps, 1.0_mps_sq}}; //4 2.1
+    frc::ProfiledPIDController<units::meters> xPIDController {5.4, 0.0, 0.0, {1.0_mps, 0.5_mps_sq}}; //4 2.1
 
-    frc::ProfiledPIDController<units::meters> yPIDController {5.55, 0.0, 0.0, {2.0_mps, 1.0_mps_sq}}; //4 2.1
+    frc::ProfiledPIDController<units::meters> yPIDController {5.4, 0.0, 0.0, {1.0_mps, 0.5_mps_sq}}; //4 2.1
 
-    frc::ProfiledPIDController<units::degree> headingPIDController {5.55, 0.0, 0.0, {400_deg_per_s, 250_deg_per_s / 1_s}}; //800 500
+    frc::ProfiledPIDController<units::degree> headingPIDController {5.4, 0.0, 0.0, {200_deg_per_s, 125_deg_per_s / 1_s}}; //800 500
 
-    Chassis *chassis;
-    AprilTags *frontRightCamera;
+    Chassis *chassis = nullptr;
+    photon::PhotonCamera *frontLeftCamera = nullptr;
     frc::Pose2d targetPose;
+    
 
 };

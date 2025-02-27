@@ -40,6 +40,7 @@ public:
 private:
 
     MotionMagicVoltage jawVoltage {0_tr};
+    VoltageOut intakeVoltage {0_V};
 
     OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
     OverTalonFX intakeJawMotor {IntakeConstants::IntakeJawConfig(), "rio"};

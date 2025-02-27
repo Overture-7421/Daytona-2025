@@ -15,12 +15,13 @@ public:
     constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
     constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
 
-    constexpr static const units::degree_t JawAlgae = 73_deg;
+    constexpr static const units::degree_t JawAlgae = 79_deg;
+    constexpr static const units::degree_t JawAlgaeSpit = 83_deg;
     constexpr static const units::degree_t JawCoralOpen = 43_deg; //20
     constexpr static const units::degree_t JawCoralSpitL1 = 20_deg; //20
     constexpr static const units::degree_t JawCoralSpitL4 = 20_deg; //20
-    constexpr static const units::degree_t JawCoralStation = 24_deg; //30
-    constexpr static const units::degree_t JawCoralClose = 23_deg;
+    constexpr static const units::degree_t JawCoralStation = 25_deg; //30
+    constexpr static const units::degree_t JawCoralClose = 25.3_deg;
 
     constexpr static const units::volt_t CoralGrab = 2.5_V; //Positivo es para adentro
     constexpr static const units::volt_t CoralRelease = -2.5_V;
@@ -28,8 +29,8 @@ public:
     constexpr static const units::volt_t CoralSpitL4 = -1.5_V;
 
     constexpr static const units::volt_t AlgaeGrab = 4.0_V;
-    constexpr static const units::volt_t AlgaeRelease = -4.0_V;
-    constexpr static const units::volt_t AlgaeHold = 6_V;
+    constexpr static const units::volt_t AlgaeRelease = -8.0_V;
+    constexpr static const units::volt_t AlgaeHold = 5_V;
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
@@ -48,7 +49,7 @@ public:
 
         intakeConfig.CurrentLimit = 25_A;
         intakeConfig.StatorCurrentLimit = 120_A;
-        intakeConfig.TriggerThreshold = 35_A;
+        intakeConfig.TriggerThreshold = 40_A;
         intakeConfig.TriggerThresholdTime = 0.5_s;
         intakeConfig.ClosedLoopRampRate = 0.0_s;
         intakeConfig.OpenLoopRampRate = 0.05_s;

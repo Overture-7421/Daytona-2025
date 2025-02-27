@@ -4,8 +4,8 @@
 
 #include "AlignToPosePP.h"
 
-AlignToPosePP::AlignToPosePP(Chassis *chassis, frc::Pose2d pose2d, AprilTags *frontRightCamera) : alignSpeedHelper(
-        chassis, pose2d, frontRightCamera) {
+AlignToPosePP::AlignToPosePP(Chassis *chassis, frc::Pose2d pose2d, photon::PhotonCamera *frontLeftCamera) : alignSpeedHelper(
+        chassis, pose2d, frontLeftCamera) {
     this->chassis = chassis;
 
     AddRequirements( {chassis});

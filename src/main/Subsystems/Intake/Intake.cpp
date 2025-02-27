@@ -18,7 +18,7 @@ void Intake::setToAngle(units::degree_t jawAngle) {
 
 void Intake::setMotorVoltage(units::volt_t voltage) {
     frc::SmartDashboard::PutNumber("Intake/IntakeTargetVoltage", voltage.value());
-    intakeMotor.SetVoltage(voltage);
+    intakeMotor.SetControl(intakeVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
 bool Intake::isJawAtPosition(units::degree_t jawAngle) {

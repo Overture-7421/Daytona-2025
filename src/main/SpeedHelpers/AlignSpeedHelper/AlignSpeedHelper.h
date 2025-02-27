@@ -20,13 +20,14 @@ public:
 
 private:
 
-    frc::ProfiledPIDController<units::meters> xPIDController {7.0, 0.0, 0.0, {4.0_mps, 2.1_mps_sq}};
+    frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, {2.0_mps, 1.0_mps_sq}}; //4 2.1
 
-    frc::ProfiledPIDController<units::meters> yPIDController {7.0, 0.0, 0.0, {4.0_mps, 2.1_mps_sq}};
+    frc::ProfiledPIDController<units::meters> yPIDController {5.55, 0.0, 0.0, {2.0_mps, 1.0_mps_sq}}; //4 2.1
 
-    frc::ProfiledPIDController<units::degree> headingPIDController {4.0, 0.0, 0.0, {800_deg_per_s, 500_deg_per_s / 1_s}};
+    frc::ProfiledPIDController<units::degree> headingPIDController {5.55, 0.0, 0.0, {400_deg_per_s, 250_deg_per_s / 1_s}}; //800 500
 
     Chassis *chassis;
     frc::Pose2d targetPose;
+    frc::Pose2d flippedTargetPose;
 
 };

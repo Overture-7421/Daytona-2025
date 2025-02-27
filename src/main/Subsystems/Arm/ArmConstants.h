@@ -7,8 +7,8 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct ArmConstants {
-    constexpr static const units::degree_t ArmAngleRange = 1.7_deg;
-    constexpr static const units::degree_t WristAngleRange = 4.5_deg; //Bajar tolerancia
+    constexpr static const units::degree_t ArmAngleRange = 1.2_deg;
+    constexpr static const units::degree_t WristAngleRange = 1.7_deg; //Bajar tolerancia
 
     constexpr static const units::degree_t ArmScore = 40_deg;
 
@@ -24,13 +24,13 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmL3Reef = 58.0_deg; //50
     constexpr static const units::degree_t WristL3Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmL4Reef = 61.0_deg; //65
+    constexpr static const units::degree_t ArmL4Reef = 57.0_deg; //65
     constexpr static const units::degree_t WristL4Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmHighAlgae = 0.0_deg; //2
+    constexpr static const units::degree_t ArmHighAlgae = 90.0_deg; //2
     constexpr static const units::degree_t WristHighAlgae = 0.0_deg;
 
-    constexpr static const units::degree_t ArmLowAlgae = 0.0_deg; //2
+    constexpr static const units::degree_t ArmLowAlgae = 90.0_deg; //2
     constexpr static const units::degree_t WristLowAlgae = 0.0_deg;
 
     constexpr static const units::degree_t ArmCoralStation = 121_deg; //95
@@ -54,10 +54,10 @@ struct ArmConstants {
     constexpr static const double ArmRotorToSensor = 80.88889;
     constexpr static const double WristRotorToSensor = 31.5;
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 100_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 90_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity = 90.0_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 80_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 8_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 4_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 80.0_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 30_tr_per_s_sq;
 
     constexpr static const double ArmCANCoderId = 25;
     constexpr static const double WristCANCoderId = 27;
@@ -74,12 +74,12 @@ struct ArmConstants {
         armLeftConfig.Inverted = true;
 
         armLeftConfig.ClosedLoopRampRate = 0.05_s;
-        armLeftConfig.CurrentLimit = 30_A;
+        armLeftConfig.CurrentLimit = 20_A;
         armLeftConfig.StatorCurrentLimit = 120_A;
-        armLeftConfig.TriggerThreshold = 35_A;
+        armLeftConfig.TriggerThreshold = 30_A;
         armLeftConfig.TriggerThresholdTime = 0.5_s;
         armLeftConfig.PIDConfigs.GravityType = 1;
-        armLeftConfig.PIDConfigs.WithKG(0.2).WithKV(2.0).WithKP(75.0);
+        armLeftConfig.PIDConfigs.WithKV(1.8).WithKP(180);
 
         return armLeftConfig;
     }
@@ -91,11 +91,11 @@ struct ArmConstants {
         wristConfig.useFOC = true;
 
         wristConfig.ClosedLoopRampRate = 0.05_s;
-        wristConfig.CurrentLimit = 30_A;
+        wristConfig.CurrentLimit = 25_A;
         wristConfig.StatorCurrentLimit = 120_A;
-        wristConfig.TriggerThreshold = 35_A;
+        wristConfig.TriggerThreshold = 30_A;
         wristConfig.TriggerThresholdTime = 0.5_s;
-        wristConfig.PIDConfigs.WithKV(1.8).WithKP(25.8);
+        wristConfig.PIDConfigs.WithKV(1.8).WithKP(70);
 
         return wristConfig;
     }
@@ -111,7 +111,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig WristCANConfig() {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
-        wristCANConfig.Offset = 0.17724609375_tr;
+        wristCANConfig.Offset = 0.1787109375_tr;
         wristCANConfig.SensorDirection = 1;
 
         return wristCANConfig;

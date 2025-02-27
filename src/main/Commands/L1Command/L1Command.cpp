@@ -18,8 +18,12 @@ frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                      */
 
                     frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L1Position),
+                            ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristClosed,
+                                    ElevatorConstants::L1Position).ToPtr(),
                             ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristL1Reef,
-                                    ElevatorConstants::L1Position).ToPtr()))}
+                                    ElevatorConstants::L1Position).ToPtr()
+
+                            ))}
 
             );
 

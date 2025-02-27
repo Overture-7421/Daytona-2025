@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.2175,
-        "y": 3.6545
+        "x": 3.061278409090909,
+        "y": 3.621150568181818
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.0127499999999996,
-        "y": 3.2742499999999994
+        "x": 2.8565284090909087,
+        "y": 3.2409005681818175
       },
       "isLocked": false,
       "linkedName": "Chokeholdright7"

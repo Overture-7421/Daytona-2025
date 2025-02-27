@@ -36,12 +36,13 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
             })}
 
             ).AndThen(
-                    frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(
                             intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose),
-                            superStructure->setState(SuperStructureStates::HoldCoral),
-                            arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)
+                            frc2::cmd::Wait(0.2_s),
+                            frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::HoldCoral),
+                                    arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+                                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
 
-                            ));
+                                    ));
 
 }

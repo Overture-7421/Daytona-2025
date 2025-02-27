@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.762249999999999,
-        "y": 4.395499999999999
+        "x": 5.95,
+        "y": 4.05
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.035250000000001,
-        "y": 4.28825
+        "x": 6.2230000000000025,
+        "y": 3.94275
       },
       "isLocked": false,
       "linkedName": "Basicleave1"
     },
     {
       "anchor": {
-        "x": 6.830922670717593,
-        "y": 4.164989872685185
+        "x": 7.239375,
+        "y": 4.1
       },
       "prevControl": {
-        "x": 6.522750000000001,
-        "y": 4.17125
+        "x": 6.931202329282408,
+        "y": 4.1062601273148145
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,12 +33,12 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.45,
-    "maxAcceleration": 5.0,
+    "maxVelocity": 5.0,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
-    "unlimited": true
+    "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
@@ -50,5 +50,5 @@
     "velocity": 0,
     "rotation": 179.45389016907097
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

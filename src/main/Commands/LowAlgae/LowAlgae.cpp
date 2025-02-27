@@ -13,11 +13,6 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
             std::pair {SuperStructureStates::HoldCoral,
                     frc2::cmd::RepeatingSequence(
                             frc2::cmd::Sequence(
-                                    /*
-                                     frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
-                                     ArmMotion(elevator, arm, ArmConstants::ArmAlgaeInter, ArmConstants::WristLowAlgae,
-                                     ElevatorConstants::LowAlgae).ToPtr()),
-                                     */
                                     frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterLowAlgae),
                                             elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae,
@@ -28,11 +23,6 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                     })}, std::pair {SuperStructureStates::EnterHighAlgae,
                     frc2::cmd::RepeatingSequence(
                             frc2::cmd::Sequence(
-                                    /*
-                                     frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
-                                     ArmMotion(elevator, arm, ArmConstants::ArmAlgaeInter, ArmConstants::WristLowAlgae,
-                                     ElevatorConstants::LowAlgae).ToPtr()),
-                                     */
                                     frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterLowAlgae),
                                             elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                             ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae,
@@ -62,7 +52,7 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
 
                             frc2::cmd::Sequence(
                                     frc2::cmd::Parallel(
-                                            intake->setIntakeCommand(IntakeConstants::StopIntake,
+                                            intake->setIntakeCommand(IntakeConstants::AlgaeHold,
                                                     IntakeConstants::JawAlgae),
                                             superStructure->setState(SuperStructureStates::HoldAlgae)),
                                     frc2::cmd::Sequence(

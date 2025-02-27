@@ -20,7 +20,12 @@ AlignPathPlannerSpeedHelper::AlignPathPlannerSpeedHelper(Chassis *chassis, frc::
 }
 
 void AlignPathPlannerSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
-    photon::PhotonPipelineResult result = frontRightCamera->getCameraResult().value();
+    std::optional < photon::PhotonPipelineResult > optionalResult = frontRightCamera->getCameraResult();
+    if (!optionalResult.has_value()) {
+        return;
+    }
+
+    photon::PhotonPipelineResult result = optionalResult.value();
     if (!result.HasTargets()) {
         return;
     }

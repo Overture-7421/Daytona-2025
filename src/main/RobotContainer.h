@@ -10,6 +10,8 @@
 #include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
 #include <frc2/command/button/CommandGenericHID.h>
 #include <OvertureLib/Subsystems/Vision/AprilTags/AprilTags.h>
+#include <pathplanner/lib/auto/NamedCommands.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
 #include "Subsystems/Chassis/Chassis.h"
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
@@ -35,6 +37,7 @@
 #include "Commands/AlignToNet/AlignToNet.h"
 #include "Commands/NetCommand/NetCommand.h"
 #include "Commands/AlignToPose/AlignPositions.h"
+#include "Commands/AlignToPosePP/AlignPositionsPP.h"
 #include "Commands/AlgaeGroundGrabCommand/AlgaeGroundGrabCommand.h"
 #include "Commands/SpitGamePiece/SpitGamePiece.h"
 #include "Commands/SpitL1/SpitL1.h"

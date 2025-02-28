@@ -81,7 +81,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::ConfigDriverBindings() {
-    chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
+    chassis.SetDefaultCommand(DriveCommand(&chassis, &test).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
     driver.Y().WhileTrue(
@@ -199,7 +199,7 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
 
-    //test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
+    test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

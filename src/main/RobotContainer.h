@@ -62,7 +62,7 @@ private:
     OverXboxController driver {0, 0.20, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
     frc2::CommandGenericHID console {2};
-    //OverXboxController test {3, 0.20, 0.2};
+    OverXboxController test {3, 0.20, 0.2};
 
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
@@ -88,7 +88,7 @@ private:
     AprilTags frontLeftCam {&tagLayout, &chassis, frontLeftCamera()};
     AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
     AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
-    photon::PhotonCamera alignCamera{"FrontLeft"};
+    photon::PhotonCamera alignCamera {"FrontLeft"};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 

@@ -4,56 +4,33 @@
 
 #include "AlignPositionsPP.h"
 
-frc2::CommandPtr leftAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, photon::PhotonCamera *frontLeftCamera) {
+frc2::CommandPtr leftAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout,
+        photon::PhotonCamera *frontLeftCamera) {
     return frc2::cmd::Select < ReefLocation
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);
             },
-            std::pair {ReefLocation::A, pathplanner::AutoBuilder::pathfindToPoseFlipped(aPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::B, pathplanner::AutoBuilder::pathfindToPoseFlipped(bPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::C, pathplanner::AutoBuilder::pathfindToPoseFlipped(cPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::D, pathplanner::AutoBuilder::pathfindToPoseFlipped(dPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::E, pathplanner::AutoBuilder::pathfindToPoseFlipped(ePose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::F, pathplanner::AutoBuilder::pathfindToPoseFlipped(fPose, constraints, 0.5_mps)}).AndThen(
+            std::pair {ReefLocation::A, AlignToPose(chassis, aPose).ToPtr()}, std::pair {ReefLocation::B, AlignToPose(
+                    chassis, bPose).ToPtr()}, std::pair {ReefLocation::C, AlignToPose(chassis, cPose).ToPtr()}, std::pair {
+                    ReefLocation::D, AlignToPose(chassis, dPose).ToPtr()}, std::pair {ReefLocation::E, AlignToPose(
+                    chassis, ePose).ToPtr()}, std::pair {ReefLocation::F, AlignToPose(chassis, fPose).ToPtr()}).AndThen(
                     AlignToPosePP(chassis, left, frontLeftCamera).ToPtr());
 }
 
-frc2::CommandPtr centerAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, photon::PhotonCamera *frontLeftCamera) {
+frc2::CommandPtr centerAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout,
+        photon::PhotonCamera *frontLeftCamera) {
     return frc2::cmd::Select < ReefLocation
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);
             },
-            std::pair {ReefLocation::A, pathplanner::AutoBuilder::pathfindToPoseFlipped(aPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::B, pathplanner::AutoBuilder::pathfindToPoseFlipped(bPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::C, pathplanner::AutoBuilder::pathfindToPoseFlipped(cPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::D, pathplanner::AutoBuilder::pathfindToPoseFlipped(dPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::E, pathplanner::AutoBuilder::pathfindToPoseFlipped(ePose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::F, pathplanner::AutoBuilder::pathfindToPoseFlipped(fPose, constraints, 0.5_mps)}).AndThen(
+            std::pair {ReefLocation::A, AlignToPose(chassis, aPose).ToPtr()}, std::pair {ReefLocation::B, AlignToPose(
+                    chassis, bPose).ToPtr()}, std::pair {ReefLocation::C, AlignToPose(chassis, cPose).ToPtr()}, std::pair {
+                    ReefLocation::D, AlignToPose(chassis, dPose).ToPtr()}, std::pair {ReefLocation::E, AlignToPose(
+                    chassis, ePose).ToPtr()}, std::pair {ReefLocation::F, AlignToPose(chassis, fPose).ToPtr()}).AndThen(
                     AlignToPosePP(chassis, center, frontLeftCamera).ToPtr());
 }
 
-frc2::CommandPtr rightAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, photon::PhotonCamera *frontLeftCamera) {
-    return frc2::cmd::Select < ReefLocation
-            > ([chassis, tagLayout]() {
-                return findClosestReefLocation(chassis, tagLayout);
-            },
-            std::pair {ReefLocation::A, pathplanner::AutoBuilder::pathfindToPoseFlipped(aPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::B, pathplanner::AutoBuilder::pathfindToPoseFlipped(bPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::C, pathplanner::AutoBuilder::pathfindToPoseFlipped(cPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::D, pathplanner::AutoBuilder::pathfindToPoseFlipped(dPose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::E, pathplanner::AutoBuilder::pathfindToPoseFlipped(ePose, constraints, 0.5_mps)}, std::pair {
-                    ReefLocation::F, pathplanner::AutoBuilder::pathfindToPoseFlipped(fPose, constraints, 0.5_mps)}).AndThen(
-                    AlignToPosePP(chassis, right, frontLeftCamera).ToPtr());
-}
-
-frc2::CommandPtr pathFindProcessor() {
-    return pathplanner::AutoBuilder::pathfindToPose(processorPose, constraints, 0_mps);
-}
-
-frc2::CommandPtr stationAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
-    return frc2::cmd::Select < StationLocation > ([chassis, tagLayout]() {
-        return findClosestStationLocation(chassis, tagLayout);
-    },
-    std::pair {StationLocation::Left, AutoBuilder::pathfindToPose(stationPoseLeft, constraints, 0_mps)}, std::pair {
-            StationLocation::Right, AutoBuilder::pathfindToPose(stationPoseRight, constraints, 0_mps)});
+frc2::CommandPtr rightAlignPP(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout,
+        photon::PhotonCamera *frontLeftCamera) {
+    return AlignToPosePP(chassis, right, frontLeftCamera).ToPtr();
 }

@@ -22,15 +22,16 @@ public:
 
 private:
 
-    frc::ProfiledPIDController<units::meters> xPIDController {5.4, 0.0, 0.0, {1.0_mps, 0.5_mps_sq}}; //4 2.1
+    frc::ProfiledPIDController<units::meters> xPIDController {1, 0.0, 0.0, {1.0_mps, 0.5_mps_sq}}; //4 2.1
 
-    frc::ProfiledPIDController<units::meters> yPIDController {5.4, 0.0, 0.0, {1.0_mps, 0.5_mps_sq}}; //4 2.1
+    frc::ProfiledPIDController<units::meters> yPIDController {2.5, 0.0, 0.0, {1.0_mps, 0.5_mps_sq}}; //4 2.1
 
-    frc::ProfiledPIDController<units::degree> headingPIDController {5.4, 0.0, 0.0, {200_deg_per_s, 125_deg_per_s / 1_s}}; //800 500
+    frc::ProfiledPIDController<units::degree> headingPIDController {2, 0.0, 0.0, {160_deg_per_s, 80_deg_per_s / 1_s}}; //800 500
 
     Chassis *chassis = nullptr;
     photon::PhotonCamera *frontLeftCamera = nullptr;
     frc::Pose2d targetPose;
-    
+
+    int id = 0;
 
 };

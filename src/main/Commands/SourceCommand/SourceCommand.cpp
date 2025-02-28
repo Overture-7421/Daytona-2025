@@ -37,7 +37,7 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
 
             ).AndThen(
                     frc2::cmd::Sequence(
-                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose).WithTimeout(1_s),
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralClose).WithTimeout(0.25_s),
                             // frc2::cmd::Wait(0.2_s),
                             frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::HoldCoral),
                                     arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),

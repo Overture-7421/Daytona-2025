@@ -15,13 +15,13 @@ public:
     constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
     constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
 
-    constexpr static const units::degree_t JawAlgae = 79_deg;
-    constexpr static const units::degree_t JawAlgaeSpit = 83_deg;
-    constexpr static const units::degree_t JawCoralOpen = 43_deg; //20
-    constexpr static const units::degree_t JawCoralSpitL1 = 20_deg; //20
-    constexpr static const units::degree_t JawCoralSpitL4 = 20_deg; //20
-    constexpr static const units::degree_t JawCoralStation = 25_deg; //30
-    constexpr static const units::degree_t JawCoralClose = 25.3_deg;
+    constexpr static const units::degree_t JawAlgae = 85_deg;
+    constexpr static const units::degree_t JawAlgaeSpit = 53_deg;
+    constexpr static const units::degree_t JawCoralOpen = 47_deg; //20
+    constexpr static const units::degree_t JawCoralSpitL1 = 24_deg; //20
+    constexpr static const units::degree_t JawCoralSpitL4 = 24_deg; //20
+    constexpr static const units::degree_t JawCoralStation = 29_deg; //30
+    constexpr static const units::degree_t JawCoralClose = 27.0_deg;
 
     constexpr static const units::volt_t CoralGrab = 2.5_V; //Positivo es para adentro
     constexpr static const units::volt_t CoralRelease = -2.5_V;

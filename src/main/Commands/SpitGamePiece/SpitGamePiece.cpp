@@ -29,8 +29,8 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                                                         ArmConstants::ArmCruiseAcceleration);
                                             }
                                     ),
-                                    intake->setIntakeCommand(4_V, IntakeConstants::JawAlgae)), frc2::cmd::Wait(0.1_s),
-
+                                    intake->setIntakeCommand(IntakeConstants::AlgaeHold, IntakeConstants::JawAlgae)), frc2::cmd::Wait(0.2_s),
+                            //intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgaeSpit),
                             intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgaeSpit),
                             superStructure->setState(SuperStructureStates::SpitAlgae))}
 
@@ -43,8 +43,12 @@ frc2::CommandPtr SpitGamePieceAuto(Intake *intake, SuperStructure *superStructur
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(intake->setIntakeCommand(-3_V, 25_deg),
-                    superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
+            std::pair {SuperStructureStates::HoldCoral,
+                    frc2::cmd::Sequence(
+                            ArmMotion(elevator, arm, ArmConstants::ArmScore, ArmConstants::WristClosed,
+                                    elevator->getPosition()).ToPtr().WithTimeout(2.5_s),
+                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
+                            superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
                     SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
                             intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
                             superStructure->setState(SuperStructureStates::SpitAlgae))});

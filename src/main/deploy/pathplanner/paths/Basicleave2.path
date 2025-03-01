@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 5.95,
-        "y": 4.05
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
         "x": 6.2230000000000025,
-        "y": 3.94275
+        "y": 3.8927500000000004
       },
       "isLocked": false,
       "linkedName": "Basicleave1"

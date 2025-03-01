@@ -57,6 +57,7 @@ void AlignPathPlannerSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     // inputSpeed.omega = rotationOut;
 
     inputSpeed.vy = -yOut;
+    inputSpeed.vx = -xOut;
 
 }
 

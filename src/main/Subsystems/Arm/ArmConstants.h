@@ -54,8 +54,8 @@ struct ArmConstants {
     constexpr static const double ArmRotorToSensor = 80.88889;
     constexpr static const double WristRotorToSensor = 31.5;
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 8_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 4_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 6_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 2_tr_per_s_sq;
     constexpr static const units::turns_per_second_t WristCruiseVelocity = 20.0_tps;
     constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 10_tr_per_s_sq;
 

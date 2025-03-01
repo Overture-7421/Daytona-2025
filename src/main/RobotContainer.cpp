@@ -14,7 +14,7 @@ RobotContainer::RobotContainer() {
             std::move(ClosedCommand(&arm, &elevator, &intake, &superStructure).WithTimeout(0.4_s)));
 
     pathplanner::NamedCommands::registerCommand("coralL4",
-            std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure))));
+            std::move(frc2::cmd::Sequence(L4AutoCommand(&arm, &elevator, &superStructure).WithTimeout(4_s))));
 
     pathplanner::NamedCommands::registerCommand("coralL3",
             std::move(frc2::cmd::Sequence(L3Command(&arm, &elevator, &superStructure))));
@@ -23,7 +23,7 @@ RobotContainer::RobotContainer() {
             std::move(SpitGamePieceAuto(&intake, &superStructure, &elevator, &arm)));
 
     pathplanner::NamedCommands::registerCommand("spitCoral",
-            std::move(SpitGamePiece(&intake, &superStructure, &elevator, &arm)));
+            std::move(SpitGamePieceAuto(&intake, &superStructure, &elevator, &arm)));
 
     pathplanner::NamedCommands::registerCommand("spitAlgae",
             std::move(
@@ -81,7 +81,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 
 void RobotContainer::ConfigDriverBindings() {
-    chassis.SetDefaultCommand(DriveCommand(&chassis, &test).ToPtr());
+    chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
     driver.Y().WhileTrue(
@@ -199,7 +199,7 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
 
-    test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
+    //test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

@@ -46,7 +46,7 @@ frc2::CommandPtr SpitGamePieceAuto(Intake *intake, SuperStructure *superStructur
             std::pair {SuperStructureStates::HoldCoral,
                     frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmScore, ArmConstants::WristClosed,
-                                    elevator->getPosition()).ToPtr().WithTimeout(2.5_s),
+                                    elevator->getPosition()).ToPtr().WithTimeout(1.5_s),
                             intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
                             superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
                     SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(

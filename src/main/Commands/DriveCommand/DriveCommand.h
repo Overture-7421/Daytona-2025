@@ -50,6 +50,7 @@ private:
     frc::SlewRateLimiter<units::meters_per_second> yInput {8_mps_sq};
 
     int allianceMulti;
+    double slowMulti = 1;
 
     bool speedHelperMoved = false;
 };

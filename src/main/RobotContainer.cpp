@@ -88,14 +88,14 @@ void RobotContainer::ConfigDriverBindings() {
             NetCommand(&arm, &elevator, &superStructure).AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr()));
     driver.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
-    driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
+    //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.X().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    //driver.X().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    //driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    //driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    //driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));

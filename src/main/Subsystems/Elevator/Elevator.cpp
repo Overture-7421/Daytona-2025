@@ -5,7 +5,13 @@
 
 Elevator::Elevator() {
     rightElevatorMotor.setFollow(leftElevatorMotor.GetDeviceID(), true);
+
+    rightElevatorMotor.SetPosition(0_tr);
+    leftElevatorMotor.SetPosition(0_tr);
+
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
+    rightElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
+
     leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
             ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
 }
@@ -14,7 +20,9 @@ void Elevator::setPosition(units::meter_t position) {
     frc::SmartDashboard::PutNumber("Elevator/TargetPosition", position.value());
 
     units::turn_t positionInRotations {position.value() / (ElevatorConstants::Diameter.value() * M_PI)};
-    leftElevatorMotor.SetControl(elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true));
+    leftElevatorMotor.SetControl(
+            elevatorVoltage.WithPosition(positionInRotations).WithEnableFOC(true).WithFeedForward(
+                    ElevatorConstants::feedForward));
 
 }
 ;
@@ -54,5 +62,13 @@ void Elevator::Periodic() {
     double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble()
             * (ElevatorConstants::Diameter.value() * M_PI)};
     frc::SmartDashboard::PutNumber("Elevator/CurrentPosition", currentPosition);
+
+    frc::SmartDashboard::PutNumber("ElevatorCurrent/CurrentElevatorMotor", getPosition().value());
+    frc::SmartDashboard::PutNumber("ElevatorCurrent/CurrentReal", leftElevatorMotor.GetPosition().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("ElevatorCurrent/Voltage", leftElevatorMotor.GetMotorVoltage().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("ElevatorCurrent/Curent-Amps",
+            leftElevatorMotor.GetSupplyCurrent().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("ElevatorCurrent/TargetElevatorMotor",
+            leftElevatorMotor.GetClosedLoopReference().GetValue());
 
 }

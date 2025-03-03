@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "AlignPositions.h"
-#include "pathplanner/lib/util/FlippingUtil.h"
 
 frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
     return frc2::cmd::Select < ReefLocation

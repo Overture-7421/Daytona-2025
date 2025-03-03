@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.585388183051622,
-        "y": 3.998475486405925
+        "x": 6.97125,
+        "y": 4.063999999999999
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.74885452835648,
-        "y": 3.9960586660879627
+        "x": 5.810999999999999,
+        "y": 4.346749999999999
       },
       "prevControl": {
-        "x": 6.88730412125883,
-        "y": 3.9878154025886134
+        "x": 6.103499999999999,
+        "y": 4.28825
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 179.80992261883543
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "FreeAlgae",

@@ -17,6 +17,12 @@
                       "data": {
                         "pathName": "Basicleave1"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closedTimed"
+                      }
                     }
                   ]
                 }
@@ -38,25 +44,38 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "spitCoral"
-          }
-        },
-        {
-          "type": "parallel",
+          "type": "sequential",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "wait",
                 "data": {
-                  "pathName": "Basicleave2"
+                  "waitTime": 0.2
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "spitCoral"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "closed"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Basicleave2"
                 }
               }
             ]

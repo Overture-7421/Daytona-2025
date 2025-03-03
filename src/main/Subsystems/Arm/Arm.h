@@ -28,13 +28,15 @@ public:
     void blockedWrist(units::degree_t armAngle, units::degree_t wristAngle);
 
     units::degree_t getArmAngle();
+    units::degree_t getWristAngle();
+
+    void changeArmSpeeds(units::turns_per_second_t velocity, units::turns_per_second_squared_t acceleration);
 
     void Periodic() override;
 
 private:
 
     OverTalonFX armLeftMotor {ArmConstants::ArmLeftConfig(), "rio"};
-    OverTalonFX armRightMotor {ArmConstants::ArmRightConfig(), "rio"};
     OverCANCoder armCANCoder {ArmConstants::ArmCANConfig(), "rio"};
     OverTalonFX wristMotor {ArmConstants::WristConfig(), "rio"};
     OverCANCoder wristCANCoder {ArmConstants::WristCANConfig(), "rio"};

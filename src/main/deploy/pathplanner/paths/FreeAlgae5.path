@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.789,
-        "y": 0.584
+        "x": 5.64525,
+        "y": 0.6125
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.78175,
-        "y": 1.0414999999999999
+        "x": 5.68425,
+        "y": 0.9244999999999994
       },
       "isLocked": false,
       "linkedName": "Freealgae4"
@@ -20,8 +20,8 @@
         "y": 1.4704999999999995
       },
       "prevControl": {
-        "x": 5.78175,
-        "y": 1.0219999999999994
+        "x": 5.7683141573935925,
+        "y": 1.2213572780198803
       },
       "nextControl": null,
       "isLocked": false,

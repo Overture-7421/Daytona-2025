@@ -8,6 +8,8 @@
 
 struct NetPose {
 
-    constexpr static const frc::Pose2d pose = { {7.780_m, 6.105_m}, {0_deg}};
+    //Deja por enfrente, Necesita cambiar
+
+    constexpr static const frc::Pose2d pose = { {7.780_m, 6.105_m}, {-90_deg}};
 
 };

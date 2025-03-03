@@ -10,37 +10,47 @@
 struct IntakeConstants {
 public:
 
-    constexpr static const units::degree_t RangeError = 1.0_deg;
+    constexpr static const units::degree_t RangeError = 2.5_deg;
 
-    constexpr static const units::degree_t JawAlgae = 40_deg;
-    constexpr static const units::degree_t JawCoralOpen = 10_deg;
-    constexpr static const units::degree_t JawCoralClose = 3_deg;
+    constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
+    constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
 
-    constexpr static const units::volt_t CoralGrab = 4.0_V;
-    constexpr static const units::volt_t CoralRelease = -4.0_V;
+    constexpr static const units::degree_t JawAlgae = 75_deg;
+    constexpr static const units::degree_t JawAlgaeSpit = 75_deg;
 
-    constexpr static const units::volt_t AlgaeGrab = 4.0_V;
-    constexpr static const units::volt_t AlgaeRelease = -4.0_V;
+    constexpr static const units::degree_t JawCoralOpen = 50_deg; //20
+    constexpr static const units::degree_t JawCoralSpitL1 = 24_deg; //20
+    constexpr static const units::degree_t JawCoralStation = 29_deg; //30
+    constexpr static const units::degree_t JawCoralClose = 26.0_deg;
+
+    constexpr static const units::volt_t CoralGrab = 0.0_V; //Positivo es para adentro
+    constexpr static const units::volt_t CoralRelease = -2.5_V;
+    constexpr static const units::volt_t CoralSpit = -1.8_V;
+    constexpr static const units::volt_t CoralSpitL4 = -1.5_V;
+
+    constexpr static const units::volt_t AlgaeGrab = 4.0_V; //7
+    constexpr static const units::volt_t AlgaeRelease = -6.0_V;
+    constexpr static const units::volt_t AlgaeHold = 1_V; //5
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 25.5_tps;
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 35_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 40_tps;
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 30_tr_per_s_sq;
 
-    constexpr static const double SensorToMechanism = 1.5; //Emi will tell us probably 1.5
+    constexpr static const double SensorToMechanism = 9.9519621;
 
     constexpr static const OverTalonFXConfig IntakeConfig() {
         OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = 54;
+        intakeConfig.MotorId = 28;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
-        intakeConfig.Inverted = true;
+        intakeConfig.Inverted = false;
 
-        intakeConfig.CurrentLimit = 20_A;
+        intakeConfig.CurrentLimit = 25_A;
         intakeConfig.StatorCurrentLimit = 120_A;
-        intakeConfig.TriggerThreshold = 60_A;
-        intakeConfig.TriggerThresholdTime = 1_s;
+        intakeConfig.TriggerThreshold = 40_A;
+        intakeConfig.TriggerThresholdTime = 0.5_s;
         intakeConfig.ClosedLoopRampRate = 0.0_s;
         intakeConfig.OpenLoopRampRate = 0.05_s;
 
@@ -49,18 +59,18 @@ public:
 
     constexpr static const OverTalonFXConfig IntakeJawConfig() {
         OverTalonFXConfig intakeJawConfig;
-        intakeJawConfig.MotorId = 58;
+        intakeJawConfig.MotorId = 29;
         intakeJawConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeJawConfig.Inverted = true;
 
         intakeJawConfig.ClosedLoopRampRate = 0.05_s;
-        intakeJawConfig.CurrentLimit = 40_A;
+        intakeJawConfig.CurrentLimit = 30_A;
         intakeJawConfig.StatorCurrentLimit = 120_A;
-        intakeJawConfig.TriggerThreshold = 60_A;
-        intakeJawConfig.TriggerThresholdTime = 1_s;
+        intakeJawConfig.TriggerThreshold = 40_A;
+        intakeJawConfig.TriggerThresholdTime = 0.5_s;
         intakeJawConfig.OpenLoopRampRate = 0.0_s;
 
-        intakeJawConfig.PIDConfigs.WithKP(4.3);
+        intakeJawConfig.PIDConfigs.WithKV(0.8).WithKP(95.0);
 
         return intakeJawConfig;
     }

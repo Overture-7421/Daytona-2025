@@ -10,6 +10,7 @@
 #include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
 #include <frc2/command/button/CommandGenericHID.h>
 #include <OvertureLib/Subsystems/Vision/AprilTags/AprilTags.h>
+#include <pathplanner/lib/auto/NamedCommands.h>
 #include "Subsystems/Chassis/Chassis.h"
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
@@ -35,8 +36,12 @@
 #include "Commands/AlignToNet/AlignToNet.h"
 #include "Commands/NetCommand/NetCommand.h"
 #include "Commands/AlignToPose/AlignPositions.h"
+#include "Commands/AlignToPosePP/AlignPositionsPP.h"
 #include "Commands/AlgaeGroundGrabCommand/AlgaeGroundGrabCommand.h"
 #include "Commands/SpitGamePiece/SpitGamePiece.h"
+#include "Commands/SpitL1/SpitL1.h"
+
+#include "Commands/TabulateCommand/TabulateCommand.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -57,11 +62,13 @@ private:
     OverXboxController driver {0, 0.20, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
     frc2::CommandGenericHID console {2};
+    //OverXboxController test {3, 0.20, 0.2};
 
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
-    frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeAndyMark);
+	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 
 #endif 
     //Subsystems
@@ -69,7 +76,7 @@ private:
     Intake intake;
     Elevator elevator;
     Arm arm;
-    Climber climber;
+    //Climber climber;
     SuperStructure superStructure;
 
     static AprilTags::Config frontRightCamera();
@@ -81,6 +88,7 @@ private:
     AprilTags frontLeftCam {&tagLayout, &chassis, frontLeftCamera()};
     AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
     AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
+    photon::PhotonCamera alignCamera {"FrontLeft"};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 

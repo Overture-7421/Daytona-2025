@@ -6,7 +6,6 @@
 #include <iostream>
 
 Arm::Arm() {
-    armRightMotor.setFollow(ArmConstants::ArmLeftMotorId, true);
 
     armLeftMotor.setRotorToSensorRatio(ArmConstants::ArmRotorToSensor);
     wristMotor.setRotorToSensorRatio(ArmConstants::WristRotorToSensor);
@@ -72,9 +71,33 @@ frc2::CommandPtr Arm::SysIdDynamic(frc2::sysid::Direction direction) {
     return m_sysIdRoutine.Dynamic(direction);
 }
 
+units::degree_t Arm::getArmAngle() {
+    return armLeftMotor.GetPosition().GetValue();
+}
+
+units::degree_t Arm::getWristAngle() {
+    return wristMotor.GetPosition().GetValue();
+}
+
+void Arm::changeArmSpeeds(units::turns_per_second_t velocity, units::turns_per_second_squared_t acceleration) {
+    armLeftMotor.configureMotionMagic(velocity, acceleration, 0.0_tr_per_s_cu);
+}
+
 void Arm::Periodic() {
-    double armCurrentAngle = armLeftMotor.GetPosition().GetValueAsDouble() * 360;
-    double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngle", armCurrentAngle);
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentWristAngle", wristCurrentAngle);
+
+    units::degree_t armCurrentAngleMotor = armLeftMotor.GetPosition().GetValue();
+    units::degree_t armCurrentAngleCANCODER = armCANCoder.GetPosition().GetValue();
+    //double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
+    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleMotor", armCurrentAngleMotor.value());
+    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleEncoder", armCurrentAngleCANCODER.value());
+    frc::SmartDashboard::PutNumber("ArmCurrent/Voltage", armLeftMotor.GetMotorVoltage().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("ArmCurrent/Curent-Amps", armLeftMotor.GetSupplyCurrent().GetValueAsDouble());
+
+    units::degree_t wristCurrentAngleMotor = wristMotor.GetPosition().GetValue();
+    units::degree_t wristCurrentAngleCANCODER = wristCANCoder.GetPosition().GetValue();
+    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleMotor", wristCurrentAngleMotor.value());
+    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleEncoder", wristCurrentAngleCANCODER.value());
+    frc::SmartDashboard::PutNumber("WristCurrent/Voltage", wristMotor.GetMotorVoltage().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("WristCurrent/Curent-Amps", wristMotor.GetSupplyCurrent().GetValueAsDouble());
+
 }

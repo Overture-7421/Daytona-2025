@@ -8,6 +8,7 @@ Intake::Intake() {
     intakeJawMotor.setSensorToMechanism(IntakeConstants::SensorToMechanism);
     intakeJawMotor.configureMotionMagic(IntakeConstants::IntakeCruiseVelocity,
             IntakeConstants::IntakeCruiseAcceleration, 0.0_tr_per_s_cu);
+    intakeJawMotor.SetPosition(0_tr);
 }
 
 void Intake::setToAngle(units::degree_t jawAngle) {
@@ -17,7 +18,7 @@ void Intake::setToAngle(units::degree_t jawAngle) {
 
 void Intake::setMotorVoltage(units::volt_t voltage) {
     frc::SmartDashboard::PutNumber("Intake/IntakeTargetVoltage", voltage.value());
-    intakeMotor.SetVoltage(voltage);
+    intakeMotor.SetControl(intakeVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
 bool Intake::isJawAtPosition(units::degree_t jawAngle) {
@@ -30,12 +31,21 @@ double Intake::getVoltage() {
     return intakeMotor.GetMotorVoltage().GetValueAsDouble();
 }
 
+units::degree_t Intake::getJawAngle() {
+    return intakeJawMotor.GetPosition().GetValue();
+}
+
 bool Intake::isCoralIn(units::degree_t jawAngle) {
-    return ((canRange.GetDistance().GetValue() == 0.30_m) && (isJawAtPosition(jawAngle)));
+    // return ((canRange.GetDistance().GetValue() <= IntakeConstants::SensorCoralDistance));
+
+    return canRange.GetIsDetected().GetValue();
 }
 
 bool Intake::isAlgaeIn(units::degree_t jawAngle) {
-    return ((canRange.GetDistance().GetValue() == 0.10_m) && (isJawAtPosition(jawAngle)));
+    //return ((canRange.GetDistance().GetValue() <= IntakeConstants::SensorAlgaeDistance));
+
+    return canRange.GetIsDetected().GetValue();
+
 }
 
 frc2::CommandPtr Intake::setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle) {
@@ -71,5 +81,12 @@ void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
     double jawCurrentAngle = intakeJawMotor.GetPosition().GetValueAsDouble() * 360;
     frc::SmartDashboard::PutNumber("Intake/CurrentJawAngle", jawCurrentAngle);
+
+    units::degree_t jawCurrentAngleMotor = intakeJawMotor.GetPosition().GetValue();
+    frc::SmartDashboard::PutNumber("IntakeCurrent/CurrentJawAngleMotor", jawCurrentAngleMotor.value());
+    frc::SmartDashboard::PutNumber("IntakeCurrent/Voltage", intakeJawMotor.GetMotorVoltage().GetValueAsDouble());
+    frc::SmartDashboard::PutNumber("IntakeCurrent/Curent-Amps", intakeJawMotor.GetSupplyCurrent().GetValueAsDouble());
+    frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn(10_deg));
+    frc::SmartDashboard::PutNumber("SensorDistance", canRange.GetDistance().GetValue().value());
 
 }

@@ -21,7 +21,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "coralL4"
+                        "name": "closedTimed"
                       }
                     }
                   ]
@@ -31,9 +31,28 @@
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "spitCoral"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.4
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "spitCoral"
+                }
+              }
+            ]
           }
         },
         {
@@ -85,13 +104,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "closed"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
+                        "name": "closedTimed"
                       }
                     }
                   ]
@@ -101,9 +114,28 @@
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "spitCoral"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "coralL4"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 0.4
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "spitCoral"
+                }
+              }
+            ]
           }
         },
         {
@@ -125,201 +157,11 @@
                       "data": {
                         "name": "closed"
                       }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralStation"
-                      }
                     }
                   ]
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Chokeholdright5"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "closed"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "spitCoral"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Chokeholdright6"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "closed"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralStation"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Chokeholdright7"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "closed"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "spitCoral"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Chokeholdright8"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "closed"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralStation"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Chokeholdright9"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "closed"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "coralL4"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "spitCoral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "closed"
           }
         }
       ]

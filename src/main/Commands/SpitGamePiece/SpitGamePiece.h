@@ -7,5 +7,8 @@
 #include "Subsystems/Intake/Intake.h"
 #include <frc2/command/Commands.h>
 #include "Subsystems/SuperStructure/SuperStructure.h"
+#include "Commands/ArmMotion/ArmMotion.h"
 
-frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure);
+frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm);
+frc2::CommandPtr SpitGamePieceAuto(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm);
+

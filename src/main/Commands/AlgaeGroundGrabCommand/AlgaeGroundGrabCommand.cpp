@@ -9,41 +9,35 @@ frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *in
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldCoral,
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
+            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
+                            elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                                     ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
-
-                            intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure->setState(SuperStructureStates::EnterAlgaeGround).FinallyDo(
-                                    [=]() {
-                                        intake->setIntakeCommand(IntakeConstants::StopIntake,
-                                                IntakeConstants::JawAlgae), superStructure->setState(
-                                                SuperStructureStates::HoldAlgae);
-                                    })
-                    )}, std::pair {SuperStructureStates::EnterCoralStation,
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
+                            intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae))).Until(
+                    [intake] {
+                        return intake->isAlgaeIn(IntakeConstants::JawAlgae);
+                    })}, std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
+                            elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                                     ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
-
-                            intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure->setState(SuperStructureStates::EnterAlgaeGround).FinallyDo(
-                                    [=]() {
-                                        intake->setIntakeCommand(IntakeConstants::StopIntake,
-                                                IntakeConstants::JawAlgae), superStructure->setState(
-                                                SuperStructureStates::HoldAlgae);
-                                    })
-                    )}, std::pair {SuperStructureStates::EnterCoralGround,
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
+                            intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae))).Until(
+                    [intake] {
+                        return intake->isAlgaeIn(IntakeConstants::JawAlgae);
+                    })}, std::pair {SuperStructureStates::EnterCoralGround, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
+                            elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                                     ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
-
-                            intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae),
-                            superStructure->setState(SuperStructureStates::EnterAlgaeGround).FinallyDo(
-                                    [=]() {
-                                        intake->setIntakeCommand(IntakeConstants::StopIntake,
-                                                IntakeConstants::JawAlgae), superStructure->setState(
-                                                SuperStructureStates::HoldAlgae);
-                                    })
-                    )});
+                            intake->setIntakeCommand(IntakeConstants::AlgaeGrab, IntakeConstants::JawAlgae))).Until(
+                    [intake] {
+                        return intake->isAlgaeIn(IntakeConstants::JawAlgae);
+                    })}).AndThen(
+                    frc2::cmd::Sequence(
+                            frc2::cmd::Parallel(
+                                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgae),
+                                    superStructure->setState(SuperStructureStates::HoldAlgae)),
+                            frc2::cmd::Sequence(arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+                                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))));
 }

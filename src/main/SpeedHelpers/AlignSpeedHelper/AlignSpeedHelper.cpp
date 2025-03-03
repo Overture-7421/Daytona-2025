@@ -4,9 +4,6 @@
 
 #include "AlignSpeedHelper.h"
 
-#include <pathplanner/lib/pathfinding/Pathfinding.h>
-#include <pathplanner/lib/pathfinding/Pathfinder.h>
-#include <pathplanner/lib/util/FlippingUtil.h>
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
@@ -26,14 +23,14 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
-    frc::SmartDashboard::PutNumber("AlignTarget/XTarget", targetPose.X().value());
-    frc::SmartDashboard::PutNumber("AlignTarget/YTarget", targetPose.Y().value());
-    frc::SmartDashboard::PutNumber("AlignTarget/RTarget", targetPose.Rotation().Degrees().value());
+    frc::SmartDashboard::PutNumber("AlignTarget/XTarget", flippedTargetPose.X().value());
+    frc::SmartDashboard::PutNumber("AlignTarget/YTarget", flippedTargetPose.Y().value());
+    frc::SmartDashboard::PutNumber("AlignTarget/RTarget", flippedTargetPose.Rotation().Degrees().value());
 
-    auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), targetPose.X()));
-    auto yOut = units::meters_per_second_t(yPIDController.Calculate(pose.Y(), targetPose.Y()));
+    auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), flippedTargetPose.X()));
+    auto yOut = units::meters_per_second_t(yPIDController.Calculate(pose.Y(), flippedTargetPose.Y()));
     auto rotationOut = units::degrees_per_second_t(
-            headingPIDController.Calculate(pose.Rotation().Degrees(), targetPose.Rotation().Degrees()));
+            headingPIDController.Calculate(pose.Rotation().Degrees(), flippedTargetPose.Rotation().Degrees()));
 
     if (xPIDController.AtGoal()) {
         xOut = 0_mps;
@@ -56,15 +53,13 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
 }
 
 void AlignSpeedHelper::initialize() {
+    if (isRedAlliance()) {
+        flippedTargetPose = pathplanner::FlippingUtil::flipFieldPose(targetPose);
+    }
+
     xPIDController.Reset(chassis->getEstimatedPose().X());
     yPIDController.Reset(chassis->getEstimatedPose().Y());
     headingPIDController.Reset(chassis->getEstimatedPose().Rotation().Radians());
-
-    if (isRedAlliance()) {
-        targetPose = pathplanner::FlippingUtil::flipFieldPose(targetPose);
-    } else {
-        targetPose = targetPose;
-    }
 }
 
 bool AlignSpeedHelper::atGoal() {

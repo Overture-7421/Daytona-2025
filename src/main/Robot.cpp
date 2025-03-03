@@ -19,7 +19,8 @@ Robot::Robot() {
             "Reefscape2025/motors/intake_rotator"}, {54, "Reefscape2025/motors/intake"}});
 
     simPigeonManager.Init("Reefscape2025/imu");
-    frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+    frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(
+            frc::AprilTagField::k2025ReefscapeAndyMark);
     simPhotonVisionManager.Init(tagLayout);
 
     simCANCoderManager.Init( { {11, "Reefscape2025/cancoders/back_right_cancoder"}, {10,

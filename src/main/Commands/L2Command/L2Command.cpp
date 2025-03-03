@@ -10,11 +10,12 @@ frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L2Position),
-                            ArmMotion(elevator, arm, ArmConstants::ArmCoralInter, ArmConstants::WristL2Reef,
-                                    ElevatorConstants::L2Position).ToPtr()),
-
-                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L2Position),
+                    /*
+                     frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::L2Position),
+                     ArmMotion(elevator, arm, ArmConstants::ArmCoralInter, ArmConstants::WristL2Reef,
+                     ElevatorConstants::L2Position).ToPtr()),
+                     */
+                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L2Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL2Reef, ArmConstants::WristL2Reef,
                                     ElevatorConstants::L2Position).ToPtr()))}
 

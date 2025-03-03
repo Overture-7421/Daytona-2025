@@ -25,6 +25,7 @@ public:
     void setToAngle(units::degree_t jawAngle);
 
     double getVoltage();
+    units::degree_t getJawAngle();
     bool isJawAtPosition(units::degree_t jawAngle);
 
     bool isCoralIn(units::degree_t jawAngle);
@@ -37,12 +38,13 @@ public:
     void Periodic() override;
 
 private:
-    //ID 20
+
     MotionMagicVoltage jawVoltage {0_tr};
+    VoltageOut intakeVoltage {0_V};
 
     OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
     OverTalonFX intakeJawMotor {IntakeConstants::IntakeJawConfig(), "rio"};
 
-    CANrange canRange {55, "rio"};
+    CANrange canRange {30, "rio"};
 
 };

@@ -29,7 +29,8 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                                                         ArmConstants::ArmCruiseAcceleration);
                                             }
                                     ),
-                                    intake->setIntakeCommand(IntakeConstants::AlgaeHold, IntakeConstants::JawAlgae)), frc2::cmd::Wait(0.2_s),
+                                    intake->setIntakeCommand(IntakeConstants::AlgaeHold, IntakeConstants::JawAlgae)),
+                            frc2::cmd::Wait(0.2_s),
                             //intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgaeSpit),
                             intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgaeSpit),
                             superStructure->setState(SuperStructureStates::SpitAlgae))}

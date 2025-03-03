@@ -82,8 +82,7 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
                             elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)))
 
             }, std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Sequence(
-                    frc2::cmd::Parallel(
-                            intake->setIntakeCommand(IntakeConstants::AlgaeHold, IntakeConstants::JawAlgae),
+                    frc2::cmd::Parallel(intake->setIntakeCommand(IntakeConstants::AlgaeHold, IntakeConstants::JawAlgae),
                             superStructure->setState(SuperStructureStates::HoldAlgae)),
                     frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,

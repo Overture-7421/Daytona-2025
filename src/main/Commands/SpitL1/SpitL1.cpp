@@ -11,8 +11,7 @@ frc2::CommandPtr SpitL1(Intake *intake, SuperStructure *superStructure) {
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
                     superStructure->setState(SuperStructureStates::SpitCoral),
-                    intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralSpitL1),
-                    intake->setIntakeCommand(IntakeConstants::CoralSpit, IntakeConstants::JawCoralSpitL1))}
+                    intake->moveIntake(IntakeConstants::StopIntake), intake->moveIntake(IntakeConstants::CoralSpit))}
 
             );
 

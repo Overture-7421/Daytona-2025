@@ -6,9 +6,11 @@
 
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Elevator/Elevator.h"
-#include <frc2/command/Commands.h>
 #include "Commands/ArmMotion/ArmMotion.h"
+#include <frc2/command/Commands.h>
 #include "Subsystems/SuperStructure/SuperStructure.h"
 
+frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure);
+frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure);
+frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure);
 frc2::CommandPtr L4Command(Arm *arm, Elevator *elevator, SuperStructure *superStructure);
-frc2::CommandPtr L4AutoCommand(Arm *arm, Elevator *elevator, SuperStructure *superStructure);

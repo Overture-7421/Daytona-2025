@@ -20,11 +20,7 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
 #include "Subsystems/SuperStructure/SuperStructure.h"
-
-#include "Commands/L1Command/L1Command.h"
-#include "Commands/L2Command/L2Command.h"
-#include "Commands/L3Command/L3Command.h"
-#include "Commands/L4Command/L4Command.h"
+#include "Commands/ReefCommands/ReefCommands.h"
 #include "Commands/CoralGroundGrabCommand/CoralGroundGrabCommand.h"
 #include "Commands/ArmMotion/ArmMotion.h"
 #include "Commands/ClosedCommand/ClosedCommand.h"
@@ -36,12 +32,9 @@
 #include "Commands/AlignToNet/AlignToNet.h"
 #include "Commands/NetCommand/NetCommand.h"
 #include "Commands/AlignToPose/AlignPositions.h"
-#include "Commands/AlignToPosePP/AlignPositionsPP.h"
 #include "Commands/AlgaeGroundGrabCommand/AlgaeGroundGrabCommand.h"
 #include "Commands/SpitGamePiece/SpitGamePiece.h"
 #include "Commands/SpitL1/SpitL1.h"
-
-#include "Commands/TabulateCommand/TabulateCommand.h"
 
 class RobotContainer: public OverContainer {
 public:

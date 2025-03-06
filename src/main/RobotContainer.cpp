@@ -10,20 +10,14 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("closed",
             std::move(ClosedCommand(&arm, &elevator, &intake, &superStructure)));
 
-    pathplanner::NamedCommands::registerCommand("closedTimed",
-            std::move(ClosedCommand(&arm, &elevator, &intake, &superStructure).WithTimeout(0.4_s)));
-
     pathplanner::NamedCommands::registerCommand("coralL4",
             (L4Command(&arm, &elevator, &superStructure).WithTimeout(4_s)));
 
     pathplanner::NamedCommands::registerCommand("coralL3",
             std::move(frc2::cmd::Sequence(L3Command(&arm, &elevator, &superStructure))));
 
-    pathplanner::NamedCommands::registerCommand("spitCoralAlternate",
-            std::move(SpitGamePieceAuto(&intake, &superStructure, &elevator, &arm)));
-
     pathplanner::NamedCommands::registerCommand("spitCoral",
-            std::move(SpitGamePieceAuto(&intake, &superStructure, &elevator, &arm)));
+            std::move(SpitGamePiece(&intake, &superStructure, &elevator, &arm)));
 
     pathplanner::NamedCommands::registerCommand("spitAlgae",
             std::move(
@@ -197,8 +191,6 @@ void RobotContainer::ConfigCharacterizationBindings() {
 
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
-
-    //test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
 }
 
 AprilTags::Config RobotContainer::frontRightCamera() {

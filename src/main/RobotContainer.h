@@ -81,7 +81,6 @@ private:
     AprilTags frontLeftCam {&tagLayout, &chassis, frontLeftCamera()};
     AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
     AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
-    photon::PhotonCamera alignCamera {"FrontLeft"};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 

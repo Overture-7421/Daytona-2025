@@ -40,13 +40,9 @@ frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperSt
 
             ).AndThen(
                     frc2::cmd::Sequence(frc2::cmd::Wait(0.8_s),
-
-                            frc2::cmd::Sequence(
-                                    frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::AlgaeHold),
-                                            superStructure->setState(SuperStructureStates::HoldAlgae)),
-                                    frc2::cmd::Sequence(
-                                            arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-                                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)))));
+                            superStructure->setState(SuperStructureStates::HoldAlgae),
+                            arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+                            elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)));
 
 }
 

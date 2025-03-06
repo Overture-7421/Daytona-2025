@@ -35,20 +35,3 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
             );
 
 }
-
-frc2::CommandPtr SpitGamePieceAuto(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm) {
-    return frc2::cmd::Select < SuperStructureStates
-            > ([superStructure] {
-                return superStructure->getState();
-            },
-            std::pair {SuperStructureStates::HoldCoral,
-                    frc2::cmd::Sequence(
-                            ArmMotion(elevator, arm, ArmConstants::ArmScore, ArmConstants::WristClosed,
-                                    elevator->getPosition()).ToPtr().WithTimeout(1.5_s),
-                            intake->moveIntake(IntakeConstants::StopIntake),
-                            superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
-                    SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
-                            intake->moveIntake(IntakeConstants::AlgaeRelease),
-                            superStructure->setState(SuperStructureStates::SpitAlgae))});
-
-}

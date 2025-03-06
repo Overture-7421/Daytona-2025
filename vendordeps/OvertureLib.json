@@ -1,7 +1,7 @@
 {
     "fileName": "OvertureLib.json",
     "name": "OvertureLib",
-    "version": "2025.3.1",
+    "version": "2025.3.2",
     "frcYear": "2025",
     "uuid": "f5b78b8e-1696-4920-b6a1-154fa9a48d06",
     "mavenUrls": [
@@ -12,7 +12,7 @@
         {
             "groupId": "com.overture.lib",
             "artifactId": "OvertureLib-java",
-            "version": "2025.3.1"
+            "version": "2025.3.2"
         }
     ],
     "jniDependencies": [],
@@ -20,7 +20,7 @@
         {
             "groupId": "com.overture.lib",
             "artifactId": "OvertureLib-cpp",
-            "version": "2025.3.1",
+            "version": "2025.3.2",
             "libName": "OvertureLib",
             "headerClassifier": "headers",
             "sharedLibrary": true,

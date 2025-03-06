@@ -162,7 +162,6 @@ void RobotContainer::ConfigMixedBindigs() {
     //(console.Button(2) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
 
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-
 }
 
 void RobotContainer::ConfigDefaultCommands() {
@@ -172,23 +171,25 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    //test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
+    /*
+     test.A().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+     test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
+     test.B().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+     test.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     */
+
+    //test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
-
     // test.B().WhileTrue(elevator.setElevatorCommand(1.50_m));
     // test.B().OnFalse(elevator.setElevatorCommand(0.00_m));
-
     //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 90_deg));
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 0_deg));
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
 }
@@ -196,7 +197,7 @@ void RobotContainer::ConfigCharacterizationBindings() {
 AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot = {10.039075_in, -5.803152_in, 10.670231_in, {0_deg, 0_deg, 0_deg}};
+    config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -28.125_deg, 45_deg}};
     return config;
 }
 

@@ -12,11 +12,11 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
     this->targetPose = targetPose;
 
     this->xPIDController.SetIZone(3);
-    this->xPIDController.SetTolerance(0.15_m);
+    this->xPIDController.SetTolerance(0.03_m);
     this->yPIDController.SetIZone(3);
-    this->yPIDController.SetTolerance(0.15_m);
+    this->yPIDController.SetTolerance(0.03_m);
     this->headingPIDController.SetIZone(3);
-    this->headingPIDController.SetTolerance(3.0_deg);
+    this->headingPIDController.SetTolerance(1.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 }
 

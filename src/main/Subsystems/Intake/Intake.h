@@ -22,28 +22,21 @@ public:
     Intake();
 
     void setMotorVoltage(units::volt_t voltage);
-    void setToAngle(units::degree_t jawAngle);
 
     double getVoltage();
-    units::degree_t getJawAngle();
-    bool isJawAtPosition(units::degree_t jawAngle);
 
-    bool isCoralIn(units::degree_t jawAngle);
-    bool isAlgaeIn(units::degree_t jawAngle);
+    bool isCoralIn();
+    bool isAlgaeIn();
 
-    frc2::CommandPtr setIntakeCommand(units::volt_t voltage, units::degree_t jawAngle);
-    frc2::CommandPtr setJawCommand(units::degree_t jawAngle);
     frc2::CommandPtr moveIntake(units::volt_t voltage);
 
     void Periodic() override;
 
 private:
 
-    MotionMagicVoltage jawVoltage {0_tr};
     VoltageOut intakeVoltage {0_V};
 
     OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
-    OverTalonFX intakeJawMotor {IntakeConstants::IntakeJawConfig(), "rio"};
 
     CANrange canRange {30, "rio"};
 

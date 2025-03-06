@@ -31,7 +31,7 @@
   "driveMotorType": "krakenX60",
   "driveCurrentLimit": 60.0,
   "wheelCOF": 2.106,
-  "flModuleX": 0.2322591494,
+  "flModuleX": 0.232,
   "flModuleY": 0.2509614996,
   "frModuleX": 0.2322591494,
   "frModuleY": -0.2509614996,

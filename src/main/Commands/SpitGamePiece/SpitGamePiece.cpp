@@ -12,8 +12,7 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
             std::pair {SuperStructureStates::HoldCoral,
                     frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmScore, ArmConstants::WristClosed,
-                                    elevator->getPosition()).ToPtr(),
-                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
+                                    elevator->getPosition()).ToPtr(), intake->moveIntake(IntakeConstants::StopIntake),
                             superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
                     SuperStructureStates::HoldAlgae,
                     frc2::cmd::Sequence(
@@ -29,29 +28,10 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                                                         ArmConstants::ArmCruiseAcceleration);
                                             }
                                     ),
-                                    intake->setIntakeCommand(IntakeConstants::AlgaeHold, IntakeConstants::JawAlgae)),
-                            frc2::cmd::Wait(0.2_s),
-                            //intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawAlgaeSpit),
-                            intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgaeSpit),
+                                    intake->moveIntake(IntakeConstants::AlgaeHold)), frc2::cmd::Wait(0.2_s),
+                            intake->moveIntake(IntakeConstants::AlgaeRelease),
                             superStructure->setState(SuperStructureStates::SpitAlgae))}
 
             );
-
-}
-
-frc2::CommandPtr SpitGamePieceAuto(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm) {
-    return frc2::cmd::Select < SuperStructureStates
-            > ([superStructure] {
-                return superStructure->getState();
-            },
-            std::pair {SuperStructureStates::HoldCoral,
-                    frc2::cmd::Sequence(
-                            ArmMotion(elevator, arm, ArmConstants::ArmScore, ArmConstants::WristClosed,
-                                    elevator->getPosition()).ToPtr().WithTimeout(1.5_s),
-                            intake->setIntakeCommand(IntakeConstants::StopIntake, IntakeConstants::JawCoralOpen),
-                            superStructure->setState(SuperStructureStates::SpitCoral))}, std::pair {
-                    SuperStructureStates::HoldAlgae, frc2::cmd::Parallel(
-                            intake->setIntakeCommand(IntakeConstants::AlgaeRelease, IntakeConstants::JawAlgae),
-                            superStructure->setState(SuperStructureStates::SpitAlgae))});
 
 }

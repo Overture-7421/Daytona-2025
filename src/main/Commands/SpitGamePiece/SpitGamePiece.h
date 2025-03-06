@@ -10,5 +10,4 @@
 #include "Commands/ArmMotion/ArmMotion.h"
 
 frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm);
-frc2::CommandPtr SpitGamePieceAuto(Intake *intake, SuperStructure *superStructure, Elevator *elevator, Arm *arm);
 

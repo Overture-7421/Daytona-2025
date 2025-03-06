@@ -179,35 +179,27 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-        /*
-        test.A().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-        test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    /*
+     test.A().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+     test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-        test.B().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
-        test.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-        */
-
+     test.B().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+     test.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     */
 
     //test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
-
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
-
     // test.B().WhileTrue(elevator.setElevatorCommand(1.50_m));
     // test.B().OnFalse(elevator.setElevatorCommand(0.00_m));
-
     //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 90_deg));
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 0_deg));
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
-
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
-
     //test.A().WhileTrue(rightAlignPP(&chassis, &tagLayout, &alignCamera));
 }
 

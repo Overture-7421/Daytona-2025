@@ -13,9 +13,9 @@ public:
     constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
     constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
 
-    constexpr static const units::volt_t CoralGrab = 0.0_V; //Positivo es para adentro
+    constexpr static const units::volt_t CoralGrab = 4.0_V; //Positivo es para adentro
     constexpr static const units::volt_t CoralRelease = -2.5_V;
-    constexpr static const units::volt_t CoralSpit = -1.8_V;
+    constexpr static const units::volt_t CoralSpit = -2.5_V;
     constexpr static const units::volt_t CoralSpitL4 = -1.5_V;
 
     constexpr static const units::volt_t AlgaeGrab = 4.0_V; //7
@@ -30,7 +30,7 @@ public:
         OverTalonFXConfig intakeConfig;
         intakeConfig.MotorId = 28;
         intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
-        intakeConfig.Inverted = false;
+        intakeConfig.Inverted = true;
 
         intakeConfig.CurrentLimit = 25_A;
         intakeConfig.StatorCurrentLimit = 120_A;

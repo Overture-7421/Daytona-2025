@@ -30,8 +30,8 @@ void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
 
 void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
 
-    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < -20;
-    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 20;
+    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 35;
+    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < 120;
 
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingNegative", blockingNegative);
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingPositive", blockingPositive);
@@ -53,9 +53,9 @@ bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle) 
 
 frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wristAngle) {
 
-    return frc2::FunctionalCommand([this, armAngle, wristAngle]() {
-        setToAngle(armAngle, wristAngle);
-    }, []() {
+    return frc2::FunctionalCommand([]() {
+    }, [this, armAngle, wristAngle]() {
+        blockedWrist(armAngle, wristAngle);
     }, [](bool interupted) {
     }, [this, armAngle, wristAngle]() {
         return isArmAtPosition(armAngle, wristAngle);

@@ -19,6 +19,17 @@ SuperStructureStates SuperStructure::getState() {
     return state;
 }
 
+frc2::CommandPtr SuperStructure::setScoringState(SuperStructureScoringStates scoringState) {
+    return this->RunOnce([this, scoringState] {
+        this->scoringState = scoringState;
+    });
+
+}
+
+SuperStructureScoringStates SuperStructure::getScoringState() {
+    return scoringState;
+}
+
 void SuperStructure::Periodic() {
     frc::SmartDashboard::PutNumber("States/State", state);
 }

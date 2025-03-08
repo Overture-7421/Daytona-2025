@@ -9,13 +9,11 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
             > ([superStructure] {
                 return superStructure->getScoringState();
             },
-            std::pair {
-                    SuperStructureScoringStates::L1, frc2::cmd::Sequence(
-                            superStructure->setState(SuperStructureStates::SpitCoral),
+            std::pair {SuperStructureScoringStates::L1, frc2::cmd::Sequence(
+                    superStructure->setState(SuperStructureStates::SpitCoral),
                     intake->moveIntake(IntakeConstants::CoralSpit),
-                            superStructure->setScoringState(SuperStructureScoringStates::DontScore))},
-            std::pair {SuperStructureScoringStates::L2,
-                    frc2::cmd::Sequence(
+                    superStructure->setScoringState(SuperStructureScoringStates::DontScore))}, std::pair {
+                    SuperStructureScoringStates::L2, frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmScore, ArmConstants::WristClosed,
                                     elevator->getPosition()).ToPtr(),
                             elevator->setElevatorCommand(ElevatorConstants::L2SpitPosition),
@@ -32,7 +30,6 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                                     elevator->getPosition()).ToPtr(),
                             elevator->setElevatorCommand(ElevatorConstants::L4SpitPosition),
                             superStructure->setState(SuperStructureStates::SpitCoral),
-                            superStructure->setScoringState(SuperStructureScoringStates::DontScore))}
-            );
+                            superStructure->setScoringState(SuperStructureScoringStates::DontScore))});
 
 }

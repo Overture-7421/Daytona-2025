@@ -51,7 +51,7 @@ RobotContainer::RobotContainer() {
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
-            std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure))));
+            std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr))));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -90,11 +90,8 @@ void RobotContainer::ConfigDriverBindings() {
     //driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
     //driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.RightBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
+    driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-
-    driver.LeftBumper().WhileTrue(SpitL1(&intake, &superStructure));
-    driver.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
 }
 
@@ -112,7 +109,7 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.Y().WhileTrue(L4Command(&arm, &elevator, &superStructure));
     oprtr.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
+    oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
     oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
@@ -154,7 +151,8 @@ void RobotContainer::ConfigMixedBindigs() {
     (console.Button(11) && driver.POVRight()).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
 
     (console.Button(10) && driver.POVRight()).OnTrue(
-            SourceCommand(&arm, &elevator, &intake, &superStructure).AlongWith(stationPos(&chassis, &tagLayout)));
+            SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr).AlongWith(
+                    stationPos(&chassis, &tagLayout)));
 
     (console.Button(1) && driver.POVRight()).OnTrue(
             Processor(&arm, &elevator, &superStructure).AlongWith(processorPos(&chassis, &tagLayout)));
@@ -171,21 +169,23 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    /*
-     test.A().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
-     test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
+    test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-     test.B().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
-     test.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-     */
+    test.B().WhileTrue(L2Command(&arm, &elevator, &superStructure).AlongWith(rightAlignPos(&chassis, &tagLayout)));
+    test.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
     // test.B().WhileTrue(elevator.setElevatorCommand(1.50_m));
     // test.B().OnFalse(elevator.setElevatorCommand(0.00_m));
-    //test.B().WhileTrue(arm.setArmCommand(45_deg, 90_deg));
+    //test.A().WhileTrue(arm.setArmCommand(30_deg, -90_deg));
+    //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+
+    //test.B().WhileTrue(arm.setArmCommand(70_deg, -90_deg));
     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 90_deg));
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 0_deg));
@@ -197,7 +197,7 @@ void RobotContainer::ConfigCharacterizationBindings() {
 AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -28.125_deg, 45_deg}};
+    config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -23.0_deg, 45_deg}};
     return config;
 }
 

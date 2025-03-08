@@ -3,10 +3,10 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct ClimberConstants {
-    constexpr static const double ArmSensorToMechanism = 265.8461538;
+    constexpr static const double ArmSensorToMechanism = 265.84615385;
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 15.0_tps; //6
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 12_tr_per_s_sq; //13
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 4.0_tps; //6
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 2_tr_per_s_sq; //13
 
     constexpr static const double RightArmMotorId = 22;
 
@@ -20,13 +20,13 @@ struct ClimberConstants {
         rightConfig.NeutralMode = ControllerNeutralMode::Brake;
         rightConfig.Inverted = false;
         rightConfig.useFOC = true;
-        rightConfig.CurrentLimit = 30_A;
+
+        rightConfig.CurrentLimit = 20_A;
         rightConfig.StatorCurrentLimit = 120_A;
-        rightConfig.TriggerThreshold = 40_A;
+        rightConfig.TriggerThreshold = 30_A;
         rightConfig.TriggerThresholdTime = 1_s;
         rightConfig.ClosedLoopRampRate = 0.05_s;
-        rightConfig.OpenLoopRampRate = 0.05_s;
-        rightConfig.PIDConfigs.WithKP(0.0); //15
+        rightConfig.PIDConfigs.WithKV(0.0).WithKP(0.0); //15
 
         return rightConfig;
     }

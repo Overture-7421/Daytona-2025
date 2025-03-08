@@ -18,8 +18,12 @@ public:
     frc2::CommandPtr setState(SuperStructureStates state);
     SuperStructureStates getState();
 
+    frc2::CommandPtr setScoringState(SuperStructureScoringStates scoringState);
+    SuperStructureScoringStates getScoringState();
+
 private:
 
     SuperStructureStates state = SuperStructureStates::HoldCoral;
+    SuperStructureScoringStates scoringState = SuperStructureScoringStates::DontScore;
 
 };

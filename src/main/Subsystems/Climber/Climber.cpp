@@ -7,6 +7,7 @@
 
 Climber::Climber() {
 
+    armRightMotor.SetPosition(0_tr);
     armRightMotor.setSensorToMechanism(ClimberConstants::ArmSensorToMechanism);
     armRightMotor.configureMotionMagic(ClimberConstants::ArmCruiseVelocity, ClimberConstants::ArmCruiseAcceleration,
             0.0_tr_per_s_cu);
@@ -51,4 +52,7 @@ void Climber::Periodic() {
 
     double armCurrentAngle = armRightMotor.GetPosition().GetValueAsDouble() * 360;
     frc::SmartDashboard::PutNumber("Climber/CurrentArmAngle", armCurrentAngle);
+
+    units::degree_t climberCurrentAngleMotor = armRightMotor.GetPosition().GetValue();
+    frc::SmartDashboard::PutNumber("ClimberCurrent/CurrentClimberAngleMotor", climberCurrentAngleMotor.value());
 }

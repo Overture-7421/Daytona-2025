@@ -18,3 +18,7 @@ enum SuperStructureStates {
     SpitAlgae, SpitCoral
 
 };
+
+enum SuperStructureScoringStates {
+    L1, L2, L3, L4, DontScore
+};

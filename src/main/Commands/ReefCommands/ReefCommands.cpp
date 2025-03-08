@@ -11,6 +11,7 @@ frc2::CommandPtr L1Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
+                    superStructure->setScoringState(SuperStructureScoringStates::L1),
                     frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L1Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL1Reef, ArmConstants::WristClosed,
                                     ElevatorConstants::L1Position).ToPtr(),
@@ -29,7 +30,7 @@ frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
-
+                    superStructure->setScoringState(SuperStructureScoringStates::L2),
                     frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L2Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL2Reef, ArmConstants::WristL2Reef,
                                     ElevatorConstants::L2Position).ToPtr()))}
@@ -44,7 +45,7 @@ frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
-
+                    superStructure->setScoringState(SuperStructureScoringStates::L3),
                     frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L3Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef,
                                     ElevatorConstants::L3Position).ToPtr()))}
@@ -59,7 +60,7 @@ frc2::CommandPtr L4Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
-
+                    superStructure->setScoringState(SuperStructureScoringStates::L4),
                     frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L4Position),
                             ArmMotion(elevator, arm, ArmConstants::ArmL4Reef, ArmConstants::WristL4Reef,
                                     ElevatorConstants::L4Position).ToPtr()))}

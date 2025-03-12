@@ -18,9 +18,9 @@ public:
     constexpr static const units::volt_t CoralSpit = -2.5_V;
     constexpr static const units::volt_t CoralSpitL4 = -1.5_V;
 
-    constexpr static const units::volt_t AlgaeGrab = 4.0_V; //7
-    constexpr static const units::volt_t AlgaeRelease = -6.0_V;
-    constexpr static const units::volt_t AlgaeHold = 1_V; //5
+    constexpr static const units::volt_t AlgaeGrab = -6.0_V; //7
+    constexpr static const units::volt_t AlgaeRelease = 6.0_V;
+    constexpr static const units::volt_t AlgaeHold = -0.8_V; //5
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;

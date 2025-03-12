@@ -18,9 +18,9 @@ struct ElevatorConstants {
     constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps;
     constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 30_tr_per_s_sq; //Bajar Acceleracion 30 es mucho
 
-    constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m; //Falta
+    constexpr static const units::meter_t CoralGroundGrabPosition = 0.06_m; //Falta
     constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m; //falta
-    constexpr static const units::meter_t CoralStationPosition = 0.09_m;
+    constexpr static const units::meter_t CoralStationPosition = 0.06_m;
     constexpr static const units::meter_t ClosedPosition = 0.00_m;
     constexpr static const units::meter_t L1Position = 0.00_m;
     constexpr static const units::meter_t L2Position = 0.15_m;
@@ -32,10 +32,10 @@ struct ElevatorConstants {
     constexpr static const units::meter_t L4SpitPosition = 1.30_m;
 
     constexpr static const units::meter_t L4PositionAuto = 1.54_m;
-    constexpr static const units::meter_t NetPosition = 1.60_m;
-    constexpr static const units::meter_t ProcessorPosition = 0.05_m; //Falta
-    constexpr static const units::meter_t LowAlgae = 0.00_m;
-    constexpr static const units::meter_t HighAlgae = 0.52_m;
+    constexpr static const units::meter_t NetPosition = 1.65_m;
+    constexpr static const units::meter_t ProcessorPosition = 0.00_m; //Falta
+    constexpr static const units::meter_t LowAlgae = 0.29_m;
+    constexpr static const units::meter_t HighAlgae = 0.82_m;
     constexpr static const units::meter_t HighMotionAllowed = 0.20_m; //Cambiar
 
     constexpr static const OverTalonFXConfig RightConfig() {

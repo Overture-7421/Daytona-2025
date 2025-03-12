@@ -52,6 +52,16 @@ void DriveCommand::Execute() {
         slowMulti = 1;
     }
 
+    /*
+    if (gamepad->B().Get()) {
+        auto rotationSpeed = 54_deg * allianceMulti;
+    }
+
+    if (gamepad->X().Get()) {
+        auto rotationSpeed = -54_deg * allianceMulti;
+    }
+    */
+
     headingSpeedsHelper.setTargetAngle(targetAngle);
 
     auto xSpeed = xInput.Calculate(

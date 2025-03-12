@@ -84,8 +84,8 @@ void RobotContainer::ConfigDriverBindings() {
     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
     //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.X().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    driver.A().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
     //driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -158,9 +158,8 @@ void RobotContainer::ConfigMixedBindigs() {
     (console.Button(1) && driver.POVRight()).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
     (console.Button(2) && driver.POVRight()).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
 
-    (console.AxisLessThan(0, -0.5) && driver.POVRight()).OnTrue(
-            SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr).AlongWith(
-                    stationPos(&chassis, &tagLayout)));
+    (console.AxisMagnitudeGreaterThan(0, 0.1) && driver.POVRight()).OnTrue(
+        SourceCommand(&arm, &elevator, &intake, &superStructure, &console));
 
     (console.Button(9) && driver.POVRight()).OnTrue(
             Processor(&arm, &elevator, &superStructure).AlongWith(processorPos(&chassis, &tagLayout)));

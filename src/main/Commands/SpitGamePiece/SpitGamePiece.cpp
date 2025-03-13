@@ -40,6 +40,12 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                     SuperStructureScoringStates::NetState, frc2::cmd::Sequence(
                             intake->moveIntake(IntakeConstants::AlgaeRelease),
                             superStructure->setState(SuperStructureStates::SpitAlgae),
+                            superStructure->setScoringState(SuperStructureScoringStates::DontScore))},
+                            
+                            std::pair {
+                    SuperStructureScoringStates::SpitAlgaeState, frc2::cmd::Sequence(
+                            intake->moveIntake(IntakeConstants::AlgaeRelease),
+                            superStructure->setState(SuperStructureStates::SpitAlgae),
                             superStructure->setScoringState(SuperStructureScoringStates::DontScore))});
 
 }

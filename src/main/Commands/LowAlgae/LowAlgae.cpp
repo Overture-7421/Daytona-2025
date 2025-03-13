@@ -16,7 +16,8 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                     elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                     ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristLowAlgae,
                                             ElevatorConstants::LowAlgae).ToPtr(),
-                                    intake->moveIntake(IntakeConstants::AlgaeGrab)))).Until([intake] {
+                                    intake->moveIntake(IntakeConstants::AlgaeGrab),
+                            superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState)))).Until([intake] {
                 return intake->isAlgaeIn();
             })}, std::pair {SuperStructureStates::EnterHighAlgae, frc2::cmd::RepeatingSequence(
                     frc2::cmd::Sequence(
@@ -24,7 +25,8 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                     elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                     ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristLowAlgae,
                                             ElevatorConstants::LowAlgae).ToPtr(),
-                                    intake->moveIntake(IntakeConstants::AlgaeGrab)))).Until([intake] {
+                                    intake->moveIntake(IntakeConstants::AlgaeGrab),
+                            superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState)))).Until([intake] {
                 return intake->isAlgaeIn();
             })}, std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::RepeatingSequence(
                     frc2::cmd::Sequence(
@@ -32,7 +34,8 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                     elevator->setElevatorCommand(ElevatorConstants::LowAlgae),
                                     ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristLowAlgae,
                                             ElevatorConstants::LowAlgae).ToPtr(),
-                                    intake->moveIntake(IntakeConstants::AlgaeGrab)))).Until([intake] {
+                                    intake->moveIntake(IntakeConstants::AlgaeGrab),
+                            superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState)))).Until([intake] {
                 return intake->isAlgaeIn();
             })}
 

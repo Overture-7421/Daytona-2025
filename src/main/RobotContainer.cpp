@@ -13,9 +13,6 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL4",
             (L4Command(&arm, &elevator, &superStructure).WithTimeout(4_s)));
 
-    pathplanner::NamedCommands::registerCommand("coralL3",
-            std::move(frc2::cmd::Sequence(L3Command(&arm, &elevator, &superStructure))));
-
     pathplanner::NamedCommands::registerCommand("spitCoral",
             std::move(SpitGamePiece(&intake, &superStructure, &elevator, &arm)));
 
@@ -43,9 +40,6 @@ RobotContainer::RobotContainer() {
                     frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
                             intake.moveIntake(IntakeConstants::AlgaeGrab),
                             superStructure.setState(SuperStructureStates::HoldAlgae))));
-
-    pathplanner::NamedCommands::registerCommand("processor",
-            std::move(frc2::cmd::Sequence(Processor(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));

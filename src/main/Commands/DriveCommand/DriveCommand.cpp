@@ -54,14 +54,14 @@ void DriveCommand::Execute() {
     */
 
     /*
-    if (gamepad->B().Get()) {
-        auto rotationSpeed = 54_deg * allianceMulti;
-    }
+     if (gamepad->B().Get()) {
+     auto rotationSpeed = 54_deg * allianceMulti;
+     }
 
-    if (gamepad->X().Get()) {
-        auto rotationSpeed = -54_deg * allianceMulti;
-    }
-    */
+     if (gamepad->X().Get()) {
+     auto rotationSpeed = -54_deg * allianceMulti;
+     }
+     */
 
     headingSpeedsHelper.setTargetAngle(targetAngle);
 

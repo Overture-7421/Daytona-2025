@@ -50,6 +50,8 @@ private:
     void ConfigMixedBindigs();
     void ConfigDefaultCommands();
     void ConfigCharacterizationBindings();
+    void disableBackCamera();
+    void enableBackCamera();
 
     OverXboxController driver {0, 0.20, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};

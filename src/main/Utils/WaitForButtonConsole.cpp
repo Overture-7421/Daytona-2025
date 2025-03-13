@@ -5,7 +5,7 @@
 #include "WaitForButtonConsole.h"
 
 frc2::CommandPtr WaitForButtonConsole(frc2::CommandGenericHID *gamepad, int buttonNumber) {
-	return frc2::cmd::WaitUntil([=]() {
-		return gamepad->GetHID().GetRawButton(buttonNumber);
-	});
+    return frc2::cmd::WaitUntil([=]() {
+        return gamepad->GetHID().GetRawButton(buttonNumber);
+    });
 }

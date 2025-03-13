@@ -9,5 +9,4 @@
 #include <frc2/command/button/CommandGenericHID.h>
 #include <frc2/command/Commands.h>
 
-
 frc2::CommandPtr WaitForButtonConsole(frc2::CommandGenericHID *gamepad, int buttonNumber);

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.95,
-        "y": 4.0
+        "x": 5.816,
+        "y": 4.132
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.2230000000000025,
-        "y": 3.8927500000000004
+        "x": 6.089000000000002,
+        "y": 4.02475
       },
       "isLocked": false,
       "linkedName": "Basicleave1"

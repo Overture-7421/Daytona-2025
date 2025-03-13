@@ -46,12 +46,12 @@ void DriveCommand::Execute() {
         chassis->disableSpeedHelper();
     }
     /*
-    if (gamepad->A().Get()) {
-        slowMulti = 0.3;
-    } else {
-        slowMulti = 1;
-    }
-    */
+     if (gamepad->A().Get()) {
+     slowMulti = 0.3;
+     } else {
+     slowMulti = 1;
+     }
+     */
 
     /*
      if (gamepad->B().Get()) {

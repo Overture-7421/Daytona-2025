@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.7250852272727275,
-        "y": 0.7194176136363637
+        "x": 1.649043367346939,
+        "y": 0.6299107142857133
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2161981285300874,
-        "y": 1.0979852206905087
+        "x": 2.140156268604299,
+        "y": 1.0084783213398585
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft2"
     },
     {
       "anchor": {
-        "x": 4.12,
-        "y": 2.6
+        "x": 4.22,
+        "y": 2.64
       },
       "prevControl": {
-        "x": 3.9195671382696595,
-        "y": 2.450578890585747
+        "x": 4.019567138269659,
+        "y": 2.490578890585747
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.4666130329847157,
+      "minWaypointRelativePos": 0.6181318681318684,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 5.45,
-        "maxAcceleration": 3.5,
+        "maxAcceleration": 4.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -64,5 +64,5 @@
     "velocity": 0,
     "rotation": 51.899195996599225
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

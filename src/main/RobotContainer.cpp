@@ -13,9 +13,6 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL4",
             (L4Command(&arm, &elevator, &superStructure).WithTimeout(4_s)));
 
-    pathplanner::NamedCommands::registerCommand("coralL3",
-            std::move(frc2::cmd::Sequence(L3Command(&arm, &elevator, &superStructure))));
-
     pathplanner::NamedCommands::registerCommand("spitCoral",
             std::move(SpitGamePiece(&intake, &superStructure, &elevator, &arm)));
 
@@ -44,14 +41,19 @@ RobotContainer::RobotContainer() {
                             intake.moveIntake(IntakeConstants::AlgaeGrab),
                             superStructure.setState(SuperStructureStates::HoldAlgae))));
 
-    pathplanner::NamedCommands::registerCommand("processor",
-            std::move(frc2::cmd::Sequence(Processor(&arm, &elevator, &superStructure))));
-
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
             std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr))));
+
+	pathplanner::NamedCommands::registerCommand("confirmCoral",
+			std::move(frc2::cmd::Sequence(
+				arm.setArmCommand(ArmConstants::ArmCoralStationAway, ArmConstants::WristClosed),
+				frc2::cmd::Wait(0.5_s),
+				arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+				elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))
+			));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);

@@ -6,16 +6,12 @@
     "AlgaeInNet",
     "BasicLeave",
     "ChokeholdLeft",
-    "ChokeholdRight",
-    "FreeAlgae",
-    "LeaveLeft",
-    "LeaveRight"
+    "ChokeholdRight"
   ],
   "autoFolders": [
     "AlgaeInNet",
     "BasicLeave",
-    "ChokeholdRight",
-    "FreeAlgae"
+    "ChokeholdRight"
   ],
   "defaultMaxVel": 5.45,
   "defaultMaxAccel": 5.0,

@@ -47,13 +47,15 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralStation",
             std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr))));
 
-	pathplanner::NamedCommands::registerCommand("confirmCoral",
-			std::move(frc2::cmd::Sequence(
-				arm.setArmCommand(ArmConstants::ArmCoralStationAway, ArmConstants::WristClosed),
-				frc2::cmd::Wait(0.5_s),
-				arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-				elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))
-			));
+    pathplanner::NamedCommands::registerCommand("confirmCoral",
+            std::move(
+                    frc2::cmd::Sequence(arm.setArmCommand(ArmConstants::ArmCoralStationAway, ArmConstants::WristClosed),
+                            frc2::cmd::Wait(0.5_s),
+                            arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+                            elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
+
+    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout)));
+    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -201,18 +203,16 @@ void RobotContainer::ConfigMixedBindigs() {
             SourceCommand(&arm, &elevator, &intake, &superStructure, &console));
     console.AxisMagnitudeGreaterThan(0, 0.1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    (console.Button(9)).OnTrue(
-            Processor(&arm, &elevator, &superStructure));
+    (console.Button(9)).OnTrue(Processor(&arm, &elevator, &superStructure));
     //Align for Processor
     /*.AlongWith(
-                    processorPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
-                    }).AndThen([this] {
-                        enableBackCamera();
-                    }))*/
+     processorPos(&chassis, &tagLayout).BeforeStarting([this] {
+     disableBackCamera();
+     }).AndThen([this] {
+     enableBackCamera();
+     }))*/
 
     //(console.Button(4) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
-
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 }
 

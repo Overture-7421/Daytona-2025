@@ -9,10 +9,15 @@ frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLay
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);
             },
-            std::pair {ReefLocation::A, AlignToPose(chassis, aLeft).ToPtr()}, std::pair {ReefLocation::B, AlignToPose(
-                    chassis, bLeft).ToPtr()}, std::pair {ReefLocation::C, AlignToPose(chassis, cLeft).ToPtr()}, std::pair {
-                    ReefLocation::D, AlignToPose(chassis, dLeft).ToPtr()}, std::pair {ReefLocation::E, AlignToPose(
-                    chassis, eLeft).ToPtr()}, std::pair {ReefLocation::F, AlignToPose(chassis, fLeft).ToPtr()});
+            std::pair {ReefLocation::A, frc2::cmd::Sequence(AlignToPose(chassis, aTarget, true).ToPtr(),
+                    AlignToPose(chassis, aLeft).ToPtr())}, std::pair {ReefLocation::B, frc2::cmd::Sequence(
+                    AlignToPose(chassis, bTarget, true).ToPtr(), AlignToPose(chassis, bLeft).ToPtr())}, std::pair {
+                    ReefLocation::C, frc2::cmd::Sequence(AlignToPose(chassis, cTarget, true).ToPtr(),
+                            AlignToPose(chassis, cLeft).ToPtr())}, std::pair {ReefLocation::D, frc2::cmd::Sequence(
+                    AlignToPose(chassis, dTarget, true).ToPtr(), AlignToPose(chassis, dLeft).ToPtr())}, std::pair {
+                    ReefLocation::E, frc2::cmd::Sequence(AlignToPose(chassis, eTarget, true).ToPtr(),
+                            AlignToPose(chassis, eLeft).ToPtr())}, std::pair {ReefLocation::F, frc2::cmd::Sequence(
+                    AlignToPose(chassis, fTarget, true).ToPtr(), AlignToPose(chassis, fLeft).ToPtr())});
 }
 
 frc2::CommandPtr centerAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
@@ -31,10 +36,15 @@ frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLa
             > ([chassis, tagLayout]() {
                 return findClosestReefLocation(chassis, tagLayout);
             },
-            std::pair {ReefLocation::A, AlignToPose(chassis, aRight).ToPtr()}, std::pair {ReefLocation::B, AlignToPose(
-                    chassis, bRight).ToPtr()}, std::pair {ReefLocation::C, AlignToPose(chassis, cRight).ToPtr()}, std::pair {
-                    ReefLocation::D, AlignToPose(chassis, dRight).ToPtr()}, std::pair {ReefLocation::E, AlignToPose(
-                    chassis, eRight).ToPtr()}, std::pair {ReefLocation::F, AlignToPose(chassis, fRight).ToPtr()});
+            std::pair {ReefLocation::A, frc2::cmd::Sequence(AlignToPose(chassis, aTarget, true).ToPtr(),
+                    AlignToPose(chassis, aRight).ToPtr())}, std::pair {ReefLocation::B, frc2::cmd::Sequence(
+                    AlignToPose(chassis, aTarget, true).ToPtr(), AlignToPose(chassis, bRight).ToPtr())}, std::pair {
+                    ReefLocation::C, frc2::cmd::Sequence(AlignToPose(chassis, cTarget, true).ToPtr(),
+                            AlignToPose(chassis, cRight).ToPtr())}, std::pair {ReefLocation::D, frc2::cmd::Sequence(
+                    AlignToPose(chassis, dTarget, true).ToPtr(), AlignToPose(chassis, dRight).ToPtr())}, std::pair {
+                    ReefLocation::E, frc2::cmd::Sequence(AlignToPose(chassis, eTarget, true).ToPtr(),
+                            AlignToPose(chassis, eRight).ToPtr())}, std::pair {ReefLocation::F, frc2::cmd::Sequence(
+                    AlignToPose(chassis, fTarget, true).ToPtr(), AlignToPose(chassis, fRight).ToPtr())});
 }
 
 frc2::CommandPtr stationPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {

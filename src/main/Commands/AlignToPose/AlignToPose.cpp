@@ -4,7 +4,8 @@
 
 #include "AlignToPose.h"
 
-AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d) : alignSpeedHelper(chassis, pose2d) {
+AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d, bool iAmSpeed = false) : alignSpeedHelper(chassis,
+        pose2d, iAmSpeed) {
     this->chassis = chassis;
 
     AddRequirements( {chassis});

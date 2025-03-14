@@ -7,7 +7,7 @@
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
+AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, bool iAmSpeed = false) {
     this->chassis = chassis;
     this->targetPose = targetPose;
 
@@ -18,6 +18,11 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose) {
     this->headingPIDController.SetIZone(3);
     this->headingPIDController.SetTolerance(1.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
+
+    if (iAmSpeed) {
+        this->xPIDController.SetConstraints( {3.0_mps, 2.0_mps_sq});
+        this->yPIDController.SetConstraints( {3.0_mps, 2.0_mps_sq});
+    }
 }
 
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.926,
-        "y": 2.821
+        "x": 3.9288068181818185,
+        "y": 2.5043323863636364
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.659745745492175,
-        "y": 2.563456077456839
+        "x": 3.662552563673994,
+        "y": 2.2467884638204754
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft5"

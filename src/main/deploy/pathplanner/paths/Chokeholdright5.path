@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0328093727416183,
-        "y": 0.9969079649273451
+        "x": 2.0489131872781647,
+        "y": 0.9657519943896848
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft4"
     },
     {
       "anchor": {
-        "x": 3.926,
-        "y": 2.821
+        "x": 3.9288068181818185,
+        "y": 2.5043323863636364
       },
       "prevControl": {
-        "x": 3.649230414228594,
-        "y": 2.5695393640562094
+        "x": 3.69601232367715,
+        "y": 2.3155491956893126
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6497252747252746,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0,
       "constraints": {
         "maxVelocity": 5.45,
-        "maxAcceleration": 4.0,
+        "maxAcceleration": 5.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,

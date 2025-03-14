@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.22,
-        "y": 2.64
+        "x": 3.9686931818181814,
+        "y": 2.5143039772727276
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.919373958838863,
-        "y": 2.4176920619587303
+        "x": 3.668067140657045,
+        "y": 2.291996039231458
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft3"
@@ -45,7 +45,7 @@
     },
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6593406593406593,
+      "minWaypointRelativePos": 0.7333854573885835,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 5.45,

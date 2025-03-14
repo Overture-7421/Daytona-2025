@@ -12,7 +12,7 @@
 
 class AlignSpeedHelper: public SpeedsHelper {
 public:
-    AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose);
+    AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, bool iAmSpeed = false);
     void alterSpeed(frc::ChassisSpeeds &inputSpeed) override;
     bool atGoal();
 

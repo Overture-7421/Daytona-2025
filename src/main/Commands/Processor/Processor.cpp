@@ -16,8 +16,8 @@ frc2::CommandPtr Processor(Arm *arm, Elevator *elevator, SuperStructure *superSt
                     ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristClosed,
                             ElevatorConstants::ProcessorPosition).ToPtr()
                     //ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristProcessor,
-                            //ElevatorConstants::ProcessorPosition).ToPtr()
-                            )}
+                    //ElevatorConstants::ProcessorPosition).ToPtr()
+                    )}
 
             );
 

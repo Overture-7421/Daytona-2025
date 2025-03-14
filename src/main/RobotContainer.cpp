@@ -199,13 +199,15 @@ void RobotContainer::ConfigMixedBindigs() {
             SourceCommand(&arm, &elevator, &intake, &superStructure, &console));
     console.AxisMagnitudeGreaterThan(0, 0.1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    (console.Button(9) && driver.POVRight()).OnTrue(
-            Processor(&arm, &elevator, &superStructure).AlongWith(
+    (console.Button(9)).OnTrue(
+            Processor(&arm, &elevator, &superStructure));
+    //Align for Processor
+    /*.AlongWith(
                     processorPos(&chassis, &tagLayout).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();
-                    })));
+                    }))*/
 
     //(console.Button(4) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
 

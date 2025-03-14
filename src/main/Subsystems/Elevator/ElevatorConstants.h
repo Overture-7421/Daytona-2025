@@ -18,7 +18,7 @@ struct ElevatorConstants {
     constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps;
     constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 30_tr_per_s_sq; //Bajar Acceleracion 30 es mucho
 
-    constexpr static const units::meter_t CoralGroundGrabPosition = 0.06_m; //Falta
+    constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m; //Falta
     constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m; //falta
     constexpr static const units::meter_t CoralStationPosition = 0.06_m;
     constexpr static const units::meter_t ClosedPosition = 0.00_m;

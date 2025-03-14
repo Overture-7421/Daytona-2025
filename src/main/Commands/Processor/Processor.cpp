@@ -14,9 +14,10 @@ frc2::CommandPtr Processor(Arm *arm, Elevator *elevator, SuperStructure *superSt
                     superStructure->setScoringState(SuperStructureScoringStates::ProcessorState),
                     elevator->setElevatorCommand(ElevatorConstants::ProcessorPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristClosed,
-                            ElevatorConstants::ProcessorPosition).ToPtr(),
-                    ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristProcessor,
-                            ElevatorConstants::ProcessorPosition).ToPtr())}
+                            ElevatorConstants::ProcessorPosition).ToPtr()
+                    //ArmMotion(elevator, arm, ArmConstants::ArmProcessor, ArmConstants::WristProcessor,
+                            //ElevatorConstants::ProcessorPosition).ToPtr()
+                            )}
 
             );
 

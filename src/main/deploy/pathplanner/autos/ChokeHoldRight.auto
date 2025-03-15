@@ -13,9 +13,22 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "sequential",
                       "data": {
-                        "pathName": "Chokeholdright1"
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright1"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "leftAlign"
+                            }
+                          }
+                        ]
                       }
                     },
                     {
@@ -77,9 +90,22 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "sequential",
                       "data": {
-                        "pathName": "Chokeholdright3"
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright3"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "rightAlign"
+                            }
+                          }
+                        ]
                       }
                     },
                     {
@@ -160,9 +186,22 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "sequential",
                       "data": {
-                        "pathName": "Chokeholdright5"
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright5"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "leftAlign"
+                            }
+                          }
+                        ]
                       }
                     },
                     {

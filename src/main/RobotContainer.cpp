@@ -82,7 +82,7 @@ void RobotContainer::ConfigDriverBindings() {
     driver.Back().OnTrue(ResetHeading(&chassis));
 
     driver.Y().WhileTrue(
-            NetCommand(&arm, &elevator, &superStructure).AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr()));
+            NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
     driver.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
@@ -234,8 +234,8 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
     // test.B().WhileTrue(elevator.setElevatorCommand(1.50_m));
     // test.B().OnFalse(elevator.setElevatorCommand(0.00_m));
-    test.A().WhileTrue(arm.setArmCommand(30_deg, -90_deg));
-    test.A().OnFalse(arm.setArmCommand(30_deg, 0_deg));
+    //test.A().WhileTrue(arm.setArmCommand(30_deg, -90_deg));
+    //test.A().OnFalse(arm.setArmCommand(30_deg, 0_deg));
 
     //test.B().WhileTrue(arm.setArmCommand(70_deg, -90_deg));
     //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));

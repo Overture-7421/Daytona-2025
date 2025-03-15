@@ -86,6 +86,6 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
 
             }
 
-            );
+            ).BeforeStarting([elevator]{return elevator->setElevatorLowerSpeed();}).AndThen([elevator] {return elevator->setElevatorNormalSpeed();});
 
 }

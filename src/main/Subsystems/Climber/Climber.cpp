@@ -50,9 +50,7 @@ frc2::CommandPtr Climber::SysIdDynamic(frc2::sysid::Direction direction) {
 
 void Climber::Periodic() {
 
-
     units::degree_t climberCurrentAngleMotor = armRightMotor.GetPosition().GetValue();
     frc::SmartDashboard::PutNumber("ClimberCurrent/CurrentClimberAngleMotor", climberCurrentAngleMotor.value());
-
 
 }

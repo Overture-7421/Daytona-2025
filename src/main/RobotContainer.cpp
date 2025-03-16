@@ -53,8 +53,8 @@ RobotContainer::RobotContainer() {
                             arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
-    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true)));
-    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignAuto(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);

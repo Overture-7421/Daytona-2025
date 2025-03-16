@@ -133,7 +133,6 @@ frc2::CommandPtr SourceCommandAuto(Arm *arm, Elevator *elevator, Intake *intake,
             ).AndThen(
                     frc2::cmd::Sequence(
                             frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::StopIntake),
-                                    superStructure->setState(SuperStructureStates::HoldCoral))
-                                    ));
+                                    superStructure->setState(SuperStructureStates::HoldCoral))));
 
 }

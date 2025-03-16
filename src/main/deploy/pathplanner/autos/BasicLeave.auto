@@ -5,17 +5,23 @@
     "data": {
       "commands": [
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "sequential",
                 "data": {
                   "commands": [
                     {
                       "type": "path",
                       "data": {
                         "pathName": "Basicleave1"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "rightAlign"
                       }
                     }
                   ]
@@ -25,6 +31,12 @@
                 "type": "sequential",
                 "data": {
                   "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "confirmCoral"
+                      }
+                    },
                     {
                       "type": "named",
                       "data": {
@@ -42,34 +54,28 @@
           "data": {
             "commands": [
               {
-                "type": "wait",
-                "data": {
-                  "waitTime": 0.2
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "spitCoral"
                 }
               },
               {
-                "type": "named",
+                "type": "parallel",
                 "data": {
-                  "name": "closed"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Basicleave2"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "closed"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Basicleave2"
+                      }
+                    }
+                  ]
                 }
               }
             ]

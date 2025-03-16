@@ -16,3 +16,4 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
         OverXboxController *gamepad);
 frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure,
         frc2::CommandGenericHID *gamepadConsole);
+frc2::CommandPtr SourceCommandAuto(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);

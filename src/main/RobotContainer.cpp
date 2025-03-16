@@ -45,12 +45,11 @@ RobotContainer::RobotContainer() {
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
-            std::move(frc2::cmd::Sequence(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr))));
+            std::move(frc2::cmd::Sequence(SourceCommandAuto(&arm, &elevator, &intake, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("confirmCoral",
             std::move(
                     frc2::cmd::Sequence(arm.setArmCommand(ArmConstants::ArmCoralStationAway, ArmConstants::WristClosed),
-                            frc2::cmd::Wait(0.5_s),
                             arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
@@ -223,6 +222,9 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
+    //test.A().WhileTrue(climber.setClimberCommand(200_deg));
+    //test.A().OnFalse(climber.setClimberCommand(0.0_deg));
+
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
     //test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
@@ -268,7 +270,7 @@ AprilTags::Config RobotContainer::frontRightCamera() {
 AprilTags::Config RobotContainer::frontLeftCamera() {
     AprilTags::Config config;
     config.cameraName = "FrontLeft";
-    config.cameraToRobot = {9.648405_in, 8.631463_in, 8.410513_in, {0_deg, -28.125_deg, 60_deg}};
+    config.cameraToRobot = {9.875_in, 10.653063_in, 8.109802_in, {0_deg, -15_deg, 0_deg}};
     return config;
 }
 

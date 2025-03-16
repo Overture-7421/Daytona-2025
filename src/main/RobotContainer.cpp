@@ -53,8 +53,8 @@ RobotContainer::RobotContainer() {
                             arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
-    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout)));
-    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout)));
+    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -80,8 +80,7 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.Y().WhileTrue(
-            NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
+    driver.Y().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
     driver.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
@@ -120,7 +119,7 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
     oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout));
+    oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout, false));
 
     oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
     oprtr.POVDown().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -146,14 +145,14 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (console.Button(12) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
+                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();
                     })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
+                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();
@@ -162,14 +161,14 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (console.Button(7) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
+                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();
                     })));
     (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
+                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();
@@ -178,14 +177,14 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (console.Button(10) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
+                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();
                     })));
     (console.Button(11) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
+                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
                     }).AndThen([this] {
                         enableBackCamera();

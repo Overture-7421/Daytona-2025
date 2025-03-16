@@ -14,21 +14,21 @@ frc2::CommandPtr CoralGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *in
                             elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralGround, ArmConstants::WristCoralGround,
                                     ElevatorConstants::CoralGroundGrabPosition).ToPtr(),
-                    intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
+                            intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
                 return intake->isCoralIn();
             })}, std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::RepeatingSequence(
                     frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
                             elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralGround, ArmConstants::WristCoralGround,
                                     ElevatorConstants::CoralGroundGrabPosition).ToPtr(),
-                    intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
+                            intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
                 return intake->isCoralIn();
             })}, std::pair {SuperStructureStates::EnterAlgaeGround, frc2::cmd::RepeatingSequence(
                     frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
                             elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralGround, ArmConstants::WristCoralGround,
                                     ElevatorConstants::CoralGroundGrabPosition).ToPtr(),
-                    intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
+                            intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
                 return intake->isCoralIn();
             })}
 

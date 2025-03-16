@@ -42,10 +42,10 @@ constexpr static const frc::Pose2d stationRight = { {0.806_m, 1.220_m}, {54_deg}
 
 constexpr static const frc::Pose2d processor = { {5.706_m, 1.022_m}, {-130_deg}};
 
-frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
-frc2::CommandPtr centerAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
-frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
+frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
+frc2::CommandPtr centerAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
+frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
 
-frc2::CommandPtr stationPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
-frc2::CommandPtr processorPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
+frc2::CommandPtr stationPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
+frc2::CommandPtr processorPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
 

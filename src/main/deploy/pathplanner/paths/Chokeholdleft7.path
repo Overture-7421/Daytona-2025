@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.794,
-        "y": 7.2425
+        "x": 1.229,
+        "y": 7.028
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9305,
-        "y": 6.920749999999999
+        "x": 1.3655000000000004,
+        "y": 6.706249999999999
       },
       "isLocked": false,
       "linkedName": "Chokehold6"
@@ -48,7 +48,7 @@
   "folder": "ChokeholdLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -53.98898835330499
+    "rotation": -54.0
   },
   "useDefaultConstraints": true
 }

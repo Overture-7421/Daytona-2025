@@ -53,8 +53,11 @@ RobotContainer::RobotContainer() {
                             arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
-    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignAuto(&chassis, &tagLayout, true)));
-    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true)));
+
+    pathplanner::NamedCommands::registerCommand("rightAlignFast", std::move(rightAlignAuto(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -89,8 +92,8 @@ void RobotContainer::ConfigDriverBindings() {
     driver.A().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
     driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    //driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    //driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    driver.B().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -116,7 +119,7 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.Y().WhileTrue(L4Command(&arm, &elevator, &superStructure));
     oprtr.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.RightTrigger().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
+    (!driver.A() && oprtr.RightTrigger()).WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
     oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout, false));
@@ -140,7 +143,7 @@ void RobotContainer::ConfigOperatorBindings() {
 
 void RobotContainer::ConfigMixedBindigs() {
     //NextButton 6
-    (console.Button(3)).OnTrue(L1Command(&arm, &elevator, &superStructure));
+    (!driver.A() && console.Button(3)).OnTrue(L1Command(&arm, &elevator, &superStructure));
     console.Button(3).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     (console.Button(12) && driver.POVRight()).OnTrue(
@@ -191,17 +194,19 @@ void RobotContainer::ConfigMixedBindigs() {
                     })));
     ;
 
-    console.Button(1).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
+    (!driver.A() && console.Button(1)).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
     console.Button(1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    console.Button(2).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
+    (!driver.A() && console.Button(2)).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
     console.Button(2).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    (console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
+    (!driver.A() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
             SourceCommand(&arm, &elevator, &intake, &superStructure, &console));
     console.AxisMagnitudeGreaterThan(0, 0.1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    (console.Button(9)).OnTrue(Processor(&arm, &elevator, &superStructure));
+    (!driver.A() && console.Button(9)).OnTrue(Processor(&arm, &elevator, &superStructure));
+    console.Button(9).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+
     //Align for Processor
     /*.AlongWith(
      processorPos(&chassis, &tagLayout).BeforeStarting([this] {
@@ -210,7 +215,9 @@ void RobotContainer::ConfigMixedBindigs() {
      enableBackCamera();
      }))*/
 
-    //(console.Button(4) && driver.POVRight()).OnTrue(climber.setClimberCommand(ClimberConstants::ClosedPosition)); //Position is not defined yet
+    //(console.Button(4)).OnTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
+    //(console.Button(4)).OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
+
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 }
 
@@ -221,7 +228,7 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    //test.A().WhileTrue(climber.setClimberCommand(200_deg));
+    //test.A().WhileTrue(climber.setClimberCommand(450_deg));
     //test.A().OnFalse(climber.setClimberCommand(0.0_deg));
 
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));

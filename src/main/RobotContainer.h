@@ -70,7 +70,7 @@ private:
     Intake intake;
     Elevator elevator;
     Arm arm;
-    Climber climber;
+    //Climber climber;
     SuperStructure superStructure;
 
     static AprilTags::Config frontRightCamera();

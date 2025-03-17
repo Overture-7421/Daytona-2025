@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.7745,
-        "y": 7.281499999999999
+        "x": 1.23825,
+        "y": 7.028
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.09625,
-        "y": 6.9110000000000005
+        "x": 1.6380000000000001,
+        "y": 6.8135
       },
       "isLocked": false,
       "linkedName": "Chokehold2"
     },
     {
       "anchor": {
-        "x": 3.81225,
-        "y": 5.097499999999999
+        "x": 3.4905,
+        "y": 5.49725
       },
       "prevControl": {
-        "x": 3.50025,
-        "y": 5.43875
+        "x": 3.1882499999999996,
+        "y": 5.906750000000001
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -48,7 +48,7 @@
   "folder": "ChokeholdLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -54.077
+    "rotation": -54.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

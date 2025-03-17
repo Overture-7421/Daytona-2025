@@ -50,7 +50,7 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmCoralGround = 215.0_deg; //120
     constexpr static const units::degree_t WristCoralGround = -90.0_deg;
 
-    constexpr static const units::degree_t ArmAlgaeGround = 0.0_deg; //110
+    constexpr static const units::degree_t ArmAlgaeGround = 190.0_deg; //110
     constexpr static const units::degree_t WristAlgaeGround = 0.0_deg;
 
     constexpr static const units::degree_t ArmClosed = 90.0_deg; // 0

@@ -7,9 +7,9 @@
 #include "Commands/UtilityFunctions/UtilityFunctions.h"
 #include "Commands/AlignToPose/AlignToPose.h"
 
-constexpr static const frc::Pose2d aLeft = { {3.916_m, 2.830_m}, {60_deg}};
+constexpr static const frc::Pose2d aLeft = { {3.898_m, 2.848_m}, {60_deg}};
 constexpr static const frc::Pose2d aCenter = { {4.056_m, 2.679_m}, {60_deg}};
-constexpr static const frc::Pose2d aRight = { {4.220_m, 2.640_m}, {60_deg}};
+constexpr static const frc::Pose2d aRight = { {4.205_m, 2.655_m}, {60_deg}};
 constexpr static const frc::Pose2d aTarget = { {4.019_m, 2.584_m}, {60_deg}};
 
 constexpr static const frc::Pose2d bLeft = { {3.160_m, 3.920_m}, {0.0_deg}};
@@ -27,7 +27,7 @@ constexpr static const frc::Pose2d dCenter = { {4.953_m, 5.332_m}, {-120_deg}};
 constexpr static const frc::Pose2d dRight = { {4.775_m, 5.396_m}, {-120_deg}};
 constexpr static const frc::Pose2d dTarget = { {5.056_m, 5.566_m}, {-120_deg}};
 
-constexpr static const frc::Pose2d eLeft = { {5.816_m, 4.107_m}, {-180_deg}};
+constexpr static const frc::Pose2d eLeft = { {5.816_m, 4.000_m}, {-180_deg}};
 constexpr static const frc::Pose2d eCenter = { {5.889_m, 4.327_m}, {-180_deg}};
 constexpr static const frc::Pose2d eRight = { {5.816_m, 4.463_m}, {-180_deg}};
 constexpr static const frc::Pose2d eTarget = { {6.134_m, 4.3_m}, {-180_deg}};

@@ -25,7 +25,7 @@ void Climber::setToAngle(units::degree_t armAngle) {
 bool Climber::isClimberAtPosition(units::degree_t armAngle) {
     units::degree_t armError = armAngle - armRightMotor.GetPosition().GetValue();
 
-    return (units::math::abs(armError) < 2.0_deg);
+    return (units::math::abs(armError) < 1.0_deg);
 
 }
 

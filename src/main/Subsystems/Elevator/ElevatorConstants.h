@@ -15,14 +15,14 @@ struct ElevatorConstants {
 
     constexpr static const units::volt_t feedForward = 0.37_V;
 
-    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 40.0_tps;
-    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 30_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 50.0_tps;
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 45_tr_per_s_sq;
 
     constexpr static const units::turns_per_second_t ElevatorLowerCruiseVelocity = 40.0_tps;
     constexpr static const units::turns_per_second_squared_t ElevatorLowerCruiseAcceleration = 20_tr_per_s_sq;
 
-    constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m; //Falta
-    constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.08_m; //falta
+    constexpr static const units::meter_t CoralGroundGrabPosition = 0.08_m;
+    constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.05_m;
     constexpr static const units::meter_t CoralStationPosition = 0.06_m;
     constexpr static const units::meter_t ClosedPosition = 0.00_m;
     constexpr static const units::meter_t L1Position = 0.00_m;
@@ -49,7 +49,7 @@ struct ElevatorConstants {
         right.useFOC = true;
         right.CurrentLimit = 20_A;
         right.StatorCurrentLimit = 120_A;
-        right.TriggerThreshold = 30_A;
+        right.TriggerThreshold = 40_A;
         right.TriggerThresholdTime = 0.5_s;
         right.ClosedLoopRampRate = 0.05_s;
 
@@ -65,7 +65,7 @@ struct ElevatorConstants {
         left.PIDConfigs.WithKV(1.7).WithKP(14.1);
         left.CurrentLimit = 20_A;
         left.StatorCurrentLimit = 120_A;
-        left.TriggerThreshold = 30_A;
+        left.TriggerThreshold = 40_A;
         left.TriggerThresholdTime = 0.5_s;
         left.ClosedLoopRampRate = 0.05_s;
 

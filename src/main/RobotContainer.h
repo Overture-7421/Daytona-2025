@@ -61,7 +61,7 @@ private:
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
-	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeAndyMark);
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeWelded);
 	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 
 #endif 
@@ -70,7 +70,7 @@ private:
     Intake intake;
     Elevator elevator;
     Arm arm;
-    //Climber climber;
+    Climber climber;
     SuperStructure superStructure;
 
     static AprilTags::Config frontRightCamera();

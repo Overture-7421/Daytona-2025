@@ -134,11 +134,11 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.LeftBumper().WhileTrue(Processor(&arm, &elevator, &superStructure));
     oprtr.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    //oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
-    //oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
+    oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
+    oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
 
-    oprtr.POVRight().WhileTrue(NetCommand(&arm, &elevator, &superStructure));
-    oprtr.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    //oprtr.POVRight().WhileTrue(NetCommand(&arm, &elevator, &superStructure));
+    //oprtr.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
 }
 
@@ -216,8 +216,8 @@ void RobotContainer::ConfigMixedBindigs() {
      enableBackCamera();
      }))*/
 
-    //(console.Button(4)).OnTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
-    //(console.Button(4)).OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
+    (console.Button(4)).OnTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
+    (console.Button(4)).OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 }
 

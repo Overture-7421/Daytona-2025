@@ -22,7 +22,7 @@ constexpr static const frc::Pose2d cCenter = { {3.549_m, 5.088_m}, {-60_deg}};
 constexpr static const frc::Pose2d cRight = { {3.448_m, 4.963_m}, {-60_deg}};
 constexpr static const frc::Pose2d cTarget = { {3.43_m, 5.276_m}, {-60_deg}};
 
-constexpr static const frc::Pose2d dLeft = { {5.058_m, 5.229_m}, {-120_deg}};
+constexpr static const frc::Pose2d dLeft = { {5.068_m, 5.219_m}, {-120_deg}};
 constexpr static const frc::Pose2d dCenter = { {4.953_m, 5.332_m}, {-120_deg}};
 constexpr static const frc::Pose2d dRight = { {4.775_m, 5.396_m}, {-120_deg}};
 constexpr static const frc::Pose2d dTarget = { {5.056_m, 5.566_m}, {-120_deg}};

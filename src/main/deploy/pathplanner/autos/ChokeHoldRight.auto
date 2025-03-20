@@ -211,7 +211,7 @@
                           {
                             "type": "named",
                             "data": {
-                              "name": "rightAlign"
+                              "name": "leftAlign"
                             }
                           }
                         ]

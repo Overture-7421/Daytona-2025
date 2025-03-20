@@ -60,6 +60,8 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
 void AlignSpeedHelper::initialize() {
     if (isRedAlliance()) {
         flippedTargetPose = pathplanner::FlippingUtil::flipFieldPose(targetPose);
+    } else {
+        flippedTargetPose = targetPose;
     }
 
     xPIDController.Reset(chassis->getEstimatedPose().X());

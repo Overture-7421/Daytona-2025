@@ -16,6 +16,7 @@ frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperSt
                                     elevator->setElevatorCommand(ElevatorConstants::HighAlgae),
                                     ArmMotion(elevator, arm, ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae,
                                             ElevatorConstants::HighAlgae).ToPtr()),
+                            superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState),
                             intake->moveIntake(IntakeConstants::AlgaeGrab))).Until([intake] {
                 return intake->isAlgaeIn();
             })}, std::pair {SuperStructureStates::EnterLowAlgae, frc2::cmd::RepeatingSequence(
@@ -24,6 +25,7 @@ frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperSt
                                     elevator->setElevatorCommand(ElevatorConstants::HighAlgae),
                                     ArmMotion(elevator, arm, ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae,
                                             ElevatorConstants::HighAlgae).ToPtr()),
+                            superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState),
                             intake->moveIntake(IntakeConstants::AlgaeGrab))).Until([intake] {
                 return intake->isAlgaeIn();
             })
@@ -34,6 +36,7 @@ frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperSt
                                     elevator->setElevatorCommand(ElevatorConstants::HighAlgae),
                                     ArmMotion(elevator, arm, ArmConstants::ArmHighAlgae, ArmConstants::WristHighAlgae,
                                             ElevatorConstants::HighAlgae).ToPtr()),
+                            superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState),
                             intake->moveIntake(IntakeConstants::AlgaeGrab))).Until([intake] {
                 return intake->isAlgaeIn();
             })}

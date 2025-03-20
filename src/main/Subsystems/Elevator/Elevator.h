@@ -15,12 +15,11 @@ class Elevator: public frc2::SubsystemBase {
 public:
     Elevator();
 
-    /**
-     * Will be called periodically whenever the CommandScheduler runs.
-     */
     void Periodic() override;
 
     void setPosition(units::meter_t position);
+    void setElevatorLowerSpeed();
+    void setElevatorNormalSpeed();
 
     units::meter_t getPosition();
 

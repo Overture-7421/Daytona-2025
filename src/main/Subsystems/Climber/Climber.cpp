@@ -25,7 +25,7 @@ void Climber::setToAngle(units::degree_t armAngle) {
 bool Climber::isClimberAtPosition(units::degree_t armAngle) {
     units::degree_t armError = armAngle - armRightMotor.GetPosition().GetValue();
 
-    return (units::math::abs(armError) < 2.0_deg);
+    return (units::math::abs(armError) < 1.0_deg);
 
 }
 
@@ -50,9 +50,7 @@ frc2::CommandPtr Climber::SysIdDynamic(frc2::sysid::Direction direction) {
 
 void Climber::Periodic() {
 
-    double armCurrentAngle = armRightMotor.GetPosition().GetValueAsDouble() * 360;
-    frc::SmartDashboard::PutNumber("Climber/CurrentArmAngle", armCurrentAngle);
-
     units::degree_t climberCurrentAngleMotor = armRightMotor.GetPosition().GetValue();
     frc::SmartDashboard::PutNumber("ClimberCurrent/CurrentClimberAngleMotor", climberCurrentAngleMotor.value());
+
 }

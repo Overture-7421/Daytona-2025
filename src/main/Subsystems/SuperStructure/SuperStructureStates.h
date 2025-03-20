@@ -20,5 +20,5 @@ enum SuperStructureStates {
 };
 
 enum SuperStructureScoringStates {
-    L1, L2, L3, L4, DontScore
+    L1, L2, L3, L4, DontScore, ProcessorState, NetState, SpitAlgaeState
 };

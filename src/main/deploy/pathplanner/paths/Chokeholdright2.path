@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.5672500000000005,
-        "y": 3.1182499999999997
+        "x": 5.442418032786885,
+        "y": 2.748309426229507
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.071474082309359,
-        "y": 2.7605223372794883
+        "x": 4.946642115096243,
+        "y": 2.3905817635089956
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft1"
     },
     {
       "anchor": {
-        "x": 1.7250852272727275,
-        "y": 0.7194176136363637
+        "x": 1.5943647540983608,
+        "y": 0.7703381147540983
       },
       "prevControl": {
-        "x": 2.232945402050962,
-        "y": 1.0429682464406462
+        "x": 2.102224928876599,
+        "y": 1.0938887475583812
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,24 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.1898632341110245,
-      "constraints": {
-        "maxVelocity": 5.45,
-        "maxAcceleration": 3.5,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    },
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6452131938857617,
+      "minWaypointRelativePos": 0.6759646675964676,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 5.45,
-        "maxAcceleration": 3.5,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -61,7 +48,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -69,7 +56,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 51.899195996599225
+    "rotation": 54.0
   },
   "reversed": false,
   "folder": "ChokeholdRight",
@@ -77,5 +64,5 @@
     "velocity": 0,
     "rotation": 119.99999999999999
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

@@ -10,21 +10,21 @@ frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *in
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::RepeatingSequence(
-                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
+                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
                             elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                                     ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
                             intake->moveIntake(IntakeConstants::AlgaeGrab))).Until([intake] {
                 return intake->isAlgaeIn();
             })}, std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::RepeatingSequence(
-                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
+                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
                             elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                                     ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),
                             intake->moveIntake(IntakeConstants::AlgaeGrab))).Until([intake] {
                 return intake->isAlgaeIn();
             })}, std::pair {SuperStructureStates::EnterCoralGround, frc2::cmd::RepeatingSequence(
-                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
+                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterAlgaeGround),
                             elevator->setElevatorCommand(ElevatorConstants::AlgaeGroundGrabPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmAlgaeGround, ArmConstants::WristAlgaeGround,
                                     ElevatorConstants::AlgaeGroundGrabPosition).ToPtr(),

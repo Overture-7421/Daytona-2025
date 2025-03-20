@@ -12,6 +12,7 @@ frc2::CommandPtr NetCommand(Arm *arm, Elevator *elevator, SuperStructure *superS
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Sequence(
+                    superStructure->setScoringState(SuperStructureScoringStates::NetState),
                     elevator->setElevatorCommand(ElevatorConstants::NetPosition),
                     ArmMotion(elevator, arm, ArmConstants::ArmNet, ArmConstants::WristNet,
                             ElevatorConstants::NetPosition).ToPtr())}

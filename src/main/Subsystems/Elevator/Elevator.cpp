@@ -25,7 +25,16 @@ void Elevator::setPosition(units::meter_t position) {
                     ElevatorConstants::feedForward));
 
 }
-;
+
+void Elevator::setElevatorNormalSpeed() {
+    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
+            ElevatorConstants::ElevatorCruiseAcceleration, 0.0_tr_per_s_cu);
+}
+
+void Elevator::setElevatorLowerSpeed() {
+    leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorLowerCruiseVelocity,
+            ElevatorConstants::ElevatorLowerCruiseAcceleration, 0.0_tr_per_s_cu);
+}
 
 units::meter_t Elevator::getPosition() {
     units::meter_t currentPosition = units::meter_t(

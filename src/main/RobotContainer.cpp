@@ -56,7 +56,8 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true)));
     pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true)));
 
-    pathplanner::NamedCommands::registerCommand("rightAlignFast", std::move(rightAlignAuto(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("rightAlignFast",
+            std::move(rightAlignAuto(&chassis, &tagLayout, true)));
     pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
@@ -217,7 +218,6 @@ void RobotContainer::ConfigMixedBindigs() {
 
     //(console.Button(4)).OnTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
     //(console.Button(4)).OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
-
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 }
 

@@ -73,6 +73,8 @@ private:
     Climber climber;
     SuperStructure superStructure;
 
+    units::degree_t armOffset = 0_deg;
+
     static AprilTags::Config frontRightCamera();
     static AprilTags::Config frontLeftCamera();
     static AprilTags::Config backRightCamera();

@@ -5,6 +5,7 @@
 #include "Subsystems/Arm/Arm.h"
 #include <iostream>
 
+
 Arm::Arm() {
 
     armLeftMotor.setRotorToSensorRatio(ArmConstants::ArmRotorToSensor);
@@ -61,6 +62,12 @@ frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wr
         return isArmAtPosition(armAngle, wristAngle);
     },
     {this}).ToPtr();
+}
+
+void Arm::updateOffset(units::degree_t offsetDelta){
+    auto armConfig = armCANCoder.getConfiguration();
+    armConfig.MagnetSensor.WithMagnetOffset(armConfig.MagnetSensor.MagnetOffset + offsetDelta);
+    armCANCoder.GetConfigurator().Apply(armConfig);
 }
 
 frc2::CommandPtr Arm::SysIdQuasistatic(frc2::sysid::Direction direction) {

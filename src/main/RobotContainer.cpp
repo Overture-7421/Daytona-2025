@@ -53,8 +53,8 @@ RobotContainer::RobotContainer() {
                             arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
-    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true)));
-    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
+    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
 
     pathplanner::NamedCommands::registerCommand("rightAlignFast",
             std::move(rightAlignAuto(&chassis, &tagLayout, true)));
@@ -137,8 +137,13 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.Start().WhileTrue(climber.setClimberCommand(ClimberConstants::OpenPosition));
     oprtr.Start().OnFalse(climber.setClimberCommand(ClimberConstants::ClosedPosition));
 
-    //oprtr.POVRight().WhileTrue(NetCommand(&arm, &elevator, &superStructure));
-    //oprtr.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    oprtr.POVRight().WhileTrue(frc2::cmd::RunOnce([this]{
+        armOffset += 1.0_deg;
+        arm.updateOffset(armOffset);}));
+    oprtr.POVLeft().WhileTrue(frc2::cmd::RunOnce([this]{
+        armOffset -= 1.0_deg;
+        arm.updateOffset(armOffset);}));
+    
 
 }
 

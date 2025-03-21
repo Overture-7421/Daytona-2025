@@ -37,8 +37,8 @@ struct ElevatorConstants {
     constexpr static const units::meter_t L4PositionAuto = 1.54_m;
     constexpr static const units::meter_t NetPosition = 1.65_m;
     constexpr static const units::meter_t ProcessorPosition = 0.00_m; //Falta
-    constexpr static const units::meter_t LowAlgae = 0.29_m;
-    constexpr static const units::meter_t HighAlgae = 0.82_m;
+    constexpr static const units::meter_t LowAlgae = 0.32_m;
+    constexpr static const units::meter_t HighAlgae = 0.85_m;
     constexpr static const units::meter_t HighMotionAllowed = 0.20_m; //Cambiar
 
     constexpr static const OverTalonFXConfig RightConfig() {

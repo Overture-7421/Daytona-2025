@@ -11,7 +11,7 @@
 
 class AlignToPose: public frc2::CommandHelper<frc2::Command, AlignToPose> {
 public:
-    AlignToPose(Chassis *chassis, frc::Pose2d pose2d, bool iAmSpeed);
+    AlignToPose(Chassis *chassis, const frc::AprilTagFieldLayout& layout, int targetId);
 
     void Initialize() override;
 

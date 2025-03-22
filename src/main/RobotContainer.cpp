@@ -53,12 +53,12 @@ RobotContainer::RobotContainer() {
                             arm.setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
-    pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
-    pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
+    // pathplanner::NamedCommands::registerCommand("rightAlign", std::move(rightAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
+    // pathplanner::NamedCommands::registerCommand("leftAlign", std::move(leftAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
 
-    pathplanner::NamedCommands::registerCommand("rightAlignFast",
-            std::move(rightAlignAuto(&chassis, &tagLayout, true)));
-    pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
+    // pathplanner::NamedCommands::registerCommand("rightAlignFast",
+    //         std::move(rightAlignAuto(&chassis, &tagLayout, true)));
+    // pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -123,7 +123,7 @@ void RobotContainer::ConfigOperatorBindings() {
     (!driver.A() && oprtr.RightTrigger()).WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
     oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout, false));
+    // oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout, false));
 
     oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
     oprtr.POVDown().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -149,55 +149,55 @@ void RobotContainer::ConfigOperatorBindings() {
 
 void RobotContainer::ConfigMixedBindigs() {
     //NextButton 6
-    (!driver.A() && console.Button(3)).OnTrue(L1Command(&arm, &elevator, &superStructure));
-    console.Button(3).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    // (!driver.A() && console.Button(3)).OnTrue(L1Command(&arm, &elevator, &superStructure));
+    // console.Button(3).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    (console.Button(12) && driver.POVRight()).OnTrue(
-            L2Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
-                        disableBackCamera();
-                    }).FinallyDo([this] {
-                        enableBackCamera();
-                    })));
+    // (console.Button(12) && driver.POVRight()).OnTrue(
+    //         L2Command(&arm, &elevator, &superStructure).AlongWith(
+    //                 leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+    //                     disableBackCamera();
+    //                 }).FinallyDo([this] {
+    //                     enableBackCamera();
+    //                 })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    AlignToPose(&chassis, tagLayout, 17).ToPtr().BeforeStarting([this] {
                         disableBackCamera();
                     }).FinallyDo([this] {
                         enableBackCamera();
                     })));
-    ;
+    // ;
 
-    (console.Button(7) && driver.POVRight()).OnTrue(
-            L3Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
-                        disableBackCamera();
-                    }).FinallyDo([this] {
-                        enableBackCamera();
-                    })));
-    (console.Button(8) && driver.POVRight()).OnTrue(
-            L3Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
-                        disableBackCamera();
-                    }).FinallyDo([this] {
-                        enableBackCamera();
-                    })));
-    ;
+    // (console.Button(7) && driver.POVRight()).OnTrue(
+    //         L3Command(&arm, &elevator, &superStructure).AlongWith(
+    //                 leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+    //                     disableBackCamera();
+    //                 }).FinallyDo([this] {
+    //                     enableBackCamera();
+    //                 })));
+    // (console.Button(8) && driver.POVRight()).OnTrue(
+    //         L3Command(&arm, &elevator, &superStructure).AlongWith(
+    //                 rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+    //                     disableBackCamera();
+    //                 }).FinallyDo([this] {
+    //                     enableBackCamera();
+    //                 })));
+    // ;
 
-    (console.Button(10) && driver.POVRight()).OnTrue(
-            L4Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
-                        disableBackCamera();
-                    }).FinallyDo([this] {
-                        enableBackCamera();
-                    })));
-    (console.Button(11) && driver.POVRight()).OnTrue(
-            L4Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
-                        disableBackCamera();
-                    }).FinallyDo([this] {
-                        enableBackCamera();
-                    })));
+    // (console.Button(10) && driver.POVRight()).OnTrue(
+    //         L4Command(&arm, &elevator, &superStructure).AlongWith(
+    //                 leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+    //                     disableBackCamera();
+    //                 }).FinallyDo([this] {
+    //                     enableBackCamera();
+    //                 })));
+    // (console.Button(11) && driver.POVRight()).OnTrue(
+    //         L4Command(&arm, &elevator, &superStructure).AlongWith(
+    //                 rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+    //                     disableBackCamera();
+    //                 }).FinallyDo([this] {
+    //                     enableBackCamera();
+    //                 })));
     ;
 
     (!driver.A() && console.Button(1)).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));

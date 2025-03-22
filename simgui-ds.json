@@ -1,9 +1,4 @@
 {
-  "System Joysticks": {
-    "window": {
-      "enabled": false
-    }
-  },
   "keyboardJoysticks": [
     {
       "axisConfig": [
@@ -22,13 +17,14 @@
           "keyRate": 0.009999999776482582
         }
       ],
-      "axisCount": 3,
-      "buttonCount": 4,
+      "axisCount": 0,
+      "buttonCount": 5,
       "buttonKeys": [
         90,
         88,
         67,
-        86
+        86,
+        75
       ],
       "povConfig": [
         {
@@ -51,8 +47,7 @@
           "incKey": 76
         },
         {
-          "decKey": 73,
-          "incKey": 75
+          "decKey": 73
         }
       ],
       "axisCount": 2,
@@ -98,6 +93,10 @@
     {
       "guid": "78696e70757401000000000000000000",
       "useGamepad": true
+    },
+    {},
+    {
+      "guid": "Keyboard0"
     }
   ]
 }

@@ -6,7 +6,7 @@
 
 #include "Commands/UtilityFunctions/UtilityFunctions.h"
 #include "Commands/AlignToPose/AlignToPose.h"
-
+/*
 constexpr static const frc::Pose2d aLeft = { {3.885_m, 2.835_m}, {60_deg}};
 constexpr static const frc::Pose2d aCenter = { {4.056_m, 2.679_m}, {60_deg}};
 constexpr static const frc::Pose2d aRight = { {4.197_m, 2.647_m}, {60_deg}};
@@ -51,4 +51,4 @@ frc2::CommandPtr processorPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLay
 
 frc2::CommandPtr leftAlignAuto(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
 frc2::CommandPtr rightAlignAuto(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed);
-
+*/

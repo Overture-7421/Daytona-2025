@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "AlignPositions.h"
-
+/*
 frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed) {
     return frc2::cmd::Select < ReefLocation
             > ([chassis, tagLayout]() {
@@ -83,3 +83,4 @@ frc2::CommandPtr stationPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayou
 frc2::CommandPtr processorPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, bool iAmSpeed) {
     return AlignToPose(chassis, processor, iAmSpeed).ToPtr();
 }
+*/

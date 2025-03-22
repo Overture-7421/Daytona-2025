@@ -7,94 +7,76 @@
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, bool iAmSpeed) {
+double map(double x, double in_min, double in_max, double out_min, double out_max) {
+      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, const frc::AprilTagFieldLayout& layout, int targetId) {
     this->chassis = chassis;
-    this->targetPose = targetPose;
+    this->tagPose = layout.GetTagPose(targetId).value().ToPose2d();
 
     this->xPIDController.SetIZone(3);
     this->xPIDController.SetTolerance(0.05_m);
     this->yPIDController.SetIZone(3);
     this->yPIDController.SetTolerance(0.05_m);
+    
     this->headingPIDController.SetIZone(3);
     this->headingPIDController.SetTolerance(1.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
-
-    /*
-    if (iAmSpeed) {
-        this->xPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
-        this->yPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
-    }
-    */
 }
 
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
-    units::meter_t distanceToPose = units::math::abs(pose.Translation().Distance(flippedTargetPose.Translation()));
-    frc::SmartDashboard::PutNumber("AlignTest/distanceToPose", distanceToPose.value());
+    frc::Pose2d poseInTagFrame = transformToAprilTagFrame(pose);
 
-
-
-    if(distanceToPose > slowInRange){
-        this->xPIDController.SetConstraints(defaultConstraints);
-        this->yPIDController.SetConstraints(defaultConstraints);
-        frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", defaultConstraints.maxVelocity.value());
-
-    } else if(distanceToPose < slowDistance){
-        this->xPIDController.SetConstraints(minimumConstraints);
-        this->yPIDController.SetConstraints(minimumConstraints);
-
-        frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", minimumConstraints.maxVelocity.value());
-
-    } else {
-        units::meters_per_second_t limitedVelocity = ((defaultConstraints.maxVelocity - minimumConstraints.maxVelocity)/(slowInRange - slowDistance )) * (distanceToPose - slowDistance) + minimumConstraints.maxVelocity;
-        frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", limitedVelocity.value());
-        frc::TrapezoidProfile<units::meters>::Constraints limitedConstraints {limitedVelocity, defaultConstraints.maxAcceleration};
-
-        this->xPIDController.SetConstraints(limitedConstraints);
-        this->yPIDController.SetConstraints(limitedConstraints);
-    }
-
-
-    frc::SmartDashboard::PutNumber("AlignTarget/XTarget", flippedTargetPose.X().value());
-    frc::SmartDashboard::PutNumber("AlignTarget/YTarget", flippedTargetPose.Y().value());
-    frc::SmartDashboard::PutNumber("AlignTarget/RTarget", flippedTargetPose.Rotation().Degrees().value());
-
-    auto xOut = units::meters_per_second_t(xPIDController.Calculate(pose.X(), flippedTargetPose.X()));
-    auto yOut = units::meters_per_second_t(yPIDController.Calculate(pose.Y(), flippedTargetPose.Y()));
-    auto rotationOut = units::degrees_per_second_t(
-            headingPIDController.Calculate(pose.Rotation().Degrees(), flippedTargetPose.Rotation().Degrees()));
+    auto outX = units::meters_per_second_t(xPIDController.Calculate(poseInTagFrame.X(), 0.25_m)); // Aim .25m in front of april tag
+    auto outY = units::meters_per_second_t(yPIDController.Calculate(poseInTagFrame.Y(), 0.0_m)); // Be perfectly aligned with april tag on Y
+    auto outHeading = units::degrees_per_second_t(headingPIDController.Calculate(poseInTagFrame.Rotation().Degrees(), 180.0_deg)); // Face toward the april tag
+    
+    // Anything above 0.25m of error in Y turns to M_PI_2, which using cos scale prevents X movement.
+    double yErrorToAngleMock = map(std::abs(yPIDController.GetPositionError().value()), 0.0, 0.25, 0.0, M_PI_2);
+    double yScale = std::cos(std::clamp(yErrorToAngleMock, 0.0, M_PI_2)); 
+    double headingScale = units::math::cos(headingPIDController.GetPositionError()); 
+    double xScale = headingScale * yScale;
 
     if (xPIDController.AtGoal()) {
-        xOut = 0_mps;
+        outX = 0_mps;
     }
 
     if (yPIDController.AtGoal()) {
-        yOut = 0_mps;
+        outY = 0_mps;
     }
 
     if (headingPIDController.AtGoal()) {
-        rotationOut = 0_deg_per_s;
+        outHeading = 0_deg_per_s;
     }
+    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(outX * xScale, outY, outHeading, chassis->getEstimatedPose().Rotation() - tagPose.Rotation());
 
-    frc::SmartDashboard::PutNumber("AlignCurrent/XCurrent", pose.X().value());
-    frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
-    frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", pose.Rotation().Degrees().value());
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/X", poseInTagFrame.X().value());
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/Y", poseInTagFrame.Y().value());
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/Heading", poseInTagFrame.Rotation().Degrees().value());
 
-    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut, yOut, rotationOut,
-            chassis->getEstimatedPose().Rotation());
+
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/OutX", outX.value());
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/OutY", outY.value());
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/OutOmega", outHeading.value());
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/yScale", yScale);
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/headingScale", headingScale);
+    frc::SmartDashboard::PutNumber("AlignSpeedHelper/xScale", xScale);
+
 }
 
 void AlignSpeedHelper::initialize() {
-    if (isRedAlliance()) {
-        flippedTargetPose = pathplanner::FlippingUtil::flipFieldPose(targetPose);
-    } else {
-        flippedTargetPose = targetPose;
-    }
+    frc::Pose2d poseInTagFrame = transformToAprilTagFrame(chassis->getEstimatedPose());
 
-    xPIDController.Reset(chassis->getEstimatedPose().X());
-    yPIDController.Reset(chassis->getEstimatedPose().Y());
-    headingPIDController.Reset(chassis->getEstimatedPose().Rotation().Radians());
+    xPIDController.Reset(poseInTagFrame.X());
+    yPIDController.Reset(poseInTagFrame.Y());
+    headingPIDController.Reset(poseInTagFrame.Rotation().Degrees());
+}
+
+frc::Pose2d AlignSpeedHelper::transformToAprilTagFrame(const frc::Pose2d& pose) {
+    return pose.RelativeTo(tagPose);
 }
 
 bool AlignSpeedHelper::atGoal() {

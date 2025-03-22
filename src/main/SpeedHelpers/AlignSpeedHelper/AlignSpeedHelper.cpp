@@ -79,7 +79,8 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
     frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", pose.Rotation().Degrees().value());
 
-    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut * xScale, yOut, rotationOut,
+
+    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut * xScale * allianceMulti, yOut  * allianceMulti, rotationOut,
             chassis->getEstimatedPose().Rotation() - targetPose.Rotation());
 }
 
@@ -105,6 +106,7 @@ frc::TrapezoidProfile<units::meters>::Constraints AlignSpeedHelper::getConstrain
 void AlignSpeedHelper::initialize() {
     if (isRedAlliance()) {
         flippedTargetPose = pathplanner::FlippingUtil::flipFieldPose(targetPose);
+        allianceMulti = -1;
     } else {
         flippedTargetPose = targetPose;
     }

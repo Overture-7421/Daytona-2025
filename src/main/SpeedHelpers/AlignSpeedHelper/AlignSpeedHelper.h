@@ -39,5 +39,6 @@ private:
 
     units::meter_t slowInRange = 6_m;
     units::meter_t slowDistance = 0.5_m;
+    double allianceMulti = 1.0;
 
 };

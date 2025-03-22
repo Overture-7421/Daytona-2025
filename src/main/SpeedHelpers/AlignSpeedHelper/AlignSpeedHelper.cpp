@@ -49,7 +49,7 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), 0.0_m));
     auto yOut = units::meters_per_second_t(yPIDController.Calculate(poseInTargetFrame.Y(), 0.0_m));
     auto rotationOut = units::degrees_per_second_t(
-            headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), 180_deg));
+            headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), 0_deg));
 
 
     double clampYError = std::clamp(std::abs(yPIDController.GetPositionError().value()), 0.0, 0.15);
@@ -70,6 +70,10 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     if (headingPIDController.AtGoal()) {
         rotationOut = 0_deg_per_s;
     }
+
+    frc::SmartDashboard::PutNumber("AlignCurrent/XCurrent", pose.X().value());
+    frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
+    frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", pose.Rotation().Degrees().value());
 
     frc::SmartDashboard::PutNumber("AlignCurrent/XCurrent", pose.X().value());
     frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
@@ -104,6 +108,7 @@ void AlignSpeedHelper::initialize() {
     } else {
         flippedTargetPose = targetPose;
     }
+
     frc::Pose2d pose = chassis->getEstimatedPose();
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 

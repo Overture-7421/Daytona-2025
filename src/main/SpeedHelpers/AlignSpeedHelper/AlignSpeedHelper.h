@@ -22,7 +22,7 @@ private:
 
     frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints {2.5_mps, 1.0_mps_sq};
 
-    frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {0.5_mps, defaultConstraints.maxAcceleration};
+    frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {0.25_mps, defaultConstraints.maxAcceleration};
 
     frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, defaultConstraints}; //4 2.1
 
@@ -35,6 +35,6 @@ private:
     frc::Pose2d flippedTargetPose;
 
     units::meter_t slowInRange = 6_m;
-    units::meter_t slowDistance = 0.5_m;
+    units::meter_t slowDistance = 1_m;
 
 };

@@ -46,7 +46,7 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::SmartDashboard::PutNumber("AlignTarget/YTarget", flippedTargetPose.Y().value());
     frc::SmartDashboard::PutNumber("AlignTarget/RTarget", flippedTargetPose.Rotation().Degrees().value());
 
-    auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), 0.0_m));
+    auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), 0.01_m));
     auto yOut = units::meters_per_second_t(yPIDController.Calculate(poseInTargetFrame.Y(), 0.0_m));
     auto rotationOut = units::degrees_per_second_t(
             headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), 0_deg));

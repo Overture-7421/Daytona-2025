@@ -20,6 +20,9 @@ public:
 
 private:
 
+    frc::TrapezoidProfile<units::meters>::Constraints getConstrainst(units::meter_t distance);
+    frc::Pose2d transformToTargetFrame(const frc::Pose2d& pose);
+
     frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints {2.5_mps, 1.0_mps_sq};
 
     frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {0.5_mps, defaultConstraints.maxAcceleration};

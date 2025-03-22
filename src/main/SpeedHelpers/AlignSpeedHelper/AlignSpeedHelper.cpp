@@ -52,8 +52,8 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
             headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), 180_deg));
 
 
-    double clampYError = std::clamp(std::abs(yPIDController.GetPositionError().value()), 0.0, 0.25);
-    double yErrorToAngleMock = map(clampYError, 0.0, 0.25, 0.0, M_PI_2);
+    double clampYError = std::clamp(std::abs(yPIDController.GetPositionError().value()), 0.0, 0.15);
+    double yErrorToAngleMock = map(clampYError, 0.0, 0.15, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
     double headingScale = units::math::cos(units::math::abs(headingPIDController.GetPositionError()));
     double xScale = headingScale * yScale;
@@ -104,10 +104,12 @@ void AlignSpeedHelper::initialize() {
     } else {
         flippedTargetPose = targetPose;
     }
+    frc::Pose2d pose = chassis->getEstimatedPose();
+    frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 
-    xPIDController.Reset(chassis->getEstimatedPose().X());
-    yPIDController.Reset(chassis->getEstimatedPose().Y());
-    headingPIDController.Reset(chassis->getEstimatedPose().Rotation().Radians());
+    xPIDController.Reset(poseInTargetFrame.X());
+    yPIDController.Reset(poseInTargetFrame.Y());
+    headingPIDController.Reset(poseInTargetFrame.Rotation().Radians());
 }
 
 frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d& pose){

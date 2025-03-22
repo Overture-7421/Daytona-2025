@@ -156,14 +156,14 @@ void RobotContainer::ConfigMixedBindigs() {
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
-                    }).AndThen([this] {
+                    }).FinallyDo([this] {
                         enableBackCamera();
                     })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
-                    }).AndThen([this] {
+                    }).FinallyDo([this] {
                         enableBackCamera();
                     })));
     ;
@@ -172,14 +172,14 @@ void RobotContainer::ConfigMixedBindigs() {
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
-                    }).AndThen([this] {
+                    }).FinallyDo([this] {
                         enableBackCamera();
                     })));
     (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
-                    }).AndThen([this] {
+                    }).FinallyDo([this] {
                         enableBackCamera();
                     })));
     ;
@@ -188,14 +188,14 @@ void RobotContainer::ConfigMixedBindigs() {
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
-                    }).AndThen([this] {
+                    }).FinallyDo([this] {
                         enableBackCamera();
                     })));
     (console.Button(11) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
                         disableBackCamera();
-                    }).AndThen([this] {
+                    }).FinallyDo([this] {
                         enableBackCamera();
                     })));
     ;

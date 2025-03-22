@@ -19,14 +19,32 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, boo
     this->headingPIDController.SetTolerance(1.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 
+    /*
     if (iAmSpeed) {
         this->xPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
         this->yPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
     }
+    */
 }
 
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
+
+    units::meter_t distanceToPose = pose.Translation().Distance(flippedTargetPose.Translation());
+    frc::SmartDashboard::PutNumber("AlignTest/distanceToPose", distanceToPose.value());
+
+    if(units::math::abs(distanceToPose) > slowInRange){
+        this->xPIDController.SetConstraints(defaultConstraints);
+        this->yPIDController.SetConstraints(defaultConstraints);
+    } else {
+        units::meters_per_second_t limitedVelocity = ((defaultConstraints.maxVelocity - minimumConstraints.maxVelocity)/slowInRange) * distanceToPose + minimumConstraints.maxVelocity;
+        frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", limitedVelocity.value());
+        frc::TrapezoidProfile<units::meters>::Constraints limitedConstraints {limitedVelocity, defaultConstraints.maxAcceleration};
+
+        this->xPIDController.SetConstraints(limitedConstraints);
+        this->yPIDController.SetConstraints(limitedConstraints);
+    }
+
 
     frc::SmartDashboard::PutNumber("AlignTarget/XTarget", flippedTargetPose.X().value());
     frc::SmartDashboard::PutNumber("AlignTarget/YTarget", flippedTargetPose.Y().value());

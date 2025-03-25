@@ -43,10 +43,6 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
 
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 
-    frc::SmartDashboard::PutNumber("AlignTarget/XTarget", flippedTargetPose.X().value());
-    frc::SmartDashboard::PutNumber("AlignTarget/YTarget", flippedTargetPose.Y().value());
-    frc::SmartDashboard::PutNumber("AlignTarget/RTarget", flippedTargetPose.Rotation().Degrees().value());
-
     auto yOut = units::meters_per_second_t(yPIDController.Calculate(poseInTargetFrame.Y(), Y_TARGET));
     auto rotationOut = units::degrees_per_second_t(
             headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), HEADING_TARGET));
@@ -77,15 +73,6 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     if (headingPIDController.AtGoal()) {
         rotationOut = 0_deg_per_s;
     }
-
-    frc::SmartDashboard::PutNumber("AlignCurrent/XCurrent", pose.X().value());
-    frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
-    frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", pose.Rotation().Degrees().value());
-
-    frc::SmartDashboard::PutNumber("AlignCurrent/XCurrent", pose.X().value());
-    frc::SmartDashboard::PutNumber("AlignCurrent/YCurrent", pose.Y().value());
-    frc::SmartDashboard::PutNumber("AlignCurrent/RCurrent", pose.Rotation().Degrees().value());
-
 
     inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut * xScale * allianceMulti, yOut  * allianceMulti, rotationOut,
             chassis->getEstimatedPose().Rotation() - targetPose.Rotation());
@@ -131,5 +118,8 @@ frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d& pose){
 }
 
 bool AlignSpeedHelper::atGoal() {
+    frc::SmartDashboard::PutBoolean("AlignTest/AtGoalX", xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET));
+    frc::SmartDashboard::PutBoolean("AlignTest/AtGoalY", yPIDController.AtGoal());
+    frc::SmartDashboard::PutBoolean("AlignTest/AtGoalH", headingPIDController.AtGoal());
     return xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET) && yPIDController.AtGoal() && headingPIDController.AtGoal();
 }

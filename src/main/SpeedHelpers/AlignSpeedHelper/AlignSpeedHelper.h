@@ -41,4 +41,12 @@ private:
     units::meter_t slowDistance = 0.5_m;
     double allianceMulti = 1.0;
 
+    const units::meter_t X_TARGET = 0.01_m; // The target X position in the target frame
+    const units::meter_t Y_TARGET = 0.0_m; // The target Y position in the target frame
+    const units::degree_t HEADING_TARGET = 0.0_deg; // The target heading in the target frame
+    
+    // xScale changes depending on how close heading and Y are to the target. We only move in X (forward) after Y and heading are close to the target.
+    const double scaleMin = 0.7; // At which xScale we start to track xTarget
+    double xScale = 0.0;
+
 };

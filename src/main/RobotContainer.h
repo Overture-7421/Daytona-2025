@@ -63,9 +63,10 @@ private:
 #else
 	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeWelded);
 	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
+#endif 
     double getLeftStickDistance();
     bool getDriverOverride();
-#endif 
+    
     //Subsystems
     Chassis chassis;
     Intake intake;

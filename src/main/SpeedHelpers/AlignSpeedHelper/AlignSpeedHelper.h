@@ -20,14 +20,33 @@ public:
 
 private:
 
-    frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, {2.0_mps, 0.25_mps_sq}}; //4 2.1
+    frc::TrapezoidProfile<units::meters>::Constraints getConstrainst(units::meter_t distance);
+    frc::Pose2d transformToTargetFrame(const frc::Pose2d& pose);
 
-    frc::ProfiledPIDController<units::meters> yPIDController {5.55, 0.0, 0.0, {2.0_mps, 0.25_mps_sq}}; //4 2.1
+    frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints {1.5_mps, 1.0_mps_sq};
+
+    frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {0.25_mps, defaultConstraints.maxAcceleration};
+
+    frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, defaultConstraints}; //4 2.1
+
+    frc::ProfiledPIDController<units::meters> yPIDController {5.55, 0.0, 0.0, defaultConstraints}; //4 2.1
 
     frc::ProfiledPIDController<units::degree> headingPIDController {5.55, 0.0, 0.0, {200_deg_per_s, 125_deg_per_s / 1_s}}; //800 500
 
     Chassis *chassis;
     frc::Pose2d targetPose;
     frc::Pose2d flippedTargetPose;
+
+    units::meter_t slowInRange = 6_m;
+    units::meter_t slowDistance = 0.5_m;
+    double allianceMulti = 1.0;
+
+    const units::meter_t X_TARGET = 0.01_m; // The target X position in the target frame
+    const units::meter_t Y_TARGET = 0.0_m; // The target Y position in the target frame
+    const units::degree_t HEADING_TARGET = 0.0_deg; // The target heading in the target frame
+    
+    // xScale changes depending on how close heading and Y are to the target. We only move in X (forward) after Y and heading are close to the target.
+    const double scaleMin = 0.7; // At which xScale we start to track xTarget
+    double xScale = 0.0;
 
 };

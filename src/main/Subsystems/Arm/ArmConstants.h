@@ -7,7 +7,7 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct ArmConstants {
-    constexpr static const units::degree_t ArmAngleRange = 1.2_deg;
+    constexpr static const units::degree_t ArmAngleRange = 1.7_deg;
     constexpr static const units::degree_t WristAngleRange = 1.7_deg; //Bajar tolerancia
 
     constexpr static const units::degree_t ArmScore = 30_deg;
@@ -16,7 +16,7 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmCoralInter = 75_deg; //15
     constexpr static const units::degree_t ArmAlgaeInter = 60_deg;
 
-    constexpr static const units::degree_t ArmL1Reef = 31.0_deg; //58
+    constexpr static const units::degree_t ArmL1Reef = 28.0_deg; //58
     constexpr static const units::degree_t WristL1Reef = 90.0_deg; //90
 
     constexpr static const units::degree_t ArmL2Reef = 58.0_deg;
@@ -31,10 +31,10 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmL4ReefAuto = 57.0_deg; //65
     constexpr static const units::degree_t WristL4ReefAuto = 0.0_deg;
 
-    constexpr static const units::degree_t ArmLowAlgae = 4.0_deg; //2
+    constexpr static const units::degree_t ArmLowAlgae = 8.0_deg; //2
     constexpr static const units::degree_t WristLowAlgae = 90.0_deg;
 
-    constexpr static const units::degree_t ArmHighAlgae = 4.0_deg; //2
+    constexpr static const units::degree_t ArmHighAlgae = 8.0_deg; //2
     constexpr static const units::degree_t WristHighAlgae = 90.0_deg;
 
     constexpr static const units::degree_t ArmCoralStation = 126_deg; //95
@@ -87,7 +87,7 @@ struct ArmConstants {
         armLeftConfig.TriggerThreshold = 30_A;
         armLeftConfig.TriggerThresholdTime = 0.5_s;
         armLeftConfig.PIDConfigs.GravityType = 1;
-        armLeftConfig.PIDConfigs.WithKV(1.8).WithKP(120); //P180
+        armLeftConfig.PIDConfigs.WithKV(1.9).WithKP(150); //P180
 
         return armLeftConfig;
     }
@@ -111,7 +111,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = 0.21435546875_tr;
+        armCANConfig.Offset = -0.07421875_tr;
 
         return armCANConfig;
     }

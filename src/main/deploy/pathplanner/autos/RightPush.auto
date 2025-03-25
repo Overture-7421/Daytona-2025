@@ -19,13 +19,13 @@
                           {
                             "type": "path",
                             "data": {
-                              "pathName": "Chokeholdleft1"
+                              "pathName": "RightPush1"
                             }
                           },
                           {
                             "type": "named",
                             "data": {
-                              "name": "leftAlign"
+                              "name": "rightAlign"
                             }
                           }
                         ]
@@ -66,59 +66,7 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Chokeholdleft2"
-                      }
-                    },
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "closed"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "coralStation"
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
-                          {
-                            "type": "path",
-                            "data": {
-                              "pathName": "Chokeholdleft3"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "leftAlign"
-                            }
-                          }
-                        ]
+                        "pathName": "Chokeholdright2"
                       }
                     },
                     {
@@ -128,47 +76,9 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.5
+                              "waitTime": 0.2
                             }
                           },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "confirmCoral"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "coralL4"
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "spitCoral"
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdleft4"
-                      }
-                    },
-                    {
-                      "type": "sequential",
-                      "data": {
-                        "commands": [
                           {
                             "type": "named",
                             "data": {
@@ -205,7 +115,7 @@
                           {
                             "type": "path",
                             "data": {
-                              "pathName": "Chokeholdleft5"
+                              "pathName": "Chokeholdright3"
                             }
                           },
                           {
@@ -258,7 +168,109 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "Chokeholdleft6"
+                        "pathName": "Chokeholdright4"
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.2
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "closed"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "coralStation"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright5"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "leftAlign"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.5
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "confirmCoral"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "coralL4"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "spitCoral"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Chokeholdright6"
                       }
                     },
                     {
@@ -290,6 +302,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "ChokeholdLeft",
+  "folder": "ChokeholdRight",
   "choreoAuto": false
 }

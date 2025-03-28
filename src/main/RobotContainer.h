@@ -66,7 +66,7 @@ private:
 #endif 
     double getLeftStickDistance();
     bool getDriverOverride();
-    
+
     //Subsystems
     Chassis chassis;
     Intake intake;

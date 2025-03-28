@@ -8,7 +8,7 @@
 #include <OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-double map(double x, double in_min, double in_max, double out_min, double out_max){
+double map(double x, double in_min, double in_max, double out_min, double out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
@@ -25,11 +25,11 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::Pose2d targetPose, boo
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 
     /*
-    if (iAmSpeed) {
-        this->xPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
-        this->yPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
-    }
-    */
+     if (iAmSpeed) {
+     this->xPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
+     this->yPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
+     }
+     */
 }
 
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
@@ -47,7 +47,6 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     auto rotationOut = units::degrees_per_second_t(
             headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), HEADING_TARGET));
 
-
     double clampYError = std::clamp(std::abs(yPIDController.GetPositionError().value()), 0.0, 0.15);
     double yErrorToAngleMock = map(clampYError, 0.0, 0.15, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
@@ -56,46 +55,42 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
 
     units::meter_t actualXTarget = poseInTargetFrame.X();
 
-    if(xScale > scaleMin){
+    if (xScale > scaleMin) {
         actualXTarget = X_TARGET;
     }
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), actualXTarget));
 
-    if (xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET)) {
+    if (xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET) && yPIDController.AtGoal()
+            && headingPIDController.AtGoal()) {
         xOut = 0_mps;
-    }
-
-    if (yPIDController.AtGoal()) {
+        yOut = 0_mps;
         yOut = 0_mps;
     }
 
-    if (headingPIDController.AtGoal()) {
-        rotationOut = 0_deg_per_s;
-    }
-
-    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut * allianceMulti, yOut  * allianceMulti, rotationOut,
+    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut * allianceMulti, yOut * allianceMulti, rotationOut,
             chassis->getEstimatedPose().Rotation() - targetPose.Rotation());
 }
 
-frc::TrapezoidProfile<units::meters>::Constraints AlignSpeedHelper::getConstrainst(units::meter_t distance){
-    if(distance > slowInRange){
+frc::TrapezoidProfile<units::meters>::Constraints AlignSpeedHelper::getConstrainst(units::meter_t distance) {
+    if (distance > slowInRange) {
         frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", defaultConstraints.maxVelocity.value());
         return defaultConstraints;
 
-    } else if(distance < slowDistance){
+    } else if (distance < slowDistance) {
         frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", minimumConstraints.maxVelocity.value());
         return minimumConstraints;
 
     } else {
-        units::meters_per_second_t limitedVelocity = ((defaultConstraints.maxVelocity - minimumConstraints.maxVelocity)/(slowInRange - slowDistance )) * (distance - slowDistance) + minimumConstraints.maxVelocity;
+        units::meters_per_second_t limitedVelocity = ((defaultConstraints.maxVelocity - minimumConstraints.maxVelocity)
+                / (slowInRange - slowDistance)) * (distance - slowDistance) + minimumConstraints.maxVelocity;
         frc::SmartDashboard::PutNumber("AlignTest/limitedVelocity", limitedVelocity.value());
-        frc::TrapezoidProfile<units::meters>::Constraints limitedConstraints {limitedVelocity, defaultConstraints.maxAcceleration};
+        frc::TrapezoidProfile<units::meters>::Constraints limitedConstraints {limitedVelocity,
+                defaultConstraints.maxAcceleration};
         return limitedConstraints;
     }
 
 }
-
 
 void AlignSpeedHelper::initialize() {
     if (isRedAlliance()) {
@@ -113,13 +108,15 @@ void AlignSpeedHelper::initialize() {
     headingPIDController.Reset(poseInTargetFrame.Rotation().Radians());
 }
 
-frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d& pose){
+frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d &pose) {
     return pose.RelativeTo(flippedTargetPose);
 }
 
 bool AlignSpeedHelper::atGoal() {
-    frc::SmartDashboard::PutBoolean("AlignTest/AtGoalX", xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET));
+    frc::SmartDashboard::PutBoolean("AlignTest/AtGoalX",
+            xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET));
     frc::SmartDashboard::PutBoolean("AlignTest/AtGoalY", yPIDController.AtGoal());
     frc::SmartDashboard::PutBoolean("AlignTest/AtGoalH", headingPIDController.AtGoal());
-    return xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET) && yPIDController.AtGoal() && headingPIDController.AtGoal();
+    return xPIDController.AtGoal() && (xPIDController.GetGoal().position == X_TARGET) && yPIDController.AtGoal()
+            && headingPIDController.AtGoal();
 }

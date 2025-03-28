@@ -5,7 +5,6 @@
 #include "Subsystems/Arm/Arm.h"
 #include <iostream>
 
-
 Arm::Arm() {
 
     armLeftMotor.setRotorToSensorRatio(ArmConstants::ArmRotorToSensor);
@@ -64,7 +63,7 @@ frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wr
     {this}).ToPtr();
 }
 
-void Arm::updateOffset(units::degree_t offsetDelta){
+void Arm::updateOffset(units::degree_t offsetDelta) {
     auto armConfig = armCANCoder.getConfiguration();
     armConfig.MagnetSensor.WithMagnetOffset(armConfig.MagnetSensor.MagnetOffset + offsetDelta);
     armCANCoder.GetConfigurator().Apply(armConfig);
@@ -97,14 +96,10 @@ void Arm::Periodic() {
     //double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
     frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleMotor", armCurrentAngleMotor.value());
     frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleEncoder", armCurrentAngleCANCODER.value());
-    frc::SmartDashboard::PutNumber("ArmCurrent/Voltage", armLeftMotor.GetMotorVoltage().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("ArmCurrent/Curent-Amps", armLeftMotor.GetSupplyCurrent().GetValueAsDouble());
 
     units::degree_t wristCurrentAngleMotor = wristMotor.GetPosition().GetValue();
     units::degree_t wristCurrentAngleCANCODER = wristCANCoder.GetPosition().GetValue();
     frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleMotor", wristCurrentAngleMotor.value());
     frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleEncoder", wristCurrentAngleCANCODER.value());
-    frc::SmartDashboard::PutNumber("WristCurrent/Voltage", wristMotor.GetMotorVoltage().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("WristCurrent/Curent-Amps", wristMotor.GetSupplyCurrent().GetValueAsDouble());
 
 }

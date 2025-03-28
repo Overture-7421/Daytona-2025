@@ -25,7 +25,6 @@ bool Intake::isAlgaeIn() {
 
     return canRange.GetIsDetected().GetValue();
 
-
     //return units::math::abs(intakeMotor.GetSupplyCurrent().GetValue()) > 31.0_A;
 
 }
@@ -40,13 +39,4 @@ void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
     frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
     frc::SmartDashboard::PutNumber("SensorDistance", canRange.GetDistance().GetValue().value());
-
-    frc::SmartDashboard::PutNumber("Algae/SupplyCurrent", intakeMotor.GetSupplyCurrent().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("Algae/StatorCurrent", intakeMotor.GetStatorCurrent().GetValueAsDouble());
-
-
-
-
-
-
 }

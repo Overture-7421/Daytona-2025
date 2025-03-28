@@ -65,7 +65,7 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
             && headingPIDController.AtGoal()) {
         xOut = 0_mps;
         yOut = 0_mps;
-        yOut = 0_mps;
+        rotationOut  = 0_deg_per_s;
     }
 
     inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xOut * allianceMulti, yOut * allianceMulti, rotationOut,

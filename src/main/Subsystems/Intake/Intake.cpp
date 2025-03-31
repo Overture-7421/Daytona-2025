@@ -8,7 +8,6 @@ Intake::Intake() {
 }
 
 void Intake::setMotorVoltage(units::volt_t voltage) {
-    frc::SmartDashboard::PutNumber("Intake/IntakeTargetVoltage", voltage.value());
     intakeMotor.SetControl(intakeVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
@@ -38,5 +37,4 @@ frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
 void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
     frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
-    frc::SmartDashboard::PutNumber("SensorDistance", canRange.GetDistance().GetValue().value());
 }

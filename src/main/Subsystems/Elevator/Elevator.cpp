@@ -67,13 +67,6 @@ frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
 // This method will be called once per scheduler run
 void Elevator::Periodic() {
 
-    //no sé si está bien jiji
-    double currentPosition = {leftElevatorMotor.GetPosition().GetValueAsDouble()
-            * (ElevatorConstants::Diameter.value() * M_PI)};
-
     frc::SmartDashboard::PutNumber("ElevatorCurrent/CurrentElevatorMotor", getPosition().value());
-    frc::SmartDashboard::PutNumber("ElevatorCurrent/CurrentReal", leftElevatorMotor.GetPosition().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("ElevatorCurrent/TargetElevatorMotor",
-            leftElevatorMotor.GetClosedLoopReference().GetValue());
 
 }

@@ -8,7 +8,7 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <OvertureLib/Robots/OverContainer/OverContainer.h>
 #include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
-#include <frc2/command/button/CommandGenericHID.h>
+#include <OvertureLib/Gamepads/OverConsole/OverConsole.h>
 #include <OvertureLib/Subsystems/Vision/AprilTags/AprilTags.h>
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include "Subsystems/Chassis/Chassis.h"
@@ -55,7 +55,7 @@ private:
 
     OverXboxController driver {0, 0.20, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
-    frc2::CommandGenericHID console {2};
+    OverConsole console {2};
     //OverXboxController test {3, 0.20, 0.2};
 
 #ifndef __FRC_ROBORIO__

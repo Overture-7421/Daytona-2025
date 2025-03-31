@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Subsystems/Arm/Arm.h"
+#include <OvertureLib/Utils/Logging/Logging.h>
 #include <iostream>
 
 Arm::Arm() {
@@ -90,16 +91,5 @@ void Arm::changeArmSpeeds(units::turns_per_second_t velocity, units::turns_per_s
 }
 
 void Arm::Periodic() {
-
-    units::degree_t armCurrentAngleMotor = armLeftMotor.GetPosition().GetValue();
-    units::degree_t armCurrentAngleCANCODER = armCANCoder.GetPosition().GetValue();
-    //double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleMotor", armCurrentAngleMotor.value());
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleEncoder", armCurrentAngleCANCODER.value());
-
-    units::degree_t wristCurrentAngleMotor = wristMotor.GetPosition().GetValue();
-    units::degree_t wristCurrentAngleCANCODER = wristCANCoder.GetPosition().GetValue();
-    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleMotor", wristCurrentAngleMotor.value());
-    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleEncoder", wristCurrentAngleCANCODER.value());
 
 }

@@ -66,6 +66,7 @@ RobotContainer::RobotContainer() {
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
     ConfigureBindings();
     chassis.setAcceptingVisionMeasurements(true);
+    frc::DriverStation::SilenceJoystickConnectionWarning(true);
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -324,4 +325,9 @@ AprilTags::Config RobotContainer::backLeftCamera() {
 }
 void RobotContainer::UpdateTelemetry() {
     chassis.shuffleboardPeriodic();
+    driver.updateTelemetry();
+    oprtr.updateTelemetry();
+    console.updateTelemetry();
+
+    frc::SmartDashboard::PutNumber("MatchTime", frc::DriverStation::GetMatchTime().value());
 }

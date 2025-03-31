@@ -5,7 +5,8 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
+#include <OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h>
+#include <OvertureLib/Utils/Logging/Logging.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>

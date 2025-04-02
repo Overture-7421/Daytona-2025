@@ -8,13 +8,13 @@ AlignToPose::AlignToPose(Chassis *chassis, ReefSide direction, ReefPackage reefP
     this->chassis = chassis;
 
     if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
-        alignPositions = alignInRed;
+        alignPositionsMap = alignInRed;
     } else {
-        alignPositions = alignInBlue;
+        alignPositionsMap = alignInBlue;
     }
 
-    if (alignPositions.contains(reefPackage.reefLocation)) {
-        reefOffset = alignPositions.at(reefPackage.reefLocation);
+    if (alignPositionsMap.contains(reefPackage.reefLocation)) {
+        reefOffset = alignPositionsMap.at(reefPackage.reefLocation);
     } else {
         reefOffset = defaultReefOffset;
     }

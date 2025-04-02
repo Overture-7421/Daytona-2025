@@ -652,8 +652,8 @@
             "title": "Sensor Activated???",
             "x": 1140.0,
             "y": 0.0,
-            "width": 660.0,
-            "height": 630.0,
+            "width": 630.0,
+            "height": 420.0,
             "type": "Boolean Box",
             "properties": {
               "topic": "/SmartDashboard/Sensor Activated???",
@@ -667,8 +667,8 @@
           },
           {
             "title": "AutoChooser",
-            "x": 600.0,
-            "y": 270.0,
+            "x": 1140.0,
+            "y": 420.0,
             "width": 540.0,
             "height": 150.0,
             "type": "ComboBox Chooser",
@@ -676,18 +676,6 @@
               "topic": "/SmartDashboard/AutoChooser",
               "period": 0.06,
               "sort_options": false
-            }
-          },
-          {
-            "title": "Alerts",
-            "x": 300.0,
-            "y": 0.0,
-            "width": 300.0,
-            "height": 270.0,
-            "type": "Alerts",
-            "properties": {
-              "topic": "/SmartDashboard/Alerts",
-              "period": 0.06
             }
           },
           {
@@ -716,6 +704,30 @@
               "time_display_mode": "Minutes and Seconds",
               "red_start_time": 20,
               "yellow_start_time": 45
+            }
+          },
+          {
+            "title": "Controllers",
+            "x": 300.0,
+            "y": 0.0,
+            "width": 300.0,
+            "height": 270.0,
+            "type": "Alerts",
+            "properties": {
+              "topic": "/SmartDashboard/Controllers",
+              "period": 0.06
+            }
+          },
+          {
+            "title": "Devices",
+            "x": 0.0,
+            "y": 270.0,
+            "width": 300.0,
+            "height": 270.0,
+            "type": "Alerts",
+            "properties": {
+              "topic": "/SmartDashboard/Devices",
+              "period": 0.06
             }
           }
         ]

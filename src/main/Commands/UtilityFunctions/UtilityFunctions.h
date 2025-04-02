@@ -12,6 +12,8 @@
 #include "frc/apriltag/AprilTagFieldLayout.h"
 #include "OvertureLib/Utils/UtilityFunctions/UtilityFunctions.h"
 
-ReefLocation findClosestReefLocation(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
+#include "Commands/UtilityFunctions/ReefPackage.h"
+
+ReefPackage findClosestReefLocation(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
 
 StationLocation findClosestStationLocation(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);

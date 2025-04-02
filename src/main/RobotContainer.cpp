@@ -54,13 +54,12 @@ RobotContainer::RobotContainer() {
                             elevator.setElevatorCommand(ElevatorConstants::ClosedPosition))));
 
     pathplanner::NamedCommands::registerCommand("rightAlign",
-            std::move(rightAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
+            std::move(rightAlignPos(&chassis, &tagLayout).WithTimeout(5.0_s)));
     pathplanner::NamedCommands::registerCommand("leftAlign",
-            std::move(leftAlignPos(&chassis, &tagLayout, true).WithTimeout(5.0_s)));
+            std::move(leftAlignPos(&chassis, &tagLayout).WithTimeout(5.0_s)));
 
-    pathplanner::NamedCommands::registerCommand("rightAlignFast",
-            std::move(rightAlignAuto(&chassis, &tagLayout, true)));
-    pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout, true)));
+    pathplanner::NamedCommands::registerCommand("rightAlignFast", std::move(rightAlignAuto(&chassis, &tagLayout)));
+    pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -126,7 +125,7 @@ void RobotContainer::ConfigOperatorBindings() {
     (!driver.A() && oprtr.RightTrigger()).WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
     oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout, false));
+    //oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout));
 
     oprtr.POVDown().WhileTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
     oprtr.POVDown().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -167,7 +166,7 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (console.Button(12) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
                         // disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
@@ -176,7 +175,7 @@ void RobotContainer::ConfigMixedBindigs() {
                     })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
                         // disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
@@ -187,7 +186,7 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (console.Button(7) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
                         // disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
@@ -196,7 +195,7 @@ void RobotContainer::ConfigMixedBindigs() {
                     })));
     (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
                         // disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
@@ -207,7 +206,7 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (console.Button(10) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
-                    leftAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
                         // disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
@@ -216,7 +215,7 @@ void RobotContainer::ConfigMixedBindigs() {
                     })));
     (console.Button(11) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
-                    rightAlignPos(&chassis, &tagLayout, false).BeforeStarting([this] {
+                    rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
                         // disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();

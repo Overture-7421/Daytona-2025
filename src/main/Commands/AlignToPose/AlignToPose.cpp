@@ -4,16 +4,29 @@
 
 #include "AlignToPose.h"
 
-AlignToPose::AlignToPose(Chassis *chassis, frc::Pose2d pose2d, bool iAmSpeed) : alignSpeedHelper(chassis, pose2d,
-        iAmSpeed) {
+AlignToPose::AlignToPose(Chassis *chassis, ReefSide direction, ReefPackage reefPackage) {
     this->chassis = chassis;
+
+    if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
+        alignPositions = alignInRed;
+    } else {
+        alignPositions = alignInBlue;
+    }
+
+    if (alignPositions.contains(reefPackage.reefLocation)) {
+        reefOffset = alignPositions.at(reefPackage.reefLocation);
+    } else {
+        reefOffset = defaultReefOffset;
+    }
+
+    alignSpeedHelper = std::make_shared < AlignSpeedHelper > (chassis, reefOffset, direction, reefPackage);
 
     AddRequirements( {chassis});
 }
 
 void AlignToPose::Initialize() {
-    alignSpeedHelper.initialize();
-    chassis->enableSpeedHelper(&alignSpeedHelper);
+    alignSpeedHelper->initialize();
+    chassis->enableSpeedHelper(alignSpeedHelper.get());
 }
 
 void AlignToPose::Execute() {
@@ -24,5 +37,5 @@ void AlignToPose::End(bool interrupted) {
 }
 
 bool AlignToPose::IsFinished() {
-    return alignSpeedHelper.atGoal();
+    return alignSpeedHelper->atGoal();
 }

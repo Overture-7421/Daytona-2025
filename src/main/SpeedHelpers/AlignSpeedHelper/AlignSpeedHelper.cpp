@@ -27,12 +27,6 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, Reef
     this->headingPIDController.SetTolerance(1.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 
-    /*
-     if (iAmSpeed) {
-     this->xPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
-     this->yPIDController.SetConstraints( {3.0_mps, 1.0_mps_sq});
-     }
-     */
 }
 
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
@@ -111,9 +105,11 @@ void AlignSpeedHelper::initialize() {
     frc::Pose2d pose = chassis->getEstimatedPose();
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 
-    xPIDController.Reset(poseInTargetFrame.X());
-    yPIDController.Reset(poseInTargetFrame.Y());
-    headingPIDController.Reset(poseInTargetFrame.Rotation().Radians());
+    frc::ChassisSpeeds currentSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(chassis->getCurrentSpeeds(), 
+                                -pose.Rotation() + reefPackage.pose.Rotation());
+    xPIDController.Reset(poseInTargetFrame.X(), currentSpeeds.vx);
+    yPIDController.Reset(poseInTargetFrame.Y(), currentSpeeds.vy);
+    headingPIDController.Reset(poseInTargetFrame.Rotation().Radians(), currentSpeeds.omega);
 }
 
 frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d &pose) {

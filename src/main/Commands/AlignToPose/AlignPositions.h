@@ -9,7 +9,7 @@
 #include "Enums/ReefSide.h"
 #include "Commands/UtilityFunctions/ReefOffset.h"
 
-static ReefOffset defaultReefOffset {0.05_m, -0.05_m, 0.01_m, 0.0_deg};
+static const ReefOffset defaultReefOffset {0.05_m, -0.05_m, 0.50_m, 0.0_deg};
 
 static std::map<ReefLocation, ReefOffset> alignPositionsMap;
 

@@ -13,7 +13,7 @@
 
 class AlignToPose: public frc2::CommandHelper<frc2::Command, AlignToPose> {
 public:
-    AlignToPose(Chassis *chassis, ReefSide direction, ReefPackage reefPackage);
+    AlignToPose(Chassis *chassis, ReefSide direction, frc::AprilTagFieldLayout *tagLayout);
 
     void Initialize() override;
 
@@ -26,6 +26,9 @@ public:
 private:
     Chassis *chassis;
     std::shared_ptr<AlignSpeedHelper> alignSpeedHelper;
+    frc::AprilTagFieldLayout *tagLayout;
+
     ReefOffset reefOffset;
+    ReefSide reefSide;
 
 };

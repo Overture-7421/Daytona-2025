@@ -43,10 +43,13 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     auto rotationOut = units::degrees_per_second_t(
             headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), headingTarget));
 
-    double clampYError = std::clamp(std::abs(yPIDController.GetPositionError().value()), 0.0, 0.15);
+    units::meter_t yError = units::math::abs(yPIDController.GetGoal().position - poseInTargetFrame.Y());
+    units::degree_t headingError = units::math::abs(headingPIDController.GetGoal().position - poseInTargetFrame.Rotation().Degrees());
+
+    double clampYError = std::clamp(yError.value(), 0.0, 0.15);
     double yErrorToAngleMock = map(clampYError, 0.0, 0.15, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
-    double headingScale = units::math::cos(units::math::abs(headingPIDController.GetPositionError()));
+    double headingScale = units::math::cos(headingError);
     xScale = headingScale * yScale;
 
     units::meter_t actualXTarget = poseInTargetFrame.X();
@@ -54,6 +57,11 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     if (xScale > scaleMin) {
         actualXTarget = xTarget;
     }
+    frc::SmartDashboard::PutNumber("ReefPackage/MAth/yScale", yScale);
+    frc::SmartDashboard::PutNumber("ReefPackage/MAth/headingScale", headingScale);
+    frc::SmartDashboard::PutNumber("ReefPackage/XTarget/xScale", xScale);
+    frc::SmartDashboard::PutNumber("ReefPackage/XTarget/actualXTarget", actualXTarget.value());
+
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), actualXTarget));
 
@@ -89,9 +97,8 @@ frc::TrapezoidProfile<units::meters>::Constraints AlignSpeedHelper::getConstrain
 }
 
 void AlignSpeedHelper::initialize() {
-    if (isRedAlliance()) {
-        allianceMulti = -1;
-    } else {
+    if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
+        //allianceMulti = -1;
     }
 
     xTarget = reefOffset.xOffset;
@@ -105,8 +112,8 @@ void AlignSpeedHelper::initialize() {
     frc::Pose2d pose = chassis->getEstimatedPose();
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 
-    frc::ChassisSpeeds currentSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(chassis->getCurrentSpeeds(), 
-                                -pose.Rotation() + reefPackage.pose.Rotation());
+    frc::ChassisSpeeds currentSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(chassis->getCurrentSpeeds(),
+            -pose.Rotation() + reefPackage.pose.Rotation());
     xPIDController.Reset(poseInTargetFrame.X(), currentSpeeds.vx);
     yPIDController.Reset(poseInTargetFrame.Y(), currentSpeeds.vy);
     headingPIDController.Reset(poseInTargetFrame.Rotation().Radians(), currentSpeeds.omega);
@@ -123,4 +130,5 @@ bool AlignSpeedHelper::atGoal() {
     frc::SmartDashboard::PutBoolean("AlignTest/AtGoalH", headingPIDController.AtGoal());
     return xPIDController.AtGoal() && (xPIDController.GetGoal().position == xTarget) && yPIDController.AtGoal()
             && headingPIDController.AtGoal();
+    frc::SmartDashboard::PutNumber("ReefPackage/XTarget/Direct", xTarget.value());
 }

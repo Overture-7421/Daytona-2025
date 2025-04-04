@@ -4,8 +4,19 @@
 
 #include "AlignToPose.h"
 
-AlignToPose::AlignToPose(Chassis *chassis, ReefSide direction, ReefPackage reefPackage) {
+AlignToPose::AlignToPose(Chassis *chassis, ReefSide reefSide, frc::AprilTagFieldLayout *tagLayout) {
     this->chassis = chassis;
+    this->tagLayout = tagLayout;
+    this->reefSide = reefSide;
+    
+
+    AddRequirements( {chassis});
+}
+
+void AlignToPose::Initialize() {
+    ReefPackage reefPackage = findClosestReefLocation(chassis, tagLayout);
+    ReefOffset reefOffset;
+
 
     if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
         alignPositionsMap = alignInRed;
@@ -19,12 +30,9 @@ AlignToPose::AlignToPose(Chassis *chassis, ReefSide direction, ReefPackage reefP
         reefOffset = defaultReefOffset;
     }
 
-    alignSpeedHelper = std::make_shared < AlignSpeedHelper > (chassis, reefOffset, direction, reefPackage);
+    alignSpeedHelper = std::make_shared < AlignSpeedHelper > (chassis, reefOffset, reefSide, reefPackage);
 
-    AddRequirements( {chassis});
-}
 
-void AlignToPose::Initialize() {
     alignSpeedHelper->initialize();
     chassis->enableSpeedHelper(alignSpeedHelper.get());
 }

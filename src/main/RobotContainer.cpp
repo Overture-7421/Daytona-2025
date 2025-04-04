@@ -58,8 +58,8 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("leftAlign",
             std::move(leftAlignPos(&chassis, &tagLayout).WithTimeout(5.0_s)));
 
-    pathplanner::NamedCommands::registerCommand("rightAlignFast", std::move(rightAlignAuto(&chassis, &tagLayout)));
-    pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignAuto(&chassis, &tagLayout)));
+    pathplanner::NamedCommands::registerCommand("rightAlignFast", std::move(rightAlignPos(&chassis, &tagLayout)));
+    pathplanner::NamedCommands::registerCommand("leftAlignFast", std::move(leftAlignPos(&chassis, &tagLayout)));
 
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
@@ -167,60 +167,60 @@ void RobotContainer::ConfigMixedBindigs() {
     (console.Button(12) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        // disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        // enableBackCamera();
+                        enableBackCamera();
                     })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        // disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        // enableBackCamera();
+                        enableBackCamera();
                     })));
     ;
 
     (console.Button(7) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        // disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        // enableBackCamera();
+                        enableBackCamera();
                     })));
     (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        // disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        // enableBackCamera();
+                        enableBackCamera();
                     })));
     ;
 
     (console.Button(10) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        // disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        // enableBackCamera();
+                        enableBackCamera();
                     })));
     (console.Button(11) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        // disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        // enableBackCamera();
+                        enableBackCamera();
                     })));
     ;
 

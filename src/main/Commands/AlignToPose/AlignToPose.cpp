@@ -8,7 +8,6 @@ AlignToPose::AlignToPose(Chassis *chassis, ReefSide reefSide, frc::AprilTagField
     this->chassis = chassis;
     this->tagLayout = tagLayout;
     this->reefSide = reefSide;
-    
 
     AddRequirements( {chassis});
 }
@@ -16,7 +15,6 @@ AlignToPose::AlignToPose(Chassis *chassis, ReefSide reefSide, frc::AprilTagField
 void AlignToPose::Initialize() {
     ReefPackage reefPackage = findClosestReefLocation(chassis, tagLayout);
     ReefOffset reefOffset;
-
 
     if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
         alignPositionsMap = alignInRed;
@@ -31,7 +29,6 @@ void AlignToPose::Initialize() {
     }
 
     alignSpeedHelper = std::make_shared < AlignSpeedHelper > (chassis, reefOffset, reefSide, reefPackage);
-
 
     alignSpeedHelper->initialize();
     chassis->enableSpeedHelper(alignSpeedHelper.get());

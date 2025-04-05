@@ -167,60 +167,60 @@ void RobotContainer::ConfigMixedBindigs() {
     (console.Button(12) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
+                        //disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        enableBackCamera();
+                        //enableBackCamera();
                     })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
+                        //disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        enableBackCamera();
+                        //enableBackCamera();
                     })));
     ;
 
     (console.Button(7) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
+                        //disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        enableBackCamera();
+                        //enableBackCamera();
                     })));
     (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
+                        //disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        enableBackCamera();
+                        //enableBackCamera();
                     })));
     ;
 
     (console.Button(10) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
+                        //disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        enableBackCamera();
+                        //enableBackCamera();
                     })));
     (console.Button(11) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        disableBackCamera();
+                        //disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        enableBackCamera();
+                        //enableBackCamera();
                     })));
     ;
 

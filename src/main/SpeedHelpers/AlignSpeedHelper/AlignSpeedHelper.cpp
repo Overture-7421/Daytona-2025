@@ -44,13 +44,14 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
             headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), headingTarget));
 
     units::meter_t yError = units::math::abs(yPIDController.GetGoal().position - poseInTargetFrame.Y());
-    units::degree_t headingError = units::math::abs(headingPIDController.GetGoal().position - poseInTargetFrame.Rotation().Degrees());
+    units::degree_t headingError = units::math::abs(
+            headingPIDController.GetGoal().position - poseInTargetFrame.Rotation().Degrees());
 
-    double clampYError = std::clamp(yError.value(), 0.0, 0.15);
-    double yErrorToAngleMock = map(clampYError, 0.0, 0.15, 0.0, M_PI_2);
+    double clampYError = std::clamp(yError.value(), 0.0, 1.3);
+    double yErrorToAngleMock = map(clampYError, 0.0, 1.3, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
     double headingScale = units::math::cos(headingError);
-    xScale = headingScale * yScale;
+    xScale = std::clamp((headingScale + 0.2) * yScale, 0.0, 1.0);
 
     units::meter_t actualXTarget = poseInTargetFrame.X();
 
@@ -61,7 +62,6 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::SmartDashboard::PutNumber("ReefPackage/MAth/headingScale", headingScale);
     frc::SmartDashboard::PutNumber("ReefPackage/XTarget/xScale", xScale);
     frc::SmartDashboard::PutNumber("ReefPackage/XTarget/actualXTarget", actualXTarget.value());
-
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), actualXTarget));
 

@@ -9,7 +9,12 @@
 #include "Enums/ReefSide.h"
 #include "Commands/UtilityFunctions/ReefOffset.h"
 
-static const ReefOffset defaultReefOffset {-0.30_m, 0.0_m, 0.50_m, 0.0_deg};
+//MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 
+//ATRAS es mas POSITIVOS / ADELANTE es mas NEGATIVOS
+//GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
+
+//IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION
+static const ReefOffset defaultReefOffset {-0.30_m, 0.0_m, 0.50_m, 180.0_deg};
 
 static std::map<ReefLocation, ReefOffset> alignPositionsMap;
 

@@ -76,8 +76,6 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
 
             }, std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Sequence(
                     superStructure->setState(SuperStructureStates::HoldAlgae),
-                    ArmMotion(elevator, arm, ArmConstants::ArmLowAlgae, ArmConstants::WristClosed,
-                            ElevatorConstants::ClosedPosition).ToPtr(),
                     ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                             ElevatorConstants::ClosedPosition).ToPtr(), intake->moveIntake(IntakeConstants::AlgaeHold),
                     elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)

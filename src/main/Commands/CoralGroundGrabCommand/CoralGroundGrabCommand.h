@@ -11,4 +11,9 @@
 #include <frc2/command/Commands.h>
 #include "Subsystems/SuperStructure/SuperStructure.h"
 
-frc2::CommandPtr CoralGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);
+frc2::CommandPtr CoralGroundGrabCommandFront(Arm *arm, Elevator *elevator, Intake *intake,
+        SuperStructure *superStructure);
+
+frc2::CommandPtr CoralGroundGrabCommandBack(Arm *arm, Elevator *elevator, Intake *intake,
+        SuperStructure *superStructure);
+

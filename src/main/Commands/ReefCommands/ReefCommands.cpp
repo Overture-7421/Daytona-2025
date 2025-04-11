@@ -31,9 +31,10 @@ frc2::CommandPtr L2Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
                     superStructure->setScoringState(SuperStructureScoringStates::L2),
-                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L2Position),
+                    frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmL2Reef, ArmConstants::WristL2Reef,
-                                    ElevatorConstants::L2Position).ToPtr()))}
+                                    ElevatorConstants::L2Position).ToPtr(),
+                            elevator->setElevatorCommand(ElevatorConstants::L2Position)))}
 
             );
 
@@ -46,9 +47,12 @@ frc2::CommandPtr L3Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
                     superStructure->setScoringState(SuperStructureScoringStates::L3),
-                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L3Position),
+                    frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmL3Reef, ArmConstants::WristL3Reef,
-                                    ElevatorConstants::L3Position).ToPtr()))}
+                                    ElevatorConstants::L3Position).ToPtr(),
+                            elevator->setElevatorCommand(ElevatorConstants::L3Position)
+
+                            ))}
 
             );
 
@@ -61,9 +65,12 @@ frc2::CommandPtr L4Command(Arm *arm, Elevator *elevator, SuperStructure *superSt
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
                     superStructure->setScoringState(SuperStructureScoringStates::L4),
-                    frc2::cmd::Sequence(elevator->setElevatorCommand(ElevatorConstants::L4Position),
+                    frc2::cmd::Sequence(
                             ArmMotion(elevator, arm, ArmConstants::ArmL4Reef, ArmConstants::WristL4Reef,
-                                    ElevatorConstants::L4Position).ToPtr()))}
+                                    ElevatorConstants::L4Position).ToPtr(),
+                            elevator->setElevatorCommand(ElevatorConstants::L4Position)
+
+                            ))}
 
             );
 

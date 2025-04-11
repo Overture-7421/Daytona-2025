@@ -28,7 +28,7 @@ private:
 
     frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints {3_mps, 1_mps_sq};
 
-    frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {1_mps, defaultConstraints.maxAcceleration};
+    frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {1_mps, 0.25_mps_sq};
 
     frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, defaultConstraints}; //4 2.1
 

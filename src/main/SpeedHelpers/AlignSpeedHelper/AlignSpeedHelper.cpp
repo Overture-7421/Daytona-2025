@@ -20,9 +20,9 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, Reef
     this->direction = direction;
 
     this->xPIDController.SetIZone(3);
-    this->xPIDController.SetTolerance(0.05_m);
+    this->xPIDController.SetTolerance(0.01_m);
     this->yPIDController.SetIZone(3);
-    this->yPIDController.SetTolerance(0.05_m);
+    this->yPIDController.SetTolerance(0.01_m);
     this->headingPIDController.SetIZone(3);
     this->headingPIDController.SetTolerance(1.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
@@ -105,6 +105,7 @@ void AlignSpeedHelper::initialize() {
     headingTarget = reefOffset.headingOffset;
     if (direction == ReefSide::Left) {
         yTarget = reefOffset.leftOffset;
+        xTarget += -0.0_m; //-0.025
     } else {
         yTarget = reefOffset.rightOffset;
     }

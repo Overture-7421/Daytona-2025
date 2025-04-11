@@ -31,14 +31,14 @@ void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
 
 void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
 
-    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 35;
-    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < 120;
+    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 31;
+    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < 124;
 
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingNegative", blockingNegative);
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingPositive", blockingPositive);
 
     if (blockingNegative && blockingPositive) {
-        setToAngle(armAngle, 0_deg);
+        setToAngle(armAngle, 0_deg - 3_deg);
     } else {
         setToAngle(armAngle, wristAngle);
     }

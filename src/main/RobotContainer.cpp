@@ -92,11 +92,14 @@ void RobotContainer::ConfigDriverBindings() {
     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
     //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.A().WhileTrue(CoralGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-
-    driver.B().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    driver.B().WhileTrue(CoralGroundGrabCommandFront(&arm, &elevator, &intake, &superStructure));
     driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+
+    driver.X().WhileTrue(CoralGroundGrabCommandBack(&arm, &elevator, &intake, &superStructure));
+    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+
+    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -167,60 +170,60 @@ void RobotContainer::ConfigMixedBindigs() {
     (console.Button(12) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        //disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        //enableBackCamera();
+                        enableBackCamera();
                     })));
     (console.Button(5) && driver.POVRight()).OnTrue(
             L2Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        //disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        //enableBackCamera();
+                        enableBackCamera();
                     })));
     ;
 
     (console.Button(7) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        //disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        //enableBackCamera();
+                        enableBackCamera();
                     })));
     (console.Button(8) && driver.POVRight()).OnTrue(
             L3Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        //disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        //enableBackCamera();
+                        enableBackCamera();
                     })));
     ;
 
     (console.Button(10) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     leftAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        //disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        //enableBackCamera();
+                        enableBackCamera();
                     })));
     (console.Button(11) && driver.POVRight()).OnTrue(
             L4Command(&arm, &elevator, &superStructure).AlongWith(
                     rightAlignPos(&chassis, &tagLayout).BeforeStarting([this] {
-                        //disableBackCamera();
+                        disableBackCamera();
                     }).Until([this] {
                         return getDriverOverride();
                     }).FinallyDo([this] {
-                        //enableBackCamera();
+                        enableBackCamera();
                     })));
     ;
 
@@ -257,8 +260,8 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    //test.A().WhileTrue(climber.setClimberCommand(450_deg));
-    //test.A().OnFalse(climber.setClimberCommand(0.0_deg));
+    test.A().WhileTrue(climber.setClimberCommand(100_deg));
+    test.A().OnFalse(climber.setClimberCommand(0.0_deg));
 
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout)));
     //test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -269,13 +272,15 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.A().ToggleOnTrue(TabulateCommand(&elevator, &arm, &intake).ToPtr());
     //test.A().WhileTrue(intake.setIntakeCommand(0.0_V, 25.0_deg));
     //test.A().OnFalse(intake.setIntakeCommand(0.0_V, 10.0_deg));
-    // test.B().WhileTrue(elevator.setElevatorCommand(1.50_m));
-    // test.B().OnFalse(elevator.setElevatorCommand(0.00_m));
+
+    //test.A().WhileTrue(elevator.setElevatorCommand(1.50_m));
+    //test.A().OnFalse(elevator.setElevatorCommand(0.00_m));
+
+    //test.A().WhileTrue(arm.setArmCommand(30_deg, 0_deg));
+    //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+
     //test.A().WhileTrue(arm.setArmCommand(30_deg, -90_deg));
     //test.A().OnFalse(arm.setArmCommand(30_deg, 0_deg));
-
-    //test.B().WhileTrue(arm.setArmCommand(70_deg, -90_deg));
-    //test.B().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
     //test.A().WhileTrue(arm.setArmCommand(130_deg, 90_deg));
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
@@ -283,15 +288,17 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
     //test.POVDown().WhileTrue(arm.setArmCommand(40_deg, 0_deg));
     //test.POVDown().OnFalse(arm.setArmCommand(40_deg, 0_deg));
+
+    //test.A().WhileTrue(intake.moveIntake(4_V));
+    //test.A().OnFalse(intake.moveIntake(0_V));
+
 }
 
 void RobotContainer::disableBackCamera() {
-    backRightCam.setEnabled(false);
     backLeftCam.setEnabled(false);
 }
 
 void RobotContainer::enableBackCamera() {
-    backRightCam.setEnabled(true);
     backLeftCam.setEnabled(true);
 }
 
@@ -305,14 +312,14 @@ AprilTags::Config RobotContainer::frontRightCamera() {
 AprilTags::Config RobotContainer::frontLeftCamera() {
     AprilTags::Config config;
     config.cameraName = "FrontLeft";
-    config.cameraToRobot = {9.875_in, 10.653063_in, 8.109802_in, {0_deg, -15_deg, 0_deg}};
+    config.cameraToRobot = {8.259106_in, 11.912587_in, 7.406521_in, {0_deg, -15_deg, 20_deg}};
     return config;
 }
 
 AprilTags::Config RobotContainer::backRightCamera() {
     AprilTags::Config config;
     config.cameraName = "BackRight";
-    config.cameraToRobot = {-11.217641_in, -7.333535_in, 10.682798_in, {0_deg, -28.125_deg, -120_deg}};
+    config.cameraToRobot = {10.784188_in, 1_in, 20.310051_in, {0_deg, 15_deg, 0_deg}};
     return config;
 }
 

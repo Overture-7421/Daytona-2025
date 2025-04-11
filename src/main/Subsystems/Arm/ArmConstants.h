@@ -18,55 +18,55 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmAlgaeInter = 60_deg;
 
     constexpr static const units::degree_t ArmL1Reef = 30.0_deg; //58
-    constexpr static const units::degree_t WristL1Reef = -90.0_deg - 3_deg; //90
+    constexpr static const units::degree_t WristL1Reef = -90.0_deg; //90
 
     constexpr static const units::degree_t ArmL2Reef = 73.0_deg;
-    constexpr static const units::degree_t WristL2Reef = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristL2Reef = 0.0_deg;
 
     constexpr static const units::degree_t ArmL3Reef = 73.0_deg; //50
-    constexpr static const units::degree_t WristL3Reef = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristL3Reef = 0.0_deg;
 
     constexpr static const units::degree_t ArmL4Reef = 73.0_deg; //65
-    constexpr static const units::degree_t WristL4Reef = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristL4Reef = 0.0_deg;
 
     constexpr static const units::degree_t ArmL4ReefAuto = 48.0_deg; //57
-    constexpr static const units::degree_t WristL4ReefAuto = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristL4ReefAuto = 0.0_deg;
 
     constexpr static const units::degree_t ArmLowAlgae = 8.0_deg; //2
-    constexpr static const units::degree_t WristLowAlgae = 90.0_deg - 3_deg;
+    constexpr static const units::degree_t WristLowAlgae = 90.0_deg;
 
     constexpr static const units::degree_t ArmHighAlgae = 8.0_deg; //2
-    constexpr static const units::degree_t WristHighAlgae = 90.0_deg - 3_deg;
+    constexpr static const units::degree_t WristHighAlgae = 90.0_deg;
 
     constexpr static const units::degree_t ArmCoralStation = 90_deg; //95
     constexpr static const units::degree_t ArmCoralStationAway = 90_deg; //95
-    constexpr static const units::degree_t WristCoralStation = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristCoralStation = 0.0_deg;
 
     constexpr static const units::degree_t ArmProcessor = 20.0_deg; //90
-    constexpr static const units::degree_t WristProcessor = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristProcessor = 0.0_deg;
 
     constexpr static const units::degree_t ArmNet = 90.0_deg; // 1
-    constexpr static const units::degree_t WristNet = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristNet = 0.0_deg;
 
     constexpr static const units::degree_t ArmCoralGroundFront = -24.0_deg; //Back 201
-    constexpr static const units::degree_t WristCoralGroundFront = -90.0_deg - 3_deg; // Back 90
+    constexpr static const units::degree_t WristCoralGroundFront = -90.0_deg; // Back 90
 
     constexpr static const units::degree_t ArmCoralGroundBack = 207.0_deg; //Back 201
-    constexpr static const units::degree_t WristCoralGroundBack = 90.0_deg - 3_deg; // Back 90
+    constexpr static const units::degree_t WristCoralGroundBack = 90.0_deg; // Back 90
 
     constexpr static const units::degree_t ArmAlgaeGround = 200.0_deg; //110
-    constexpr static const units::degree_t WristAlgaeGround = 90.0_deg - 3_deg;
+    constexpr static const units::degree_t WristAlgaeGround = 90.0_deg;
 
     constexpr static const units::degree_t ArmClosed = 90.0_deg; // 0
-    constexpr static const units::degree_t WristClosed = 0.0_deg - 3_deg;
+    constexpr static const units::degree_t WristClosed = 0.0_deg;
 
     constexpr static const double ArmRotorToSensor = 75.0;
-    constexpr static const double WristRotorToSensor = 54.0;
+    constexpr static const double WristRotorToSensor = 40.5;
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 120_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 120_tr_per_s_sq;
-    constexpr static const units::turns_per_second_t WristCruiseVelocity = 35.0_tps;
-    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 30_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t WristCruiseVelocity = 50.0_tps;
+    constexpr static const units::turns_per_second_squared_t WristCruiseAcceleration = 40_tr_per_s_sq;
 
     constexpr static const units::turns_per_second_t SlowVelocity = 3_tps;
     constexpr static const units::turns_per_second_squared_t SlowAccelerationa = 1_tr_per_s_sq;
@@ -124,7 +124,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig WristCANConfig() {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
-        wristCANConfig.Offset = 0.372802734375_tr;
+        wristCANConfig.Offset = -0.453857421875_tr;
         wristCANConfig.SensorDirection = 1;
 
         return wristCANConfig;

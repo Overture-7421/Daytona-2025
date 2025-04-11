@@ -38,8 +38,7 @@ frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *in
                             intake->moveIntake(IntakeConstants::AlgaeGrab))).Until([intake] {
                 return intake->isAlgaeIn();
             })}).AndThen(
-                    frc2::cmd::Sequence(
-                        frc2::cmd::Wait(0.2_s),
+                    frc2::cmd::Sequence(frc2::cmd::Wait(0.2_s),
                             frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::StopIntake),
                                     superStructure->setState(SuperStructureStates::HoldAlgae)),
                             frc2::cmd::Sequence(arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),

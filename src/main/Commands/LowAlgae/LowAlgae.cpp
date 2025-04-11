@@ -37,8 +37,7 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
                                     superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState),
                                     intake->moveIntake(IntakeConstants::AlgaeGrab)))).Until([intake] {
                 return intake->isAlgaeIn();
-            })},
-            std::pair {SuperStructureStates::SpitCoral, frc2::cmd::RepeatingSequence(
+            })}, std::pair {SuperStructureStates::SpitCoral, frc2::cmd::RepeatingSequence(
                     frc2::cmd::Sequence(
                             frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterLowAlgae),
                                     elevator->setElevatorCommand(ElevatorConstants::LowAlgae),

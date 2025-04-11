@@ -38,7 +38,7 @@ void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingPositive", blockingPositive);
 
     if (blockingNegative && blockingPositive) {
-        setToAngle(armAngle, 0_deg - 3_deg);
+        setToAngle(armAngle, 0_deg);
     } else {
         setToAngle(armAngle, wristAngle);
     }

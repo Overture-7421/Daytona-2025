@@ -4,8 +4,10 @@
 
 #include "AlignToPose.h"
 
-AlignToPose::AlignToPose(Chassis *chassis, ReefSide reefSide, frc::AprilTagFieldLayout *tagLayout) {
+AlignToPose::AlignToPose(Chassis *chassis, ReefSide reefSide, frc::AprilTagFieldLayout *tagLayout,
+        OverXboxController *driver) {
     this->chassis = chassis;
+    this->driver = driver;
     this->tagLayout = tagLayout;
     this->reefSide = reefSide;
 
@@ -41,6 +43,11 @@ void AlignToPose::End(bool interrupted) {
     chassis->disableSpeedHelper();
 }
 
+bool AlignToPose::getDriverOverride() {
+    frc::Translation2d joystickPos {units::meter_t(driver->GetLeftX()), units::meter_t(driver->GetLeftY())};
+    return std::abs(joystickPos.Distance( {}).value()) > 0.3;
+}
+
 bool AlignToPose::IsFinished() {
-    return alignSpeedHelper->atGoal();
+    return alignSpeedHelper->atGoal() || (getDriverOverride() && alignSpeedHelper->getTargetDistance() < 0.02_m);
 }

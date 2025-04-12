@@ -5,11 +5,11 @@
 #include "AlignPositions.h"
 #include "Commands/AlignToPose/AlignToPose.h"
 
-frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
-    return AlignToPose(chassis, ReefSide::Left, tagLayout).ToPtr();
+frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver) {
+    return AlignToPose(chassis, ReefSide::Left, tagLayout, driver).ToPtr();
 }
 
-frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
-    return AlignToPose(chassis, ReefSide::Right, tagLayout).ToPtr();
+frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver) {
+    return AlignToPose(chassis, ReefSide::Right, tagLayout, driver).ToPtr();
 }
 

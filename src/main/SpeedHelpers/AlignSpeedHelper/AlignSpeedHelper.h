@@ -17,6 +17,7 @@ class AlignSpeedHelper: public SpeedsHelper {
 public:
     AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, ReefSide direction, ReefPackage reefPackage);
     void alterSpeed(frc::ChassisSpeeds &inputSpeed) override;
+    units::meter_t getTargetDistance();
     bool atGoal();
 
     void initialize() override;
@@ -45,6 +46,7 @@ private:
     units::meter_t slowInRange = 6_m;
     units::meter_t slowDistance = 0.75_m;
     double allianceMulti = 1.0;
+    units::meter_t distanceToPose = 0_m;
 
     units::meter_t xTarget = 0.0_m; // The target X position in the target frame
     units::meter_t yTarget = 0.0_m; // The target Y position in the target frame

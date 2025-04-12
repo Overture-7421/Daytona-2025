@@ -32,7 +32,7 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, Reef
 void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::Pose2d pose = chassis->getEstimatedPose();
 
-    units::meter_t distanceToPose = units::math::abs(pose.Translation().Distance(reefPackage.pose.Translation()));
+    distanceToPose = units::math::abs(pose.Translation().Distance(reefPackage.pose.Translation()));
     frc::SmartDashboard::PutNumber("AlignTest/distanceToPose", distanceToPose.value());
 
     frc::TrapezoidProfile<units::meters>::Constraints actualConstraints = getConstrainst(distanceToPose);
@@ -122,6 +122,10 @@ void AlignSpeedHelper::initialize() {
 
 frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d &pose) {
     return pose.RelativeTo(reefPackage.pose);
+}
+
+units::meter_t AlignSpeedHelper::getTargetDistance() {
+    return distanceToPose;
 }
 
 bool AlignSpeedHelper::atGoal() {

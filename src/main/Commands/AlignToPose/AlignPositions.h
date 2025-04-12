@@ -8,6 +8,7 @@
 #include <map>
 #include "Enums/ReefSide.h"
 #include "Commands/UtilityFunctions/ReefOffset.h"
+#include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
 
 //MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 
 //ATRAS es mas POSITIVOS / ADELANTE es mas NEGATIVOS
@@ -22,6 +23,6 @@ static const std::map<ReefLocation, ReefOffset> alignInRed = {};
 
 static const std::map<ReefLocation, ReefOffset> alignInBlue = {};
 
-frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
-frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
+frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver);
+frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver);
 

@@ -116,7 +116,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = 0.012451171875_tr;
+        armCANConfig.Offset = 0.213134765625_tr;
 
         return armCANConfig;
     }
@@ -124,7 +124,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig WristCANConfig() {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
-        wristCANConfig.Offset = -0.453857421875_tr;
+        wristCANConfig.Offset = 0.048095703125_tr;
         wristCANConfig.SensorDirection = 1;
 
         return wristCANConfig;

@@ -319,7 +319,7 @@ AprilTags::Config RobotContainer::frontLeftCamera() {
 AprilTags::Config RobotContainer::backRightCamera() {
     AprilTags::Config config;
     config.cameraName = "BackRight";
-    config.cameraToRobot = {10.784188_in, 1_in, 20.310051_in, {0_deg, 15_deg, 0_deg}};
+    config.cameraToRobot = {10.784188_in, 2.200000_in, 20.810051_in, {0_deg, 15_deg, 0_deg}};
     return config;
 }
 

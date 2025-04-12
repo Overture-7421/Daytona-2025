@@ -11,28 +11,28 @@ frc2::CommandPtr CoralGroundGrabCommandFront(Arm *arm, Elevator *elevator, Intak
                 return superStructure->getState();
             },
             std::pair {SuperStructureStates::HoldCoral, frc2::cmd::RepeatingSequence(
-                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterCoralGround),
                             elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionFront),
-                            ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundFront,
-                                    ArmConstants::WristCoralGroundFront,
-                                    ElevatorConstants::CoralGroundGrabPositionFront).ToPtr(),
-                            intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
+                            frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::CoralGroundGrab),
+                                    ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundFront,
+                                            ArmConstants::WristCoralGroundFront,
+                                            ElevatorConstants::CoralGroundGrabPositionFront).ToPtr()))).Until([intake] {
                 return intake->isCoralIn();
             })}, std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::RepeatingSequence(
-                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterCoralGround),
                             elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionFront),
-                            ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundFront,
-                                    ArmConstants::WristCoralGroundFront,
-                                    ElevatorConstants::CoralGroundGrabPositionFront).ToPtr(),
-                            intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
+                            frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::CoralGroundGrab),
+                                    ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundFront,
+                                            ArmConstants::WristCoralGroundFront,
+                                            ElevatorConstants::CoralGroundGrabPositionFront).ToPtr()))).Until([intake] {
                 return intake->isCoralIn();
             })}, std::pair {SuperStructureStates::EnterAlgaeGround, frc2::cmd::RepeatingSequence(
-                    frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterCoralGround),
                             elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionFront),
-                            ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundFront,
-                                    ArmConstants::WristCoralGroundFront,
-                                    ElevatorConstants::CoralGroundGrabPositionFront).ToPtr(),
-                            intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
+                            frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::CoralGroundGrab),
+                                    ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundFront,
+                                            ArmConstants::WristCoralGroundFront,
+                                            ElevatorConstants::CoralGroundGrabPositionFront).ToPtr()))).Until([intake] {
                 return intake->isCoralIn();
             })}
 
@@ -51,34 +51,31 @@ frc2::CommandPtr CoralGroundGrabCommandBack(Arm *arm, Elevator *elevator, Intake
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::HoldCoral,
-                    frc2::cmd::RepeatingSequence(
-                            frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
-                                    elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionBack),
+            std::pair {SuperStructureStates::HoldCoral, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterCoralGround),
+                            elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionBack),
+                            frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::CoralGroundGrab),
                                     ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundBack,
                                             ArmConstants::WristCoralGroundBack,
-                                            ElevatorConstants::CoralGroundGrabPositionBack).ToPtr(),
-                                    intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
-                        return intake->isCoralIn();
-                    })}, std::pair {SuperStructureStates::EnterCoralStation,
-                    frc2::cmd::RepeatingSequence(
-                            frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
-                                    elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionBack),
+                                            ElevatorConstants::CoralGroundGrabPositionBack).ToPtr()))).Until([intake] {
+                return intake->isCoralIn();
+            })}, std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterCoralGround),
+                            elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionBack),
+                            frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::CoralGroundGrab),
                                     ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundBack,
                                             ArmConstants::WristCoralGroundBack,
-                                            ElevatorConstants::CoralGroundGrabPositionBack).ToPtr(),
-                                    intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
-                        return intake->isCoralIn();
-                    })}, std::pair {SuperStructureStates::EnterAlgaeGround,
-                    frc2::cmd::RepeatingSequence(
-                            frc2::cmd::Parallel(superStructure->setState(SuperStructureStates::EnterCoralGround),
-                                    elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionBack),
+                                            ElevatorConstants::CoralGroundGrabPositionBack).ToPtr()))).Until([intake] {
+                return intake->isCoralIn();
+            })}, std::pair {SuperStructureStates::EnterAlgaeGround, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Sequence(superStructure->setState(SuperStructureStates::EnterCoralGround),
+                            elevator->setElevatorCommand(ElevatorConstants::CoralGroundGrabPositionBack),
+                            frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::CoralGroundGrab),
                                     ArmMotion(elevator, arm, ArmConstants::ArmCoralGroundBack,
                                             ArmConstants::WristCoralGroundBack,
-                                            ElevatorConstants::CoralGroundGrabPositionBack).ToPtr(),
-                                    intake->moveIntake(IntakeConstants::CoralGroundGrab))).Until([intake] {
-                        return intake->isCoralIn();
-                    })}
+                                            ElevatorConstants::CoralGroundGrabPositionBack).ToPtr()))).Until([intake] {
+                return intake->isCoralIn();
+            })}
 
             ).AndThen(
                     frc2::cmd::Sequence(

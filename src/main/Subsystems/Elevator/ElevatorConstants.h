@@ -24,9 +24,9 @@ struct ElevatorConstants {
     constexpr static const units::meter_t CoralGroundGrabPositionFront = 0.205_m; //Back 0.19
     constexpr static const units::meter_t CoralGroundGrabPositionBack = 0.23_m; //Back 0.19
     constexpr static const units::meter_t AlgaeGroundGrabPosition = 0.48_m;
-    constexpr static const units::meter_t CoralStationPosition = 0.00_m;
+    constexpr static const units::meter_t CoralStationPosition = 0.28_m;
     constexpr static const units::meter_t ClosedPosition = 0.00_m;
-    constexpr static const units::meter_t L1Position = 0.10_m;
+    constexpr static const units::meter_t L1Position = 0.14_m;
     constexpr static const units::meter_t L2Position = 0.21_m;
     constexpr static const units::meter_t L3Position = 0.76_m;
     constexpr static const units::meter_t L4Position = 1.62_m;

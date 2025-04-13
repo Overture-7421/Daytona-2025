@@ -48,7 +48,7 @@
   "folder": "ChokeholdRight",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 54.0
+    "rotation": 144.0
   },
   "useDefaultConstraints": true
 }

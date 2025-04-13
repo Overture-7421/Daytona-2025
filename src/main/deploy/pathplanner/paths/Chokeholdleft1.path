@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.591,
-        "y": 5.41925
+        "x": 6.649500000000001,
+        "y": 5.653250000000001
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.11875,
-        "y": 5.4777499999999995
+        "x": 5.6745,
+        "y": 5.63375
       },
       "prevControl": {
-        "x": 5.499,
-        "y": 5.53625
+        "x": 6.230250000000001,
+        "y": 6.189499999999999
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokehold1"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -34,15 +34,15 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -121.26727453964878
+    "velocity": 2.0,
+    "rotation": -119.99999999999999
   },
   "reversed": false,
   "folder": "ChokeholdLeft",

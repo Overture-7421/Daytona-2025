@@ -10,19 +10,29 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
             > ([superStructure] {
                 return superStructure->getState();
             },
-            std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::Parallel(
-                    intake->moveIntake(IntakeConstants::StopIntake),
-                    superStructure->setState(SuperStructureStates::HoldCoral),
+            std::pair {SuperStructureStates::EnterCoralStation, frc2::cmd::Sequence(
+                frc2::cmd::Sequence(
+                        superStructure->setState(SuperStructureStates::HoldCoral),
+                        superStructure->setScoringState(SuperStructureScoringStates::HoldBadCoral)
+                ),
+                frc2::cmd::Parallel(
+                        intake->moveIntake(IntakeConstants::StopIntake),
                     ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                             ElevatorConstants::ClosedPosition).ToPtr(),
-                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
+                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)
+                ))
 
-            }, std::pair {SuperStructureStates::EnterCoralGround, frc2::cmd::Parallel(
-                    intake->moveIntake(IntakeConstants::StopIntake),
-                    superStructure->setState(SuperStructureStates::HoldCoral),
+            }, std::pair {SuperStructureStates::EnterCoralGround, frc2::cmd::Sequence(
+                frc2::cmd::Sequence(
+                        superStructure->setState(SuperStructureStates::HoldCoral),
+                        superStructure->setScoringState(SuperStructureScoringStates::HoldBadCoral)
+                ),
+                frc2::cmd::Parallel(
+                        intake->moveIntake(IntakeConstants::StopIntake),
                     ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                             ElevatorConstants::ClosedPosition).ToPtr(),
-                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
+                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)
+                ))
 
             }, std::pair {SuperStructureStates::EnterAlgaeGround, frc2::cmd::Sequence(
                     superStructure->setState(SuperStructureStates::HoldAlgae),
@@ -67,12 +77,17 @@ frc2::CommandPtr ClosedCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
                             ElevatorConstants::ClosedPosition).ToPtr(),
                     elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
 
-            }, std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Parallel(
-                    intake->moveIntake(IntakeConstants::StopIntake),
-                    superStructure->setState(SuperStructureStates::HoldCoral),
+            }, std::pair {SuperStructureStates::HoldCoral, frc2::cmd::Sequence(
+                frc2::cmd::Sequence(
+                        superStructure->setState(SuperStructureStates::HoldCoral),
+                        superStructure->setScoringState(SuperStructureScoringStates::HoldBadCoral)
+                ),
+                frc2::cmd::Parallel(
+                        intake->moveIntake(IntakeConstants::StopIntake),
                     ArmMotion(elevator, arm, ArmConstants::ArmClosed, ArmConstants::WristClosed,
                             ElevatorConstants::ClosedPosition).ToPtr(),
-                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
+                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition)
+                ))
 
             }, std::pair {SuperStructureStates::HoldAlgae, frc2::cmd::Sequence(
                     superStructure->setState(SuperStructureStates::HoldAlgae),

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.442418032786885,
-        "y": 2.748309426229507
+        "x": 5.391749999999999,
+        "y": 2.679499999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.946642115096243,
-        "y": 2.3905817635089956
+        "x": 4.895974082309357,
+        "y": 2.3217723372794876
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft1"
@@ -56,7 +56,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 54.0
+    "rotation": 144.0
   },
   "reversed": false,
   "folder": "ChokeholdRight",

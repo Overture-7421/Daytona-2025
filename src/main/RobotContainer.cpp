@@ -250,8 +250,8 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    //test.A().WhileTrue(climber.setClimberCommand(100_deg));
-    //test.A().OnFalse(climber.setClimberCommand(0.0_deg));
+    //test.A().WhileTrue(climber.setClimberCommand(75_deg));
+    //test.A().OnFalse(climber.setClimberCommand(-60.0_deg));
 
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout, &driver)));
     //test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));

@@ -53,7 +53,7 @@ private:
     units::degree_t headingTarget = 0.0_deg; // The target heading in the target frame
 
     // xScale changes depending on how close heading and Y are to the target. We only move in X (forward) after Y and heading are close to the target.
-    const double scaleMin = 0.7; // At which xScale we start to track xTarget
+    const double scaleMin = 0.1; // At which xScale we start to track xTarget
     double xScale = 0.0;
 
 };

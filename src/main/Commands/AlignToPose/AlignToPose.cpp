@@ -15,6 +15,8 @@ AlignToPose::AlignToPose(Chassis *chassis, ReefSide reefSide, frc::AprilTagField
 }
 
 void AlignToPose::Initialize() {
+    frc::SmartDashboard::PutBoolean("Aligned", false);
+
     ReefPackage reefPackage = findClosestReefLocation(chassis, tagLayout);
     ReefOffset reefOffset;
 
@@ -49,5 +51,8 @@ bool AlignToPose::getDriverOverride() {
 }
 
 bool AlignToPose::IsFinished() {
+    if (alignSpeedHelper->atGoal()){
+        frc::SmartDashboard::PutBoolean("Aligned", true);
+    }
     return alignSpeedHelper->atGoal() || (getDriverOverride() && alignSpeedHelper->getTargetDistance() < 0.02_m);
 }

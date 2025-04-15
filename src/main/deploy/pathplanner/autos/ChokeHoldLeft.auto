@@ -36,6 +36,12 @@
                       "data": {
                         "commands": [
                           {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.3
+                            }
+                          },
+                          {
                             "type": "named",
                             "data": {
                               "name": "coralL4"
@@ -58,7 +64,7 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.6
+                              "waitTime": 0.4
                             }
                           },
                           {
@@ -78,12 +84,6 @@
                             "type": "named",
                             "data": {
                               "name": "spitCoral"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "closed"
                             }
                           },
                           {
@@ -135,7 +135,7 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.7
+                              "waitTime": 0.5
                             }
                           },
                           {
@@ -161,7 +161,7 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.5
+                              "waitTime": 0.55
                             }
                           },
                           {
@@ -181,12 +181,6 @@
                             "type": "named",
                             "data": {
                               "name": "spitCoral"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "closed"
                             }
                           },
                           {
@@ -238,7 +232,7 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.7
+                              "waitTime": 0.5
                             }
                           },
                           {
@@ -264,7 +258,7 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.7
+                              "waitTime": 0.55
                             }
                           },
                           {
@@ -284,12 +278,6 @@
                             "type": "named",
                             "data": {
                               "name": "spitCoral"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "closed"
                             }
                           },
                           {
@@ -339,15 +327,9 @@
                       "data": {
                         "commands": [
                           {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.7
-                            }
-                          },
-                          {
                             "type": "named",
                             "data": {
-                              "name": "coralL4"
+                              "name": "coralL1"
                             }
                           }
                         ]

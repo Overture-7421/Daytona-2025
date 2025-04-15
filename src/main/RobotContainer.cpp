@@ -45,7 +45,7 @@ RobotContainer::RobotContainer() {
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("coralStation",
-            std::move(frc2::cmd::Sequence(SourceCommandAuto(&arm, &elevator, &intake, &superStructure))));
+            std::move(frc2::cmd::Sequence(SourceCommandAuto(&arm, &elevator, &intake, &superStructure).BeforeStarting([this](){arm.changeBlockedWrist(100);}))));
 
     pathplanner::NamedCommands::registerCommand("confirmCoral",
             std::move(
@@ -243,6 +243,10 @@ void RobotContainer::ConfigMixedBindigs() {
     driver.POVRight().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 }
 
+void RobotContainer::changeBlockedWrist() {
+    arm.changeBlockedWrist(124);
+}
+
 void RobotContainer::ConfigDefaultCommands() {
     //climber.setClimberCommand(ClimberConstants::ClosedPosition);
 
@@ -250,8 +254,8 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    //test.A().WhileTrue(climber.setClimberCommand(75_deg));
-    //test.A().OnFalse(climber.setClimberCommand(-60.0_deg));
+    test.A().WhileTrue(climber.setClimberCommand(75_deg));
+    test.A().OnFalse(climber.setClimberCommand(-60.0_deg));
 
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout, &driver)));
     //test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -296,6 +300,7 @@ AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
     config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -23.0_deg, 45_deg}};
+    config.tagValidDistances = {{ 1, 3.5_m }, { 2, 4.0_m }, { 3, 4.0_m }};
     return config;
 }
 
@@ -303,6 +308,7 @@ AprilTags::Config RobotContainer::frontLeftCamera() {
     AprilTags::Config config;
     config.cameraName = "FrontLeft";
     config.cameraToRobot = {9.875_in, 10.653063_in, 8.109802_in, {0_deg, -15_deg, 0_deg}};
+    config.tagValidDistances = {{ 1, 3.5_m }, { 2, 4.0_m }, { 3, 4.0_m }};
     return config;
 }
 

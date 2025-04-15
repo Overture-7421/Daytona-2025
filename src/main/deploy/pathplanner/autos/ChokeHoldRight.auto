@@ -36,6 +36,12 @@
                       "data": {
                         "commands": [
                           {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.4
+                            }
+                          },
+                          {
                             "type": "named",
                             "data": {
                               "name": "coralL4"
@@ -48,21 +54,9 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "spitCoral"
-                }
-              },
-              {
                 "type": "parallel",
                 "data": {
                   "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdright2"
-                      }
-                    },
                     {
                       "type": "sequential",
                       "data": {
@@ -70,13 +64,26 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.2
+                              "waitTime": 0.4
                             }
                           },
                           {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright2"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
                             "type": "named",
                             "data": {
-                              "name": "closed"
+                              "name": "spitCoral"
                             }
                           },
                           {
@@ -144,21 +151,9 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "spitCoral"
-                }
-              },
-              {
                 "type": "parallel",
                 "data": {
                   "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "Chokeholdright4"
-                      }
-                    },
                     {
                       "type": "sequential",
                       "data": {
@@ -166,13 +161,26 @@
                           {
                             "type": "wait",
                             "data": {
-                              "waitTime": 0.2
+                              "waitTime": 0.55
                             }
                           },
                           {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright4"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
                             "type": "named",
                             "data": {
-                              "name": "closed"
+                              "name": "spitCoral"
                             }
                           },
                           {
@@ -240,19 +248,26 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "spitCoral"
-                }
-              },
-              {
                 "type": "parallel",
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "sequential",
                       "data": {
-                        "pathName": "Chokeholdright6"
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 0.55
+                            }
+                          },
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright6"
+                            }
+                          }
+                        ]
                       }
                     },
                     {
@@ -262,7 +277,7 @@
                           {
                             "type": "named",
                             "data": {
-                              "name": "closed"
+                              "name": "spitCoral"
                             }
                           },
                           {
@@ -275,6 +290,58 @@
                       }
                     }
                   ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "Chokeholdright7"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "rightAlign"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "sequential",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "coralL1"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "spitCoral"
                 }
               }
             ]

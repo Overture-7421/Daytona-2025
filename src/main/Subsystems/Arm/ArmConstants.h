@@ -38,7 +38,7 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmHighAlgae = 8.0_deg; //2
     constexpr static const units::degree_t WristHighAlgae = 90.0_deg;
 
-    constexpr static const units::degree_t ArmCoralStation = 127_deg; //95
+    constexpr static const units::degree_t ArmCoralStation = 108_deg; //130
     constexpr static const units::degree_t ArmCoralStationAway = 90_deg; //95
     constexpr static const units::degree_t WristCoralStation = 90.0_deg;
 
@@ -116,7 +116,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = 0.213134765625_tr;
+        armCANConfig.Offset = 0.35791015625_tr;
 
         return armCANConfig;
     }
@@ -124,7 +124,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig WristCANConfig() {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
-        wristCANConfig.Offset = 0.048095703125_tr;
+        wristCANConfig.Offset = -0.449462890625_tr;
         wristCANConfig.SensorDirection = 1;
 
         return wristCANConfig;

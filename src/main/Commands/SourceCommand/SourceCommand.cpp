@@ -112,7 +112,18 @@ frc2::CommandPtr SourceCommandAuto(Arm *arm, Elevator *elevator, Intake *intake,
                             intake->moveIntake(IntakeConstants::CoralGrabAuto),
                             superStructure->setState(SuperStructureStates::EnterCoralStation))).Until([intake] {
                 return intake->isCoralIn();
-            })}, std::pair {SuperStructureStates::EnterCoralGround, frc2::cmd::RepeatingSequence(
+            })},
+            std::pair {SuperStructureStates::SpitCoral, frc2::cmd::RepeatingSequence(
+                    frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
+                            ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
+                                    ElevatorConstants::CoralStationPosition).ToPtr(),
+                            intake->moveIntake(IntakeConstants::CoralGrabAuto),
+                            superStructure->setState(SuperStructureStates::EnterCoralStation))).Until([intake] {
+                return intake->isCoralIn();
+            })},
+            
+            
+             std::pair {SuperStructureStates::EnterCoralGround, frc2::cmd::RepeatingSequence(
                     frc2::cmd::Parallel(elevator->setElevatorCommand(ElevatorConstants::CoralStationPosition),
                             ArmMotion(elevator, arm, ArmConstants::ArmCoralStation, ArmConstants::WristCoralStation,
                                     ElevatorConstants::CoralStationPosition).ToPtr(),

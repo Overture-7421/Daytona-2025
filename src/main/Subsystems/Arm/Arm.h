@@ -26,6 +26,7 @@ public:
     bool isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle);
 
     void blockedWrist(units::degree_t armAngle, units::degree_t wristAngle);
+    void changeBlockedWrist(double newBlock);
 
     units::degree_t getArmAngle();
     units::degree_t getWristAngle();
@@ -45,6 +46,7 @@ private:
 
     MotionMagicVoltage armVoltage {0_tr};
     MotionMagicVoltage wristVoltage {0_tr};
+    double blockBackSide = 124;
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine
     {   frc2::sysid::Config

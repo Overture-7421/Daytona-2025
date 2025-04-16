@@ -13,17 +13,19 @@ public:
     constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
     constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
 
-    constexpr static const units::volt_t CoralGrab = 4.0_V; //Positivo es para adentro
-    constexpr static const units::volt_t CoralGroundGrab = 6.3_V;
+    constexpr static const units::volt_t CoralGrab = 4.0_V;
+    constexpr static const units::volt_t CoralGrabAuto = 10.0_V; //Positivo es para adentro
+    constexpr static const units::volt_t CoralGroundGrab = 8_V;
     constexpr static const units::volt_t CoralRelease = -2.5_V;
-    constexpr static const units::volt_t CoralSpit = -2.5_V;
-    constexpr static const units::volt_t CoralSpitL1 = -2.1_V;
+    constexpr static const units::volt_t CoralSpit = -1_V;
+    constexpr static const units::volt_t SpitBadCoral = -2_V;
+    constexpr static const units::volt_t CoralSpitL1 = -6_V;
     constexpr static const units::volt_t CoralSpitL4 = -1.5_V;
 
-    constexpr static const units::volt_t AlgaeGrab = -5.0_V; //7
-    constexpr static const units::volt_t AlgaeRelease = 8.0_V;
+    constexpr static const units::volt_t AlgaeGrab = 8.0_V; //7
+    constexpr static const units::volt_t AlgaeRelease = -4.0_V;
 
-    constexpr static const units::volt_t AlgaeHold = -0.8_V; //-0.8
+    constexpr static const units::volt_t AlgaeHold = 2_V; //-0.8
 
     constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;

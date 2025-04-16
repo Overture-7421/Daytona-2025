@@ -8,10 +8,13 @@
 #include <frc2/command/CommandHelper.h>
 #include "Subsystems/Chassis/Chassis.h"
 #include "SpeedHelpers/AlignSpeedHelper/AlignSpeedHelper.h"
+#include "Enums/ReefSide.h"
+#include "Commands/AlignToPose/AlignPositions.h"
+#include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
 
 class AlignToPose: public frc2::CommandHelper<frc2::Command, AlignToPose> {
 public:
-    AlignToPose(Chassis *chassis, frc::Pose2d pose2d, bool iAmSpeed);
+    AlignToPose(Chassis *chassis, ReefSide direction, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver);
 
     void Initialize() override;
 
@@ -22,6 +25,13 @@ public:
     bool IsFinished() override;
 
 private:
+    bool getDriverOverride();
     Chassis *chassis;
-    AlignSpeedHelper alignSpeedHelper;
+    OverXboxController *driver;
+    std::shared_ptr<AlignSpeedHelper> alignSpeedHelper;
+    frc::AprilTagFieldLayout *tagLayout;
+
+    ReefOffset reefOffset;
+    ReefSide reefSide;
+
 };

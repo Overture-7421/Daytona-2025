@@ -3,8 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Subsystems/Arm/Arm.h"
+#include <OvertureLib/Utils/Logging/Logging.h>
 #include <iostream>
-
 
 Arm::Arm() {
 
@@ -31,8 +31,8 @@ void Arm::setToAngle(units::degree_t armAngle, units::degree_t wristAngle) {
 
 void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
 
-    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 35;
-    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < 120;
+    bool blockingNegative = armLeftMotor.GetPosition().GetValueAsDouble() * 360 > 31;
+    bool blockingPositive = armLeftMotor.GetPosition().GetValueAsDouble() * 360 < blockBackSide;
 
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingNegative", blockingNegative);
     frc::SmartDashboard::PutBoolean("BlockWrist/blockingPositive", blockingPositive);
@@ -42,6 +42,10 @@ void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
     } else {
         setToAngle(armAngle, wristAngle);
     }
+}
+
+void Arm::changeBlockedWrist(double newBlock) {
+    blockBackSide = newBlock;
 }
 
 bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle) {
@@ -64,7 +68,7 @@ frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle, units::degree_t wr
     {this}).ToPtr();
 }
 
-void Arm::updateOffset(units::degree_t offsetDelta){
+void Arm::updateOffset(units::degree_t offsetDelta) {
     auto armConfig = armCANCoder.getConfiguration();
     armConfig.MagnetSensor.WithMagnetOffset(armConfig.MagnetSensor.MagnetOffset + offsetDelta);
     armCANCoder.GetConfigurator().Apply(armConfig);
@@ -91,20 +95,5 @@ void Arm::changeArmSpeeds(units::turns_per_second_t velocity, units::turns_per_s
 }
 
 void Arm::Periodic() {
-
-    units::degree_t armCurrentAngleMotor = armLeftMotor.GetPosition().GetValue();
-    units::degree_t armCurrentAngleCANCODER = armCANCoder.GetPosition().GetValue();
-    //double wristCurrentAngle = wristMotor.GetPosition().GetValueAsDouble() * 360;
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleMotor", armCurrentAngleMotor.value());
-    frc::SmartDashboard::PutNumber("ArmCurrent/CurrentArmAngleEncoder", armCurrentAngleCANCODER.value());
-    frc::SmartDashboard::PutNumber("ArmCurrent/Voltage", armLeftMotor.GetMotorVoltage().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("ArmCurrent/Curent-Amps", armLeftMotor.GetSupplyCurrent().GetValueAsDouble());
-
-    units::degree_t wristCurrentAngleMotor = wristMotor.GetPosition().GetValue();
-    units::degree_t wristCurrentAngleCANCODER = wristCANCoder.GetPosition().GetValue();
-    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleMotor", wristCurrentAngleMotor.value());
-    frc::SmartDashboard::PutNumber("WristCurrent/CurrentWristAngleEncoder", wristCurrentAngleCANCODER.value());
-    frc::SmartDashboard::PutNumber("WristCurrent/Voltage", wristMotor.GetMotorVoltage().GetValueAsDouble());
-    frc::SmartDashboard::PutNumber("WristCurrent/Curent-Amps", wristMotor.GetSupplyCurrent().GetValueAsDouble());
 
 }

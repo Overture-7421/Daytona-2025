@@ -1,5 +1,4 @@
 #include "Chassis.h"
-#include "frc/smartdashboard/SmartDashboard.h"
 #include "frc/kinematics/SwerveDriveKinematics.h"
 #include "OvertureLib/Subsystems/Swerve/SwerveChassis/SwerveChassis.h"
 #include "OvertureLib/Sensors/OverPigeon/OverPigeon.h"

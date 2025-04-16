@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.935548737069941,
-        "y": 1.0344442185748908
+        "x": 1.84275,
+        "y": 1.0414999999999999
       },
       "isLocked": false,
       "linkedName": "Chokeholdleft2"
     },
     {
       "anchor": {
-        "x": 3.8360655737704916,
-        "y": 2.3647028688524587
+        "x": 3.51975,
+        "y": 1.792249999999999
       },
       "prevControl": {
-        "x": 3.6199309544219247,
-        "y": 2.1914628786756425
+        "x": 3.3036153806514337,
+        "y": 1.6190100098231828
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokeholdleft3"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -41,7 +41,7 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
+    "velocity": 1.0,
     "rotation": 59.99999999999999
   },
   "reversed": false,

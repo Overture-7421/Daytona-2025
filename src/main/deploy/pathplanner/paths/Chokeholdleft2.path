@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.11875,
-        "y": 5.4777499999999995
+        "x": 5.21625,
+        "y": 5.38025
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.72875,
-        "y": 5.75075
+        "x": 5.125881689313589,
+        "y": 5.613345620773288
       },
       "isLocked": false,
-      "linkedName": "Chokehold1"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.23825,
-        "y": 7.028
+        "x": 1.3747500000000001,
+        "y": 7.223
       },
       "prevControl": {
-        "x": 1.6575,
-        "y": 6.8525
+        "x": 1.5963226247287576,
+        "y": 7.095163333730623
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 4.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -62,7 +62,7 @@
   "folder": "ChokeholdLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -121.26727453964878
+    "rotation": -119.99999999999999
   },
   "useDefaultConstraints": false
 }

@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 5.442418032786885,
-        "y": 2.748309426229507
+        "x": 5.753,
+        "y": 2.631
       },
       "prevControl": {
-        "x": 6.045,
-        "y": 2.27
+        "x": 6.355581967213115,
+        "y": 2.1526905737704927
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokeholdleft1"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],

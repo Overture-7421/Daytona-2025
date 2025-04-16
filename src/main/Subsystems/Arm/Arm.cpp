@@ -44,10 +44,9 @@ void Arm::blockedWrist(units::degree_t armAngle, units::degree_t wristAngle) {
     }
 }
 
-void Arm::changeBlockedWrist(double newBlock){
+void Arm::changeBlockedWrist(double newBlock) {
     blockBackSide = newBlock;
 }
-
 
 bool Arm::isArmAtPosition(units::degree_t armAngle, units::degree_t wristAngle) {
     units::degree_t armError = armAngle - armLeftMotor.GetPosition().GetValue();

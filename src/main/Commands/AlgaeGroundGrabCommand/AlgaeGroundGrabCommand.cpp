@@ -42,7 +42,7 @@ frc2::CommandPtr AlgaeGroundGrabCommand(Arm *arm, Elevator *elevator, Intake *in
                             frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::AlgaeHold),
                                     superStructure->setState(SuperStructureStates::HoldAlgae)),
                             frc2::cmd::Sequence(
-                                superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState),
-                                arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
+                                    superStructure->setScoringState(SuperStructureScoringStates::SpitAlgaeState),
+                                    arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
                                     elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))));
 }

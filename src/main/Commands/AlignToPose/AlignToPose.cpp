@@ -51,7 +51,7 @@ bool AlignToPose::getDriverOverride() {
 }
 
 bool AlignToPose::IsFinished() {
-    if (alignSpeedHelper->atGoal()){
+    if (alignSpeedHelper->atGoal()) {
         frc::SmartDashboard::PutBoolean("Aligned", true);
     }
     return alignSpeedHelper->atGoal() || (getDriverOverride() && alignSpeedHelper->getTargetDistance() < 0.02_m);

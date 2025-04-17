@@ -211,8 +211,9 @@ bool RobotContainer::getDriverOverride() {
 void RobotContainer::ConfigMixedBindigs() {
     //NextButton 6
 
-
-    console.Button(6).OnTrue(frc2::cmd::RunOnce([this]{climber.setOffset();}));
+    console.Button(6).OnTrue(frc2::cmd::RunOnce([this] {
+        climber.setOffset();
+    }));
 
     (!driver.A() && console.Button(3)).OnTrue(L1Command(&arm, &elevator, &superStructure));
     console.Button(3).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));

@@ -21,7 +21,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "rightAlign"
+                        "name": "leftAlign"
                       }
                     }
                   ]
@@ -31,12 +31,6 @@
                 "type": "sequential",
                 "data": {
                   "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "confirmCoral"
-                      }
-                    },
                     {
                       "type": "named",
                       "data": {

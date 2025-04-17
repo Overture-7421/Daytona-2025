@@ -157,6 +157,44 @@ void RobotContainer::ConfigOperatorBindings() {
         arm.updateOffset(armOffset);
     }));
 
+    increaseOffsetX.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::setModifyXTarget(0.03);
+         frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
+    }));
+
+    decreaseOffsetX.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::setModifyXTarget(-0.03);
+        frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);
+    }));
+
+    increaseOffsetLeft.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::setModifyLeftTarget(0.03);
+         frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+    }));
+
+    decreaseOffsetLeft.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::setModifyLeftTarget(-0.03);
+        frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
+    }));
+
+    increaseOffsetRight.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::setModifyRightTarget(0.03);
+         frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+    }));
+
+    decreaseOffsetRight.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::setModifyRightTarget(-0.03);
+        frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetRight", false);
+    }));
+
+    resetOffsets.OnTrue(frc2::cmd::RunOnce([this]{
+        AlignSpeedHelper::resetOffset();
+        frc::SmartDashboard::PutBoolean("ResetOffset", false);
+    }));
+
+    
+
+
 }
 
 double RobotContainer::getLeftStickDistance() {
@@ -258,8 +296,8 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    test.A().WhileTrue(climber.setClimberCommand(75_deg));
-    test.A().OnFalse(climber.setClimberCommand(-60.0_deg));
+    test.A().WhileTrue(climber.setClimberCommand(55_deg));
+    test.A().OnFalse(climber.setClimberCommand(-40.0_deg));
 
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout, &driver)));
     //test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -336,4 +374,6 @@ void RobotContainer::UpdateTelemetry() {
     console.updateTelemetry();
 
     frc::SmartDashboard::PutNumber("MatchTime", frc::DriverStation::GetMatchTime().value());
+
+
 }

@@ -62,7 +62,7 @@ private:
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
-	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeAndyMark);
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeWelded);
 	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 #endif 
     double getLeftStickDistance();
@@ -89,5 +89,18 @@ private:
     AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
+
+
+    frc2::Trigger increaseOffsetX {[]{return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);}};
+    frc2::Trigger decreaseOffsetX {[]{return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);}};
+
+    frc2::Trigger increaseOffsetLeft {[]{return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);}};
+    frc2::Trigger decreaseOffsetLeft {[]{return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);}};
+
+    frc2::Trigger increaseOffsetRight {[]{return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);}};
+    frc2::Trigger decreaseOffsetRight {[]{return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);}};
+
+    frc2::Trigger resetOffsets {[] {return frc::SmartDashboard::GetBoolean("ResetOffset", false);}};
+
 
 };

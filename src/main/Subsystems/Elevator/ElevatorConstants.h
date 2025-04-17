@@ -15,11 +15,11 @@ struct ElevatorConstants {
 
     constexpr static const units::volt_t feedForward = 0_V; //0.37
 
-    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 50.0_tps;
-    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 20_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 100.0_tps;
+    constexpr static const units::turns_per_second_squared_t ElevatorCruiseAcceleration = 65_tr_per_s_sq;
 
-    constexpr static const units::turns_per_second_t ElevatorLowerCruiseVelocity = 50.0_tps;
-    constexpr static const units::turns_per_second_squared_t ElevatorLowerCruiseAcceleration = 20_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ElevatorLowerCruiseVelocity = 100.0_tps;
+    constexpr static const units::turns_per_second_squared_t ElevatorLowerCruiseAcceleration = 65_tr_per_s_sq;
 
     constexpr static const units::meter_t CoralGroundGrabPositionFront = 0.205_m; //Back 0.19
     constexpr static const units::meter_t CoralGroundGrabPositionBack = 0.23_m; //Back 0.19
@@ -63,7 +63,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKS(0.5).WithKP(20); //KV1.7 P 14.1
+        left.PIDConfigs.WithKG(0.37).WithKS(0.5).WithKP(20); //KV1.7 P 14.1
         left.CurrentLimit = 25_A;
         left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 40_A;

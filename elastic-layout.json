@@ -170,6 +170,33 @@
                 }
               }
             ]
+          },
+          {
+            "title": "XTarget",
+            "x": 1050.0,
+            "y": 270.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "List Layout",
+            "properties": {
+              "label_position": "TOP"
+            },
+            "children": [
+              {
+                "title": "Direct",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 150.0,
+                "height": 150.0,
+                "type": "Text Display",
+                "properties": {
+                  "topic": "/SmartDashboard/ReefPackage/XTarget/Direct",
+                  "period": 0.06,
+                  "data_type": "double",
+                  "show_submit_button": false
+                }
+              }
+            ]
           }
         ],
         "containers": [
@@ -196,6 +223,34 @@
             "type": "Text Display",
             "properties": {
               "topic": "/SmartDashboard/current upper angle",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "actualXTarget",
+            "x": 1290.0,
+            "y": 270.0,
+            "width": 150.0,
+            "height": 150.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/ReefPackage/XTarget/actualXTarget",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "xScale",
+            "x": 900.0,
+            "y": 270.0,
+            "width": 150.0,
+            "height": 150.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/ReefPackage/XTarget/xScale",
               "period": 0.06,
               "data_type": "double",
               "show_submit_button": false
@@ -639,6 +694,20 @@
               "period": 0.06,
               "sort_options": false
             }
+          },
+          {
+            "title": "CurrentElevatorMotor",
+            "x": 630.0,
+            "y": 270.0,
+            "width": 240.0,
+            "height": 150.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/ElevatorCurrent/CurrentElevatorMotor",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
           }
         ]
       }
@@ -650,10 +719,10 @@
         "containers": [
           {
             "title": "Sensor Activated???",
-            "x": 1140.0,
+            "x": 1440.0,
             "y": 0.0,
-            "width": 630.0,
-            "height": 420.0,
+            "width": 480.0,
+            "height": 270.0,
             "type": "Boolean Box",
             "properties": {
               "topic": "/SmartDashboard/Sensor Activated???",
@@ -667,10 +736,10 @@
           },
           {
             "title": "AutoChooser",
-            "x": 1140.0,
-            "y": 420.0,
-            "width": 540.0,
-            "height": 150.0,
+            "x": 90.0,
+            "y": 750.0,
+            "width": 390.0,
+            "height": 210.0,
             "type": "ComboBox Chooser",
             "properties": {
               "topic": "/SmartDashboard/AutoChooser",
@@ -692,7 +761,7 @@
           },
           {
             "title": "Match Timer",
-            "x": 600.0,
+            "x": 900.0,
             "y": 0.0,
             "width": 540.0,
             "height": 270.0,
@@ -720,14 +789,122 @@
           },
           {
             "title": "Devices",
-            "x": 0.0,
-            "y": 270.0,
+            "x": 600.0,
+            "y": 0.0,
             "width": 300.0,
             "height": 270.0,
             "type": "Alerts",
             "properties": {
               "topic": "/SmartDashboard/Devices",
               "period": 0.06
+            }
+          },
+          {
+            "title": "Aligned",
+            "x": 1260.0,
+            "y": 270.0,
+            "width": 660.0,
+            "height": 720.0,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/Aligned",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4293328640,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
+            }
+          },
+          {
+            "title": "DecreaseOffsetLeft",
+            "x": 30.0,
+            "y": 510.0,
+            "width": 240.0,
+            "height": 210.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetLeft",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "DecreaseOffsetRight",
+            "x": 510.0,
+            "y": 510.0,
+            "width": 240.0,
+            "height": 210.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetRight",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "IncreaseOffsetLeft",
+            "x": 30.0,
+            "y": 270.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetLeft",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "IncreaseOffsetX",
+            "x": 270.0,
+            "y": 270.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetX",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "IncreaseOffsetRight",
+            "x": 510.0,
+            "y": 270.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetRight",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "DecreaseOffsetX",
+            "x": 270.0,
+            "y": 510.0,
+            "width": 240.0,
+            "height": 210.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetX",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "ResetOffset",
+            "x": 780.0,
+            "y": 270.0,
+            "width": 450.0,
+            "height": 420.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/ResetOffset",
+              "period": 0.06,
+              "data_type": "boolean"
             }
           }
         ]

@@ -16,7 +16,6 @@ double AlignSpeedHelper::changedXTarget = 0.0;
 double AlignSpeedHelper::changedLeftTarget = 0.0;
 double AlignSpeedHelper::changedRightTarget = 0.0;
 
-
 AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, ReefSide direction,
         ReefPackage reefPackage) {
     this->chassis = chassis;
@@ -52,7 +51,7 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     units::degree_t headingError = units::math::abs(
             headingPIDController.GetGoal().position - poseInTargetFrame.Rotation().Degrees());
 
-    double clampYError = std::clamp(yError.value(), 0.0, 1.3);
+    double clampYError = std::clamp(yError.value(), 0.0, 0.5);
     double yErrorToAngleMock = map(clampYError, 0.0, 1.3, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
     double headingScale = units::math::cos(headingError);
@@ -63,6 +62,9 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     if (xScale > scaleMin) {
         actualXTarget = xTarget;
     }
+
+    Logging::WriteValue("AlignOffset/XTarget", actualXTarget);
+
     frc::SmartDashboard::PutNumber("ReefPackage/MAth/yScale", yScale);
     frc::SmartDashboard::PutNumber("ReefPackage/MAth/headingScale", headingScale);
     frc::SmartDashboard::PutNumber("ReefPackage/XTarget/xScale", xScale);
@@ -71,8 +73,6 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     frc::SmartDashboard::PutNumber("AlignOffset/X", AlignSpeedHelper::getModifyXTarget());
     frc::SmartDashboard::PutNumber("AlignOffset/Left", AlignSpeedHelper::getModifyLeftTarget());
     frc::SmartDashboard::PutNumber("AlignOffset/Right", AlignSpeedHelper::getModifyRightTarget());
-
-
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), actualXTarget));
 
@@ -112,7 +112,7 @@ void AlignSpeedHelper::initialize() {
         //allianceMulti = -1;
     }
 
-    xTarget = reefOffset.xOffset + units::meter_t(changedXTarget) ;
+    xTarget = reefOffset.xOffset + units::meter_t(changedXTarget);
     headingTarget = reefOffset.headingOffset;
     if (direction == ReefSide::Left) {
         yTarget = reefOffset.leftOffset + units::meter_t(changedLeftTarget);
@@ -151,26 +151,25 @@ bool AlignSpeedHelper::atGoal() {
 double AlignSpeedHelper::getModifyXTarget() {
     return changedXTarget;
 }
-void AlignSpeedHelper::setModifyXTarget(double changedTarget){
+void AlignSpeedHelper::setModifyXTarget(double changedTarget) {
     changedXTarget -= changedTarget;
 }
 
 double AlignSpeedHelper::getModifyLeftTarget() {
     return changedLeftTarget;
 }
-void AlignSpeedHelper::setModifyLeftTarget(double changedTarget){
+void AlignSpeedHelper::setModifyLeftTarget(double changedTarget) {
     changedLeftTarget -= changedTarget;
 }
 
 double AlignSpeedHelper::getModifyRightTarget() {
     return changedRightTarget;
 }
-void AlignSpeedHelper::setModifyRightTarget(double changedTarget){
+void AlignSpeedHelper::setModifyRightTarget(double changedTarget) {
     changedRightTarget += changedTarget;
 }
 
-
-void AlignSpeedHelper::resetOffset(){
+void AlignSpeedHelper::resetOffset() {
     changedXTarget = 0;
     changedLeftTarget = 0;
     changedRightTarget = 0;

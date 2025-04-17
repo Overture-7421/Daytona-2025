@@ -131,7 +131,12 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.Y().WhileTrue(L4Command(&arm, &elevator, &superStructure));
     oprtr.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    (!driver.A() && oprtr.RightTrigger()).WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr));
+    (!driver.A() && oprtr.RightTrigger()).WhileTrue(
+            SourceCommand(&arm, &elevator, &intake, &superStructure, &oprtr).BeforeStarting([this] {
+                return arm.changeBlockedWrist(100);
+            }).AndThen([this] {
+                return arm.changeBlockedWrist(124);
+            }));
     oprtr.RightTrigger().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //oprtr.LeftTrigger().WhileTrue(stationPos(&chassis, &tagLayout));
@@ -157,43 +162,40 @@ void RobotContainer::ConfigOperatorBindings() {
         arm.updateOffset(armOffset);
     }));
 
-    increaseOffsetX.OnTrue(frc2::cmd::RunOnce([this]{
-        AlignSpeedHelper::setModifyXTarget(0.03);
-         frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
+    increaseOffsetX.OnTrue(frc2::cmd::RunOnce([this] {
+        AlignSpeedHelper::setModifyXTarget(0.02);
+        frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
     }));
 
-    decreaseOffsetX.OnTrue(frc2::cmd::RunOnce([this]{
-        AlignSpeedHelper::setModifyXTarget(-0.03);
+    decreaseOffsetX.OnTrue(frc2::cmd::RunOnce([this] {
+        AlignSpeedHelper::setModifyXTarget(-0.02);
         frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);
     }));
 
-    increaseOffsetLeft.OnTrue(frc2::cmd::RunOnce([this]{
+    increaseOffsetLeft.OnTrue(frc2::cmd::RunOnce([this] {
         AlignSpeedHelper::setModifyLeftTarget(0.03);
-         frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+        frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
     }));
 
-    decreaseOffsetLeft.OnTrue(frc2::cmd::RunOnce([this]{
+    decreaseOffsetLeft.OnTrue(frc2::cmd::RunOnce([this] {
         AlignSpeedHelper::setModifyLeftTarget(-0.03);
         frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
     }));
 
-    increaseOffsetRight.OnTrue(frc2::cmd::RunOnce([this]{
+    increaseOffsetRight.OnTrue(frc2::cmd::RunOnce([this] {
         AlignSpeedHelper::setModifyRightTarget(0.03);
-         frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+        frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetRight", false);
     }));
 
-    decreaseOffsetRight.OnTrue(frc2::cmd::RunOnce([this]{
+    decreaseOffsetRight.OnTrue(frc2::cmd::RunOnce([this] {
         AlignSpeedHelper::setModifyRightTarget(-0.03);
         frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetRight", false);
     }));
 
-    resetOffsets.OnTrue(frc2::cmd::RunOnce([this]{
+    resetOffsets.OnTrue(frc2::cmd::RunOnce([this] {
         AlignSpeedHelper::resetOffset();
         frc::SmartDashboard::PutBoolean("ResetOffset", false);
     }));
-
-    
-
 
 }
 
@@ -208,6 +210,10 @@ bool RobotContainer::getDriverOverride() {
 
 void RobotContainer::ConfigMixedBindigs() {
     //NextButton 6
+
+
+    console.Button(6).OnTrue(frc2::cmd::RunOnce([this]{climber.setOffset();}));
+
     (!driver.A() && console.Button(3)).OnTrue(L1Command(&arm, &elevator, &superStructure));
     console.Button(3).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
@@ -266,7 +272,11 @@ void RobotContainer::ConfigMixedBindigs() {
     console.Button(2).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     (!driver.A() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
-            SourceCommand(&arm, &elevator, &intake, &superStructure, &console));
+            SourceCommand(&arm, &elevator, &intake, &superStructure, &console).BeforeStarting([this] {
+                return arm.changeBlockedWrist(100);
+            }).AndThen([this] {
+                return arm.changeBlockedWrist(124);
+            }));
     console.AxisMagnitudeGreaterThan(0, 0.1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     (!driver.A() && console.Button(9)).OnTrue(Processor(&arm, &elevator, &superStructure));
@@ -296,8 +306,8 @@ void RobotContainer::ConfigDefaultCommands() {
 
 void RobotContainer::ConfigCharacterizationBindings() {
 
-    test.A().WhileTrue(climber.setClimberCommand(55_deg));
-    test.A().OnFalse(climber.setClimberCommand(-40.0_deg));
+    //test.A().WhileTrue(climber.setClimberCommand(55_deg));
+    //test.A().OnFalse(climber.setClimberCommand(-40.0_deg));
 
     //test.A().WhileTrue(L3Command(&arm, &elevator, &superStructure).AlongWith(leftAlignPos(&chassis, &tagLayout, &driver)));
     //test.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
@@ -369,11 +379,10 @@ AprilTags::Config RobotContainer::backLeftCamera() {
 }
 void RobotContainer::UpdateTelemetry() {
     chassis.shuffleboardPeriodic();
-    driver.updateTelemetry();
-    oprtr.updateTelemetry();
-    console.updateTelemetry();
+    //driver.updateTelemetry();
+    //oprtr.updateTelemetry();
+    //console.updateTelemetry();
 
     frc::SmartDashboard::PutNumber("MatchTime", frc::DriverStation::GetMatchTime().value());
-
 
 }

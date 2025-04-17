@@ -45,8 +45,6 @@ Robot::Robot() {
 
     frc::SmartDashboard::PutBoolean("ResetOffset", false);
 
-
-
 }
 
 void Robot::RobotPeriodic() {

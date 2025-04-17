@@ -12,6 +12,7 @@
 #include "Commands/UtilityFunctions/UtilityFunctions.h"
 #include "Enums/ReefSide.h"
 #include "Commands/UtilityFunctions/ReefOffset.h"
+#include "OvertureLib/Utils/Logging/Logging.h"
 
 class AlignSpeedHelper: public SpeedsHelper {
 public:
@@ -38,13 +39,13 @@ private:
     frc::TrapezoidProfile<units::meters>::Constraints getConstrainst(units::meter_t distance);
     frc::Pose2d transformToTargetFrame(const frc::Pose2d &pose);
 
-    frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints {3_mps, 1_mps_sq};
+    frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints {2_mps, 1_mps_sq};
 
     frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints {1_mps, 0.25_mps_sq};
 
-    frc::ProfiledPIDController<units::meters> xPIDController {5.55, 0.0, 0.0, defaultConstraints}; //4 2.1
+    frc::ProfiledPIDController<units::meters> xPIDController {10, 0.0, 0.0, defaultConstraints}; //4 2.1
 
-    frc::ProfiledPIDController<units::meters> yPIDController {5.55, 0.0, 0.0, defaultConstraints}; //4 2.1
+    frc::ProfiledPIDController<units::meters> yPIDController {10, 0.0, 0.0, defaultConstraints}; //4 2.1
 
     frc::ProfiledPIDController<units::degree> headingPIDController {5.55, 0.0, 0.0, {200_deg_per_s, 125_deg_per_s / 1_s}}; //800 500
 
@@ -55,7 +56,7 @@ private:
     ReefSide direction;
 
     units::meter_t slowInRange = 6_m;
-    units::meter_t slowDistance = 0.75_m;
+    units::meter_t slowDistance = 1.5_m;
     double allianceMulti = 1.0;
     units::meter_t distanceToPose = 0_m;
 
@@ -70,6 +71,5 @@ private:
     static double changedXTarget;
     static double changedLeftTarget;
     static double changedRightTarget;
-
 
 };

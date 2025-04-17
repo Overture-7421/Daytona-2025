@@ -32,13 +32,21 @@ bool Climber::isClimberAtPosition(units::degree_t armAngle) {
 frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
     return frc2::FunctionalCommand([this, armAngle]() {
         setToAngle(armAngle);
-    }, []() {
-    }, [](bool interupted) {
     }, [this, armAngle]() {
-        return isClimberAtPosition(armAngle);
+        setToAngle(armAngle + offset);
+    }, [this](bool interupted) {
+        offset = 0_deg;
+    }, []() {
+        return false;
+        //return isClimberAtPosition(armAngle);
     },
     {this}).ToPtr();
 }
+
+void Climber::setOffset(){
+    offset -= 1_deg;
+}
+
 
 frc2::CommandPtr Climber::SysIdQuasistatic(frc2::sysid::Direction direction) {
     return m_sysIdRoutine.Quasistatic(direction);

@@ -56,7 +56,6 @@ frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStr
 
 }
 
-
 frc2::CommandPtr LowAlgaeAuto(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure) {
     return frc2::cmd::Select < SuperStructureStates
             > ([superStructure] {

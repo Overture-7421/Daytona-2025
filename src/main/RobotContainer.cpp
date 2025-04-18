@@ -32,16 +32,15 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
                     frc2::cmd::Sequence(HighAlgaeAuto(&arm, &elevator, &intake, &superStructure).WithTimeout(4_s),
-                    superStructure.setState(SuperStructureStates::HoldAlgae))));
+                            superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("netCommand",
-            std::move(
-                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
+            std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("lowAlgae",
             std::move(
                     frc2::cmd::Sequence(LowAlgaeAuto(&arm, &elevator, &intake, &superStructure).WithTimeout(4_s),
-                    superStructure.setState(SuperStructureStates::HoldAlgae))));
+                            superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));

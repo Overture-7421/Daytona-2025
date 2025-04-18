@@ -13,4 +13,3 @@
 frc2::CommandPtr HighAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);
 frc2::CommandPtr HighAlgaeAuto(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);
 
-

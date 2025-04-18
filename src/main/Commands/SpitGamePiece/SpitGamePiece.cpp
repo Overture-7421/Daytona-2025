@@ -33,14 +33,12 @@ frc2::CommandPtr SpitGamePiece(Intake *intake, SuperStructure *superStructure, E
                                     elevator->setElevatorCommand(ElevatorConstants::L3SpitPosition)),
                             superStructure->setState(SuperStructureStates::SpitCoral),
                             superStructure->setScoringState(SuperStructureScoringStates::DontScore))}, std::pair {
-                    SuperStructureScoringStates::L4,
-                    frc2::cmd::Sequence(
+                    SuperStructureScoringStates::L4, frc2::cmd::Sequence(
                             frc2::cmd::Sequence(
-                                            ArmMotion(elevator, arm, ArmConstants::ArmScoreL4,
-                                                    ArmConstants::WristClosed, elevator->getPosition()).ToPtr().WithTimeout(
-                                                    2_s),
-                                                    intake->moveIntake(IntakeConstants::CoralSpit)
-                                                    , elevator->setElevatorCommand(ElevatorConstants::L4SpitPosition)),
+                                    ArmMotion(elevator, arm, ArmConstants::ArmScoreL4, ArmConstants::WristClosed,
+                                            elevator->getPosition()).ToPtr().WithTimeout(2_s),
+                                    intake->moveIntake(IntakeConstants::CoralSpit),
+                                    elevator->setElevatorCommand(ElevatorConstants::L4SpitPosition)),
                             superStructure->setState(SuperStructureStates::SpitCoral),
                             superStructure->setScoringState(SuperStructureScoringStates::DontScore))}, std::pair {
                     SuperStructureScoringStates::ProcessorState, frc2::cmd::Sequence(

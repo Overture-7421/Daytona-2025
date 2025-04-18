@@ -16,30 +16,32 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("spitCoral",
             std::move(SpitGamePiece(&intake, &superStructure, &elevator, &arm)));
 
-    pathplanner::NamedCommands::registerCommand("spitAlgae",
-            std::move(
-                    frc2::cmd::Sequence(intake.moveIntake(IntakeConstants::CoralRelease),
-                            superStructure.setState(SuperStructureStates::SpitAlgae))));
-
     pathplanner::NamedCommands::registerCommand("coralL1",
             std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator, &superStructure))));
 
     pathplanner::NamedCommands::registerCommand("lowAlgae",
             std::move(
                     frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake, &superStructure),
-                            intake.moveIntake(IntakeConstants::AlgaeGrab),
                             superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("spitAlgae",
             std::move(
-                    frc2::cmd::Sequence(intake.moveIntake(IntakeConstants::AlgaeGrab),
+                    frc2::cmd::Parallel(intake.moveIntake(IntakeConstants::AlgaeRelease),
                             superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("highAlgae",
             std::move(
-                    frc2::cmd::Sequence(HighAlgae(&arm, &elevator, &intake, &superStructure),
-                            intake.moveIntake(IntakeConstants::AlgaeGrab),
-                            superStructure.setState(SuperStructureStates::HoldAlgae))));
+                    frc2::cmd::Sequence(HighAlgaeAuto(&arm, &elevator, &intake, &superStructure).WithTimeout(4_s),
+                    superStructure.setState(SuperStructureStates::HoldAlgae))));
+
+    pathplanner::NamedCommands::registerCommand("netCommand",
+            std::move(
+                    frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
+
+    pathplanner::NamedCommands::registerCommand("lowAlgae",
+            std::move(
+                    frc2::cmd::Sequence(LowAlgaeAuto(&arm, &elevator, &intake, &superStructure).WithTimeout(4_s),
+                    superStructure.setState(SuperStructureStates::HoldAlgae))));
 
     pathplanner::NamedCommands::registerCommand("algaeNet",
             std::move(frc2::cmd::Sequence(NetCommand(&arm, &elevator, &superStructure))));
@@ -351,7 +353,7 @@ void RobotContainer::enableBackCamera() {
 AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
     config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -23.0_deg, 45_deg}};
+    config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -28.0_deg, 45_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }

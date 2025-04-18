@@ -51,11 +51,11 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     units::degree_t headingError = units::math::abs(
             headingPIDController.GetGoal().position - poseInTargetFrame.Rotation().Degrees());
 
-    double clampYError = std::clamp(yError.value(), 0.0, 0.5);
+    double clampYError = std::clamp(yError.value(), 0.0, 0.3);
     double yErrorToAngleMock = map(clampYError, 0.0, 1.3, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
     double headingScale = units::math::cos(headingError);
-    xScale = std::clamp((headingScale + 0.2) * yScale, 0.0, 1.0);
+    xScale = std::clamp(headingScale * yScale, 0.0, 1.0);
 
     units::meter_t actualXTarget = poseInTargetFrame.X();
 

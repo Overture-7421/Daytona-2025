@@ -46,11 +46,7 @@ void DriveCommand::Execute() {
         chassis->disableSpeedHelper();
     }
 
-    if (gamepad->POVLeft().Get()) {
-        slowMulti = 0.3;
-    } else {
-        slowMulti = 1;
-    }
+    //POV Left
 
     /*
      if (gamepad->B().Get()) {

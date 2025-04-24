@@ -11,7 +11,7 @@ struct ClimberConstants {
 
     constexpr static const double RightArmMotorId = 22;
 
-    constexpr static const units::degree_t ClosedPosition = -70_deg;
+    constexpr static const units::degree_t ClosedPosition = -80_deg;
     constexpr static const units::degree_t OpenPosition = 120_deg; //Cuidado
 
     constexpr static const OverTalonFXConfig RightConfig() {

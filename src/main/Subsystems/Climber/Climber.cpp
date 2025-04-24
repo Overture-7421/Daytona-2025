@@ -44,7 +44,7 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
 }
 
 void Climber::setOffset() {
-    offset -= 3_deg;
+    offset -= 1_deg;
 }
 
 frc2::CommandPtr Climber::SysIdQuasistatic(frc2::sysid::Direction direction) {

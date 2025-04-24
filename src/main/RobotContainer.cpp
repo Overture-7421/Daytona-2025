@@ -19,11 +19,6 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("coralL1",
             std::move(frc2::cmd::Sequence(L1Command(&arm, &elevator, &superStructure))));
 
-    pathplanner::NamedCommands::registerCommand("lowAlgae",
-            std::move(
-                    frc2::cmd::Sequence(LowAlgae(&arm, &elevator, &intake, &superStructure),
-                            superStructure.setState(SuperStructureStates::HoldAlgae))));
-
     pathplanner::NamedCommands::registerCommand("spitAlgae",
             std::move(
                     frc2::cmd::Parallel(intake.moveIntake(IntakeConstants::AlgaeRelease),
@@ -93,8 +88,8 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.Y().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
-    driver.Y().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    driver.POVLeft().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
+    driver.POVLeft().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
     //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.692750000000001,
-        "y": 4.5905
+        "x": 7.468500000000001,
+        "y": 4.60025
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.975500000000002,
-        "y": 4.5905
+        "x": 7.7512500000000015,
+        "y": 4.60025
       },
       "isLocked": false,
       "linkedName": "CoralAndAlgae2To3"

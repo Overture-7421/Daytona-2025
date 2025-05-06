@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.374741803278691,
-        "y": 3.8927500000000004
+        "x": 6.395053177930271,
+        "y": 4.0
       },
       "isLocked": false,
-      "linkedName": "Basicleave1"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 6.821004098360655,
-        "y": 4.0
+        "x": 6.805499999999999,
+        "y": 4.1419999999999995
       },
       "prevControl": {
-        "x": 6.512831427643063,
-        "y": 4.006260127314815
+        "x": 6.497263752664923,
+        "y": 4.1419999999999995
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "BasicLeave2ToCoralAndAlgae1"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.4842835623092
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "BasicLeave",

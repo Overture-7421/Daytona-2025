@@ -17,15 +17,19 @@ public:
     frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction);
     frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
+    void setOffset();
+
     void setToAngle(units::degree_t armAngle);
     frc2::CommandPtr setClimberCommand(units::degree_t armAngle);
 
     bool isClimberAtPosition(units::degree_t armAngle);
     void getCurrentAngle(double armAngle);
+    units::degree_t offset = 0_deg;
 
     void Periodic() override;
 
 private:
+
     OverTalonFX armRightMotor {ClimberConstants::RightConfig(), "rio"};
 
     frc2::sysid::SysIdRoutine m_sysIdRoutine

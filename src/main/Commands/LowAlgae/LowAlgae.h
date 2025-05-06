@@ -11,3 +11,5 @@
 #include "Subsystems/SuperStructure/SuperStructure.h"
 
 frc2::CommandPtr LowAlgae(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);
+frc2::CommandPtr LowAlgaeAuto(Arm *arm, Elevator *elevator, Intake *intake, SuperStructure *superStructure);
+

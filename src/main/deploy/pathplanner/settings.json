@@ -6,13 +6,15 @@
     "AlgaeInNet",
     "BasicLeave",
     "ChokeholdLeft",
-    "ChokeholdRight"
+    "ChokeholdRight",
+    "New Folder"
   ],
   "autoFolders": [
     "AlgaeInNet",
     "BasicLeave",
+    "ChokeholdLeft",
     "ChokeholdRight",
-    "ChokeholdLeft"
+    "CoralAndAlgae"
   ],
   "defaultMaxVel": 5.45,
   "defaultMaxAccel": 5.0,

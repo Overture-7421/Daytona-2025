@@ -1,6 +1,6 @@
 {
   "version": 1.0,
-  "grid_size": 30,
+  "grid_size": 10,
   "tabs": [
     {
       "name": "Align Data",
@@ -9,9 +9,9 @@
           {
             "title": "TRAP",
             "x": 480.0,
-            "y": 30.0,
-            "width": 390.0,
-            "height": 360.0,
+            "y": 20.0,
+            "width": 400.0,
+            "height": 350.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -63,10 +63,10 @@
           },
           {
             "title": "AlignCurrent",
-            "x": 870.0,
+            "x": 880.0,
             "y": 0.0,
-            "width": 240.0,
-            "height": 240.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -118,10 +118,10 @@
           },
           {
             "title": "AlignTarget",
-            "x": 1110.0,
+            "x": 1100.0,
             "y": 0.0,
-            "width": 240.0,
-            "height": 240.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -170,15 +170,42 @@
                 }
               }
             ]
+          },
+          {
+            "title": "XTarget",
+            "x": 1060.0,
+            "y": 260.0,
+            "width": 260.0,
+            "height": 260.0,
+            "type": "List Layout",
+            "properties": {
+              "label_position": "TOP"
+            },
+            "children": [
+              {
+                "title": "Direct",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 150.0,
+                "height": 150.0,
+                "type": "Text Display",
+                "properties": {
+                  "topic": "/SmartDashboard/ReefPackage/XTarget/Direct",
+                  "period": 0.06,
+                  "data_type": "double",
+                  "show_submit_button": false
+                }
+              }
+            ]
           }
         ],
         "containers": [
           {
             "title": "current lower angle",
-            "x": 690.0,
+            "x": 680.0,
             "y": 420.0,
-            "width": 128.0,
-            "height": 128.0,
+            "width": 130.0,
+            "height": 130.0,
             "type": "Text Display",
             "properties": {
               "topic": "/SmartDashboard/current lower angle",
@@ -191,11 +218,39 @@
             "title": "current upper angle",
             "x": 840.0,
             "y": 420.0,
-            "width": 128.0,
-            "height": 128.0,
+            "width": 130.0,
+            "height": 130.0,
             "type": "Text Display",
             "properties": {
               "topic": "/SmartDashboard/current upper angle",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "actualXTarget",
+            "x": 1300.0,
+            "y": 260.0,
+            "width": 150.0,
+            "height": 150.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/ReefPackage/XTarget/actualXTarget",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "xScale",
+            "x": 900.0,
+            "y": 260.0,
+            "width": 150.0,
+            "height": 150.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/ReefPackage/XTarget/xScale",
               "period": 0.06,
               "data_type": "double",
               "show_submit_button": false
@@ -211,9 +266,9 @@
           {
             "title": "BlockWrist",
             "x": 1170.0,
-            "y": 270.0,
-            "width": 270.0,
-            "height": 270.0,
+            "y": 260.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -258,9 +313,9 @@
           {
             "title": "AlignCurrent",
             "x": 1170.0,
-            "y": 540.0,
-            "width": 270.0,
-            "height": 240.0,
+            "y": 550.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -313,9 +368,9 @@
           {
             "title": "AlignTarget",
             "x": 900.0,
-            "y": 540.0,
-            "width": 270.0,
-            "height": 240.0,
+            "y": 550.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -369,8 +424,8 @@
             "title": "ArmTarget",
             "x": 900.0,
             "y": 0.0,
-            "width": 270.0,
-            "height": 270.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -409,9 +464,9 @@
           {
             "title": "Climber",
             "x": 900.0,
-            "y": 270.0,
-            "width": 270.0,
-            "height": 270.0,
+            "y": 260.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -435,10 +490,10 @@
           },
           {
             "title": "Elevator",
-            "x": 630.0,
+            "x": 640.0,
             "y": 0.0,
-            "width": 270.0,
-            "height": 270.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -490,10 +545,10 @@
           },
           {
             "title": "ArmError",
-            "x": 390.0,
+            "x": 400.0,
             "y": 0.0,
-            "width": 240.0,
-            "height": 180.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -531,10 +586,10 @@
           },
           {
             "title": "ArmDebugging",
-            "x": 390.0,
+            "x": 400.0,
             "y": 180.0,
-            "width": 240.0,
-            "height": 180.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -574,8 +629,8 @@
             "title": "ArmCurrent",
             "x": 1170.0,
             "y": 0.0,
-            "width": 270.0,
-            "height": 270.0,
+            "width": 260.0,
+            "height": 260.0,
             "type": "List Layout",
             "properties": {
               "label_position": "TOP"
@@ -629,15 +684,29 @@
         "containers": [
           {
             "title": "AutoChooser",
-            "x": 630.0,
+            "x": 640.0,
             "y": 570.0,
-            "width": 270.0,
+            "width": 260.0,
             "height": 150.0,
             "type": "ComboBox Chooser",
             "properties": {
               "topic": "/SmartDashboard/AutoChooser",
               "period": 0.06,
               "sort_options": false
+            }
+          },
+          {
+            "title": "CurrentElevatorMotor",
+            "x": 640.0,
+            "y": 260.0,
+            "width": 240.0,
+            "height": 150.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/ElevatorCurrent/CurrentElevatorMotor",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
             }
           }
         ]
@@ -650,10 +719,10 @@
         "containers": [
           {
             "title": "Sensor Activated???",
-            "x": 1140.0,
+            "x": 1430.0,
             "y": 0.0,
-            "width": 630.0,
-            "height": 420.0,
+            "width": 480.0,
+            "height": 260.0,
             "type": "Boolean Box",
             "properties": {
               "topic": "/SmartDashboard/Sensor Activated???",
@@ -667,10 +736,10 @@
           },
           {
             "title": "AutoChooser",
-            "x": 1140.0,
-            "y": 420.0,
-            "width": 540.0,
-            "height": 150.0,
+            "x": 30.0,
+            "y": 680.0,
+            "width": 400.0,
+            "height": 130.0,
             "type": "ComboBox Chooser",
             "properties": {
               "topic": "/SmartDashboard/AutoChooser",
@@ -682,8 +751,8 @@
             "title": "PhotonAlerts",
             "x": 0.0,
             "y": 0.0,
-            "width": 300.0,
-            "height": 270.0,
+            "width": 310.0,
+            "height": 260.0,
             "type": "Alerts",
             "properties": {
               "topic": "/SmartDashboard/PhotonAlerts",
@@ -692,10 +761,10 @@
           },
           {
             "title": "Match Timer",
-            "x": 600.0,
+            "x": 900.0,
             "y": 0.0,
-            "width": 540.0,
-            "height": 270.0,
+            "width": 530.0,
+            "height": 260.0,
             "type": "Match Time",
             "properties": {
               "topic": "/SmartDashboard/MatchTime",
@@ -708,10 +777,10 @@
           },
           {
             "title": "Controllers",
-            "x": 300.0,
+            "x": 310.0,
             "y": 0.0,
-            "width": 300.0,
-            "height": 270.0,
+            "width": 310.0,
+            "height": 260.0,
             "type": "Alerts",
             "properties": {
               "topic": "/SmartDashboard/Controllers",
@@ -720,14 +789,135 @@
           },
           {
             "title": "Devices",
-            "x": 0.0,
-            "y": 270.0,
-            "width": 300.0,
-            "height": 270.0,
+            "x": 590.0,
+            "y": 0.0,
+            "width": 310.0,
+            "height": 260.0,
             "type": "Alerts",
             "properties": {
               "topic": "/SmartDashboard/Devices",
               "period": 0.06
+            }
+          },
+          {
+            "title": "Aligned",
+            "x": 1250.0,
+            "y": 260.0,
+            "width": 660.0,
+            "height": 730.0,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/Aligned",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4293328640,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
+            }
+          },
+          {
+            "title": "DecreaseOffsetLeft",
+            "x": 540.0,
+            "y": 520.0,
+            "width": 220.0,
+            "height": 160.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetLeft",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "DecreaseOffsetRight",
+            "x": 0.0,
+            "y": 500.0,
+            "width": 240.0,
+            "height": 170.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetRight",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "IncreaseOffsetLeft",
+            "x": 20.0,
+            "y": 260.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetLeft",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "IncreaseOffsetX",
+            "x": 260.0,
+            "y": 260.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetX",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "IncreaseOffsetRight",
+            "x": 510.0,
+            "y": 260.0,
+            "width": 240.0,
+            "height": 240.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetRight",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "DecreaseOffsetX",
+            "x": 270.0,
+            "y": 520.0,
+            "width": 240.0,
+            "height": 160.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetX",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "ResetOffset",
+            "x": 780.0,
+            "y": 620.0,
+            "width": 470.0,
+            "height": 200.0,
+            "type": "Toggle Button",
+            "properties": {
+              "topic": "/SmartDashboard/ResetOffset",
+              "period": 0.06,
+              "data_type": "boolean"
+            }
+          },
+          {
+            "title": "back_Port_1182_Output_MJPEG_Server",
+            "x": 770.0,
+            "y": 270.0,
+            "width": 470.0,
+            "height": 350.0,
+            "type": "Camera Stream",
+            "properties": {
+              "topic": "/CameraPublisher/back_Port_1182_Output_MJPEG_Server",
+              "period": 0.06,
+              "rotation_turns": 0
             }
           }
         ]

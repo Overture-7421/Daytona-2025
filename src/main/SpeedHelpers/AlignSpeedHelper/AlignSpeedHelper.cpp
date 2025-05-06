@@ -12,6 +12,10 @@ double map(double x, double in_min, double in_max, double out_min, double out_ma
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+double AlignSpeedHelper::changedXTarget = 0.0;
+double AlignSpeedHelper::changedLeftTarget = 0.0;
+double AlignSpeedHelper::changedRightTarget = 0.0;
+
 AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, ReefSide direction,
         ReefPackage reefPackage) {
     this->chassis = chassis;
@@ -47,21 +51,28 @@ void AlignSpeedHelper::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
     units::degree_t headingError = units::math::abs(
             headingPIDController.GetGoal().position - poseInTargetFrame.Rotation().Degrees());
 
-    double clampYError = std::clamp(yError.value(), 0.0, 1.3);
+    double clampYError = std::clamp(yError.value(), 0.0, 0.3);
     double yErrorToAngleMock = map(clampYError, 0.0, 1.3, 0.0, M_PI_2);
     double yScale = std::cos(yErrorToAngleMock);
     double headingScale = units::math::cos(headingError);
-    xScale = std::clamp((headingScale + 0.2) * yScale, 0.0, 1.0);
+    xScale = std::clamp(headingScale * yScale, 0.0, 1.0);
 
     units::meter_t actualXTarget = poseInTargetFrame.X();
 
     if (xScale > scaleMin) {
         actualXTarget = xTarget;
     }
+
+    Logging::WriteValue("AlignOffset/XTarget", actualXTarget);
+
     frc::SmartDashboard::PutNumber("ReefPackage/MAth/yScale", yScale);
     frc::SmartDashboard::PutNumber("ReefPackage/MAth/headingScale", headingScale);
     frc::SmartDashboard::PutNumber("ReefPackage/XTarget/xScale", xScale);
     frc::SmartDashboard::PutNumber("ReefPackage/XTarget/actualXTarget", actualXTarget.value());
+
+    frc::SmartDashboard::PutNumber("AlignOffset/X", AlignSpeedHelper::getModifyXTarget());
+    frc::SmartDashboard::PutNumber("AlignOffset/Left", AlignSpeedHelper::getModifyLeftTarget());
+    frc::SmartDashboard::PutNumber("AlignOffset/Right", AlignSpeedHelper::getModifyRightTarget());
 
     auto xOut = units::meters_per_second_t(xPIDController.Calculate(poseInTargetFrame.X(), actualXTarget));
 
@@ -101,13 +112,12 @@ void AlignSpeedHelper::initialize() {
         //allianceMulti = -1;
     }
 
-    xTarget = reefOffset.xOffset;
+    xTarget = reefOffset.xOffset + units::meter_t(changedXTarget);
     headingTarget = reefOffset.headingOffset;
     if (direction == ReefSide::Left) {
-        yTarget = reefOffset.leftOffset;
-        xTarget += -0.0_m; //-0.025
+        yTarget = reefOffset.leftOffset + units::meter_t(changedLeftTarget);
     } else {
-        yTarget = reefOffset.rightOffset;
+        yTarget = reefOffset.rightOffset + units::meter_t(changedRightTarget);
     }
 
     frc::Pose2d pose = chassis->getEstimatedPose();
@@ -136,4 +146,32 @@ bool AlignSpeedHelper::atGoal() {
     return xPIDController.AtGoal() && (xPIDController.GetGoal().position == xTarget) && yPIDController.AtGoal()
             && headingPIDController.AtGoal();
     frc::SmartDashboard::PutNumber("ReefPackage/XTarget/Direct", xTarget.value());
+}
+
+double AlignSpeedHelper::getModifyXTarget() {
+    return changedXTarget;
+}
+void AlignSpeedHelper::setModifyXTarget(double changedTarget) {
+    changedXTarget -= changedTarget;
+}
+
+double AlignSpeedHelper::getModifyLeftTarget() {
+    return changedLeftTarget;
+}
+void AlignSpeedHelper::setModifyLeftTarget(double changedTarget) {
+    changedLeftTarget -= changedTarget;
+}
+
+double AlignSpeedHelper::getModifyRightTarget() {
+    return changedRightTarget;
+}
+void AlignSpeedHelper::setModifyRightTarget(double changedTarget) {
+    changedRightTarget += changedTarget;
+}
+
+void AlignSpeedHelper::resetOffset() {
+    changedXTarget = 0;
+    changedLeftTarget = 0;
+    changedRightTarget = 0;
+
 }

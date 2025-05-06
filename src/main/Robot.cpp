@@ -33,6 +33,18 @@ Robot::Robot() {
     AddPeriodic([&] {
         frc2::CommandScheduler::GetInstance().Run();
     }, RobotConstants::LoopTime, RobotConstants::TimingOffset);
+
+    frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
+    frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);
+
+    frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+    frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
+
+    frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+    frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetRight", false);
+
+    frc::SmartDashboard::PutBoolean("ResetOffset", false);
+
 }
 
 void Robot::RobotPeriodic() {

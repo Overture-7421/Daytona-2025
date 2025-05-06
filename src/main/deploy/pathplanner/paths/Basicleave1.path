@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.670994318181817,
-        "y": 3.990099431818182
+        "x": 6.670901679603645,
+        "y": 4.0
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 6.1017418032786885,
+        "x": 6.2010000000000005,
         "y": 4.0
       },
       "prevControl": {
-        "x": 6.52099180327869,
-        "y": 3.9902500000000005
+        "x": 6.62036335676833,
+        "y": 4.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Basicleave1"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],

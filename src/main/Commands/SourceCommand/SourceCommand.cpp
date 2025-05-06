@@ -42,15 +42,7 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
             ).AndThen(
                     frc2::cmd::Sequence(
                             frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::StopIntake),
-                                    superStructure->setState(SuperStructureStates::HoldCoral)),
-                            WaitForButton(gamepad, nextButton),
-                            frc2::cmd::Sequence(
-                                    arm->setArmCommand(ArmConstants::ArmCoralStationAway, ArmConstants::WristClosed),
-                                    frc2::cmd::Wait(0.5_s),
-                                    arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-                                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
-
-                                    ));
+                                    superStructure->setState(SuperStructureStates::HoldCoral))));
 
 }
 
@@ -88,15 +80,7 @@ frc2::CommandPtr SourceCommand(Arm *arm, Elevator *elevator, Intake *intake, Sup
             ).AndThen(
                     frc2::cmd::Sequence(
                             frc2::cmd::Parallel(intake->moveIntake(IntakeConstants::StopIntake),
-                                    superStructure->setState(SuperStructureStates::HoldCoral)),
-                            WaitForButtonConsole(gamepadConsole, nextConsoleButton),
-                            frc2::cmd::Sequence(
-                                    arm->setArmCommand(ArmConstants::ArmCoralStationAway, ArmConstants::WristClosed),
-                                    frc2::cmd::Wait(0.5_s),
-                                    arm->setArmCommand(ArmConstants::ArmClosed, ArmConstants::WristClosed),
-                                    elevator->setElevatorCommand(ElevatorConstants::ClosedPosition))
-
-                                    ));
+                                    superStructure->setState(SuperStructureStates::HoldCoral))));
 
 }
 

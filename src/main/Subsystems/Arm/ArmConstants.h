@@ -20,13 +20,13 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmL1Reef = 28.0_deg; //58
     constexpr static const units::degree_t WristL1Reef = -90.0_deg; //90
 
-    constexpr static const units::degree_t ArmL2Reef = 73.0_deg;
+    constexpr static const units::degree_t ArmL2Reef = 73.0_deg; //73
     constexpr static const units::degree_t WristL2Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmL3Reef = 73.0_deg; //50
+    constexpr static const units::degree_t ArmL3Reef = 73.0_deg; //73
     constexpr static const units::degree_t WristL3Reef = 0.0_deg;
 
-    constexpr static const units::degree_t ArmL4Reef = 73.0_deg; //65
+    constexpr static const units::degree_t ArmL4Reef = 73.0_deg; //73
     constexpr static const units::degree_t WristL4Reef = 0.0_deg;
 
     constexpr static const units::degree_t ArmL4ReefAuto = 48.0_deg; //57
@@ -42,8 +42,8 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmCoralStationAway = 90_deg; //95
     constexpr static const units::degree_t WristCoralStation = 90.0_deg;
 
-    constexpr static const units::degree_t ArmProcessor = 20.0_deg; //90
-    constexpr static const units::degree_t WristProcessor = 0.0_deg;
+    constexpr static const units::degree_t ArmProcessor = 197.0_deg; //90
+    constexpr static const units::degree_t WristProcessor = 90.0_deg;
 
     constexpr static const units::degree_t ArmNet = 90.0_deg; // 1
     constexpr static const units::degree_t WristNet = 0.0_deg;
@@ -54,8 +54,8 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmCoralGroundBack = 207.0_deg; //Back 201
     constexpr static const units::degree_t WristCoralGroundBack = 90.0_deg; // Back 90
 
-    constexpr static const units::degree_t ArmAlgaeGround = 200.0_deg; //110
-    constexpr static const units::degree_t WristAlgaeGround = 90.0_deg;
+    constexpr static const units::degree_t ArmAlgaeGround = -20.0_deg; //110
+    constexpr static const units::degree_t WristAlgaeGround = -90.0_deg;
 
     constexpr static const units::degree_t ArmClosed = 90.0_deg; // 0
     constexpr static const units::degree_t WristClosed = 0.0_deg;

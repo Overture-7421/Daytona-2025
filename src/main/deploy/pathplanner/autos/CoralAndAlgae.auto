@@ -74,11 +74,93 @@
               }
             ]
           }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "lowAlgae"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.7
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "CoralAndAlgae1"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CoralAndAlgae2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "netCommand"
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "CoralAndAlgae3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "spitAlgae"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "CoralAndAlgae4"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "closed"
+                }
+              }
+            ]
+          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "BasicLeave",
+  "folder": "CoralAndAlgae",
   "choreoAuto": false
 }

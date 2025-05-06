@@ -111,5 +111,6 @@
     "xlocnum": "cpp",
     "xloctime": "cpp",
     "*.mac": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

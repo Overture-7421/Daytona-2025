@@ -54,10 +54,10 @@ private:
     void disableBackCamera();
     void enableBackCamera();
 
-    OverXboxController driver {0, 0.20, 0.2};
+    OverXboxController driver {0, 0.55, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
     OverConsole console {2};
-    //OverXboxController test {3, 0.20, 0.2};
+    OverXboxController test {3, 0.20, 0.2};
 
 #ifndef __FRC_ROBORIO__
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);

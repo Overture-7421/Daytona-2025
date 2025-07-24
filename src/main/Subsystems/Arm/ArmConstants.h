@@ -51,7 +51,7 @@ struct ArmConstants {
     constexpr static const units::degree_t ArmCoralGroundFront = -24.0_deg; //Back 201
     constexpr static const units::degree_t WristCoralGroundFront = -90.0_deg; // Back 90
 
-    constexpr static const units::degree_t ArmCoralGroundBack = 207.0_deg; //Back 201
+    constexpr static const units::degree_t ArmCoralGroundBack = 204.0_deg; //Back 201
     constexpr static const units::degree_t WristCoralGroundBack = 90.0_deg; // Back 90
 
     constexpr static const units::degree_t ArmAlgaeGround = -20.0_deg; //110
@@ -91,7 +91,7 @@ struct ArmConstants {
         armLeftConfig.TriggerThreshold = 40_A;
         armLeftConfig.TriggerThresholdTime = 0.5_s;
         armLeftConfig.PIDConfigs.GravityType = 1;
-        armLeftConfig.PIDConfigs.WithKG(0.3).WithKV(1).WithKP(80); //KV1.9 P150
+        armLeftConfig.PIDConfigs.WithKG(0.3).WithKV(1).WithKP(50); //P80
 
         return armLeftConfig;
     }
@@ -116,7 +116,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = 0.35791015625_tr;
+        armCANConfig.Offset = 0.28076171875_tr;
 
         return armCANConfig;
     }
@@ -124,10 +124,10 @@ struct ArmConstants {
     constexpr static const CanCoderConfig WristCANConfig() {
         CanCoderConfig wristCANConfig;
         wristCANConfig.CanCoderId = WristCANCoderId;
-        wristCANConfig.Offset = -0.449462890625_tr;
+        wristCANConfig.Offset = 0.37841796875_tr;
         wristCANConfig.SensorDirection = 1;
 
-        return wristCANConfig;
+        return wristCANConfig;          
     }
 
 };

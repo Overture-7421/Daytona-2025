@@ -89,27 +89,27 @@ void RobotContainer::ConfigDriverBindings() {
     driver.Back().OnTrue(ResetHeading(&chassis));
 
     /*
-    driver.POVLeft().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
-    driver.POVLeft().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.POVLeft().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
+     driver.POVLeft().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
-    //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
+     //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.B().WhileTrue(CoralGroundGrabCommandFront(&arm, &elevator, &intake, &superStructure));
-    driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.B().WhileTrue(CoralGroundGrabCommandFront(&arm, &elevator, &intake, &superStructure));
+     driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.X().WhileTrue(CoralGroundGrabCommandBack(&arm, &elevator, &intake, &superStructure));
-    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.X().WhileTrue(CoralGroundGrabCommandBack(&arm, &elevator, &intake, &superStructure));
+     driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+     driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
-    driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-    
-    driver.LeftBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
-    driver.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-    */
+     driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
+     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     
+     driver.LeftBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
+     driver.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     */
 }
 
 void RobotContainer::ConfigOperatorBindings() {
@@ -263,11 +263,14 @@ void RobotContainer::ConfigMixedBindigs() {
                     })));
     ;
 
-    (!driver.A() && console.Button(1)).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
-    console.Button(1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    (console.Button(1) && driver.POVRight()).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure).OnlyIf([this] {
+        return findClosestReefLocation(&chassis, &tagLayout).algaePose == AlgaePose::Down;
+    }).AlongWith(algaeAlignPos(&chassis, &tagLayout, &driver)));
 
-    (!driver.A() && console.Button(2)).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
-    console.Button(2).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    (console.Button(1) && driver.POVRight()).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure).OnlyIf([this] {
+        return findClosestReefLocation(&chassis, &tagLayout).algaePose == AlgaePose::Up;
+    }).AlongWith(algaeAlignPos(&chassis, &tagLayout, &driver)));
+    console.Button(1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     (!driver.A() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
             SourceCommand(&arm, &elevator, &intake, &superStructure, &console).BeforeStarting([this] {

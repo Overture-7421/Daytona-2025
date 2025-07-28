@@ -127,7 +127,7 @@ struct ArmConstants {
         wristCANConfig.Offset = 0.37841796875_tr;
         wristCANConfig.SensorDirection = 1;
 
-        return wristCANConfig;          
+        return wristCANConfig;
     }
 
 };

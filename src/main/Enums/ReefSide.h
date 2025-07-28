@@ -5,5 +5,5 @@
 #pragma once
 
 enum class ReefSide {
-    Left, Right
+    Left, Right, Algae
 };

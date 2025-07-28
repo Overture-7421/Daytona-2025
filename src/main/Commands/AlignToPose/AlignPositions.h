@@ -15,7 +15,7 @@
 //GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
 
 //IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION
-static const ReefOffset defaultReefOffset {0.139_m, 0.476_m, 0.59_m, 180.0_deg};
+static const ReefOffset defaultReefOffset {0.139_m, 0.476_m, 0.59_m, 180.0_deg, 0.0_m};
 
 static std::map<ReefLocation, ReefOffset> alignPositionsMap;
 
@@ -26,3 +26,4 @@ static const std::map<ReefLocation, ReefOffset> alignInBlue = {};
 frc2::CommandPtr leftAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver);
 frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver);
 
+frc2::CommandPtr algaeAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver);

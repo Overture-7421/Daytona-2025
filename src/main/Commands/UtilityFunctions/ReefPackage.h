@@ -6,11 +6,13 @@
 #include "frc/apriltag/AprilTagFieldLayout.h"
 #include <frc/DriverStation.h>
 #include "Enums/ReefLocation.h"
+#include "Enums/AlgaePose.h"
 
 struct ReefPackage {
 
     frc::DriverStation::Alliance alliance;
     ReefLocation reefLocation;
     frc::Pose2d pose;
+    AlgaePose algaePose;
 
 };

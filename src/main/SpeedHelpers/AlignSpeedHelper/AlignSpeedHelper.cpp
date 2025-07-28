@@ -116,8 +116,10 @@ void AlignSpeedHelper::initialize() {
     headingTarget = reefOffset.headingOffset;
     if (direction == ReefSide::Left) {
         yTarget = reefOffset.leftOffset + units::meter_t(changedLeftTarget);
-    } else {
+    } else if (direction == ReefSide::Right) {
         yTarget = reefOffset.rightOffset + units::meter_t(changedRightTarget);
+    } else {
+        yTarget = reefOffset.algaeOffset;
     }
 
     frc::Pose2d pose = chassis->getEstimatedPose();
@@ -128,6 +130,10 @@ void AlignSpeedHelper::initialize() {
     xPIDController.Reset(poseInTargetFrame.X(), currentSpeeds.vx);
     yPIDController.Reset(poseInTargetFrame.Y(), currentSpeeds.vy);
     headingPIDController.Reset(poseInTargetFrame.Rotation().Radians(), currentSpeeds.omega);
+}
+
+AlgaePose AlignSpeedHelper::getAlgaePose() {
+    return reefPackage.algaePose;
 }
 
 frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d &pose) {

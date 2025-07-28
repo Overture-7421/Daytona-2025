@@ -21,6 +21,8 @@ public:
     units::meter_t getTargetDistance();
     bool atGoal();
 
+    AlgaePose getAlgaePose();
+
     static double getModifyXTarget();
     static void setModifyXTarget(double changedTarget);
 

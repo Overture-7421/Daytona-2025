@@ -27,27 +27,28 @@ void DriveCommand::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveCommand::Execute() {
-    frc::Rotation2d targetAngle {gamepad->getRightStickDirection()};
+    /*
+     frc::Rotation2d targetAngle {gamepad->getRightStickDirection()};
 
-    if (allianceMulti == -1) {
-        targetAngle = targetAngle.RotateBy( {180_deg});
-    }
+     if (allianceMulti == -1) {
+     targetAngle = targetAngle.RotateBy( {180_deg});
+     }
 
-    double squares = sqrt(gamepad->GetRightY() * gamepad->GetRightY() + gamepad->GetRightX() * gamepad->GetRightX());
+     double squares = sqrt(gamepad->GetRightY() * gamepad->GetRightY() + gamepad->GetRightX() * gamepad->GetRightX());
 
-    if (squares > 0.71) {
-        if (speedHelperMoved == false) {
-            speedHelperMoved = true;
-            chassis->enableSpeedHelper(&headingSpeedsHelper);
-        }
+     if (squares > 0.71) {
+     if (speedHelperMoved == false) {
+     speedHelperMoved = true;
+     chassis->enableSpeedHelper(&headingSpeedsHelper);
+     }
 
-    } else if (speedHelperMoved == true) {
-        speedHelperMoved = false;
-        chassis->disableSpeedHelper();
-    }
+     } else if (speedHelperMoved == true) {
+     speedHelperMoved = false;
+     chassis->disableSpeedHelper();
+     }
+     */
 
     //POV Left
-
     /*
      if (gamepad->B().Get()) {
      auto rotationSpeed = 54_deg * allianceMulti;
@@ -58,8 +59,7 @@ void DriveCommand::Execute() {
      }
      */
 
-    headingSpeedsHelper.setTargetAngle(targetAngle);
-
+    //headingSpeedsHelper.setTargetAngle(targetAngle);
     auto xSpeed = xInput.Calculate(
             Utils::ApplyAxisFilter(allianceMulti * -gamepad->GetHID().GetRawAxis(1), 0.2, 0.5)
                     * chassis->getMaxModuleSpeed() * slowMulti);
@@ -67,7 +67,8 @@ void DriveCommand::Execute() {
             Utils::ApplyAxisFilter(allianceMulti * -gamepad->GetHID().GetRawAxis(0), 0.2, 0.5)
                     * chassis->getMaxModuleSpeed() * slowMulti);
 
-    auto rotationSpeed = (gamepad->getTwist() * 0.8_tps);
+    //auto rotationSpeed = (gamepad->getTwist() * 0.8_tps);
+    auto rotationSpeed = (gamepad->GetRightX() * -0.7_tps); //-0.7
 
     frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xSpeed, ySpeed, rotationSpeed,
             chassis->getEstimatedPose().Rotation());

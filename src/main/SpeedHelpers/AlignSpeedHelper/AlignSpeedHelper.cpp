@@ -24,11 +24,11 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, ReefOffset reefOffset, Reef
     this->direction = direction;
 
     this->xPIDController.SetIZone(3);
-    this->xPIDController.SetTolerance(0.02_m);
+    this->xPIDController.SetTolerance(0.01_m);
     this->yPIDController.SetIZone(3);
-    this->yPIDController.SetTolerance(0.02_m);
+    this->yPIDController.SetTolerance(0.01_m);
     this->headingPIDController.SetIZone(3);
-    this->headingPIDController.SetTolerance(1.0_deg);
+    this->headingPIDController.SetTolerance(0.5_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 
 }
@@ -116,8 +116,10 @@ void AlignSpeedHelper::initialize() {
     headingTarget = reefOffset.headingOffset;
     if (direction == ReefSide::Left) {
         yTarget = reefOffset.leftOffset + units::meter_t(changedLeftTarget);
-    } else {
+    } else if (direction == ReefSide::Right) {
         yTarget = reefOffset.rightOffset + units::meter_t(changedRightTarget);
+    } else {
+        yTarget = reefOffset.algaeOffset;
     }
 
     frc::Pose2d pose = chassis->getEstimatedPose();
@@ -128,6 +130,10 @@ void AlignSpeedHelper::initialize() {
     xPIDController.Reset(poseInTargetFrame.X(), currentSpeeds.vx);
     yPIDController.Reset(poseInTargetFrame.Y(), currentSpeeds.vy);
     headingPIDController.Reset(poseInTargetFrame.Rotation().Radians(), currentSpeeds.omega);
+}
+
+AlgaePose AlignSpeedHelper::getAlgaePose() {
+    return reefPackage.algaePose;
 }
 
 frc::Pose2d AlignSpeedHelper::transformToTargetFrame(const frc::Pose2d &pose) {

@@ -13,3 +13,6 @@ frc2::CommandPtr rightAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLa
     return AlignToPose(chassis, ReefSide::Right, tagLayout, driver).ToPtr();
 }
 
+frc2::CommandPtr algaeAlignPos(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, OverXboxController *driver) {
+    return AlignToPose(chassis, ReefSide::Algae, tagLayout, driver).ToPtr();
+}

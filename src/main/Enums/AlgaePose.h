@@ -3,12 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-#include <math.h>
 
-struct ReefOffset {
-    units::meter_t leftOffset;
-    units::meter_t rightOffset;
-    units::meter_t xOffset;
-    units::degree_t headingOffset;
-    units::meter_t algaeOffset;
+enum class AlgaePose {
+    Up, Down
 };

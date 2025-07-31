@@ -88,27 +88,28 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.POVLeft().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
-    driver.POVLeft().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    /*
+     driver.POVLeft().WhileTrue(NetCommand(&arm, &elevator, &superStructure)); // Align: .AlongWith(AlignToNet(&chassis, NetPose::pose).ToPtr())
+     driver.POVLeft().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
-    //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     //driver.B().WhileTrue(SourceCommand(&arm, &elevator, &intake, &superStructure));
+     //driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.B().WhileTrue(CoralGroundGrabCommandFront(&arm, &elevator, &intake, &superStructure));
-    driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.B().WhileTrue(CoralGroundGrabCommandFront(&arm, &elevator, &intake, &superStructure));
+     driver.B().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.X().WhileTrue(CoralGroundGrabCommandBack(&arm, &elevator, &intake, &superStructure));
-    driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.X().WhileTrue(CoralGroundGrabCommandBack(&arm, &elevator, &intake, &superStructure));
+     driver.X().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
-    driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     driver.A().WhileTrue(AlgaeGroundGrabCommand(&arm, &elevator, &intake, &superStructure));
+     driver.A().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
-    driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
-    driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-
-    driver.LeftBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
-    driver.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
-
+     driver.RightBumper().OnTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
+     driver.RightBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     
+     driver.LeftBumper().WhileTrue(SpitGamePiece(&intake, &superStructure, &elevator, &arm));
+     driver.LeftBumper().OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+     */
 }
 
 void RobotContainer::ConfigOperatorBindings() {
@@ -262,11 +263,14 @@ void RobotContainer::ConfigMixedBindigs() {
                     })));
     ;
 
-    (!driver.A() && console.Button(1)).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure));
-    console.Button(1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    (console.Button(1) && driver.POVRight()).OnTrue(LowAlgae(&arm, &elevator, &intake, &superStructure).OnlyIf([this] {
+        return findClosestReefLocation(&chassis, &tagLayout).algaePose == AlgaePose::Down;
+    }).AlongWith(algaeAlignPos(&chassis, &tagLayout, &driver)));
 
-    (!driver.A() && console.Button(2)).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure));
-    console.Button(2).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
+    (console.Button(1) && driver.POVRight()).OnTrue(HighAlgae(&arm, &elevator, &intake, &superStructure).OnlyIf([this] {
+        return findClosestReefLocation(&chassis, &tagLayout).algaePose == AlgaePose::Up;
+    }).AlongWith(algaeAlignPos(&chassis, &tagLayout, &driver)));
+    console.Button(1).OnFalse(ClosedCommand(&arm, &elevator, &intake, &superStructure));
 
     (!driver.A() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
             SourceCommand(&arm, &elevator, &intake, &superStructure, &console).BeforeStarting([this] {
@@ -319,8 +323,8 @@ void RobotContainer::ConfigCharacterizationBindings() {
     //test.A().WhileTrue(elevator.setElevatorCommand(1_m));
     //test.A().OnFalse(elevator.setElevatorCommand(0.00_m));
 
-    //test.A().WhileTrue(arm.setArmCommand(30_deg, 0_deg));
-    //test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
+    test.A().WhileTrue(arm.setArmCommand(30_deg, 0_deg));
+    test.A().OnFalse(arm.setArmCommand(90_deg, 0_deg));
 
     //test.A().WhileTrue(arm.setArmCommand(30_deg, -90_deg));
     //test.A().OnFalse(arm.setArmCommand(30_deg, 0_deg));
@@ -347,8 +351,8 @@ void RobotContainer::enableBackCamera() {
 
 AprilTags::Config RobotContainer::frontRightCamera() {
     AprilTags::Config config;
-    config.cameraName = "Global_Shutter_Camera";
-    config.cameraToRobot = {6.195169_in, -6.064487_in, 6.248962_in, {0_deg, -28.0_deg, 45_deg}};
+    config.cameraName = "FrontRight";
+    config.cameraToRobot = {7.200000_in, -5.892500_in, 6.368259_in, {0_deg, -21.500115_deg, 30.026518_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
@@ -356,21 +360,21 @@ AprilTags::Config RobotContainer::frontRightCamera() {
 AprilTags::Config RobotContainer::frontLeftCamera() {
     AprilTags::Config config;
     config.cameraName = "FrontLeft";
-    config.cameraToRobot = {9.875_in, 10.653063_in, 8.109802_in, {0_deg, -15_deg, 0_deg}};
+    config.cameraToRobot = {6.000000_in, 11.000000_in, 7.752224_in, {0_deg, -21.000118_deg, 25.025948_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
 
 AprilTags::Config RobotContainer::backRightCamera() {
     AprilTags::Config config;
-    config.cameraName = "BackRight";
-    config.cameraToRobot = {10.784188_in, 2.200000_in, 20.810051_in, {0_deg, 15_deg, 0_deg}};
+    config.cameraName = "MultiCam";
+    config.cameraToRobot = {11.000000_in, -7.000000_in, 9.752224_in, {0_deg, -15.000170_deg, 50.018714_deg}};
     return config;
 }
 
 AprilTags::Config RobotContainer::backLeftCamera() {
     AprilTags::Config config;
-    config.cameraName = "BackLeft (1)";
+    config.cameraName = "BackLeft";
     config.cameraToRobot = {-9.648405_in, 8.631463_in, 8.410513_in, {0_deg, -28.125_deg, 120_deg}};
     return config;
 }

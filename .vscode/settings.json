@@ -110,7 +110,8 @@
     "xlocmon": "cpp",
     "xlocnum": "cpp",
     "xloctime": "cpp",
-    "*.mac": "cpp"
+    "*.mac": "cpp",
+    "*.inc": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

@@ -5,9 +5,9 @@
 
 #pragma once
 #include <units/voltage.h>
-#include "Subsystems/Intake/Intake.h"
+#include "Subsystems/Grabber/Grabber.h"
 
-struct IntakeConstants {
+struct GrabberConstants {
 public:
 
     constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
@@ -31,20 +31,20 @@ public:
     constexpr static const units::volt_t StopIntake = 0.0_V;
     constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
-    constexpr static const OverTalonFXConfig IntakeConfig() {
-        OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = 28;
-        intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
-        intakeConfig.Inverted = true;
+    constexpr static const OverTalonFXConfig GrabberConfig() {
+        OverTalonFXConfig grabberConfig;
+        grabberConfig.MotorId = 28;
+        grabberConfig.NeutralMode = ControllerNeutralMode::Brake;
+        grabberConfig.Inverted = true;
 
-        intakeConfig.CurrentLimit = 25_A;
-        intakeConfig.StatorCurrentLimit = 120_A;
-        intakeConfig.TriggerThreshold = 40_A;
-        intakeConfig.TriggerThresholdTime = 0.5_s;
-        intakeConfig.ClosedLoopRampRate = 0.0_s;
-        intakeConfig.OpenLoopRampRate = 0.05_s;
+        grabberConfig.CurrentLimit = 25_A;
+        grabberConfig.StatorCurrentLimit = 120_A;
+        grabberConfig.TriggerThreshold = 40_A;
+        grabberConfig.TriggerThresholdTime = 0.5_s;
+        grabberConfig.ClosedLoopRampRate = 0.0_s;
+        grabberConfig.OpenLoopRampRate = 0.05_s;
 
-        return intakeConfig;
+        return grabberConfig;
     }
 
 };

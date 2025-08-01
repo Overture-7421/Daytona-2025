@@ -2,25 +2,25 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "Intake.h"
+#include "Grabber.h"
 
-Intake::Intake() {
+Grabber::Grabber() {
 }
 
-void Intake::setMotorVoltage(units::volt_t voltage) {
-    intakeMotor.SetControl(intakeVoltage.WithOutput(voltage).WithEnableFOC(true));
+void Grabber::setMotorVoltage(units::volt_t voltage) {
+    grabberMotor.SetControl(grabberVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
-double Intake::getVoltage() {
-    return intakeMotor.GetMotorVoltage().GetValueAsDouble();
+double Grabber::getVoltage() {
+    return grabberMotor.GetMotorVoltage().GetValueAsDouble();
 }
 
-bool Intake::isCoralIn() {
+bool Grabber::isCoralIn() {
 
     return canRange.GetIsDetected().GetValue();
 }
 
-bool Intake::isAlgaeIn() {
+bool Grabber::isAlgaeIn() {
 
     return canRange.GetIsDetected().GetValue();
 
@@ -28,13 +28,13 @@ bool Intake::isAlgaeIn() {
 
 }
 
-frc2::CommandPtr Intake::moveIntake(units::volt_t voltage) {
+frc2::CommandPtr Grabber::moveGrabber(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {
         this->setMotorVoltage(voltage);
     });
 }
 
-void Intake::Periodic() {
-    frc::SmartDashboard::PutBoolean("Intake/ACTIVATED?", getVoltage() > 0.0);
+void Grabber::Periodic() {
+    frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);
     frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
 }

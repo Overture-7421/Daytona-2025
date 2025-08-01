@@ -51,35 +51,3 @@ ReefPackage findClosestReefLocation(Chassis *chassis, frc::AprilTagFieldLayout *
     return result;
 
 }
-
-StationLocation findClosestStationLocation(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
-
-    const std::vector<std::pair<StationLocation, frc::Pose2d>> blueStationLocations = { {StationLocation::Left,
-            tagLayout->GetTagPose(13).value().ToPose2d()}, {StationLocation::Right,
-            tagLayout->GetTagPose(12).value().ToPose2d()}};
-
-    const std::vector<std::pair<StationLocation, frc::Pose2d>> redStationLocations = { {StationLocation::Left,
-            tagLayout->GetTagPose(1).value().ToPose2d()}, {StationLocation::Right,
-            tagLayout->GetTagPose(2).value().ToPose2d()}};
-
-    std::vector<std::pair<StationLocation, units::meter_t>> distancesToStationLocations;
-    distancesToStationLocations.reserve(6);
-
-    const std::vector<std::pair<StationLocation, frc::Pose2d>> *stationLocations = &blueStationLocations;
-
-    if (isRedAlliance()) {
-        stationLocations = &redStationLocations;
-    }
-
-    for (auto location : *stationLocations) {
-        distancesToStationLocations.push_back(
-                std::pair {location.first, getDistanceToChassis(chassis, location.second)});
-    }
-
-    std::sort(distancesToStationLocations.begin(), distancesToStationLocations.end(), [](auto a, auto b) {
-        return a.second < b.second;
-    });
-
-    return distancesToStationLocations.front().first;
-
-}

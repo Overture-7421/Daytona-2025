@@ -14,13 +14,13 @@
 #include <frc2/command/FunctionalCommand.h>
 #include <units/math.h>
 
-#include "Subsystems/Intake/IntakeConstants.h"
+#include "Subsystems/Grabber/GrabberConstants.h"
 
 #include <ctre/phoenix6/CANrange.hpp>
 
-class Intake: public frc2::SubsystemBase {
+class Grabber: public frc2::SubsystemBase {
 public:
-    Intake();
+    Grabber();
 
     void setMotorVoltage(units::volt_t voltage);
 
@@ -29,15 +29,15 @@ public:
     bool isCoralIn();
     bool isAlgaeIn();
 
-    frc2::CommandPtr moveIntake(units::volt_t voltage);
+    frc2::CommandPtr moveGrabber(units::volt_t voltage);
 
     void Periodic() override;
 
 private:
 
-    VoltageOut intakeVoltage {0_V};
+    VoltageOut grabberVoltage {0_V};
 
-    OverTalonFX intakeMotor {IntakeConstants::IntakeConfig(), "rio"};
+    OverTalonFX grabberMotor {GrabberConstants::GrabberConfig(), "rio"};
 
     CANrange canRange {30, "rio"};
 

@@ -34,16 +34,17 @@ Robot::Robot() {
         frc2::CommandScheduler::GetInstance().Run();
     }, RobotConstants::LoopTime, RobotConstants::TimingOffset);
 
-    frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
-    frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);
+    //Maybe si lo usamos
+    // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
+    // frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);
 
-    frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
-    frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
+    // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+    // frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
 
-    frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetRight", false);
-    frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetRight", false);
+    // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+    // frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetRight", false);
 
-    frc::SmartDashboard::PutBoolean("ResetOffset", false);
+    // frc::SmartDashboard::PutBoolean("ResetOffset", false);
 
 }
 
@@ -79,7 +80,6 @@ void Robot::TeleopInit() {
         m_autonomousCommand->Cancel();
     }
 
-    m_container.changeBlockedWrist();
 }
 
 void Robot::TeleopPeriodic() {

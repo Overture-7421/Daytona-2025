@@ -15,25 +15,11 @@
 #include "Commands/DriveCommand/DriveCommand.h"
 #include "Commands/ResetHeading/ResetHeading.h"
 
-#include "Subsystems/Intake/Intake.h"
+#include "Subsystems/Grabber/Grabber.h"
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
 #include "Subsystems/SuperStructure/SuperStructure.h"
-#include "Commands/ReefCommands/ReefCommands.h"
-#include "Commands/CoralGroundGrabCommand/CoralGroundGrabCommand.h"
-#include "Commands/ArmMotion/ArmMotion.h"
-#include "Commands/ClosedCommand/ClosedCommand.h"
-#include "Commands/LowAlgae/LowAlgae.h"
-#include "Commands/HighAlgae/HighAlgae.h"
-#include "Commands/SourceCommand/SourceCommand.h"
-#include "Commands/Processor/Processor.h"
-#include "Commands/AlignToPose/AlignToPose.h"
-#include "Commands/AlignToNet/AlignToNet.h"
-#include "Commands/NetCommand/NetCommand.h"
-#include "Commands/AlignToPose/AlignPositions.h"
-#include "Commands/AlgaeGroundGrabCommand/AlgaeGroundGrabCommand.h"
-#include "Commands/SpitGamePiece/SpitGamePiece.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -41,7 +27,6 @@ public:
 
     frc2::Command* GetAutonomousCommand();
     void UpdateTelemetry();
-    void changeBlockedWrist();
 
 private:
 
@@ -70,13 +55,11 @@ private:
 
     //Subsystems
     Chassis chassis;
-    Intake intake;
+    Grabber grabber;
     Elevator elevator;
     Arm arm;
     Climber climber;
     SuperStructure superStructure;
-
-    units::degree_t armOffset = 0_deg;
 
     static AprilTags::Config frontRightCamera();
     static AprilTags::Config frontLeftCamera();
@@ -90,29 +73,30 @@ private:
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 
-    frc2::Trigger increaseOffsetX {[] {
-        return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
-    }};
-    frc2::Trigger decreaseOffsetX {[] {
-        return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);
-    }};
+    // Maybe si lo usamos
+    // frc2::Trigger increaseOffsetX {[] {
+    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
+    // }};
+    // frc2::Trigger decreaseOffsetX {[] {
+    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);
+    // }};
 
-    frc2::Trigger increaseOffsetLeft {[] {
-        return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
-    }};
-    frc2::Trigger decreaseOffsetLeft {[] {
-        return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
-    }};
+    // frc2::Trigger increaseOffsetLeft {[] {
+    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+    // }};
+    // frc2::Trigger decreaseOffsetLeft {[] {
+    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
+    // }};
 
-    frc2::Trigger increaseOffsetRight {[] {
-        return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);
-    }};
-    frc2::Trigger decreaseOffsetRight {[] {
-        return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);
-    }};
+    // frc2::Trigger increaseOffsetRight {[] {
+    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+    // }};
+    // frc2::Trigger decreaseOffsetRight {[] {
+    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);
+    // }};
 
-    frc2::Trigger resetOffsets {[] {
-        return frc::SmartDashboard::GetBoolean("ResetOffset", false);
-    }};
+    // frc2::Trigger resetOffsets {[] {
+    //     return frc::SmartDashboard::GetBoolean("ResetOffset", false);
+    // }};
 
 };

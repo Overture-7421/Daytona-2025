@@ -5,7 +5,6 @@
 #pragma once
 
 #include "Enums/ReefLocation.h"
-#include "Enums/StationLocation.h"
 
 #include "Subsystems/Chassis/Chassis.h"
 #include <frc/DriverStation.h>
@@ -15,5 +14,3 @@
 #include "Commands/UtilityFunctions/ReefPackage.h"
 
 ReefPackage findClosestReefLocation(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
-
-StationLocation findClosestStationLocation(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);

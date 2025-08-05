@@ -19,13 +19,13 @@ double Grabber::getVoltage() {
 
 bool Grabber::isCoralIn() {
 
-    //return grabberMotor.GetSupplyCurrent()/*.GetValue()*/ > GrabberConstants::CoralDetectionCurrent;
+    return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::CoralDetectionCurrent;
 
 }
 
 bool Grabber::isAlgaeIn() {
 
-    //return grabberMotor.GetSupplyCurrent()/*GetValue()*/ > GrabberConstants::AlgaeDetectionCurrent;
+    return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::AlgaeDetectionCurrent;
 
 }
 

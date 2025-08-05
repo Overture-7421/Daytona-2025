@@ -7,27 +7,29 @@
 Grabber::Grabber() {
 }
 
+//Gives the desired voltage to the grabber
 void Grabber::setMotorVoltage(units::volt_t voltage) {
     grabberMotor.SetControl(grabberVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
+//Checks how much Voltage is 
 double Grabber::getVoltage() {
     return grabberMotor.GetMotorVoltage().GetValueAsDouble();
 }
 
 bool Grabber::isCoralIn() {
 
-    return canRange.GetIsDetected().GetValue();
+    //return grabberMotor.GetSupplyCurrent()/*.GetValue()*/ > GrabberConstants::CoralDetectionCurrent;
+
 }
 
 bool Grabber::isAlgaeIn() {
 
-    return canRange.GetIsDetected().GetValue();
-
-    //return units::math::abs(intakeMotor.GetSupplyCurrent().GetValue()) > 31.0_A;
+    //return grabberMotor.GetSupplyCurrent()/*GetValue()*/ > GrabberConstants::AlgaeDetectionCurrent;
 
 }
 
+//Command that only makes the Grabber move by giving it the desired voltage
 frc2::CommandPtr Grabber::moveGrabber(units::volt_t voltage) {
     return this->RunOnce([this, voltage] {
         this->setMotorVoltage(voltage);
@@ -35,6 +37,8 @@ frc2::CommandPtr Grabber::moveGrabber(units::volt_t voltage) {
 }
 
 void Grabber::Periodic() {
+
     frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);
     frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
+
 }

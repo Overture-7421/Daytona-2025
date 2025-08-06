@@ -5,7 +5,6 @@
 #include "Subsystems/Intake/Intake.h"
 
 Intake::Intake() {
-    //Maybe no es rotorToSensor
     intakeMotor.setRotorToSensorRatio(IntakeConstants::IntakeRotorToSensor);
     intakeMotor.setFusedCANCoder(IntakeConstants::IntakeCANCoderId);
 

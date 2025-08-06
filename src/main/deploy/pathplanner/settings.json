@@ -3,18 +3,14 @@
   "robotLength": 0.79,
   "holonomicMode": true,
   "pathFolders": [
-    "AlgaeInNet",
     "BasicLeave",
     "ChokeholdLeft",
-    "ChokeholdRight",
-    "New Folder"
+    "ChokeholdRight"
   ],
   "autoFolders": [
-    "AlgaeInNet",
     "BasicLeave",
     "ChokeholdLeft",
-    "ChokeholdRight",
-    "CoralAndAlgae"
+    "ChokeholdRight"
   ],
   "defaultMaxVel": 5.45,
   "defaultMaxAccel": 5.0,

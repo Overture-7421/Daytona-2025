@@ -3,32 +3,35 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
 struct ClimberConstants {
-    constexpr static const double ArmSensorToMechanism = 265.84615385;
-    //constexpr static const units::meter_t Diameter = 0.0127_m; //0.5in
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 30.0_tps; //6
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 100_tr_per_s_sq; //13
+    constexpr static const units::degree_t ClimberRangeError = 1.0_deg;
 
-    constexpr static const double RightArmMotorId = 22;
+    constexpr static const units::degree_t ClosedPosition = 0_deg;
+    constexpr static const units::degree_t OpenPosition = 0_deg;
 
-    constexpr static const units::degree_t ClosedPosition = -95_deg;
-    constexpr static const units::degree_t OpenPosition = 120_deg; //Cuidado
+    constexpr static const units::turns_per_second_t ClimberCruiseVelocity = 1.0_tps;
+    constexpr static const units::turns_per_second_squared_t ClimberCruiseAcceleration = 1.0_tr_per_s_sq;
 
-    constexpr static const OverTalonFXConfig RightConfig() {
-        OverTalonFXConfig rightConfig;
-        rightConfig.MotorId = RightArmMotorId;
-        rightConfig.NeutralMode = ControllerNeutralMode::Brake;
-        rightConfig.Inverted = true;
-        rightConfig.useFOC = true;
+    constexpr static const double ClimberEncoderOffset = 1;
+    constexpr static const double ClimberSensorToMechanism = 1;
 
-        rightConfig.CurrentLimit = 20_A;
-        rightConfig.StatorCurrentLimit = 120_A;
-        rightConfig.TriggerThreshold = 30_A;
-        rightConfig.TriggerThresholdTime = 0.5_s;
-        rightConfig.ClosedLoopRampRate = 0.05_s;
-        rightConfig.PIDConfigs.WithKP(150.0).WithKI(10); //60
+    constexpr static const double ClimberMotorId = 22;
 
-        return rightConfig;
+    constexpr static const OverTalonFXConfig ClimberConfig() {
+        OverTalonFXConfig climberConfig;
+        climberConfig.MotorId = ClimberMotorId;
+        climberConfig.NeutralMode = ControllerNeutralMode::Brake;
+        climberConfig.Inverted = true;
+        climberConfig.useFOC = true;
+
+        climberConfig.CurrentLimit = 20_A;
+        climberConfig.StatorCurrentLimit = 120_A;
+        climberConfig.TriggerThreshold = 30_A;
+        climberConfig.TriggerThresholdTime = 0.5_s;
+        climberConfig.ClosedLoopRampRate = 0.05_s;
+        climberConfig.PIDConfigs.WithKP(0.0).WithKI(0.0);
+
+        return climberConfig;
     }
 
 };

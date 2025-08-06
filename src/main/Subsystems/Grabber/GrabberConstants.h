@@ -10,33 +10,26 @@
 struct GrabberConstants {
 public:
 
-    constexpr static const units::meter_t SensorCoralDistance = 0.08_m;
-    constexpr static const units::meter_t SensorAlgaeDistance = 0.08_m;
+    //Voltage for corals
+    constexpr static const units::volt_t GrabCoral = 4.0_V;
+    constexpr static const units::volt_t SpitCoral = -1.5_V;
 
-    constexpr static const units::volt_t CoralGrab = 4.0_V;
-    constexpr static const units::volt_t CoralGrabAuto = 10.0_V; //Positivo es para adentro
-    constexpr static const units::volt_t CoralGroundGrab = 10_V;
-    constexpr static const units::volt_t CoralRelease = -2.5_V;
-    constexpr static const units::volt_t CoralSpit = -1_V;
-    constexpr static const units::volt_t SpitBadCoral = -2_V;
-    constexpr static const units::volt_t CoralSpitL1 = -6_V;
-    constexpr static const units::volt_t CoralSpitL4 = -1.5_V;
+    //Voltage for Algaes
+    constexpr static const units::volt_t GrabAlgae = 8.0_V;
+    constexpr static const units::volt_t HoldAlgae = 2_V;
+    constexpr static const units::volt_t SpitAlgae = -4.0_V;
 
-    constexpr static const units::volt_t AlgaeGrab = 8.0_V; //7
-    constexpr static const units::volt_t AlgaeRelease = -4.0_V;
-
-    constexpr static const units::volt_t AlgaeHold = 2_V; //-0.8
-
-    constexpr static const units::volt_t SlowIntake = 3.0_V;
     constexpr static const units::volt_t StopIntake = 0.0_V;
-    constexpr static const units::volt_t ReverseVolts = -4.0_V;
 
+    constexpr static const double CoralDetectionCurrent = 35.0; //To be defined
+    constexpr static const double AlgaeDetectionCurrent = 20.0; //To be defined
+
+    //Configuration for the Motor
     constexpr static const OverTalonFXConfig GrabberConfig() {
         OverTalonFXConfig grabberConfig;
         grabberConfig.MotorId = 28;
         grabberConfig.NeutralMode = ControllerNeutralMode::Brake;
         grabberConfig.Inverted = true;
-
         grabberConfig.CurrentLimit = 25_A;
         grabberConfig.StatorCurrentLimit = 120_A;
         grabberConfig.TriggerThreshold = 40_A;

@@ -94,32 +94,32 @@ void RobotContainer::ConfigCharacterizationBindings() {
 
 }
 
-AprilTags::Config RobotContainer::frontRightCamera() {
+AprilTags::Config RobotContainer::railCameraLeft() {
     AprilTags::Config config;
-    config.cameraName = "FrontRight";
+    config.cameraName = "RailLeft";
     config.cameraToRobot = {7.200000_in, -5.892500_in, 6.368259_in, {0_deg, -21.500115_deg, 30.026518_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
 
-AprilTags::Config RobotContainer::frontLeftCamera() {
+AprilTags::Config RobotContainer::climberCameraLeft() {
     AprilTags::Config config;
-    config.cameraName = "FrontLeft";
+    config.cameraName = "ClimberLeft";
     config.cameraToRobot = {6.000000_in, 11.000000_in, 7.752224_in, {0_deg, -21.000118_deg, 25.025948_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
 
-AprilTags::Config RobotContainer::backRightCamera() {
+AprilTags::Config RobotContainer::climberCameraRight() {
     AprilTags::Config config;
-    config.cameraName = "MultiCam";
+    config.cameraName = "ClimberRight";
     config.cameraToRobot = {11.000000_in, -7.000000_in, 9.752224_in, {0_deg, -15.000170_deg, 50.018714_deg}};
     return config;
 }
 
-AprilTags::Config RobotContainer::backLeftCamera() {
+AprilTags::Config RobotContainer::railCameraRight() {
     AprilTags::Config config;
-    config.cameraName = "BackLeft";
+    config.cameraName = "RailRight";
     config.cameraToRobot = {-9.648405_in, 8.631463_in, 8.410513_in, {0_deg, -28.125_deg, 120_deg}};
     return config;
 }

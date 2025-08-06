@@ -61,15 +61,15 @@ private:
     Climber climber;
     SuperStructure superStructure;
 
-    static AprilTags::Config frontRightCamera();
-    static AprilTags::Config frontLeftCamera();
-    static AprilTags::Config backRightCamera();
-    static AprilTags::Config backLeftCamera();
+    static AprilTags::Config railCameraLeft();
+    static AprilTags::Config climberCameraLeft();
+    static AprilTags::Config climberCameraRight();
+    static AprilTags::Config railCameraRight();
 
-    AprilTags frontRightCam {&tagLayout, &chassis, frontRightCamera()};
-    AprilTags frontLeftCam {&tagLayout, &chassis, frontLeftCamera()};
-    AprilTags backRightCam {&tagLayout, &chassis, backRightCamera()};
-    AprilTags backLeftCam {&tagLayout, &chassis, backLeftCamera()};
+    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
+    AprilTags climberCamLeft {&tagLayout, &chassis, climberCameraLeft()};
+    AprilTags climberCamRight {&tagLayout, &chassis, climberCameraRight()};
+    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 

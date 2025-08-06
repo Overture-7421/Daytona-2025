@@ -13,23 +13,20 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <units/math.h>
-
 #include "Subsystems/Grabber/GrabberConstants.h"
-
-#include <ctre/phoenix6/CANrange.hpp>
+#include <ctre/phoenix6/configs/Configs.hpp>
 
 class Grabber: public frc2::SubsystemBase {
 public:
     Grabber();
 
-    void setMotorVoltage(units::volt_t voltage);
+    void setMotorVoltage(units::volt_t voltage); //Provides vltage to the motor
+    double getVoltage(); //Retrieves the current voltage
 
-    double getVoltage();
+    bool isCoralIn(); //Checks if the grabber is holding a Coral
+    bool isAlgaeIn(); //Checks if the grabber is holding an Algae
 
-    bool isCoralIn();
-    bool isAlgaeIn();
-
-    frc2::CommandPtr moveGrabber(units::volt_t voltage);
+    frc2::CommandPtr moveGrabber(units::volt_t voltage); //simply applies voltage
 
     void Periodic() override;
 
@@ -38,7 +35,5 @@ private:
     VoltageOut grabberVoltage {0_V};
 
     OverTalonFX grabberMotor {GrabberConstants::GrabberConfig(), "rio"};
-
-    CANrange canRange {30, "rio"};
 
 };

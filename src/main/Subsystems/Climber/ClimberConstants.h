@@ -9,11 +9,11 @@ struct ClimberConstants {
     constexpr static const units::degree_t ClosedPosition = 0_deg;
     constexpr static const units::degree_t OpenPosition = 0_deg;
 
-    constexpr static const units::turns_per_second_t ClimberCruiseVelocity = 1.0_tps;
-    constexpr static const units::turns_per_second_squared_t ClimberCruiseAcceleration = 1.0_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ClimberCruiseVelocity = 0.0_tps;
+    constexpr static const units::turns_per_second_squared_t ClimberCruiseAcceleration = 0.0_tr_per_s_sq;
 
-    constexpr static const double ClimberEncoderOffset = 1;
-    constexpr static const double ClimberSensorToMechanism = 1;
+    constexpr static const double ClimberEncoderOffset = 0;
+    constexpr static const double ClimberSensorToMechanism = 0;
 
     constexpr static const double ClimberMotorId = 22;
 

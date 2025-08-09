@@ -73,15 +73,6 @@ void RobotContainer::ConfigOperatorBindings() {
 
 }
 
-double RobotContainer::getLeftStickDistance() {
-    frc::Translation2d joystickPos {units::meter_t(driver.GetLeftX()), units::meter_t(driver.GetLeftY())};
-    return std::abs(joystickPos.Distance( {}).value());
-}
-
-bool RobotContainer::getDriverOverride() {
-    return getLeftStickDistance() > 0.3;
-}
-
 void RobotContainer::ConfigMixedBindigs() {
 
 }

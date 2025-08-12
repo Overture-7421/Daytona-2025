@@ -31,7 +31,16 @@ void AlignManager::getReefOffset(ReefSide reefSide) {
         yTarget = reefOffset.algaeOffset;
     }
 
-    targetPose = reefPackage.pose.TransformBy( {reefOffset.xOffset, yTarget, reefOffset.headingOffset});
+    units::degree_t chassisHeading = chassis->getEstimatedPose().RelativeTo(reefPackage.pose).Rotation().Degrees();
+    if (chassisHeading < 90_deg || chassisHeading > -90_deg) {
+        headingTarget = reefOffset.headingOffset;
+        setHeading(Heading::Front);
+    } else {
+        headingTarget = reefOffset.headingOffset + 180_deg;
+        setHeading(Heading::Back);
+    }
+
+    targetPose = reefPackage.pose.TransformBy( {reefOffset.xOffset, yTarget, headingTarget});
 }
 
 pathplanner::PathConstraints constraints = pathplanner::PathConstraints(3.0_mps, 4.0_mps_sq, 540_deg_per_s,
@@ -42,4 +51,15 @@ frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
         getReefOffset(reefSide);
     }),
     pathplanner::AutoBuilder::pathfindToPose(targetPose, constraints, 0_mps));
+}
+
+frc2::CommandPtr AlignManager::setHeading(Heading heading) {
+    return frc2::cmd::RunOnce([this, heading] {
+        this->heading = heading;
+    });
+
+}
+
+Heading AlignManager::getHeading() {
+    return heading;
 }

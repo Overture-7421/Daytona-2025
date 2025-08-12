@@ -22,7 +22,7 @@ public:
 
 private:
 
-    VoltageOut armVoltage {0_V};
+    MotionMagicVoltage armVoltage {0_tr};
     OverTalonFX armMotor {ArmConstants::ArmConfig(), "rio"};
     OverCANCoder armCANCoder {ArmConstants::ArmCANConfig(), "rio"};
 };

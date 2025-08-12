@@ -5,6 +5,8 @@
 #pragma once
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
+#include <map>
+#include "Enums/Heading.h"
 
 struct IntakeConstants {
 
@@ -13,6 +15,9 @@ struct IntakeConstants {
     constexpr static const units::degree_t L1Intake = 0_deg;
     constexpr static const units::volt_t L1Rollers = 0_V;
     constexpr static const units::volt_t L1Centering = 0_V;
+
+    //Prueba para ver como funcionaba (constexpr vs inline)
+    //inline static const std::map<Heading, units::degree_t> poseL5 = { {Heading::Front, 20_deg}, {Heading::Back, 10_deg}};
 
     constexpr static const units::degree_t CoralGroundIntake = 0_deg;
     constexpr static const units::volt_t CoralGroundRollers = 0_V;

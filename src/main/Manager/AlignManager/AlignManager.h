@@ -11,6 +11,7 @@
 #include <map>
 #include "Enums/ReefSide.h"
 #include "Commands/UtilityFunctions/ReefOffset.h"
+#include "Enums/Heading.h"
 
 #include <frc2/command/CommandPtr.h>
 #include <pathplanner/lib/auto/AutoBuilder.h>
@@ -22,6 +23,9 @@ public:
     void getReefOffset(ReefSide reefSide);
 
     frc2::CommandPtr AlignToPose(ReefSide reefSide);
+
+    void setHeading(Heading heading);
+    Heading getHeading();
 
     //MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 
     //ATRAS es mas POSITIVOS / ADELANTE es mas NEGATIVOS
@@ -45,4 +49,6 @@ private:
     units::degree_t headingTarget = 0.0_deg; // The target heading in the target frame
 
     frc::Pose2d targetPose;
+
+    Heading heading = Heading::Front;
 };

@@ -53,11 +53,8 @@ frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
     pathplanner::AutoBuilder::pathfindToPose(targetPose, constraints, 0_mps));
 }
 
-frc2::CommandPtr AlignManager::setHeading(Heading heading) {
-    return frc2::cmd::RunOnce([this, heading] {
-        this->heading = heading;
-    });
-
+void AlignManager::setHeading(Heading heading) {
+    this->heading = heading;
 }
 
 Heading AlignManager::getHeading() {

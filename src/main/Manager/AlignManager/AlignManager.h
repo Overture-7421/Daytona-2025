@@ -24,7 +24,7 @@ public:
 
     frc2::CommandPtr AlignToPose(ReefSide reefSide);
 
-    frc2::CommandPtr setHeading(Heading heading);
+    void setHeading(Heading heading);
     Heading getHeading();
 
     //MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 

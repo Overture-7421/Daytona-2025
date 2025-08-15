@@ -7,8 +7,40 @@
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 #include <map>
 #include "Enums/Heading.h"
+#include "Enums/Positions.h"
 
 struct IntakeConstants {
+
+    inline static const std::map<Positions, units::volt_t, units::degree_t > IntakePositions = {
+        {Positions::AlgaeGround, 0.0_V, }, 
+        {Positions::AlgaeHold, 2.0_v},
+        {Positions::AlgaeHighReef,8.0_v},
+        {Positions::AlgaeLowReef, 8.0_v},
+        {Positions::CoralandAlgae, 8.0_v},
+        {Positions::CoralHold, 0.0_V},
+        {Positions::InitialPosition, 0.0_V},
+        {Positions::Intake, 4.0_V},
+        {Positions::IntakeCoralStation, 0.0_V},
+        {Positions::L1Confirm, 0.0_V},
+        {Positions::L1Position, 0.0_V},
+        {Positions::L2Back, 0.0_V},
+        {Positions::L2BackConfirm, 0.0_V},
+        {Positions::L2Front, 0.0_V},
+        {Positions::L2FrontConfirm, 0.0_V},
+        {Positions::L3Back, 0.0_V},
+        {Positions::L3BackConfirm, 0.0_V},
+        {Positions::L3Front, 0.0_V},
+        {Positions::L3FrontConfirm, 0.0_V},
+        {Positions::L4Back, 0.0_V},
+        {Positions::L4BackConfirm, 0.0_V},
+        {Positions::L4Front, 0.0_V},
+        {Positions::L4FrontConfirm, 0.0_V},
+        {Positions::NetPosition,2.0_V},
+        {Positions::NetConfirm, -4.0_V},
+        {Positions::ProcessorPosition, 2.0_V},
+        {Positions::ProcessorConfirm, -4.0_V},
+        {Positions::SustainedPosition, 0.0_V}        
+    }
 
     constexpr static const units::degree_t IntakeRangeError = 1_deg;
 
@@ -16,9 +48,7 @@ struct IntakeConstants {
     constexpr static const units::volt_t L1Rollers = 0_V;
     constexpr static const units::volt_t L1Centering = 0_V;
 
-    //Prueba para ver como funcionaba (constexpr vs inline)
-    //inline static const std::map<Heading, units::degree_t> poseL5 = { {Heading::Front, 20_deg}, {Heading::Back, 10_deg}};
-
+  
     constexpr static const units::degree_t CoralGroundIntake = 0_deg;
     constexpr static const units::volt_t CoralGroundRollers = 0_V;
     constexpr static const units::volt_t CoralGroundCentering = 0_V;

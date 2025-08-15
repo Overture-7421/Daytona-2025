@@ -12,7 +12,7 @@ Elevator::Elevator() {
 
     leftElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism); //Assignation of "SensorToMechanism" values
     rightElevatorMotor.setSensorToMechanism(ElevatorConstants::LowerSensorToMechanism);
-
+ 
     //Configuration of Speed, Acceleration and Jerk given when the elevator starts
     leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
             ElevatorConstants::ElevatorUpperCruiseAcceleration, 0.0_tr_per_s_cu);

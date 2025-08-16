@@ -11,55 +11,43 @@
 
 struct IntakeConstants {
 
-    inline static const std::map<Positions, units::volt_t, units::degree_t > IntakePositions = {
-        {Positions::AlgaeGround, 0.0_V, }, 
-        {Positions::AlgaeHold, 2.0_v},
-        {Positions::AlgaeHighReef,8.0_v},
-        {Positions::AlgaeLowReef, 8.0_v},
-        {Positions::CoralandAlgae, 8.0_v},
-        {Positions::CoralHold, 0.0_V},
-        {Positions::InitialPosition, 0.0_V},
-        {Positions::Intake, 4.0_V},
-        {Positions::IntakeCoralStation, 0.0_V},
-        {Positions::L1Confirm, 0.0_V},
-        {Positions::L1Position, 0.0_V},
-        {Positions::L2Back, 0.0_V},
-        {Positions::L2BackConfirm, 0.0_V},
-        {Positions::L2Front, 0.0_V},
-        {Positions::L2FrontConfirm, 0.0_V},
-        {Positions::L3Back, 0.0_V},
-        {Positions::L3BackConfirm, 0.0_V},
-        {Positions::L3Front, 0.0_V},
-        {Positions::L3FrontConfirm, 0.0_V},
-        {Positions::L4Back, 0.0_V},
-        {Positions::L4BackConfirm, 0.0_V},
-        {Positions::L4Front, 0.0_V},
-        {Positions::L4FrontConfirm, 0.0_V},
-        {Positions::NetPosition,2.0_V},
-        {Positions::NetConfirm, -4.0_V},
-        {Positions::ProcessorPosition, 2.0_V},
-        {Positions::ProcessorConfirm, -4.0_V},
-        {Positions::SustainedPosition, 0.0_V}        
-    }
+    inline static const std::map<Positions, units::volt_t, units::volt_t, units::degree_t > IntakePositions = {
+
+        /*The intake subsystem consists in three motors running at the same time, hence three
+        variables will be needed, the first volt refers to the centering motor, the secon to the
+        rollers and finally the degree type variable refers to the pivot*/
+
+        {Positions::AlgaeGround, 0.0_V,0.0_V,0_deg}, 
+        {Positions::AlgaeHold, 0.0_V,0.0_V,0_deg},
+        {Positions::AlgaeHighReef,0.0_V,0.0_V,0_deg},
+        {Positions::AlgaeLowReef, 0.0_V,0.0_V,0_deg},
+        {Positions::CoralandAlgae, 0.0_V,0.0_V,30_deg}, //To be defined
+        {Positions::CoralHold, 0.0_V,0.0_V,0_deg}, //To be defined
+        {Positions::InitialPosition, 0.0_V,0.0_V,0_deg},
+        {Positions::Intake, 3.0_V,4.0_V,80_deg}, //To be defined
+        {Positions::IntakeCoralStation, 3.0_V,4.0_V,10_deg},//To be defined
+        {Positions::L1Confirm, -2.0_V,0.0_V,30_deg}, //To be defined
+        {Positions::L1Position, 0.0_V,0.0_V,30_deg}, //To be defined
+        {Positions::L2Back, 0.0_V,0.0_V,0_deg},
+        {Positions::L2BackConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::L2Front, 0.0_V,0.0_V,0_deg},
+        {Positions::L2FrontConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::L3Back, 0.0_V,0.0_V,0_deg},
+        {Positions::L3BackConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::L3Front, 0.0_V,0.0_V,0_deg},
+        {Positions::L3FrontConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::L4Back, 0.0_V,0.0_V,0_deg},
+        {Positions::L4BackConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::L4Front, 0.0_V,0.0_V,0_deg},
+        {Positions::L4FrontConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::NetPosition,0.0_V,0.0_V,0_deg},
+        {Positions::NetConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::ProcessorPosition, 0.0_V,0.0_V,0_deg},
+        {Positions::ProcessorConfirm, 0.0_V,0.0_V,0_deg},
+        {Positions::SustainedPosition, 0.0_V,0.0_V,0_deg}        
+    };
 
     constexpr static const units::degree_t IntakeRangeError = 1_deg;
-
-    constexpr static const units::degree_t L1Intake = 0_deg;
-    constexpr static const units::volt_t L1Rollers = 0_V;
-    constexpr static const units::volt_t L1Centering = 0_V;
-
-  
-    constexpr static const units::degree_t CoralGroundIntake = 0_deg;
-    constexpr static const units::volt_t CoralGroundRollers = 0_V;
-    constexpr static const units::volt_t CoralGroundCentering = 0_V;
-
-    constexpr static const units::degree_t ClosedIntake = 0_deg;
-    constexpr static const units::volt_t closedRollers = 0_V;
-    constexpr static const units::volt_t ClosedCentering = 0_V;
-
-    constexpr static const units::degree_t CoralStationIntake = 0_deg;
-    constexpr static const units::volt_t CoralStationRollers = 0_V;
-    constexpr static const units::volt_t CoralStationCentering = 0_V;
 
     constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 0_tps;
     constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 0_tr_per_s_sq;

@@ -5,7 +5,7 @@
 #pragma once
 #include "Enums/Positions.h"
 
-struct Transitions{
+struct Transitions {
     const Positions currentState;
     const Positions nextState;
     std::function<bool()> check;

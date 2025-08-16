@@ -11,41 +11,29 @@
 
 struct IntakeConstants {
 
-    inline static const std::map<Positions, units::volt_t, units::volt_t, units::degree_t > IntakePositions = {
+    inline static const std::map<Positions, units::volt_t, units::volt_t, units::degree_t> IntakePositions = {
 
-        /*The intake subsystem consists in three motors running at the same time, hence three
-        variables will be needed, the first volt refers to the centering motor, the secon to the
-        rollers and finally the degree type variable refers to the pivot*/
+    /*The intake subsystem consists in three motors running at the same time, hence three
+     variables will be needed, the first volt refers to the centering motor, the secon to the
+     rollers and finally the degree type variable refers to the pivot*/
 
-        {Positions::AlgaeGround, 0.0_V,0.0_V,0_deg}, 
-        {Positions::AlgaeHold, 0.0_V,0.0_V,0_deg},
-        {Positions::AlgaeHighReef,0.0_V,0.0_V,0_deg},
-        {Positions::AlgaeLowReef, 0.0_V,0.0_V,0_deg},
-        {Positions::CoralandAlgae, 0.0_V,0.0_V,30_deg}, //To be defined
-        {Positions::CoralHold, 0.0_V,0.0_V,0_deg}, //To be defined
-        {Positions::InitialPosition, 0.0_V,0.0_V,0_deg},
-        {Positions::Intake, 3.0_V,4.0_V,80_deg}, //To be defined
-        {Positions::IntakeCoralStation, 3.0_V,4.0_V,10_deg},//To be defined
-        {Positions::L1Confirm, -2.0_V,0.0_V,30_deg}, //To be defined
-        {Positions::L1Position, 0.0_V,0.0_V,30_deg}, //To be defined
-        {Positions::L2Back, 0.0_V,0.0_V,0_deg},
-        {Positions::L2BackConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::L2Front, 0.0_V,0.0_V,0_deg},
-        {Positions::L2FrontConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::L3Back, 0.0_V,0.0_V,0_deg},
-        {Positions::L3BackConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::L3Front, 0.0_V,0.0_V,0_deg},
-        {Positions::L3FrontConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::L4Back, 0.0_V,0.0_V,0_deg},
-        {Positions::L4BackConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::L4Front, 0.0_V,0.0_V,0_deg},
-        {Positions::L4FrontConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::NetPosition,0.0_V,0.0_V,0_deg},
-        {Positions::NetConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::ProcessorPosition, 0.0_V,0.0_V,0_deg},
-        {Positions::ProcessorConfirm, 0.0_V,0.0_V,0_deg},
-        {Positions::SustainedPosition, 0.0_V,0.0_V,0_deg}        
-    };
+    {Positions::AlgaeGround, 0.0_V, 0.0_V, 0_deg}, {Positions::AlgaeHold, 0.0_V, 0.0_V, 0_deg}, {
+            Positions::AlgaeHighReef, 0.0_V, 0.0_V, 0_deg}, {Positions::AlgaeLowReef, 0.0_V, 0.0_V, 0_deg}, {
+            Positions::CoralandAlgae, 0.0_V, 0.0_V, 30_deg}, //To be defined
+            {Positions::CoralHold, 0.0_V, 0.0_V, 0_deg}, //To be defined
+            {Positions::InitialPosition, 0.0_V, 0.0_V, 0_deg}, {Positions::Intake, 3.0_V, 4.0_V, 80_deg}, //To be defined
+            {Positions::IntakeCoralStation, 3.0_V, 4.0_V, 10_deg}, //To be defined
+            {Positions::L1Confirm, -2.0_V, 0.0_V, 30_deg}, //To be defined
+            {Positions::L1Position, 0.0_V, 0.0_V, 30_deg}, //To be defined
+            {Positions::L2Back, 0.0_V, 0.0_V, 0_deg}, {Positions::L2BackConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::L2Front, 0.0_V, 0.0_V, 0_deg}, {Positions::L2FrontConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::L3Back, 0.0_V, 0.0_V, 0_deg}, {Positions::L3BackConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::L3Front, 0.0_V, 0.0_V, 0_deg}, {Positions::L3FrontConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::L4Back, 0.0_V, 0.0_V, 0_deg}, {Positions::L4BackConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::L4Front, 0.0_V, 0.0_V, 0_deg}, {Positions::L4FrontConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::NetPosition, 0.0_V, 0.0_V, 0_deg}, {Positions::NetConfirm, 0.0_V, 0.0_V, 0_deg}, {
+                    Positions::ProcessorPosition, 0.0_V, 0.0_V, 0_deg}, {Positions::ProcessorConfirm, 0.0_V, 0.0_V,
+                    0_deg}, {Positions::SustainedPosition, 0.0_V, 0.0_V, 0_deg}};
 
     constexpr static const units::degree_t IntakeRangeError = 1_deg;
 

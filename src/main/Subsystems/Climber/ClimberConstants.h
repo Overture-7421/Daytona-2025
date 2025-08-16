@@ -4,7 +4,6 @@
 
 struct ClimberConstants {
 
-
     constexpr static const units::degree_t ClimberRangeError = 1.0_deg;
 
     constexpr static const units::degree_t ClosedPosition = 0_deg;

@@ -6,8 +6,6 @@
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
-
-
 struct ArmConstants {
 
     constexpr static const units::degree_t ArmRangeError = 0.0_deg;

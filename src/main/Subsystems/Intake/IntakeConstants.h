@@ -9,7 +9,7 @@
 #include "Enums/Heading.h"
 #include "Enums/Positions.h"
 
-struct IntakeConstants {
+struct IntakeValues {
 
     inline static const std::map<Positions, units::volt_t, units::volt_t, units::degree_t> IntakePositions = {
 
@@ -35,75 +35,75 @@ struct IntakeConstants {
                     Positions::ProcessorPosition, 0.0_V, 0.0_V, 0_deg}, {Positions::ProcessorConfirm, 0.0_V, 0.0_V,
                     0_deg}, {Positions::SustainedPosition, 0.0_V, 0.0_V, 0_deg}};
 
-    constexpr static const units::degree_t IntakeRangeError = 1_deg;
+constexpr static const units::degree_t IntakeRangeError = 1_deg;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 0_tps;
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 0_tr_per_s_sq;
+constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 0_tps;
+constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 0_tr_per_s_sq;
 
-    constexpr static const double IntakeRotorToSensor = 0;
+constexpr static const double IntakeRotorToSensor = 0;
 
-    constexpr static const double IntakeMotorId = 26;
-    constexpr static const double IntakeCANCoderId = 27;
+constexpr static const double IntakeMotorId = 26;
+constexpr static const double IntakeCANCoderId = 27;
 
-    constexpr static const double RollersMotorId = 29;
-    constexpr static const double CenteringMotorId = 31;
+constexpr static const double RollersMotorId = 29;
+constexpr static const double CenteringMotorId = 31;
 
-    constexpr static const OverTalonFXConfig IntakeConfig() { //Limites cuestionables
-        OverTalonFXConfig intakeConfig;
-        intakeConfig.MotorId = IntakeMotorId;
-        intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
-        intakeConfig.useFOC = true;
-        intakeConfig.Inverted = true;
+constexpr static const OverTalonFXConfig IntakeConfig() { //Limites cuestionables
+	OverTalonFXConfig intakeConfig;
+	intakeConfig.MotorId = IntakeMotorId;
+	intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
+	intakeConfig.useFOC = true;
+	intakeConfig.Inverted = true;
 
-        intakeConfig.ClosedLoopRampRate = 0.05_s;
-        intakeConfig.CurrentLimit = 30_A;
-        intakeConfig.StatorCurrentLimit = 120_A;
-        intakeConfig.TriggerThreshold = 40_A;
-        intakeConfig.TriggerThresholdTime = 0.5_s;
-        intakeConfig.PIDConfigs.GravityType = 1;
-        intakeConfig.PIDConfigs.WithKG(0.0).WithKV(0.0).WithKP(0.0);
+	intakeConfig.ClosedLoopRampRate = 0.05_s;
+	intakeConfig.CurrentLimit = 30_A;
+	intakeConfig.StatorCurrentLimit = 120_A;
+	intakeConfig.TriggerThreshold = 40_A;
+	intakeConfig.TriggerThresholdTime = 0.5_s;
+	intakeConfig.PIDConfigs.GravityType = 1;
+	intakeConfig.PIDConfigs.WithKG(0.0).WithKV(0.0).WithKP(0.0);
 
-        return intakeConfig;
-    }
+	return intakeConfig;
+}
 
-    constexpr static const CanCoderConfig IntakeCANConfig() {
-        CanCoderConfig intakeCANConfig;
-        intakeCANConfig.CanCoderId = IntakeCANCoderId;
-        intakeCANConfig.Offset = 0.0_tr;
+constexpr static const CanCoderConfig IntakeCANConfig() {
+	CanCoderConfig intakeCANConfig;
+	intakeCANConfig.CanCoderId = IntakeCANCoderId;
+	intakeCANConfig.Offset = 0.0_tr;
 
-        return intakeCANConfig;
-    }
+	return intakeCANConfig;
+}
 
-    constexpr static const OverTalonFXConfig RollersConfig() { //Limites cuestionables
-        OverTalonFXConfig rollersConfig;
-        rollersConfig.MotorId = RollersMotorId;
-        rollersConfig.NeutralMode = ControllerNeutralMode::Brake;
-        rollersConfig.Inverted = true;
+constexpr static const OverTalonFXConfig RollersConfig() { //Limites cuestionables
+	OverTalonFXConfig rollersConfig;
+	rollersConfig.MotorId = RollersMotorId;
+	rollersConfig.NeutralMode = ControllerNeutralMode::Brake;
+	rollersConfig.Inverted = true;
 
-        rollersConfig.CurrentLimit = 25_A;
-        rollersConfig.StatorCurrentLimit = 120_A;
-        rollersConfig.TriggerThreshold = 40_A;
-        rollersConfig.TriggerThresholdTime = 0.5_s;
-        rollersConfig.ClosedLoopRampRate = 0.0_s;
-        rollersConfig.OpenLoopRampRate = 0.05_s;
+	rollersConfig.CurrentLimit = 25_A;
+	rollersConfig.StatorCurrentLimit = 120_A;
+	rollersConfig.TriggerThreshold = 40_A;
+	rollersConfig.TriggerThresholdTime = 0.5_s;
+	rollersConfig.ClosedLoopRampRate = 0.0_s;
+	rollersConfig.OpenLoopRampRate = 0.05_s;
 
-        return rollersConfig;
-    }
+	return rollersConfig;
+}
 
-    constexpr static const OverTalonFXConfig CenteringConfig() { //Limites cuestionables
-        OverTalonFXConfig centeringConfig;
-        centeringConfig.MotorId = CenteringMotorId;
-        centeringConfig.NeutralMode = ControllerNeutralMode::Brake;
-        centeringConfig.Inverted = true;
+constexpr static const OverTalonFXConfig CenteringConfig() { //Limites cuestionables
+	OverTalonFXConfig centeringConfig;
+	centeringConfig.MotorId = CenteringMotorId;
+	centeringConfig.NeutralMode = ControllerNeutralMode::Brake;
+	centeringConfig.Inverted = true;
 
-        centeringConfig.CurrentLimit = 25_A;
-        centeringConfig.StatorCurrentLimit = 120_A;
-        centeringConfig.TriggerThreshold = 40_A;
-        centeringConfig.TriggerThresholdTime = 0.5_s;
-        centeringConfig.ClosedLoopRampRate = 0.0_s;
-        centeringConfig.OpenLoopRampRate = 0.05_s;
+	centeringConfig.CurrentLimit = 25_A;
+	centeringConfig.StatorCurrentLimit = 120_A;
+	centeringConfig.TriggerThreshold = 40_A;
+	centeringConfig.TriggerThresholdTime = 0.5_s;
+	centeringConfig.ClosedLoopRampRate = 0.0_s;
+	centeringConfig.OpenLoopRampRate = 0.05_s;
 
-        return centeringConfig;
-    }
+	return centeringConfig;
+}
 
 };

@@ -5,29 +5,26 @@
 #pragma once
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
+#include <map>
+#include "Enums/Positions.h"
 
 struct ArmConstants {
 
     constexpr static const units::degree_t ArmRangeError = 0.0_deg;
 
-    constexpr static const units::degree_t ArmScoreL1 = 0_deg;
+    inline static const std::map<Heading, units::degree_t> ArmFront { {Positions::InitialPosition, 0.0_deg}, {
+            Positions::SustainedPosition, 0.0_deg}, {Positions::Intake, 0.0_deg}, {Positions::IntakeCoralStation,
+            0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
+            0.0_deg}, {Positions::L1Position, 0.0_deg}, {Positions::L1Confirm, 0.0_deg},
+            {Positions::CoralHold, 0.0_deg}, {Positions::CoralAndAlgae, 0.0_deg}, {Positions::AlgaeHold, 0.0_deg}, {
+                    Positions::L2Front, 0.0_deg}, {Positions::L3Front, 0.0_deg}, {Positions::L4Front, 0.0_deg}, {
+                    Positions::L2FrontConfirm, 0.0_deg}, {Positions::L3FrontConfirm, 0.0_deg}, {
+                    Positions::L4FrontConfirm, 0.0_deg}, {Positions::NetPosition, 0.0_deg}, {Positions::NetConfirm,
+                    0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}};
 
-    constexpr static const units::degree_t FrontArmScoreL2 = 0_deg;
-    constexpr static const units::degree_t FrontArmScoreL3 = 0_deg;
-    constexpr static const units::degree_t FrontArmScoreL4 = 0_deg;
-
-    constexpr static const units::degree_t BackArmScoreL2 = 0_deg;
-    constexpr static const units::degree_t BackArmScoreL3 = 0_deg;
-    constexpr static const units::degree_t BackArmScoreL4 = 0_deg;
-
-    constexpr static const units::degree_t AutonomousCoralArm = 0_deg;
-
-    constexpr static const units::degree_t ArmSustainPosition = 0_deg;
-    constexpr static const units::degree_t ArmClosedPosition = 0_deg;
-
-    constexpr static const units::degree_t ArmAlgaePosition = 0_deg;
-    constexpr static const units::degree_t ArmNetPosition = 0_deg;
-    constexpr static const units::degree_t GroundAlgae = 0_deg;
+    inline static const std::map<Heading, units::degree_t> ArmBack { {Positions::L2Back, 0.0_deg}, {Positions::L3Back,
+            0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg}, {Positions::L3BackConfirm,
+            0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}};
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 0_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 0_tr_per_s_sq;

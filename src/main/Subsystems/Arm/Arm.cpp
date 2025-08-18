@@ -22,9 +22,24 @@ bool Arm::isArmAtPosition(units::degree_t armAngle) {
     return (units::math::abs(armError) < ArmConstants::ArmRangeError);
 }
 
-frc2::CommandPtr Arm::setArmCommand(units::degree_t armAngle) {
+frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
     return frc2::FunctionalCommand([this, armAngle]() {
-        setToAngle(armAngle);
+        if (heading == Heading::Front) {
+            setToAngle(ArmConstants::ArmFront.contains(state))
+        } else if (heading == Heading::Back) {
+            setToAngle(ArmConstants::ArmBack.contains(state))
+        }
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, armAngle]() {
+        return isArmAtPosition(armAngle);
+    },
+    {this}).ToPtr();
+}
+
+frc2::CommandPtr Arm::setState(Positions state) {
+    return frc2::FunctionalCommand([this, armAngle]() {
+        setToAngle(ArmConstants::ArmFront.contains(state));
     }, []() {
     }, [](bool interupted) {
     }, [this, armAngle]() {

@@ -1,0 +1,33 @@
+#pragma once
+
+enum class Positions {
+    InitialPosition,
+    SustainedPosition,
+    Intake,
+    IntakeCoralStation,
+    AlgaeHighReef,
+    AlgaeLowReef,
+    AlgaeGround,
+    L1Position,
+    L1Confirm,
+    CoralHold,
+    CoralandAlgae,
+    AlgaeHold,
+    L2Front,
+    L3Front,
+    L4Front,
+    L2FrontConfirm,
+    L3FrontConfirm,
+    L4FrontConfirm,
+    L2Back,
+    L3Back,
+    L4Back,
+    L2BackConfirm,
+    L3BackConfirm,
+    L4BackConfirm,
+    NetPosition,
+    NetConfirm,
+    ProcessorPosition,
+    ProcessorConfirm
+};
+

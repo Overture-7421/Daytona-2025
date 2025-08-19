@@ -20,7 +20,6 @@
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
-#include "Subsystems/SuperStructure/SuperStructure.h"
 #include "Manager/AlignManager/AlignManager.h"
 
 class RobotContainer: public OverContainer {
@@ -61,7 +60,6 @@ private:
     Elevator elevator;
     Arm arm;
     Climber climber;
-    SuperStructure superStructure;
 
     AlignManager alignManager {&chassis, &tagLayout};
 

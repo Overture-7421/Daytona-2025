@@ -12,7 +12,7 @@ struct ArmConstants {
 
     constexpr static const units::degree_t ArmRangeError = 0.0_deg;
 
-    inline static const std::map<Heading, units::degree_t> ArmFront { {Positions::InitialPosition, 0.0_deg}, {
+    inline static const std::map<Positions, units::degree_t> ArmFront { {Positions::InitialPosition, 0.0_deg}, {
             Positions::SustainedPosition, 0.0_deg}, {Positions::Intake, 0.0_deg}, {Positions::IntakeCoralStation,
             0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
             0.0_deg}, {Positions::L1Position, 0.0_deg}, {Positions::L1Confirm, 0.0_deg},
@@ -20,9 +20,10 @@ struct ArmConstants {
                     Positions::L2Front, 0.0_deg}, {Positions::L3Front, 0.0_deg}, {Positions::L4Front, 0.0_deg}, {
                     Positions::L2FrontConfirm, 0.0_deg}, {Positions::L3FrontConfirm, 0.0_deg}, {
                     Positions::L4FrontConfirm, 0.0_deg}, {Positions::NetPosition, 0.0_deg}, {Positions::NetConfirm,
-                    0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}};
+                    0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {
+                    Positions::EndPosition, 0.0_deg}};
 
-    inline static const std::map<Heading, units::degree_t> ArmBack { {Positions::L2Back, 0.0_deg}, {Positions::L3Back,
+    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, 0.0_deg}, {Positions::L3Back,
             0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg}, {Positions::L3BackConfirm,
             0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}};
 

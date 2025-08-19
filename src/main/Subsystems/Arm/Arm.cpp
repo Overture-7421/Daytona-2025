@@ -23,27 +23,27 @@ bool Arm::isArmAtPosition(units::degree_t armAngle) {
 }
 
 frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
-    return frc2::FunctionalCommand([this, armAngle]() {
+    return frc2::FunctionalCommand([this, state]() {
         if (heading == Heading::Front) {
-            setToAngle(ArmConstants::ArmFront.contains(state))
+            setToAngle(ArmConstants::ArmFront.at(state));
         } else if (heading == Heading::Back) {
-            setToAngle(ArmConstants::ArmBack.contains(state))
+            setToAngle(ArmConstants::ArmBack.at(state));
         }
     }, []() {
     }, [](bool interupted) {
-    }, [this, armAngle]() {
-        return isArmAtPosition(armAngle);
+    }, [this, state]() {
+        return isArmAtPosition(ArmConstants::ArmBack.at(state));
     },
     {this}).ToPtr();
 }
 
 frc2::CommandPtr Arm::setState(Positions state) {
-    return frc2::FunctionalCommand([this, armAngle]() {
-        setToAngle(ArmConstants::ArmFront.contains(state));
+    return frc2::FunctionalCommand([this, state]() {
+        setToAngle(ArmConstants::ArmFront.at(state));
     }, []() {
     }, [](bool interupted) {
-    }, [this, armAngle]() {
-        return isArmAtPosition(armAngle);
+    }, [this, state]() {
+        return isArmAtPosition(ArmConstants::ArmFront.at(state));
     },
     {this}).ToPtr();
 }

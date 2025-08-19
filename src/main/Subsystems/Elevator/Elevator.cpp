@@ -56,16 +56,16 @@ bool Elevator::isElevatorAtPosition(units::meter_t elevatorPosition) {
 }
 
 //Command pointer which allows all the true actions and movement to occur
-frc2::CommandPtr Elevator::setElevatorCommand(units::meter_t elevatorPosition) {
-    return frc2::FunctionalCommand([this, elevatorPosition]() {
-        setTarget(elevatorPosition);
+frc2::CommandPtr Elevator::setState(Positions state) {
+    return frc2::FunctionalCommand([this, state]() {
+        setTarget(ElevatorConstants::ElevatorPositions.at(state));
     },
     []() {
     },
     [](bool interrupted) {
     },
-    [this, elevatorPosition]() {
-        return isElevatorAtPosition(elevatorPosition);
+    [this, state]() {
+        return isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state));
     },
     {this}).ToPtr();
 }

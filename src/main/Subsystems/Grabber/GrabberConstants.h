@@ -22,7 +22,7 @@ public:
             Positions::L4Back, 0.0_V}, {Positions::L4BackConfirm, 0.0_V}, {Positions::L4Front, 0.0_V}, {
             Positions::L4FrontConfirm, 0.0_V}, {Positions::NetPosition, 2.0_V}, {Positions::NetConfirm, -4.0_V}, {
             Positions::ProcessorPosition, 2.0_V}, {Positions::ProcessorConfirm, -4.0_V}, {Positions::SustainedPosition,
-            0.0_V}};
+            0.0_V}, {Positions::EndPosition, 0.0_V}};
 
     constexpr static const double CoralDetectionCurrent = 35.0; //To be defined
     constexpr static const double AlgaeDetectionCurrent = 20.0; //To be defined

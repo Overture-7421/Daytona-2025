@@ -11,7 +11,7 @@ enum class Positions {
     L1Position,
     L1Confirm,
     CoralHold,
-    CoralandAlgae,
+    CoralAndAlgae,
     AlgaeHold,
     L2Front,
     L3Front,

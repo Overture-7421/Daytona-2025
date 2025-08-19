@@ -28,6 +28,7 @@ enum class Positions {
     NetPosition,
     NetConfirm,
     ProcessorPosition,
-    ProcessorConfirm
+    ProcessorConfirm,
+    EndPosition
 };
 

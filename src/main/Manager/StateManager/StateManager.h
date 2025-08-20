@@ -21,10 +21,18 @@ public:
 
 private:
 
+    Intake *intake;
+    Arm *arm;
+    Elevator *elevator;
+    Grabber *grabber;
+    Climber *climber;
+
+    AlignManager *alignManager;
+
     Positions state = Positions::InitialPosition;
-    std::vector<Transitions> transitionsMap = { {Positions::InitialPosition, Positions::SustainedPosition, [this]() {
-        return frc::DriverStation::IsEnabled();
-    }}, {Positions::InitialPosition, Positions::L2Front, [this]() {
+    std::vector<Transitions> transitionsMap = { 
+      {Positions::InitialPosition, Positions::SustainedPosition, [this]() {return frc::DriverStation::IsEnabled();}}, 
+      {Positions::InitialPosition, Positions::L2Front, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }}, {Positions::InitialPosition, Positions::L3Front, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
@@ -58,12 +66,5 @@ private:
 
     std::map<Positions, frc2::CommandPtr> positionsMap;
 
-    Intake *intake;
-    Arm *arm;
-    Elevator *elevator;
-    Grabber *grabber;
-    Climber *climber;
-
-    AlignManager *alignManager;
 
 };

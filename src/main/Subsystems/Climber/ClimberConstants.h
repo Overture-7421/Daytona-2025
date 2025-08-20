@@ -6,21 +6,23 @@
 
 struct ClimberConstants {
 
-    constexpr static const double ClimberRangeError = 0.0;
+    constexpr static const units::degree_t ClimberRangeError = 0.0_deg;
 
-    inline static const std::map<Positions, double> ClimberPositions = { {Positions::AlgaeGround, 0.0}, {
-            Positions::AlgaeHold, 0.0}, {Positions::AlgaeHighReef, 0.0}, {Positions::AlgaeLowReef, 0.0}, {
-            Positions::CoralAndAlgae, 0.0}, {Positions::CoralHold, 0.0}, {Positions::InitialPosition, 0.0}, {
-            Positions::Intake, 0.0}, {Positions::IntakeCoralStation, 0.0}, {Positions::L1Confirm, 0.0}, {
-            Positions::L1Position, 0.0}, {Positions::L2Back, 0.0}, {Positions::L2BackConfirm, 0.0}, {Positions::L2Front,
-            0.0}, {Positions::L2FrontConfirm, 0.0}, {Positions::L3Back, 0.0}, {Positions::L3BackConfirm, 0.0}, {
-            Positions::L3Front, 0.0}, {Positions::L3FrontConfirm, 0.0}, {Positions::L4Back, 0.0}, {
-            Positions::L4BackConfirm, 0.0}, {Positions::L4Front, 0.0}, {Positions::L4FrontConfirm, 0.0}, {
-            Positions::NetPosition, 0.0}, {Positions::NetConfirm, 0.0}, {Positions::ProcessorPosition, 0.0}, {
-            Positions::ProcessorConfirm, 0.0}, {Positions::SustainedPosition, 0.0}, {Positions::EndPosition, 0.0}};
+    inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 0.0_deg}, {
+            Positions::AlgaeHold, 0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {
+            Positions::CoralAndAlgae, 0.0_deg}, {Positions::CoralHold, 0.0_deg}, {Positions::InitialPosition, 0.0_deg},
+            {Positions::Intake, 0.0_deg}, {Positions::IntakeCoralStation, 0.0_deg}, {Positions::L1Confirm, 0.0_deg}, {
+                    Positions::L1Position, 0.0_deg}, {Positions::L2Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg},
+            {Positions::L2Front, 0.0_deg}, {Positions::L2FrontConfirm, 0.0_deg}, {Positions::L3Back, 0.0_deg}, {
+                    Positions::L3BackConfirm, 0.0_deg}, {Positions::L3Front, 0.0_deg}, {Positions::L3FrontConfirm,
+                    0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}, {Positions::L4Front,
+                    0.0_deg}, {Positions::L4FrontConfirm, 0.0_deg}, {Positions::NetPosition, 0.0_deg}, {
+                    Positions::NetConfirm, 0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {
+                    Positions::ProcessorConfirm, 0.0_deg}, {Positions::SustainedPosition, 0.0_deg}, {
+                    Positions::EndPosition, 0.0_deg}};
 
-    constexpr static const units::turns_per_second_t ClimberCruiseVelocity = 0.0_ps;
-    constexpr static const units::turns_per_second_squared_t ClimberCruiseAcceleration = 0.0_mps_sq;
+    constexpr static const units::degrees_per_second_t ClimberVelocity = 0.0_deg_per_s;
+    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 0.0_deg_per_s_sq;
 
     constexpr static const double ClimberEncoderOffset = 0;
     constexpr static const double ClimberSensorToMechanism = 0;

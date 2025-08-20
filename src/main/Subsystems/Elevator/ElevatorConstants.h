@@ -15,7 +15,7 @@ struct ElevatorConstants {
 
     inline static const std::map<Positions, units::meter_t> ElevatorPositions = { {Positions::AlgaeGround, 0.48_m}, {
             Positions::AlgaeHold, 0.0_m}, {Positions::AlgaeHighReef, 1.00_m}, {Positions::AlgaeLowReef, 0.46_m}, {
-            Positions::CoralandAlgae, 0.0_m}, {Positions::CoralHold, 0.1_m}, {Positions::InitialPosition, 0.0_m}, {
+            Positions::CoralAndAlgae, 0.0_m}, {Positions::CoralHold, 0.1_m}, {Positions::InitialPosition, 0.0_m}, {
             Positions::Intake, 0.0_m}, {Positions::IntakeCoralStation, 0.0_m}, {Positions::L1Confirm, 0.0_m}, {
             Positions::L1Position, 0.0_m}, {Positions::L2Back, 0.23_m}, {Positions::L2BackConfirm, 0.0_m}, {
             Positions::L2Front, 0.23_m}, {Positions::L2FrontConfirm, 0.0_m}, {Positions::L3Back, 0.76_m}, {

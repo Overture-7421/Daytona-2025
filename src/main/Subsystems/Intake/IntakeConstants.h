@@ -12,8 +12,8 @@
 struct IntakeValues {
 
     units::volt_t rollers;
-    units::volt_t intake;
-    units::degree_t pivot;
+    units::volt_t centering;
+    units::degree_t intake;
 
 };
 
@@ -27,7 +27,7 @@ struct IntakeConstants {
 
     {Positions::AlgaeGround, {0.0_V, 0.0_V, 0_deg}}, {Positions::AlgaeHold, {0.0_V, 0.0_V, 0_deg}}, {
             Positions::AlgaeHighReef, {0.0_V, 0.0_V, 0_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 0_deg}}, {
-            Positions::CoralandAlgae, {0.0_V, 0.0_V, 30_deg}}, //To be defined
+            Positions::CoralAndAlgae, {0.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::CoralHold, {0.0_V, 0.0_V, 0_deg}}, //To be defined
             {Positions::InitialPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::Intake, {3.0_V, 4.0_V, 80_deg}}, //To be defined
             {Positions::IntakeCoralStation, {3.0_V, 4.0_V, 10_deg}}, //To be defined

@@ -23,7 +23,7 @@ bool Arm::isArmAtPosition(units::degree_t armAngle) {
 }
 
 frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
-    return frc2::FunctionalCommand([this, state]() {
+    return frc2::FunctionalCommand([this, state, heading]() {
         if (heading == Heading::Front) {
             setToAngle(ArmConstants::ArmFront.at(state));
         } else if (heading == Heading::Back) {

@@ -34,14 +34,14 @@ bool Intake::isCoralIn() {
 }
 
 frc2::CommandPtr Intake::setState(Positions state) {
-    return frc2::FunctionalCommand([this, intakeAngle]() {
+    return frc2::FunctionalCommand([this, state]() {
         setIntakeToAngle(IntakeConstants::IntakePositions.at(state).intake);
     }, [this, state]() {
         setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
-        setCenteringVoltage(IntakeConstants::IntakePositions.at(state).pivot);
+        setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
     },[](bool interrupted) {
     },[this, state]() {
-        return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state));
+        return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
     },
     {this}).ToPtr();
 }

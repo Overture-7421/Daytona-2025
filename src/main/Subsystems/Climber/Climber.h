@@ -9,7 +9,7 @@
 #include <frc2/command/FunctionalCommand.h>
 #include <frc/DutyCycleEncoder.h>
 #include <frc/trajectory/TrapezoidProfile.h>
-#include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
 
 #include "Subsystems/Climber/ClimberConstants.h"
 
@@ -17,10 +17,9 @@ class Climber: public frc2::SubsystemBase {
 public:
     Climber();
 
-    void setVoltage(units::volt_t climberVoltage);
-    frc::Rotation2d getCurrentClimberAngle();
-    void setTarget(double climberTarget);
-    bool isClimberAtPosition(double climberAngle);
+    units::degree_t getCurrentClimberAngle();
+    void setTarget(units::degree_t climberTarget);
+    bool isClimberAtPosition(units::degree_t climberAngle);
 
     frc2::CommandPtr setState(Positions state);
 
@@ -33,11 +32,12 @@ private:
     OverTalonFX climberMotor {ClimberConstants::ClimberConfig(), "rio"};
     frc::DutyCycleEncoder climberEncoder {0}; //Puerto en la RoboRio donde va a estar (No definido aun)
 
-    MotionMagicVoltage climberVoltage {0_tr};
+    VoltageOut climberVoltage {0_V};
 
-    double offset = 0.0;
-    double target = 0.0; //aquí se pone la posición inicial
+    units::degree_t offset = 0.0_deg;
+    units::degree_t target = 0.0_deg; //aquí se pone la posición inicial
 
-    frc::PIDController climberPID {0.0, 0.0, 0.0};
+    frc::ProfiledPIDController<units::degree> climberPID {0.0, 0.0, 0.0, {ClimberConstants::ClimberVelocity,
+            ClimberConstants::ClimberAcceleration}};
 
 };

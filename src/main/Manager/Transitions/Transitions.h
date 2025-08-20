@@ -4,9 +4,10 @@
 
 #pragma once
 #include "Enums/Positions.h"
+#include <functional>
 
 struct Transitions {
     const Positions currentState;
     const Positions nextState;
     std::function<bool()> check;
-}
+};

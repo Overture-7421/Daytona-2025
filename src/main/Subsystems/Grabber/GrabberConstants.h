@@ -14,7 +14,7 @@ public:
 
     inline static const std::map<Positions, units::volt_t> GrabberVoltage = { {Positions::AlgaeGround, 8.0_V}, {
             Positions::AlgaeHold, 2.0_V}, {Positions::AlgaeHighReef, 8.0_V}, {Positions::AlgaeLowReef, 8.0_V}, {
-            Positions::CoralandAlgae, 8.0_V}, {Positions::CoralHold, 0.0_V}, {Positions::InitialPosition, 0.0_V}, {
+            Positions::CoralAndAlgae, 8.0_V}, {Positions::CoralHold, 0.0_V}, {Positions::InitialPosition, 0.0_V}, {
             Positions::Intake, 4.0_V}, {Positions::IntakeCoralStation, 0.0_V}, {Positions::L1Confirm, 0.0_V}, {
             Positions::L1Position, 0.0_V}, {Positions::L2Back, 0.0_V}, {Positions::L2BackConfirm, 0.0_V}, {
             Positions::L2Front, 0.0_V}, {Positions::L2FrontConfirm, 0.0_V}, {Positions::L3Back, 0.0_V}, {

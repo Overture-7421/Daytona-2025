@@ -12,7 +12,11 @@ Positions StateManager::getState() {
 
 frc2::CommandPtr StateManager::setState(Positions state) {
     return frc2::cmd::RunOnce([this, state] {
-        this->state = state;
+        for (Transitions transitions : transitionsMap) {
+            if (transitions.currentState == state && transitions.check()) {
+                this->state = state;
+            }
+        }
     });
 
 }

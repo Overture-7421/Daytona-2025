@@ -31,6 +31,50 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
+    driver.leftTrigger().WhileTrue(stateManager.setState(Positions::Intake));
+    driver.LeftTrigger().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L1Confirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::NetConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L2BackConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L3BackConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L4BackConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L2FrontConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L3FrontConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::L4FrontConfirm));
+    driver.RightBumper().WhileTrue(stateManager.setState(Positions::ProcessorConfirm));
+    driver.RightBumper().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+    driver.POVLeft().WhileTrue(stateManager.setState(Positions::AlgaeGround));
+    driver.POVLeft().WhileTrue(stateManager.setState(Positions::NetPosition));
+    driver.LeftTrigger().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+
+    driver.POVUp().WhileTrue(stateManager.setState(Positions::L1Position));
+
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::L2Back));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::L2Front));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::L3Back));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::L3Front));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::L4Back));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::L4Front));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::AlgaeHighReef));
+    driver.POVDown().WhileTrue(stateManager.setState(Positions::AlgaeLowReef));
+
+    //driver.POVRight().WhileTrue(/*Coral detection later */);
+
+
+
+
+
+
+
+
+
+
+
+    
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {

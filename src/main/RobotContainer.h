@@ -21,6 +21,7 @@
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
 #include "Manager/AlignManager/AlignManager.h"
+#include "Manager/StateManager/StateManager.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -62,6 +63,7 @@ private:
     Climber climber;
 
     AlignManager alignManager {&chassis, &tagLayout};
+    StateManager stateManager;
 
     static AprilTags::Config railCameraLeft();
     static AprilTags::Config climberCameraLeft();

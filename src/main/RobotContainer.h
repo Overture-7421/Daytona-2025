@@ -20,6 +20,7 @@
 #include "Subsystems/Elevator/Elevator.h"
 #include "Subsystems/Arm/Arm.h"
 #include "Subsystems/Climber/Climber.h"
+#include "Subsystems/Intake/Intake.h"
 #include "Manager/AlignManager/AlignManager.h"
 #include "Manager/StateManager/StateManager.h"
 
@@ -68,9 +69,10 @@ private:
     Elevator elevator;
     Arm arm;
     Climber climber;
+    Intake intake;
 
     AlignManager alignManager {&chassis, &tagLayout};
-    StateManager stateManager;
+    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console};
 
     static AprilTags::Config railCameraLeft();
     static AprilTags::Config climberCameraLeft();

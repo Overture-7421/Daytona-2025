@@ -9,15 +9,15 @@ frc2::CommandPtr ConfirmCommand(StateManager *stateManager) {
             > ([stateManager] {
                 return stateManager->getState();
             },
-            std::pair {Positions::L1Confirm, stateManager->setState(Positions::L1Confirm)}, std::pair {
-                    Positions::NetConfirm, stateManager->setState(Positions::NetConfirm)}, std::pair {
-                    Positions::L2BackConfirm, stateManager->setState(Positions::L2BackConfirm)}, std::pair {
-                    Positions::L3BackConfirm, stateManager->setState(Positions::L3BackConfirm)}, std::pair {
-                    Positions::L4BackConfirm, stateManager->setState(Positions::L4BackConfirm)}, std::pair {
-                    Positions::L2FrontConfirm, stateManager->setState(Positions::L2FrontConfirm)}, std::pair {
-                    Positions::L3FrontConfirm, stateManager->setState(Positions::L3FrontConfirm)}, std::pair {
-                    Positions::L4FrontConfirm, stateManager->setState(Positions::L4FrontConfirm)}, std::pair {
-                    Positions::ProcessorConfirm, stateManager->setState(Positions::ProcessorConfirm)}
+            std::pair {Positions::L1Position, stateManager->setState(Positions::L1Confirm)}, std::pair {
+                    Positions::NetPosition, stateManager->setState(Positions::NetConfirm)}, std::pair {
+                    Positions::L2Back, stateManager->setState(Positions::L2BackConfirm)}, std::pair {Positions::L3Back,
+                    stateManager->setState(Positions::L3BackConfirm)}, std::pair {Positions::L4Back,
+                    stateManager->setState(Positions::L4BackConfirm)}, std::pair {Positions::L2Front,
+                    stateManager->setState(Positions::L2FrontConfirm)}, std::pair {Positions::L3Front,
+                    stateManager->setState(Positions::L3FrontConfirm)}, std::pair {Positions::L4Front,
+                    stateManager->setState(Positions::L4FrontConfirm)}, std::pair {Positions::ProcessorPosition,
+                    stateManager->setState(Positions::ProcessorConfirm)}
 
             );
 

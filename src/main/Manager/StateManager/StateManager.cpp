@@ -4,7 +4,17 @@
 
 #include "StateManager.h"
 
-StateManager::StateManager() = default;
+StateManager::StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
+        OverXboxController *driver, OverXboxController *oprtr, OverConsole *console) {
+    this->intake = intake;
+    this->arm = arm;
+    this->elevator = elevator;
+    this->grabber = grabber;
+    this->climber = climber;
+    this->driver = driver;
+    this->oprtr = oprtr;
+    this->console = console;
+}
 
 Positions StateManager::getState() {
     return state;

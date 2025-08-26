@@ -131,7 +131,7 @@ void RobotContainer::ConfigMixedBindigs() {
 
     (driver.POVDown() && console.Button(10)).OnTrue(L4Command(&stateManager).AlongWith(leftAlignPos(&alignManager)));
 
-    (driver.POVDown() && console.Button(11)).OnTrue(L3Command(&stateManager).AlongWith(rightAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(11)).OnTrue(L4Command(&stateManager).AlongWith(rightAlignPos(&alignManager)));
 
     //Maybe es 2 en el numero de la consola :V
     (driver.POVDown() && console.Button(1)).OnTrue(

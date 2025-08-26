@@ -8,8 +8,9 @@ frc2::CommandPtr AlgaeCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getState();
     },
-    std::pair {Positions::AlgaeGround, stateManager->setState(Positions::AlgaeGround)}, std::pair {
-            Positions::NetPosition, stateManager->setState(Positions::NetPosition)}
+    std::pair {Positions::SustainedPosition, stateManager->setState(Positions::AlgaeGround)}, std::pair {
+            Positions::CoralAndAlgae, stateManager->setState(Positions::NetPosition)}, std::pair {Positions::AlgaeHold,
+            stateManager->setState(Positions::NetPosition)}
 
     );
 

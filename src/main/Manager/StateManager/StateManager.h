@@ -11,10 +11,13 @@
 #include "Subsystems/Grabber/Grabber.h"
 #include "Subsystems/Climber/Climber.h"
 #include <vector>
+#include <OvertureLib/Gamepads/OverXboxController/OverXboxController.h>
+#include <OvertureLib/Gamepads/OverConsole/OverConsole.h>
 
 class StateManager {
 public:
-    StateManager();
+    StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
+            OverXboxController *driver, OverXboxController *oprtr, OverConsole *console);
 
     Positions getState();
     frc2::CommandPtr setState(Positions state);
@@ -26,6 +29,10 @@ private:
     Elevator *elevator;
     Grabber *grabber;
     Climber *climber;
+
+    OverXboxController *driver;
+    OverXboxController *oprtr;
+    OverConsole *console;
 
     AlignManager *alignManager;
 
@@ -59,7 +66,7 @@ private:
     }}, {Positions::SustainedPosition, Positions::AlgaeGround, [this]() {
         return !grabber->isCoralIn() && !intake->isCoralIn();
     }}, {Positions::SustainedPosition, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::Intake, Positions::SustainedPosition, [this]() {
@@ -69,7 +76,7 @@ private:
     }}, {Positions::Intake, Positions::CoralAndAlgae, [this]() {
         return intake->isCoralIn() && grabber->isAlgaeIn();
     }}, {Positions::Intake, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::IntakeCoralStation, Positions::SustainedPosition, [this]() {
@@ -79,7 +86,7 @@ private:
     }}, {Positions::IntakeCoralStation, Positions::CoralAndAlgae, [this]() {
         return intake->isCoralIn() && grabber->isAlgaeIn();
     }}, {Positions::IntakeCoralStation, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::AlgaeHighReef, Positions::SustainedPosition, [this]() {
@@ -89,7 +96,7 @@ private:
     }}, {Positions::AlgaeHighReef, Positions::AlgaeHold, [this]() {
         return grabber->isAlgaeIn();
     }}, {Positions::AlgaeHighReef, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::AlgaeLowReef, Positions::SustainedPosition, [this]() {
@@ -99,7 +106,7 @@ private:
     }}, {Positions::AlgaeLowReef, Positions::AlgaeHold, [this]() {
         return grabber->isAlgaeIn();
     }}, {Positions::AlgaeLowReef, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::AlgaeGround, Positions::SustainedPosition, [this]() {
@@ -109,7 +116,7 @@ private:
     }}, {Positions::AlgaeGround, Positions::AlgaeHold, [this]() {
         return grabber->isAlgaeIn();
     }}, {Positions::AlgaeGround, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::L1Position, Positions::L1Confirm, [this]() {
@@ -119,7 +126,7 @@ private:
     }}, {Positions::L1Position, Positions::CoralAndAlgae, [this]() {
         return !grabber->isCoralIn() & !grabber->isAlgaeIn() && false /*Boton Respectivo*/;
     }}, {Positions::L1Position, Positions::EndPosition, [this]() {
-        return false /*boton especifico*/;
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::L1Confirm, Positions::SustainedPosition, [this]() {
@@ -127,39 +134,45 @@ private:
     }},
 
     {Positions::CoralHold, Positions::L1Position, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo*/
+        return grabber->isCoralIn() && driver->POVUp().Get();
     }}, {Positions::CoralHold, Positions::L2Front, [this]() {
-        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front); /*Boton Respectivo*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front)
+                && (oprtr.B().Get() || console.Button(12).Get() || console.Button(5).Get());
     }}, {Positions::CoralHold, Positions::L3Front, [this]() {
-        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front); /*Boton Respectivo*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front)
+                && (oprtr.B().Get() || console.Button(7).Get() || console.Button(8).Get());
     }}, {Positions::CoralHold, Positions::L4Front, [this]() {
-        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front); /*Boton Respectivo*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front)
+                && (oprtr.B().Get() || console.Button(10).Get() || console.Button(11).Get());
     }}, {Positions::CoralHold, Positions::L2Back, [this]() {
-        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back); /*Boton Respectivo*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back)
+                && (oprtr.B().Get() || console.Button(12).Get() || console.Button(5).Get());
     }}, {Positions::CoralHold, Positions::L3Back, [this]() {
-        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back); /*Boton Respectivo*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back)
+                && (oprtr.B().Get() || console.Button(7).Get() || console.Button(8).Get());
     }}, {Positions::CoralHold, Positions::L4Back, [this]() {
-        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back); /*Boton Respectivo*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back)
+                && (oprtr.B().Get() || console.Button(10).Get() || console.Button(11).Get());
     }}, {Positions::CoralHold, Positions::EndPosition, [this]() {
-        return false; /*boton especifico*/
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::CoralAndAlgae, Positions::CoralHold, [this]() {
         return !grabber->isAlgaeIn();
     }}, {Positions::CoralAndAlgae, Positions::NetPosition, [this]() {
-        return grabber->isAlgaeIn() && false; /*Boton Respectivo*/
+        return grabber->isAlgaeIn() && driver.POVLeft().Get();
     }}, {Positions::CoralAndAlgae, Positions::ProcessorPosition, [this]() {
-        return grabber->isAlgaeIn() && false; /*Boton Respectivo*/
+        return grabber->isAlgaeIn() && (oprtr.LeftBumper().Get() || console.Button(9).Get());
     }}, {Positions::CoralAndAlgae, Positions::EndPosition, [this]() {
-        return false; /*boton especifico*/
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::AlgaeHold, Positions::NetPosition, [this]() {
-        return grabber->isAlgaeIn() && false; /*Boton Respectivo*/
+        return grabber->isAlgaeIn() && &&driver.POVLeft().Get();
     }}, {Positions::AlgaeHold, Positions::ProcessorPosition, [this]() {
-        return grabber->isAlgaeIn() && false; /*Boton Respectivo*/
+        return grabber->isAlgaeIn() && (oprtr.LeftBumper().Get() || console.Button(9).Get());
     }}, {Positions::AlgaeHold, Positions::EndPosition, [this]() {
-        return false; /*boton especifico*/
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::L2Front, Positions::L2FrontConfirm, [this]() {
@@ -181,13 +194,13 @@ private:
     {Positions::NetPosition, Positions::NetConfirm, [this]() {
         return grabber->isAlgaeIn() && false; /*Boton Respectivo*/
     }}, {Positions::NetPosition, Positions::EndPosition, [this]() {
-        return false; /*boton especifico*/
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::ProcessorPosition, Positions::ProcessorConfirm, [this]() {
         return grabber->isAlgaeIn() && false; /*Boton Respectivo*/
     }}, {Positions::ProcessorPosition, Positions::EndPosition, [this]() {
-        return false; /*boton especifico*/
+        return console->Button(4).Get() || oprtr->Back().Get();
     }},
 
     {Positions::L2FrontConfirm, Positions::SustainedPosition, [this]() {

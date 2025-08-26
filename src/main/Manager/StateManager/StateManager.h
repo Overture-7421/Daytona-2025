@@ -281,6 +281,7 @@ private:
             grabber->setState(Positions::L1Confirm), climber->setState(Positions::L1Confirm))},
 
     {Positions::L2Front, frc2::cmd::Parallel(
+
             frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front),
                     elevator->setState(Positions::L2Front)),
             frc2::cmd::Parallel(intake->setState(Positions::L2Front), grabber->setState(Positions::L2Front),
@@ -335,6 +336,5 @@ private:
             grabber->setState(Positions::L4BackConfirm), climber->setState(Positions::L4BackConfirm))}
 
     };
-
 };
 

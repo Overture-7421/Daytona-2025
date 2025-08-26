@@ -31,6 +31,24 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
+    driver.LeftTrigger().WhileTrue(stateManager.setState(Positions::Intake));
+    driver.LeftTrigger().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+    driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
+    driver.RightBumper().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+    driver.POVLeft().WhileTrue(AlgaeCommand(&stateManager));
+    driver.LeftTrigger().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+    driver.POVUp().WhileTrue(stateManager.setState(Positions::L1Position));
+    driver.POVUp().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+    driver.POVDown().WhileTrue(ExecuteReefCommand(&stateManager));
+    driver.POVDown().OnFalse(stateManager.setState(Positions::SustainedPosition));
+
+
+    //driver.POVRight().WhileTrue(/*Coral detection later */);
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {

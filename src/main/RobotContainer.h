@@ -23,6 +23,10 @@
 #include "Manager/AlignManager/AlignManager.h"
 #include "Manager/StateManager/StateManager.h"
 
+#include "Commands/ConfirmCommand/ConfirmCommand.h"
+#include "Commands/ExecuteReefCommand/ExecuteReefCommand.h"
+#include "Commands/AlgaeCommand/AlgaeCommand.h"
+
 class RobotContainer: public OverContainer {
 public:
     RobotContainer();

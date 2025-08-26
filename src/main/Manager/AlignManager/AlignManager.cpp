@@ -31,6 +31,12 @@ void AlignManager::getReefOffset(ReefSide reefSide) {
         yTarget = reefOffset.algaeOffset;
     }
 
+    if (reefPackage.algaePose == AlgaePose::Up) {
+        setAlgaePose(AlgaePose::Up);
+    } else if (reefPackage.algaePose == AlgaePose::Down) {
+        setAlgaePose(AlgaePose::Down);
+    }
+
     units::degree_t chassisHeading = chassis->getEstimatedPose().RelativeTo(reefPackage.pose).Rotation().Degrees();
     if (chassisHeading < 90_deg || chassisHeading > -90_deg) {
         headingTarget = reefOffset.headingOffset;
@@ -59,4 +65,12 @@ void AlignManager::setHeading(Heading heading) {
 
 Heading AlignManager::getHeading() {
     return heading;
+}
+
+void AlignManager::setAlgaePose(AlgaePose algaePose) {
+    this->algaePose = algaePose;
+}
+
+AlgaePose AlignManager::getAlgaePose() {
+    return algaePose;
 }

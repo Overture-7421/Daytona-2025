@@ -2,14 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "AlgaeCommand.h"
+#include "L4Command.h"
 
-frc2::CommandPtr AlgaeCommand(StateManager *stateManager) {
+frc2::CommandPtr L4Command(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getState();
     },
-    std::pair {Positions::AlgaeGround, stateManager->setState(Positions::AlgaeGround)}, std::pair {
-            Positions::NetPosition, stateManager->setState(Positions::NetPosition)}
+    std::pair {Positions::L4Back, stateManager->setState(Positions::L4Back)}, std::pair {Positions::L4Front,
+            stateManager->setState(Positions::L4Front)}
 
     );
 

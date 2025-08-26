@@ -53,9 +53,9 @@ private:
     }}, {Positions::SustainedPosition, Positions::IntakeCoralStation, [this]() {
         return !grabber->isCoralIn() && !intake->isCoralIn();
     }}, {Positions::SustainedPosition, Positions::AlgaeLowReef, [this]() {
-        return !grabber->isCoralIn() && !intake->isCoralIn();
+        return !grabber->isCoralIn() && !intake->isCoralIn() && (alignManager->getAlgaePose() == AlgaePose::Down);
     }}, {Positions::SustainedPosition, Positions::AlgaeHighReef, [this]() {
-        return !grabber->isCoralIn() && !intake->isCoralIn();
+        return !grabber->isCoralIn() && !intake->isCoralIn() && (alignManager->getAlgaePose() == AlgaePose::Up);
     }}, {Positions::SustainedPosition, Positions::AlgaeGround, [this]() {
         return !grabber->isCoralIn() && !intake->isCoralIn();
     }}, {Positions::SustainedPosition, Positions::EndPosition, [this]() {
@@ -129,17 +129,17 @@ private:
     {Positions::CoralHold, Positions::L1Position, [this]() {
         return grabber->isCoralIn() && false; /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::L2Front, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo && chassis*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front); /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::L3Front, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo && chassis*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front); /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::L4Front, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo && chassis*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front); /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::L2Back, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo && chassis*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back); /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::L3Back, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo && chassis*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back); /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::L4Back, [this]() {
-        return grabber->isCoralIn() && false; /*Boton Respectivo && chassis*/
+        return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back); /*Boton Respectivo*/
     }}, {Positions::CoralHold, Positions::EndPosition, [this]() {
         return false; /*boton especifico*/
     }},
@@ -282,8 +282,7 @@ private:
 
     {Positions::L2Front, frc2::cmd::Parallel(
 
-            frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front),
-                    elevator->setState(Positions::L2Front)),
+    frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front), elevator->setState(Positions::L2Front)),
             frc2::cmd::Parallel(intake->setState(Positions::L2Front), grabber->setState(Positions::L2Front),
                     climber->setState(Positions::L2Front)))},
 

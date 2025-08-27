@@ -24,12 +24,12 @@
 #include "Manager/AlignManager/AlignManager.h"
 #include "Manager/StateManager/StateManager.h"
 
-#include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/AlgaeCommand/AlgaeCommand.h"
 #include "Commands/L2Command/L2Command.h"
 #include "Commands/L3Command/L3Command.h"
 #include "Commands/L4Command/L4Command.h"
 #include "Commands/AlgaeReefCommand/AlgaeReefCommand.h"
+#include "Commands/ConfirmCommand/ConfirmCommand.h"
 
 class RobotContainer: public OverContainer {
 public:

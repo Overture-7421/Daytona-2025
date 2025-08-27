@@ -4,12 +4,12 @@
 
 #include "L2Command.h"
 
-frc2::CommandPtr L2Command(StateManager *stateManager) {
-    return frc2::cmd::Select < Positions > ([stateManager] {
-        return stateManager->getState();
+frc2::CommandPtr L2Command(StateManager *stateManager, AlignManager *alignManager) {
+    return frc2::cmd::Select < Heading > ([alignManager] {
+        return alignManager->getHeading();
     },
-    std::pair {Positions::L2Back, stateManager->setState(Positions::L2Back)}, std::pair {Positions::L2Front,
-            stateManager->setState(Positions::L2Front)}
+    std::pair {Heading::Back, stateManager->setStatePosition(Positions::L2Back)}, std::pair {Heading::Front,
+            stateManager->setStatePosition(Positions::L2Front)}
 
     );
 

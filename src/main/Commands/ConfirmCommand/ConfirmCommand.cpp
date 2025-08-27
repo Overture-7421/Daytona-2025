@@ -7,17 +7,17 @@
 frc2::CommandPtr ConfirmCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions
             > ([stateManager] {
-                return stateManager->getState();
+                return stateManager->getStatePosition();
             },
-            std::pair {Positions::L1Position, stateManager->setState(Positions::L1Confirm)}, std::pair {
-                    Positions::NetPosition, stateManager->setState(Positions::NetConfirm)}, std::pair {
-                    Positions::L2Back, stateManager->setState(Positions::L2BackConfirm)}, std::pair {Positions::L3Back,
-                    stateManager->setState(Positions::L3BackConfirm)}, std::pair {Positions::L4Back,
-                    stateManager->setState(Positions::L4BackConfirm)}, std::pair {Positions::L2Front,
-                    stateManager->setState(Positions::L2FrontConfirm)}, std::pair {Positions::L3Front,
-                    stateManager->setState(Positions::L3FrontConfirm)}, std::pair {Positions::L4Front,
-                    stateManager->setState(Positions::L4FrontConfirm)}, std::pair {Positions::ProcessorPosition,
-                    stateManager->setState(Positions::ProcessorConfirm)}
+            std::pair {Positions::L1Position, stateManager->setStatePosition(Positions::L1Confirm)}, std::pair {
+                    Positions::NetPosition, stateManager->setStatePosition(Positions::NetConfirm)}, std::pair {
+                    Positions::L2Back, stateManager->setStatePosition(Positions::BackConfirm)}, std::pair {
+                    Positions::L3Back, stateManager->setStatePosition(Positions::BackConfirm)}, std::pair {
+                    Positions::L4Back, stateManager->setStatePosition(Positions::BackConfirm)}, std::pair {
+                    Positions::L2Front, stateManager->setStatePosition(Positions::FrontConfirm)}, std::pair {
+                    Positions::L3Front, stateManager->setStatePosition(Positions::FrontConfirm)}, std::pair {
+                    Positions::L4Front, stateManager->setStatePosition(Positions::FrontConfirm)}, std::pair {
+                    Positions::ProcessorPosition, stateManager->setStatePosition(Positions::ProcessorConfirm)}
 
             );
 

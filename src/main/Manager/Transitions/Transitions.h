@@ -5,9 +5,11 @@
 #pragma once
 #include "Enums/Positions.h"
 #include <functional>
+#include <frc2/command/CommandPtr.h>
 
 struct Transitions {
     const Positions currentState;
     const Positions nextState;
     std::function<bool()> check;
+    const frc2::CommandPtr &commandPtr;
 };

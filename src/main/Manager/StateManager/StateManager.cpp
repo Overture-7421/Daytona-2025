@@ -16,16 +16,15 @@ StateManager::StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber
     this->console = console;
 }
 
-Positions StateManager::getState() {
+Positions StateManager::getStatePosition() {
     return state;
 }
 
-frc2::CommandPtr StateManager::setState(Positions state) {
+frc2::CommandPtr StateManager::setStatePosition(Positions state) {
     return frc2::cmd::RunOnce([this, state] {
         for (Transitions transitions : transitionsMap) {
             if (transitions.currentState == state && transitions.check()) {
                 this->state = state;
-                positionsMap.at(state);
             }
         }
     });

@@ -35,7 +35,7 @@ enum class Positions {
 
     NetPosition, NetConfirm,
 
-    ProcessorPosition, ProcessorConfirm,
+    ProcessorPosition, ProcessorConfirm, FrontConfirm, BackConfirm,
 
     EndPosition
 };

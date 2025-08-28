@@ -6,6 +6,7 @@
 #include <frc/MathUtil.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <OvertureLib/Utils/Logging/Logging.h>
+#include "Enums/Heading.h"
 
 #include "Subsystems/Arm/ArmConstants.h"
 
@@ -16,7 +17,8 @@ public:
     void setToAngle(units::degree_t armAngle);
     bool isArmAtPosition(units::degree_t armAngle);
     units::degree_t getCurrentAngle();
-    frc2::CommandPtr setArmCommand(units::degree_t armAngle);
+    frc2::CommandPtr setState(Positions state, Heading heading);
+    frc2::CommandPtr setState(Positions state);
 
     void Periodic() override;
 

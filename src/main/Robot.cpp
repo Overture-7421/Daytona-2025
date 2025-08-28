@@ -34,6 +34,8 @@ Robot::Robot() {
         frc2::CommandScheduler::GetInstance().Run();
     }, RobotConstants::LoopTime, RobotConstants::TimingOffset);
 
+    frc::SmartDashboard::PutBoolean("Emergency", false);
+
     //Maybe si lo usamos
     // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
     // frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);

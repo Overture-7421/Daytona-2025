@@ -5,43 +5,40 @@
 #include "Subsystems/Climber/Climber.h"
 
 Climber::Climber() {
-    climberMotor.SetPosition(0_tr);
     climberMotor.setSensorToMechanism(ClimberConstants::ClimberSensorToMechanism);
-    climberMotor.configureMotionMagic(ClimberConstants::ClimberCruiseVelocity,
-            ClimberConstants::ClimberCruiseAcceleration, 0.0_tr_per_s_cu);
 }
 
-void Climber::setToAngle(units::degree_t climberAngle) {
-    frc::SmartDashboard::PutNumber("Climber/TargetArmAngle", climberAngle.value());
-    climberMotor.SetControl(climberVoltage.WithPosition(climberAngle).WithEnableFOC(true));
-
-}
-
-frc::Rotation2d Climber::getCurrentClimberAngle() {
+units::degree_t Climber::getCurrentClimberAngle() {
     return units::degree_t((climberEncoder.Get() - ClimberConstants::ClimberEncoderOffset) * 360);
 }
 
-bool Climber::isClimberAtPosition(units::degree_t climberAngle) {
-    units::degree_t climberError = climberAngle - getCurrentClimberAngle().Degrees();
-    return (units::math::abs(climberError) < ClimberConstants::ClimberRangeError);
+void Climber::setTarget(units::degree_t climberTarget) {
+    this->target = climberTarget;
 }
 
-frc2::CommandPtr Climber::setClimberCommand(units::degree_t climberAngle) {
-    return frc2::FunctionalCommand([this, climberAngle]() {
-        setToAngle(climberAngle);
-    }, [this, climberAngle]() {
-        setToAngle(climberAngle + offset);
+bool Climber::isClimberAtPosition(units::degree_t climberAngle) {
+    return (units::math::abs(climberAngle - getCurrentClimberAngle()) < ClimberConstants::ClimberRangeError);
+}
+
+frc2::CommandPtr Climber::setState(Positions climberState) {
+    return frc2::FunctionalCommand([this, climberState]() {
+        setTarget(ClimberConstants::ClimberPositions.at(climberState));
+    }, [this, climberState]() {
+        setTarget(ClimberConstants::ClimberPositions.at(climberState) + offset);
     }, [this](bool interupted) {
-        offset = 0_deg;
-    }, [this, climberAngle]() {
-        return isClimberAtPosition(climberAngle);
+        offset = 0.0_deg;
+    }, [this, climberState]() {
+        return isClimberAtPosition(ClimberConstants::ClimberPositions.at(climberState));
     },
     {this}).ToPtr();
 }
 
 void Climber::setOffset() {
-    offset -= 1_deg;
+    offset -= 1.0_deg;
 }
 
 void Climber::Periodic() {
+
+    units::volt_t motorOutput = units::volt_t(climberPID.Calculate(getCurrentClimberAngle(), target));
+    climberMotor.SetControl(climberVoltage.WithOutput(motorOutput).WithEnableFOC(true));
 }

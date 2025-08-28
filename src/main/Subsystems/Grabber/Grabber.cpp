@@ -29,11 +29,18 @@ bool Grabber::isAlgaeIn() {
 
 }
 
-//Command that only makes the Grabber move by giving it the desired voltage
-frc2::CommandPtr Grabber::moveGrabber(units::volt_t voltage) {
-    return this->RunOnce([this, voltage] {
-        this->setMotorVoltage(voltage);
-    });
+frc2::CommandPtr Grabber::setState(Positions state) {
+    return frc2::FunctionalCommand([]() {
+    },
+    [this, state]() {
+        setMotorVoltage(GrabberConstants::GrabberVoltage.at(state));
+    },
+    [](bool interrupted) {
+    },
+    []() {
+        return false;
+    },
+    {this}).ToPtr();
 }
 
 void Grabber::Periodic() {

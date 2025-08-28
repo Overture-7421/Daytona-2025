@@ -26,7 +26,7 @@ public:
     bool isCoralIn(); //Checks if the grabber is holding a Coral
     bool isAlgaeIn(); //Checks if the grabber is holding an Algae
 
-    frc2::CommandPtr moveGrabber(units::volt_t voltage); //simply applies voltage
+    frc2::CommandPtr setState(Positions state); //simply applies voltage
 
     void Periodic() override;
 

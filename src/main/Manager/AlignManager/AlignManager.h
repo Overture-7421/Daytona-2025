@@ -27,6 +27,9 @@ public:
     void setHeading(Heading heading);
     Heading getHeading();
 
+    void setAlgaePose(AlgaePose algaePose);
+    AlgaePose getAlgaePose();
+
     //MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 
     //ATRAS es mas POSITIVOS / ADELANTE es mas NEGATIVOS
     //GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
@@ -51,4 +54,5 @@ private:
     frc::Pose2d targetPose;
 
     Heading heading = Heading::Front;
+    AlgaePose algaePose = AlgaePose::Up;
 };

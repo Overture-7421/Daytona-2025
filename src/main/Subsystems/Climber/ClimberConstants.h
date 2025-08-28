@@ -2,15 +2,27 @@
 #include "OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h"
 #include "OvertureLib/Sensors/OverCANCoder/OverCANCoder.h"
 
+#include "Enums/Positions.h"
+
 struct ClimberConstants {
 
-    constexpr static const units::degree_t ClimberRangeError = 1.0_deg;
+    constexpr static const units::degree_t ClimberRangeError = 0.0_deg;
 
-    constexpr static const units::degree_t ClosedPosition = 0_deg;
-    constexpr static const units::degree_t OpenPosition = 0_deg;
+    inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 0.0_deg}, {
+            Positions::AlgaeHold, 0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {
+            Positions::CoralAndAlgae, 0.0_deg}, {Positions::CoralHold, 0.0_deg}, {Positions::InitialPosition, 0.0_deg},
+            {Positions::Intake, 0.0_deg}, {Positions::IntakeCoralStation, 0.0_deg}, {Positions::L1Confirm, 0.0_deg}, {
+                    Positions::L1Position, 0.0_deg}, {Positions::L2Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg},
+            {Positions::L2Front, 0.0_deg}, {Positions::L2FrontConfirm, 0.0_deg}, {Positions::L3Back, 0.0_deg}, {
+                    Positions::L3BackConfirm, 0.0_deg}, {Positions::L3Front, 0.0_deg}, {Positions::L3FrontConfirm,
+                    0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}, {Positions::L4Front,
+                    0.0_deg}, {Positions::L4FrontConfirm, 0.0_deg}, {Positions::NetPosition, 0.0_deg}, {
+                    Positions::NetConfirm, 0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {
+                    Positions::ProcessorConfirm, 0.0_deg}, {Positions::SustainedPosition, 0.0_deg}, {
+                    Positions::EndPosition, 0.0_deg}};
 
-    constexpr static const units::turns_per_second_t ClimberCruiseVelocity = 0.0_tps;
-    constexpr static const units::turns_per_second_squared_t ClimberCruiseAcceleration = 0.0_tr_per_s_sq;
+    constexpr static const units::degrees_per_second_t ClimberVelocity = 0.0_deg_per_s;
+    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 0.0_deg_per_s_sq;
 
     constexpr static const double ClimberEncoderOffset = 0;
     constexpr static const double ClimberSensorToMechanism = 0;

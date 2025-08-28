@@ -33,16 +33,15 @@ bool Intake::isCoralIn() {
     return canRange.GetIsDetected().GetValue();
 }
 
-frc2::CommandPtr Intake::setIntakeCommand(units::degree_t intakeAngle, units::volt_t rollersVolts,
-        units::volt_t centeringVolts) {
-    return frc2::FunctionalCommand([this, intakeAngle]() {
-        setIntakeToAngle(intakeAngle);
-    }, [this, rollersVolts, centeringVolts]() {
-        setRollersVoltage(rollersVolts);
-        setCenteringVoltage(centeringVolts);
+frc2::CommandPtr Intake::setState(Positions state) {
+    return frc2::FunctionalCommand([this, state]() {
+        setIntakeToAngle(IntakeConstants::IntakePositions.at(state).intake);
+    }, [this, state]() {
+        setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
+        setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
     },[](bool interrupted) {
-    },[this, intakeAngle]() {
-        return isIntakeAtPosition(intakeAngle);
+    },[this, state]() {
+        return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
     },
     {this}).ToPtr();
 }

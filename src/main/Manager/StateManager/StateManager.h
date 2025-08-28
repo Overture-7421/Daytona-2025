@@ -17,7 +17,7 @@
 class StateManager {
 public:
     StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
-            OverXboxController *driver, OverXboxController *oprtr, OverConsole *console);
+            OverXboxController *driver, OverXboxController *oprtr, OverConsole *console, frc2::Trigger *emergency);
 
     Positions getStatePosition();
     frc2::CommandPtr setStatePosition(Positions state);
@@ -33,6 +33,8 @@ private:
     OverXboxController *driver;
     OverXboxController *oprtr;
     OverConsole *console;
+
+    frc2::Trigger *emergency;
 
     AlignManager *alignManager;
 
@@ -132,7 +134,7 @@ private:
                             grabber->setState(Positions::SustainedPosition),
                             climber->setState(Positions::SustainedPosition))}, {Positions::Intake,
                             Positions::L1Position, [this]() {
-                                return intake->isCoralIn();
+                                return intake->isCoralIn() && driver->LeftTrigger().Get();
                             }, frc2::cmd::Parallel(
                                     frc2::cmd::Sequence(arm->setState(Positions::L1Position),
                                             elevator->setState(Positions::L1Position)),
@@ -160,7 +162,7 @@ private:
                             grabber->setState(Positions::SustainedPosition),
                             climber->setState(Positions::SustainedPosition))}, {Positions::IntakeCoralStation,
                             Positions::L1Position, [this]() {
-                                return intake->isCoralIn();
+                                return intake->isCoralIn() && driver->LeftTrigger().Get();
                             }, frc2::cmd::Parallel(
                                     frc2::cmd::Sequence(arm->setState(Positions::L1Position),
                                             elevator->setState(Positions::L1Position)),
@@ -250,7 +252,7 @@ private:
                             grabber->setState(Positions::EndPosition), climber->setState(Positions::EndPosition))},
 
                     {Positions::L1Position, Positions::L1Confirm, [this]() {
-                        return driver->RightBumper().Get();
+                        return driver->RightBumper().Get() && driver->LeftTrigger().Get();
                     }, frc2::cmd::Parallel(elevator->setState(Positions::L1Confirm),
                             arm->setState(Positions::L1Confirm), intake->setState(Positions::L1Confirm),
                             grabber->setState(Positions::L1Confirm), climber->setState(Positions::L1Confirm))}, {
@@ -259,19 +261,11 @@ private:
                             }, frc2::cmd::Sequence(intake->setState(Positions::CoralHold),
                                     arm->setState(Positions::CoralHold), elevator->setState(Positions::CoralHold),
                                     grabber->setState(Positions::CoralHold), climber->setState(Positions::CoralHold))},
-                    {Positions::L1Position, Positions::CoralAndAlgae,
-                            [this]() {
-                                return !grabber->isCoralIn() & !grabber->isAlgaeIn() && false /*Boton Respectivo dejarle de picar al L1 (Maybe se borra)*/;
-                            }, frc2::cmd::Sequence(elevator->setState(Positions::CoralAndAlgae),
-                                    arm->setState(Positions::CoralAndAlgae), intake->setState(Positions::CoralAndAlgae),
-                                    grabber->setState(Positions::CoralAndAlgae),
-                                    climber->setState(Positions::CoralAndAlgae))}, {Positions::L1Position,
-                            Positions::EndPosition, [this]() {
-                                return console->Button(4).Get() || oprtr->Back().Get();
-                            }, frc2::cmd::Sequence(arm->setState(Positions::EndPosition),
-                                    elevator->setState(Positions::EndPosition),
-                                    intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
-                                    climber->setState(Positions::EndPosition))},
+                    {Positions::L1Position, Positions::EndPosition, [this]() {
+                        return console->Button(4).Get() || oprtr->Back().Get();
+                    }, frc2::cmd::Sequence(arm->setState(Positions::EndPosition),
+                            elevator->setState(Positions::EndPosition), intake->setState(Positions::EndPosition),
+                            grabber->setState(Positions::EndPosition), climber->setState(Positions::EndPosition))},
 
                     {Positions::L1Confirm, Positions::SustainedPosition, [this]() {
                         return !grabber->isCoralIn();
@@ -488,11 +482,12 @@ private:
                             }, frc2::cmd::Sequence(intake->setState(Positions::CoralHold),
                                     arm->setState(Positions::CoralHold), elevator->setState(Positions::CoralHold),
                                     grabber->setState(Positions::CoralHold), climber->setState(Positions::CoralHold))},
-                    {Positions::EndPosition, Positions::CoralHold, [this]() {
-                        return false /*Boton en la driver station(tipo los offsets)*/&& grabber->isCoralIn();
-                    }, frc2::cmd::Sequence(intake->setState(Positions::CoralHold), arm->setState(Positions::CoralHold),
-                            elevator->setState(Positions::CoralHold), grabber->setState(Positions::CoralHold),
-                            climber->setState(Positions::CoralHold))}
+                    {Positions::EndPosition, Positions::InitialPosition, [this]() {
+                        return emergency->Get() /*Boton en la driver station(tipo los offsets)*/;
+                    }, frc2::cmd::Sequence(intake->setState(Positions::InitialPosition),
+                            arm->setState(Positions::InitialPosition), elevator->setState(Positions::InitialPosition),
+                            grabber->setState(Positions::InitialPosition),
+                            climber->setState(Positions::InitialPosition))}
 
             };
 

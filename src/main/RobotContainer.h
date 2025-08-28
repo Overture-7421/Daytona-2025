@@ -72,7 +72,7 @@ private:
     Intake intake;
 
     AlignManager alignManager {&chassis, &tagLayout};
-    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console};
+    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console, &emergency};
 
     static AprilTags::Config railCameraLeft();
     static AprilTags::Config climberCameraLeft();
@@ -85,6 +85,10 @@ private:
     AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
+
+    frc2::Trigger emergency {[] {
+        return frc::SmartDashboard::GetBoolean("Emergency", false);
+    }};
 
     // Maybe si lo usamos
     // frc2::Trigger increaseOffsetX {[] {

@@ -82,6 +82,11 @@ void RobotContainer::ConfigOperatorBindings() {
     }));
     oprtr.Start().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
+    emergency.OnTrue(frc2::cmd::RunOnce([this] {
+        stateManager.setStatePosition(Positions::EndPosition);
+        frc::SmartDashboard::PutBoolean("Emergency", false);
+    }));
+
     //Maybe si lo usamos
     // increaseOffsetX.OnTrue(frc2::cmd::RunOnce([this] {
     //     AlignSpeedHelper::setModifyXTarget(0.02);

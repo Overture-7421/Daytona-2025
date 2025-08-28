@@ -5,7 +5,7 @@
 #include "StateManager.h"
 
 StateManager::StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
-        OverXboxController *driver, OverXboxController *oprtr, OverConsole *console) {
+        OverXboxController *driver, OverXboxController *oprtr, OverConsole *console, frc2::Trigger *emergency) {
     this->intake = intake;
     this->arm = arm;
     this->elevator = elevator;
@@ -14,6 +14,7 @@ StateManager::StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber
     this->driver = driver;
     this->oprtr = oprtr;
     this->console = console;
+    this->emergency = emergency;
 }
 
 Positions StateManager::getStatePosition() {

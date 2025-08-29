@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.036782786885246,
-        "y": 3.000051229508196
+        "x": 3.6952499999999997,
+        "y": 2.572249999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 9.389249999999999,
-        "y": 2.8939999999999997
+        "x": 3.5782500000000006,
+        "y": 2.3479999999999994
+      },
+      "isLocked": false,
+      "linkedName": "GoldenRight5-6"
+    },
+    {
+      "anchor": {
+        "x": 2.789,
+        "y": 0.837
+      },
+      "prevControl": {
+        "x": 2.9952788769081766,
+        "y": 0.9782410172064098
+      },
+      "nextControl": {
+        "x": 2.390194852980143,
+        "y": 0.5639345001460805
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.753,
-        "y": 2.631
+        "x": 1.1992500000000001,
+        "y": 1.05125
       },
       "prevControl": {
-        "x": 6.355581967213115,
-        "y": 2.1526905737704927
+        "x": 1.6185000000000003,
+        "y": 0.7879999999999996
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "GoldenRight6-7"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": -126.0
   },
   "reversed": false,
-  "folder": "ChokeholdRight",
+  "folder": "GoldenRight",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 135.0
+    "rotation": -119.99999999999999
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

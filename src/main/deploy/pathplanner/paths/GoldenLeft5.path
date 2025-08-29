@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.9847500000000002,
+        "y": 6.90125
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.1402500000000002,
+        "y": 6.6572499999999994
+      },
+      "isLocked": false,
+      "linkedName": "GoldenLeft4-5"
+    },
+    {
+      "anchor": {
+        "x": 3.7245000000000004,
+        "y": 5.4777499999999995
+      },
+      "prevControl": {
+        "x": 3.5295000000000005,
+        "y": 5.7604999999999995
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "GoldenLeft5-6"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 5.45,
+    "maxAcceleration": 5.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -59.99999999999999
+  },
+  "reversed": false,
+  "folder": "GoldenLeft",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -54.0
+  },
+  "useDefaultConstraints": true
+}

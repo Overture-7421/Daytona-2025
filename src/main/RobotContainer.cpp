@@ -11,6 +11,22 @@ RobotContainer::RobotContainer() {
     ConfigureBindings();
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
+
+    pathplanner::NamedCommands::registerCommand("L4Left",
+            std::move(L4Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager))));
+
+    pathplanner::NamedCommands::registerCommand("L4Right",
+            std::move(L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager))));
+
+    pathplanner::NamedCommands::registerCommand("AlgaeReef",
+            std::move(AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager))));
+
+    pathplanner::NamedCommands::registerCommand("Sustained",
+            std::move(stateManager.setStatePosition(Positions::SustainedPosition)));
+
+    pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
+
+    pathplanner::NamedCommands::registerCommand("Intake", std::move(stateManager.setStatePosition(Positions::Intake)));
 }
 
 void RobotContainer::ConfigureBindings() {

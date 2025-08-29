@@ -32,6 +32,151 @@
                     }
                   ]
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "parallel",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Sustained"
+                            }
+                          },
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "AlgaeAuto2"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AlgaeReef"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AlgaeHold"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeAuto3"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AlgaeCommand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Confirm"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "parallel",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "AlgaeAuto4"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Sustained"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AlgaeReef"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AlgaeHold"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeAuto5"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AlgaeCommand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Confirm"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "AlgaeAuto6"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
+                      }
+                    }
+                  ]
+                }
               }
             ]
           }

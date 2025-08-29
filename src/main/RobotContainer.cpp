@@ -27,6 +27,15 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
 
     pathplanner::NamedCommands::registerCommand("Intake", std::move(stateManager.setStatePosition(Positions::Intake)));
+
+    pathplanner::NamedCommands::registerCommand("AlgaeCommand", std::move(AlgaeCommand(&stateManager)));
+
+    pathplanner::NamedCommands::registerCommand("AlgaeHold",
+            std::move(stateManager.setStatePosition(Positions::AlgaeHold)));
+
+    pathplanner::NamedCommands::registerCommand("CoralHold",
+            std::move(stateManager.setStatePosition(Positions::CoralHold)));
+
 }
 
 void RobotContainer::ConfigureBindings() {

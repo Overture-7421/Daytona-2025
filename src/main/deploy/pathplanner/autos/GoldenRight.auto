@@ -29,6 +29,12 @@
                       "data": {
                         "name": "Confirm"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
+                      }
                     }
                   ]
                 }
@@ -53,6 +59,12 @@
                 }
               },
               {
+                "type": "named",
+                "data": {
+                  "name": "CoralHold"
+                }
+              },
+              {
                 "type": "sequential",
                 "data": {
                   "commands": [
@@ -72,6 +84,12 @@
                       "type": "named",
                       "data": {
                         "name": "Confirm"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
                       }
                     }
                   ]
@@ -97,6 +115,12 @@
                 }
               },
               {
+                "type": "named",
+                "data": {
+                  "name": "CoralHold"
+                }
+              },
+              {
                 "type": "sequential",
                 "data": {
                   "commands": [
@@ -116,6 +140,12 @@
                       "type": "named",
                       "data": {
                         "name": "Confirm"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
                       }
                     }
                   ]
@@ -138,6 +168,12 @@
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "CoralHold"
                 }
               },
               {

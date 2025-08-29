@@ -12,7 +12,7 @@
         "y": 2.2309999999999994
       },
       "isLocked": false,
-      "linkedName": "GoldenRight1-2"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -25,7 +25,7 @@
       },
       "nextControl": {
         "x": 2.2688214614878826,
-        "y": 0.7015792184655606
+        "y": 0.7015792184655605
       },
       "isLocked": false,
       "linkedName": null

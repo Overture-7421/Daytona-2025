@@ -107,9 +107,9 @@ void RobotContainer::ConfigOperatorBindings() {
     }));
     oprtr.Start().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
-    endToSustain.OnTrue(frc2::cmd::RunOnce([this] {
+    endToInitial.OnTrue(frc2::cmd::RunOnce([this] {
         stateManager.setStatePosition(Positions::EndPosition);
-        frc::SmartDashboard::PutBoolean("EndToSustain", false);
+        frc::SmartDashboard::PutBoolean("EndToInitial", false);
     }));
 
     emergency.OnTrue(frc2::cmd::RunOnce([this] {

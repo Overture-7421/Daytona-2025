@@ -17,10 +17,11 @@
 class StateManager {
 public:
     StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
-            OverXboxController *driver, OverXboxController *oprtr, OverConsole *console, frc2::Trigger *emergency);
+            OverXboxController *driver, OverXboxController *oprtr, OverConsole *console, frc2::Trigger *endToSustain);
 
     Positions getStatePosition();
     frc2::CommandPtr setStatePosition(Positions state);
+    frc2::CommandPtr setStateOverride();
 
 private:
 
@@ -34,7 +35,7 @@ private:
     OverXboxController *oprtr;
     OverConsole *console;
 
-    frc2::Trigger *emergency;
+    frc2::Trigger *endToSustain;
 
     AlignManager *alignManager;
 
@@ -483,7 +484,7 @@ private:
                                     arm->setState(Positions::CoralHold), elevator->setState(Positions::CoralHold),
                                     grabber->setState(Positions::CoralHold), climber->setState(Positions::CoralHold))},
                     {Positions::EndPosition, Positions::InitialPosition, [this]() {
-                        return emergency->Get() /*Boton en la driver station(tipo los offsets)*/;
+                        return endToSustain->Get() /*Boton en la driver station(tipo los offsets)*/;
                     }, frc2::cmd::Sequence(intake->setState(Positions::InitialPosition),
                             arm->setState(Positions::InitialPosition), elevator->setState(Positions::InitialPosition),
                             grabber->setState(Positions::InitialPosition),

@@ -107,9 +107,14 @@ void RobotContainer::ConfigOperatorBindings() {
     }));
     oprtr.Start().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
-    emergency.OnTrue(frc2::cmd::RunOnce([this] {
+    endToSustain.OnTrue(frc2::cmd::RunOnce([this] {
         stateManager.setStatePosition(Positions::EndPosition);
-        frc::SmartDashboard::PutBoolean("Emergency", false);
+        frc::SmartDashboard::PutBoolean("EndToSustain", false);
+    }));
+
+    emergency.OnTrue(frc2::cmd::RunOnce([this] {
+        EmergencyCommand(&stateManager, &intake, &arm, &elevator, &grabber, &climber);
+        frc::SmartDashboard::PutBoolean("EMERGENCY", false);
     }));
 
     //Maybe si lo usamos

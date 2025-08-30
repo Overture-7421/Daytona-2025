@@ -30,6 +30,7 @@
 #include "Commands/L4Command/L4Command.h"
 #include "Commands/AlgaeReefCommand/AlgaeReefCommand.h"
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
+#include "Commands/EmergencyCommand/EmergencyCommand.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -72,7 +73,7 @@ private:
     Intake intake;
 
     AlignManager alignManager {&chassis, &tagLayout};
-    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console, &emergency};
+    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console, &endToSustain};
 
     static AprilTags::Config railCameraLeft();
     static AprilTags::Config climberCameraLeft();
@@ -86,8 +87,12 @@ private:
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 
+    frc2::Trigger endToSustain {[] {
+        return frc::SmartDashboard::GetBoolean("EndToSustain", false);
+    }};
+
     frc2::Trigger emergency {[] {
-        return frc::SmartDashboard::GetBoolean("Emergency", false);
+        return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
     }};
 
     // Maybe si lo usamos

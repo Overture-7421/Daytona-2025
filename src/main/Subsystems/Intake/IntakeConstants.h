@@ -44,6 +44,9 @@ struct IntakeConstants {
                     0_deg}}, {Positions::SustainedPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::EndPosition, {0.0_V,
                     0.0_V, 0.0_deg}}};
 
+    constexpr static const units::volt_t RollersSlow = 1.0_V;
+    constexpr static const units::volt_t CenteringSlow = 1.5_V;
+
     constexpr static const units::degree_t IntakeRangeError = 1_deg;
 
     constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 0_tps;

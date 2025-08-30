@@ -37,8 +37,13 @@ frc2::CommandPtr Intake::setState(Positions state) {
     return frc2::FunctionalCommand([this, state]() {
         setIntakeToAngle(IntakeConstants::IntakePositions.at(state).intake);
     }, [this, state]() {
-        setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
-        setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
+        if (!isCoralIn()) {
+            setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
+            setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
+        } else {
+            setRollersVoltage(IntakeConstants::RollersSlow);
+            setCenteringVoltage(IntakeConstants::CenteringSlow);
+        }
     },[](bool interrupted) {
     },[this, state]() {
         return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);

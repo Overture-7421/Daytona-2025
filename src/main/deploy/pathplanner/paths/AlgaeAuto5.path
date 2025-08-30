@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.468500000000001,
-        "y": 4.60025
+        "x": 5.46975,
+        "y": 5.28275
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.7512500000000015,
-        "y": 4.60025
+        "x": 5.742750000000001,
+        "y": 5.273
       },
       "isLocked": false,
-      "linkedName": "CoralAndAlgae2To3"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.995,
-        "y": 4.5905
+        "x": 7.73175,
+        "y": 5.28275
       },
       "prevControl": {
-        "x": 7.745,
-        "y": 4.5905
+        "x": 7.482032965568891,
+        "y": 5.294641287353863
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "CoralAndAlgae3-4"
+      "linkedName": "AlgaeAuto5-6"
     }
   ],
   "rotationTargets": [],
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 0.5,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "BasicLeave",
+  "folder": "AlgaeAuto",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -119.99999999999999
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

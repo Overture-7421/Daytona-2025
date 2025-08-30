@@ -1,0 +1,232 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight1"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4Left"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Confirm"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight2"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Intake"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "CoralHold"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight3"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4Right"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Confirm"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight4"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Intake"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "CoralHold"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight5"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4Left"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Confirm"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight6"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Intake"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "CoralHold"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight7"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4Right"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Confirm"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight8"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Sustained"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "GoldenRight",
+  "choreoAuto": false
+}

@@ -3,47 +3,49 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.6270000000000007,
-        "y": 5.34125
+        "x": 3.7245000000000004,
+        "y": 5.4777499999999995
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3005832494219556,
-        "y": 5.567201157330582
+        "x": 3.600465265410792,
+        "y": 5.694810785531114
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.354610655737705,
-        "y": 7.207735655737704
+        "x": 2.8275,
+        "y": 7.028
       },
       "prevControl": {
-        "x": 1.5598956723290485,
-        "y": 7.065053975192892
+        "x": 3.004276695296638,
+        "y": 6.851223304703364
+      },
+      "nextControl": {
+        "x": 2.3092803916291826,
+        "y": 7.546219608370811
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.1797500000000003,
+        "y": 7.028
+      },
+      "prevControl": {
+        "x": 1.92075,
+        "y": 7.535
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Chokehold4"
+      "linkedName": "GoldenLeft6-7"
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6151943462897581,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 5.45,
-        "maxAcceleration": 2.8,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -59,10 +61,10 @@
     "rotation": -54.0
   },
   "reversed": false,
-  "folder": "ChokeholdLeft",
+  "folder": "GoldenLeft",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -59.99999999999999
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

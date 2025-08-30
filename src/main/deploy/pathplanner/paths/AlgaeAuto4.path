@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3747500000000001,
-        "y": 7.223
+        "x": 7.73175,
+        "y": 5.3315
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2327499999999993,
-        "y": 6.715999999999999
+        "x": 7.481985960411235,
+        "y": 5.342359306069078
       },
       "isLocked": false,
-      "linkedName": "Chokehold2"
+      "linkedName": "AlgaeAuto3-4"
     },
     {
       "anchor": {
-        "x": 2.984,
-        "y": 5.92625
+        "x": 5.430750000000001,
+        "y": 5.3315
       },
       "prevControl": {
-        "x": 2.557404830848404,
-        "y": 6.206736380647444
+        "x": 5.664749999999999,
+        "y": 5.7215
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,21 +34,21 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 4.5,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 1.0,
-    "rotation": -59.99999999999999
+    "velocity": 0,
+    "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": "ChokeholdLeft",
+  "folder": "AlgaeAuto",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -54.0
+    "rotation": 180.0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

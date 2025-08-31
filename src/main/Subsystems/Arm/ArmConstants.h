@@ -27,10 +27,10 @@ struct ArmConstants {
             0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg}, {Positions::L3BackConfirm,
             0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}};
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 0_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 0_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 1_tr_per_s_sq;
 
-    constexpr static const double ArmRotorToSensor = 0;
+    constexpr static const double ArmRotorToSensor = 68.571428;
 
     constexpr static const double ArmMotorId = 23;
     constexpr static const double ArmCANCoderId = 25;

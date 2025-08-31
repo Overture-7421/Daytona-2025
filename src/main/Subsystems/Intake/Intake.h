@@ -26,6 +26,7 @@ public:
     bool isCoralIn();
 
     frc2::CommandPtr setState(Positions state);
+    frc2::CommandPtr setCharacterization(units::volt_t rollers, units::volt_t centering, units::degree_t intake);
 
     void Periodic() override;
 

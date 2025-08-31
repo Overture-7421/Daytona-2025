@@ -70,6 +70,20 @@ frc2::CommandPtr Elevator::setState(Positions state) {
     {this}).ToPtr();
 }
 
+frc2::CommandPtr Elevator::setCharacterization(units::meter_t position) {
+    return frc2::FunctionalCommand([this, position]() {
+        setTarget(position);
+    },
+    []() {
+    },
+    [](bool interrupted) {
+    },
+    [this, position]() {
+        return isElevatorAtPosition(position);
+    },
+    {this}).ToPtr();
+}
+
 // This method will be called once per scheduler run
 void Elevator::Periodic() {
 

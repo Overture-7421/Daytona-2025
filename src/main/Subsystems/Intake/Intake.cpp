@@ -42,11 +42,29 @@ frc2::CommandPtr Intake::setState(Positions state) {
             setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
         } else {
             setRollersVoltage(IntakeConstants::RollersSlow);
-            setCenteringVoltage(IntakeConstants::CenteringSlow);
+            setCenteringVoltage(IntakeConstants::Centering);
         }
     },[](bool interrupted) {
     },[this, state]() {
         return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
+    },
+    {this}).ToPtr();
+}
+
+frc2::CommandPtr Intake::setCharacterization(units::volt_t rollers, units::volt_t centering, units::degree_t intake) {
+    return frc2::FunctionalCommand([this, intake]() {
+        setIntakeToAngle(intake);
+    }, [this, rollers, centering]() {
+        if (!isCoralIn()) {
+            setRollersVoltage(rollers);
+            setCenteringVoltage(centering);
+        } else {
+            setRollersVoltage(IntakeConstants::RollersSlow);
+            setCenteringVoltage(IntakeConstants::Centering);
+        }
+    },[](bool interrupted) {
+    },[this, intake]() {
+        return isIntakeAtPosition(intake);
     },
     {this}).ToPtr();
 }

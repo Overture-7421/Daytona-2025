@@ -23,6 +23,7 @@ public:
     bool isClimberAtPosition(units::degree_t climberAngle);
 
     frc2::CommandPtr setState(Positions state);
+    frc2::CommandPtr setCharacterization(units::degree_t angle);
 
     void setOffset();
 

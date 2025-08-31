@@ -27,6 +27,7 @@ public:
     bool isAlgaeIn(); //Checks if the grabber is holding an Algae
 
     frc2::CommandPtr setState(Positions state); //simply applies voltage
+    frc2::CommandPtr setCharacterization(units::volt_t voltage);
 
     void Periodic() override;
 

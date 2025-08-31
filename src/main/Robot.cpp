@@ -13,10 +13,11 @@ Robot::Robot() {
             2, "Reefscape2025/motors/front_left_drive"}, {4, "Reefscape2025/motors/front_right_drive"},
 
     {7, "Reefscape2025/motors/back_right_rotation"}, {5, "Reefscape2025/motors/back_left_rotation"}, {1,
-            "Reefscape2025/motors/front_left_rotation"}, {3, "Reefscape2025/motors/front_right_rotation"}, {13,
-            "Reefscape2025/motors/intake"}, {14, "Reefscape2025/motors/elevator"}, {15, "Reefscape2025/motors/arm"}, {
-            18, "Reefscape2025/motors/arm_rotator"}, {20, "Reefscape2025/motors/climber"}, {58,
-            "Reefscape2025/motors/intake_rotator"}, {54, "Reefscape2025/motors/intake"}});
+            "Reefscape2025/motors/front_left_rotation"}, {3, "Reefscape2025/motors/front_right_rotation"}, {26,
+            "Reefscape2025/motors/intake"}, {20, "Reefscape2025/motors/elevator"}, {23,
+            "Reefscape2025/motors/arm_rotator"}, {28, "Reefscape2025/motors/armWheels"}, {99,
+            "Reefscape2025/motors/climber"}, {31, "Reefscape2025/motors/centerWheels"}, {98,
+            "Reefscape2025/motors/rollersWheels"}});
 
     simPigeonManager.Init("Reefscape2025/imu");
     frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(

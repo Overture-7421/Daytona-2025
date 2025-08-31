@@ -26,13 +26,28 @@ frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
     return frc2::FunctionalCommand([this, state, heading]() {
         if (heading == Heading::Front) {
             setToAngle(ArmConstants::ArmFront.at(state));
-        } else if (heading == Heading::Back) {
+        } else {
             setToAngle(ArmConstants::ArmBack.at(state));
         }
     }, []() {
     }, [](bool interupted) {
-    }, [this, state]() {
-        return isArmAtPosition(ArmConstants::ArmBack.at(state));
+    }, [this, state, heading]() {
+        if (heading == Heading::Front) {
+            return isArmAtPosition(ArmConstants::ArmFront.at(state));
+        } else {
+            return isArmAtPosition(ArmConstants::ArmBack.at(state));
+        }
+    },
+    {this}).ToPtr();
+}
+
+frc2::CommandPtr Arm::setCharacterization(units::degree_t angle) {
+    return frc2::FunctionalCommand([this, angle]() {
+        setToAngle(angle);
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, angle]() {
+        return isArmAtPosition(angle);
     },
     {this}).ToPtr();
 }

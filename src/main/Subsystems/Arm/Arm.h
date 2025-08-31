@@ -19,6 +19,7 @@ public:
     units::degree_t getCurrentAngle();
     frc2::CommandPtr setState(Positions state, Heading heading);
     frc2::CommandPtr setState(Positions state);
+    frc2::CommandPtr setCharacterization(units::degree_t angle);
 
     void Periodic() override;
 

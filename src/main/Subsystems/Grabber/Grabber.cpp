@@ -43,6 +43,20 @@ frc2::CommandPtr Grabber::setState(Positions state) {
     {this}).ToPtr();
 }
 
+frc2::CommandPtr Grabber::setCharacterization(units::volt_t voltage) {
+    return frc2::FunctionalCommand([]() {
+    },
+    [this, voltage]() {
+        setMotorVoltage(voltage);
+    },
+    [](bool interrupted) {
+    },
+    []() {
+        return false;
+    },
+    {this}).ToPtr();
+}
+
 void Grabber::Periodic() {
 
     frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);

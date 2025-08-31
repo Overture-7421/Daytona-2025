@@ -29,7 +29,7 @@ struct IntakeConstants {
             Positions::AlgaeHighReef, {0.0_V, 0.0_V, 0_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 0_deg}}, {
             Positions::CoralAndAlgae, {0.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::CoralHold, {0.0_V, 0.0_V, 0_deg}}, //To be defined
-            {Positions::InitialPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::Intake, {3.0_V, 4.0_V, 80_deg}}, //To be defined
+            {Positions::InitialPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::Intake, {3.0_V, 0.0_V, 80_deg}}, //To be defined
             {Positions::IntakeCoralStation, {3.0_V, 4.0_V, 10_deg}}, //To be defined
             {Positions::L1Confirm, {-2.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::L1Position, {0.0_V, 0.0_V, 30_deg}}, //To be defined
@@ -45,14 +45,14 @@ struct IntakeConstants {
                     0.0_V, 0.0_deg}}};
 
     constexpr static const units::volt_t RollersSlow = 1.0_V;
-    constexpr static const units::volt_t CenteringSlow = 1.5_V;
+    constexpr static const units::volt_t Centering = 3.0_V;
 
     constexpr static const units::degree_t IntakeRangeError = 1_deg;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 0_tps;
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 0_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 1_tps;
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 1_tr_per_s_sq;
 
-    constexpr static const double IntakeRotorToSensor = 0;
+    constexpr static const double IntakeRotorToSensor = 86.495726;
 
     constexpr static const double IntakeMotorId = 26;
     constexpr static const double IntakeCANCoderId = 27;

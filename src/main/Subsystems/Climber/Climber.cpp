@@ -33,6 +33,19 @@ frc2::CommandPtr Climber::setState(Positions climberState) {
     {this}).ToPtr();
 }
 
+frc2::CommandPtr Climber::setCharacterization(units::degree_t angle) {
+    return frc2::FunctionalCommand([this, angle]() {
+        setTarget(angle);
+    }, [this, angle]() {
+        setTarget(angle + offset);
+    }, [this](bool interupted) {
+        offset = 0.0_deg;
+    }, [this, angle]() {
+        return isClimberAtPosition(angle);
+    },
+    {this}).ToPtr();
+}
+
 void Climber::setOffset() {
     offset -= 1.0_deg;
 }

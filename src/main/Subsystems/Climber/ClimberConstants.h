@@ -21,11 +21,11 @@ struct ClimberConstants {
                     Positions::ProcessorConfirm, 0.0_deg}, {Positions::SustainedPosition, 0.0_deg}, {
                     Positions::EndPosition, 0.0_deg}};
 
-    constexpr static const units::degrees_per_second_t ClimberVelocity = 0.0_deg_per_s;
-    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 0.0_deg_per_s_sq;
+    constexpr static const units::degrees_per_second_t ClimberVelocity = 1.0_deg_per_s;
+    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 1.0_deg_per_s_sq;
 
     constexpr static const double ClimberEncoderOffset = 0;
-    constexpr static const double ClimberSensorToMechanism = 0;
+    constexpr static const double ClimberSensorToMechanism = 1;
 
     constexpr static const double ClimberMotorId = 22;
 

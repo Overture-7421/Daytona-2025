@@ -11,5 +11,5 @@ struct Transitions {
     const Positions currentState;
     const Positions nextState;
     std::function<bool()> check;
-    const frc2::CommandPtr &commandPtr;
+    std::function<frc2::CommandPtr()> commandPtr;
 };

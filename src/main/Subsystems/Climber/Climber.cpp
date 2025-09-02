@@ -50,6 +50,16 @@ void Climber::setOffset() {
     offset -= 1.0_deg;
 }
 
+void Climber::setServoAngle(units::degree_t angle) { //Conditional that allows us to invert the right servo if needed.
+    servo.Set(angle.value());
+}
+
+frc2::CommandPtr Climber::servoAngleCommand(units::degree_t angle) {
+    return this->RunOnce([this, angle] {
+        this->setServoAngle(angle);
+    });
+}
+
 void Climber::Periodic() {
 
     units::volt_t motorOutput = units::volt_t(climberPID.Calculate(getCurrentClimberAngle(), target));

@@ -26,9 +26,10 @@ frc2::CommandPtr StateManager::setStatePosition(Positions state) {
         for (Transitions transitions : transitionsMap) {
             if (transitions.currentState == state && transitions.check()) {
                 this->state = state;
+                this->commandScheduled = transitions.commandPtr();
             }
         }
-    });
+    }).AndThen(std::move(commandScheduled)).AndThen([this](){commandScheduled = frc2::cmd::None();});
 
 }
 

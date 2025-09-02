@@ -54,7 +54,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKG(0.37).WithKS(0.5).WithKP(20); //KV1.7 P 14.1
+        left.PIDConfigs.WithKG(0.37).WithKS(0.5).WithKP(20); //G=0.37   S=0.5  P=20
         left.CurrentLimit = 25_A;
         left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 40_A;

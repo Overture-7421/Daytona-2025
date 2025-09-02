@@ -39,6 +39,8 @@ private:
 
     AlignManager *alignManager;
 
+    frc2::CommandPtr commandScheduled = frc2::cmd::None();
+
     Positions state = Positions::InitialPosition;
     //No se define en que estado empieza, ahorita vemos eso
     std::vector<Transitions> transitionsMap = {

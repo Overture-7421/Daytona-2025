@@ -50,48 +50,56 @@ private:
     }, [this]() {
         return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
                 arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
-                grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition));
+                grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition),
+                climber->servoAngleCommand(ClimberConstants::ClosedServo));
     }}, {Positions::InitialPosition, Positions::L2Front, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {
         return frc2::cmd::Parallel(
 
-        frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front), elevator->setState(Positions::L2Front)),
-                intake->setState(Positions::L2Front), grabber->setState(Positions::L2Front),
-                climber->setState(Positions::L2Front));
+                frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front),
+                        elevator->setState(Positions::L2Front), climber->setState(Positions::L2Front),
+                        climber->servoAngleCommand(ClimberConstants::ClosedServo)),
+                intake->setState(Positions::L2Front), grabber->setState(Positions::L2Front));
     }}, {Positions::InitialPosition, Positions::L3Front, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {
         return frc2::cmd::Parallel(arm->setState(Positions::L3Front, Heading::Front),
                 elevator->setState(Positions::L3Front), intake->setState(Positions::L3Front),
-                grabber->setState(Positions::L3Front), climber->setState(Positions::L3Front));
+                grabber->setState(Positions::L3Front)), frc2::cmd::Sequence(climber->setState(Positions::L3Front),
+                climber->servoAngleCommand(ClimberConstants::ClosedServo));
     }}, {Positions::InitialPosition, Positions::L4Front, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {
-        return frc2::cmd::Parallel(
-
-        arm->setState(Positions::L4Front, Heading::Front), elevator->setState(Positions::L4Front),
-                intake->setState(Positions::L4Front), grabber->setState(Positions::L4Front),
-                climber->setState(Positions::L4Front));
+        return frc2::cmd::Parallel(arm->setState(Positions::L4Front, Heading::Front),
+                elevator->setState(Positions::L4Front), intake->setState(Positions::L4Front),
+                grabber->setState(Positions::L4Front),
+                frc2::cmd::Sequence(climber->setState(Positions::L4Front),
+                        climber->servoAngleCommand(ClimberConstants::ClosedServo)));
     }}, {Positions::InitialPosition, Positions::L2Back, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {
         return frc2::cmd::Parallel(
                 frc2::cmd::Sequence(arm->setState(Positions::L2Back, Heading::Back),
-                        elevator->setState(Positions::L2Back)), intake->setState(Positions::L2Back),
-                grabber->setState(Positions::L2Back), climber->setState(Positions::L2Back));
+                        elevator->setState(Positions::L2Back), climber->setState(Positions::L2Back),
+                        climber->servoAngleCommand(ClimberConstants::ClosedServo)), intake->setState(Positions::L2Back),
+                grabber->setState(Positions::L2Back));
     }}, {Positions::InitialPosition, Positions::L3Back, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {
         return frc2::cmd::Parallel(arm->setState(Positions::L3Back, Heading::Back),
                 elevator->setState(Positions::L3Back), intake->setState(Positions::L3Back),
-                grabber->setState(Positions::L3Back), climber->setState(Positions::L3Back));
+                grabber->setState(Positions::L3Back),
+                frc2::cmd::Sequence(climber->setState(Positions::L3Back),
+                        climber->servoAngleCommand(ClimberConstants::ClosedServo)));
     }}, {Positions::InitialPosition, Positions::L4Back, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {
         return frc2::cmd::Parallel(arm->setState(Positions::L4Back, Heading::Back),
                 elevator->setState(Positions::L4Back), intake->setState(Positions::L4Back),
-                grabber->setState(Positions::L4Back), climber->setState(Positions::L4Back));
+                grabber->setState(Positions::L4Back),
+                frc2::cmd::Sequence(climber->setState(Positions::L4Back),
+                        climber->servoAngleCommand(ClimberConstants::ClosedServo)));
     }},
 
     {Positions::SustainedPosition, Positions::Intake, [this]() {

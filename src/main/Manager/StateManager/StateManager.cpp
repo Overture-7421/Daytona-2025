@@ -29,7 +29,9 @@ frc2::CommandPtr StateManager::setStatePosition(Positions state) {
                 this->commandScheduled = transitions.commandPtr();
             }
         }
-    }).AndThen(std::move(commandScheduled)).AndThen([this](){commandScheduled = frc2::cmd::None();});
+    }).AndThen(std::move(commandScheduled)).AndThen([this]() {
+        commandScheduled = frc2::cmd::None();
+    });
 
 }
 

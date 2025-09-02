@@ -11,6 +11,7 @@
 #include <frc/DutyCycleEncoder.h>
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <frc/controller/ProfiledPIDController.h>
+#include <frc/Servo.h>
 
 #include "Subsystems/Climber/ClimberConstants.h"
 
@@ -27,6 +28,9 @@ public:
 
     void setOffset();
 
+    void setServoAngle(units::degree_t angle);
+    frc2::CommandPtr servoAngleCommand(units::degree_t angle);
+
     void Periodic() override;
 
 private:
@@ -41,5 +45,7 @@ private:
 
     frc::ProfiledPIDController<units::degree> climberPID {0.0, 0.0, 0.0, {ClimberConstants::ClimberVelocity,
             ClimberConstants::ClimberAcceleration}};
+
+    frc::Servo servo {1}; // Not defined yet
 
 };

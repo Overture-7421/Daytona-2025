@@ -8,6 +8,9 @@ struct ClimberConstants {
 
     constexpr static const units::degree_t ClimberRangeError = 0.0_deg;
 
+    constexpr static const units::degree_t ClosedServo = 10_deg; // Not defined
+    constexpr static const units::degree_t OpenedServo = 0.0_deg; //Not defined
+
     inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 0.0_deg}, {
             Positions::AlgaeHold, 0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {
             Positions::CoralAndAlgae, 0.0_deg}, {Positions::CoralHold, 0.0_deg}, {Positions::InitialPosition, 0.0_deg},

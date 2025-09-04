@@ -31,6 +31,7 @@
 #include "Commands/AlgaeReefCommand/AlgaeReefCommand.h"
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/EmergencyCommand/EmergencyCommand.h"
+#include "Commands/CharacterizationCommand/CharacterizationCommand.h"
 
 class RobotContainer: public OverContainer {
 public:

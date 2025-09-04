@@ -195,17 +195,19 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
-    test.A().WhileTrue(arm.setCharacterization(90.0_deg));
+    test.A().WhileTrue(arm.setCharacterization(-90.0_deg));
     test.A().OnFalse(arm.setCharacterization(0.0_deg));
 
-    test.B().WhileTrue(elevator.setCharacterization(50.0_m));
-    test.B().OnFalse(elevator.setCharacterization(0.0_m));
+    //test.B().WhileTrue(elevator.setCharacterization(1.00_m));
+    //test.B().OnFalse(elevator.setCharacterization(0.05_m));
 
-    test.X().WhileTrue(intake.setCharacterization(1.0_V, 1.0_V, 45.0_deg));
-    test.X().OnFalse(intake.setCharacterization(0.0_V, 0.0_V, 0.0_deg));
+    //test.X().WhileTrue(intake.setCharacterization(1.0_V, 1.0_V, 45.0_deg));
+    //test.X().OnFalse(intake.setCharacterization(0.0_V, 0.0_V, 30_deg));
 
-    test.Y().WhileTrue(grabber.setCharacterization(5_V));
-    test.Y().OnFalse(grabber.setCharacterization(0.0_V));
+    // test.Y().WhileTrue(grabber.setCharacterization(5_V));
+    // test.Y().OnFalse(grabber.setCharacterization(0.0_V));
+
+    //test.Y().WhileTrue(CharacterizationCommand(&intake, &arm, &elevator, &grabber, &climber));
 
     //test.Y().WhileTrue(climber.setCharacterization(20.0_deg));
     //test.Y().OnFalse(climber.setCharacterization(0.0_deg));

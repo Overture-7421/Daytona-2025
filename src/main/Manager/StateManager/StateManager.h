@@ -66,8 +66,9 @@ private:
     }, [this]() {
         return frc2::cmd::Parallel(arm->setState(Positions::L3Front, Heading::Front),
                 elevator->setState(Positions::L3Front), intake->setState(Positions::L3Front),
-                grabber->setState(Positions::L3Front)), frc2::cmd::Sequence(climber->setState(Positions::L3Front),
-                climber->servoAngleCommand(ClimberConstants::ClosedServo));
+                grabber->setState(Positions::L3Front),
+                frc2::cmd::Sequence(climber->setState(Positions::L3Front),
+                        climber->servoAngleCommand(ClimberConstants::ClosedServo)));
     }}, {Positions::InitialPosition, Positions::L4Front, [this]() {
         return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
     }, [this]() {

@@ -55,7 +55,7 @@ void Climber::setServoAngle(units::degree_t angle) { //Conditional that allows u
 }
 
 frc2::CommandPtr Climber::servoAngleCommand(units::degree_t angle) {
-    return this->RunOnce([this, angle] {
+    return frc2::cmd::RunOnce([this, angle] {
         this->setServoAngle(angle);
     });
 }
@@ -64,4 +64,7 @@ void Climber::Periodic() {
 
     units::volt_t motorOutput = units::volt_t(climberPID.Calculate(getCurrentClimberAngle(), target));
     climberMotor.SetControl(climberVoltage.WithOutput(motorOutput).WithEnableFOC(true));
+
+    frc::SmartDashboard::PutNumber("Climber/CurrentThroughbore", getCurrentClimberAngle().value());
+
 }

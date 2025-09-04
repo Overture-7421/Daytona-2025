@@ -6,7 +6,7 @@
 
 struct ClimberConstants {
 
-    constexpr static const units::degree_t ClimberRangeError = 0.0_deg;
+    constexpr static const units::degree_t ClimberRangeError = 1.0_deg;
 
     constexpr static const units::degree_t ClosedServo = 10_deg; // Not defined
     constexpr static const units::degree_t OpenedServo = 0.0_deg; //Not defined

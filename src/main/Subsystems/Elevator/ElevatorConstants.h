@@ -25,8 +25,8 @@ struct ElevatorConstants {
             Positions::ProcessorPosition, 0.48_m}, {Positions::ProcessorConfirm, 0.48_m}, {Positions::SustainedPosition,
             0.0_m}, {Positions::EndPosition, 0.0_m}};
 
-    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 100.0_tps; //The velocity at which the elevator travels
-    constexpr static const units::turns_per_second_squared_t ElevatorUpperCruiseAcceleration = 65_tr_per_s_sq; //The acceleration the elevator gains when going up
+    constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 120.0_tps; //The velocity at which the elevator travels
+    constexpr static const units::turns_per_second_squared_t ElevatorUpperCruiseAcceleration = 75_tr_per_s_sq; //The acceleration the elevator gains when going up
     constexpr static const units::turns_per_second_squared_t ElevatorLowerCruiseAcceleration = 20_tr_per_s_sq; //The acceleration the elevator gains when going down
 
     constexpr static const double LowerSensorToMechanism = 5.6; //The gear ratio there exists between the encoder to the actual mechanism.
@@ -39,7 +39,7 @@ struct ElevatorConstants {
         right.NeutralMode = ControllerNeutralMode::Brake;
         right.Inverted = true;
         right.useFOC = true;
-        right.CurrentLimit = 20_A;
+        right.CurrentLimit = 25_A;
         right.StatorCurrentLimit = 120_A;
         right.TriggerThreshold = 40_A;
         right.TriggerThresholdTime = 0.5_s;
@@ -54,7 +54,7 @@ struct ElevatorConstants {
         left.NeutralMode = ControllerNeutralMode::Brake;
         left.Inverted = false;
         left.useFOC = true;
-        left.PIDConfigs.WithKG(0.37).WithKS(0.5).WithKP(20); //G=0.37   S=0.5  P=20
+        left.PIDConfigs.WithKG(0.18).WithKS(0.4).WithKP(30); //G=0.37   S=0.5  P=20
         left.CurrentLimit = 25_A;
         left.StatorCurrentLimit = 120_A;
         left.TriggerThreshold = 40_A;

@@ -27,8 +27,8 @@ struct ArmConstants {
             0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg}, {Positions::L3BackConfirm,
             0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}};
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 1_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 1_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 15_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 11_tr_per_s_sq;
 
     constexpr static const double ArmRotorToSensor = 68.571428;
 
@@ -48,7 +48,7 @@ struct ArmConstants {
         armConfig.TriggerThreshold = 40_A;
         armConfig.TriggerThresholdTime = 0.5_s;
         armConfig.PIDConfigs.GravityType = 1;
-        armConfig.PIDConfigs.WithKG(0.0).WithKV(0.0).WithKP(0.0);
+        armConfig.PIDConfigs.WithKG(0.32).WithKV(1).WithKP(110);
 
         return armConfig;
     }
@@ -56,7 +56,8 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = 0.0_tr;
+        armCANConfig.Offset = -0.04443359375_tr;
+        armCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
 
         return armCANConfig;
     }

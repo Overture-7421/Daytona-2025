@@ -72,7 +72,7 @@ struct IntakeConstants {
         intakeConfig.StatorCurrentLimit = 120_A;
         intakeConfig.TriggerThreshold = 40_A;
         intakeConfig.TriggerThresholdTime = 0.5_s;
-        intakeConfig.PIDConfigs.GravityType = 1;
+        //intakeConfig.PIDConfigs.GravityType = 1;
         intakeConfig.PIDConfigs.WithKG(0.0).WithKV(0.0).WithKP(0.0);
 
         return intakeConfig;
@@ -81,7 +81,8 @@ struct IntakeConstants {
     constexpr static const CanCoderConfig IntakeCANConfig() {
         CanCoderConfig intakeCANConfig;
         intakeCANConfig.CanCoderId = IntakeCANCoderId;
-        intakeCANConfig.Offset = 0.0_tr;
+        intakeCANConfig.Offset = 0.4375_tr;
+        intakeCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
 
         return intakeCANConfig;
     }
@@ -92,8 +93,8 @@ struct IntakeConstants {
         rollersConfig.NeutralMode = ControllerNeutralMode::Brake;
         rollersConfig.Inverted = true;
 
-        rollersConfig.CurrentLimit = 25_A;
-        rollersConfig.StatorCurrentLimit = 120_A;
+        rollersConfig.CurrentLimit = 30_A;
+        rollersConfig.StatorCurrentLimit = 80_A;
         rollersConfig.TriggerThreshold = 40_A;
         rollersConfig.TriggerThresholdTime = 0.5_s;
         rollersConfig.ClosedLoopRampRate = 0.0_s;
@@ -108,8 +109,8 @@ struct IntakeConstants {
         centeringConfig.NeutralMode = ControllerNeutralMode::Brake;
         centeringConfig.Inverted = true;
 
-        centeringConfig.CurrentLimit = 25_A;
-        centeringConfig.StatorCurrentLimit = 120_A;
+        centeringConfig.CurrentLimit = 30_A;
+        centeringConfig.StatorCurrentLimit = 80_A;
         centeringConfig.TriggerThreshold = 40_A;
         centeringConfig.TriggerThresholdTime = 0.5_s;
         centeringConfig.ClosedLoopRampRate = 0.0_s;

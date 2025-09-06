@@ -74,7 +74,8 @@ private:
 	Intake intake;
 
 	AlignManager alignManager{ &chassis, &tagLayout };
-	StateManager stateManager{ &intake, &arm, &elevator, &grabber, &climber, &alignManager, &driver, &oprtr, &console, &endToInitial };
+	StateManager stateManager{ &intake, &arm, &elevator, &grabber, &climber, &alignManager, &driver, &oprtr, &console,
+			&endToInitial };
 
 	static AprilTags::Config railCameraLeft();
 	static AprilTags::Config climberCameraLeft();
@@ -94,6 +95,11 @@ private:
 
 	frc2::Trigger emergency{ [] {
 		return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
+	} };
+
+
+	frc2::Trigger startCommands{ [this]() {
+		return stateManager.getExecute();
 	} };
 
 	// Maybe si lo usamos

@@ -5,6 +5,8 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/Commands.h>
 #include <OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h>
 #include <OvertureLib/Utils/Logging/Logging.h>
 #include <frc2/command/CommandPtr.h>
@@ -16,25 +18,25 @@
 #include "Subsystems/Grabber/GrabberConstants.h"
 #include <ctre/phoenix6/configs/Configs.hpp>
 
-class Grabber: public frc2::SubsystemBase {
+class Grabber : public frc2::SubsystemBase {
 public:
-    Grabber();
+	Grabber();
 
-    void setMotorVoltage(units::volt_t voltage); //Provides vltage to the motor
-    double getVoltage(); //Retrieves the current voltage
+	void setMotorVoltage(units::volt_t voltage); //Provides vltage to the motor
+	double getVoltage(); //Retrieves the current voltage
 
-    bool isCoralIn(); //Checks if the grabber is holding a Coral
-    bool isAlgaeIn(); //Checks if the grabber is holding an Algae
+	bool isCoralIn(); //Checks if the grabber is holding a Coral
+	bool isAlgaeIn(); //Checks if the grabber is holding an Algae
 
-    frc2::CommandPtr setState(Positions state); //simply applies voltage
-    frc2::CommandPtr setCharacterization(units::volt_t voltage);
+	frc2::CommandPtr setState(Positions state); //simply applies voltage
+	frc2::CommandPtr setCharacterization(units::volt_t voltage);
 
-    void Periodic() override;
+	void Periodic() override;
 
 private:
 
-    VoltageOut grabberVoltage {0_V};
+	VoltageOut grabberVoltage{ 0_V };
 
-    OverTalonFX grabberMotor {GrabberConstants::GrabberConfig(), "rio"};
+	OverTalonFX grabberMotor{ GrabberConstants::GrabberConfig(), "rio" };
 
 };

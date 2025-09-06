@@ -4,62 +4,45 @@
 
 #include "Grabber.h"
 
-Grabber::Grabber() {
-}
+Grabber::Grabber() {}
 
 //Gives the desired voltage to the grabber
 void Grabber::setMotorVoltage(units::volt_t voltage) {
-    grabberMotor.SetControl(grabberVoltage.WithOutput(voltage).WithEnableFOC(true));
+	grabberMotor.SetControl(grabberVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
 //Checks how much Voltage is 
 double Grabber::getVoltage() {
-    return grabberMotor.GetMotorVoltage().GetValueAsDouble();
+	return grabberMotor.GetMotorVoltage().GetValueAsDouble();
 }
 
 bool Grabber::isCoralIn() {
 
-    return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::CoralDetectionCurrent;
+	return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::CoralDetectionCurrent;
 
 }
 
 bool Grabber::isAlgaeIn() {
 
-    return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::AlgaeDetectionCurrent;
+	return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::AlgaeDetectionCurrent;
 
 }
 
 frc2::CommandPtr Grabber::setState(Positions state) {
-    return frc2::FunctionalCommand([]() {
-    },
-    [this, state]() {
-        setMotorVoltage(GrabberConstants::GrabberVoltage.at(state));
-    },
-    [](bool interrupted) {
-    },
-    []() {
-        return false;
-    },
-    {this}).ToPtr();
+	return frc2::cmd::RunOnce([this, state]() {
+		setMotorVoltage(GrabberConstants::GrabberVoltage.at(state));
+	});
 }
 
 frc2::CommandPtr Grabber::setCharacterization(units::volt_t voltage) {
-    return frc2::FunctionalCommand([]() {
-    },
-    [this, voltage]() {
-        setMotorVoltage(voltage);
-    },
-    [](bool interrupted) {
-    },
-    []() {
-        return false;
-    },
-    {this}).ToPtr();
+	return frc2::cmd::RunOnce([this, voltage]() {
+		setMotorVoltage(voltage);
+	});
 }
 
 void Grabber::Periodic() {
 
-    frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);
-    frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
+	frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);
+	frc::SmartDashboard::PutBoolean("Grabber/CoralIn", isCoralIn());
 
 }

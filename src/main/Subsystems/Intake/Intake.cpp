@@ -22,7 +22,8 @@ void Intake::setIntakeToAngle(units::degree_t intakeAngle) {
 }
 
 bool Intake::isIntakeAtPosition(units::degree_t intakeAngle) {
-	units::degree_t intakeError = intakeMotor.GetPosition().GetValue();
+	units::degree_t intakeError = intakeAngle - intakeMotor.GetPosition().GetValue();
+	frc::SmartDashboard::PutNumber("Intake/IntakeError", intakeError.value());
 	return (units::math::abs(intakeError) < IntakeConstants::IntakeRangeError);
 }
 
@@ -51,6 +52,7 @@ frc2::CommandPtr Intake::setState(Positions state) {
 		}
 	}, [](bool interrupted) {
 	}, [this, state]() {
+		frc::SmartDashboard::PutBoolean("Intake/AtPosition", isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
 		return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
 	},
 	{ this }).ToPtr();
@@ -66,12 +68,14 @@ frc2::CommandPtr Intake::setCharacterization(units::volt_t rollers, units::volt_
 
 	}, [](bool interrupted) {
 	}, [this, intake]() {
+		frc::SmartDashboard::PutBoolean("Intake/AtPosition", isIntakeAtPosition(intake));
 		return isIntakeAtPosition(intake);
 	},
 	{ this }).ToPtr();
 }
 
 void Intake::Periodic() {
-	frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
+	frc::SmartDashboard::PutNumber("Intake/CurrentIntakeAngle", intakeMotor.GetPosition().GetValueAsDouble() * 360);
+	frc::SmartDashboard::PutBoolean("Intake/CoralIn", isCoralIn());
 
 }

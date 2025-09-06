@@ -6,48 +6,48 @@
 
 struct ClimberConstants {
 
-    constexpr static const units::degree_t ClimberRangeError = 1.0_deg;
+	constexpr static const units::degree_t ClimberRangeError = 3.0_deg;
 
-    constexpr static const units::degree_t ClosedServo = 122_deg; // Not defined
-    constexpr static const units::degree_t OpenedServo = 122_deg; //Not defined
+	constexpr static const units::degree_t ClosedServo = 122_deg; // Not defined
+	constexpr static const units::degree_t OpenedServo = 122_deg; //Not defined
 
-    inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 122.0_deg}, {
-            Positions::AlgaeHold, 122.0_deg}, {Positions::AlgaeHighReef, 122.0_deg},
-            {Positions::AlgaeLowReef, 122.0_deg}, {Positions::CoralAndAlgae, 122.0_deg}, {Positions::CoralHold,
-                    122.0_deg}, {Positions::InitialPosition, 122.0_deg}, {Positions::Intake, 122.0_deg}, {
-                    Positions::IntakeCoralStation, 122.0_deg}, {Positions::L1Confirm, 122.0_deg}, {
-                    Positions::L1Position, 122.0_deg}, {Positions::L2Back, 122.0_deg}, {Positions::L2BackConfirm,
-                    122.0_deg}, {Positions::L2Front, 122.0_deg}, {Positions::L2FrontConfirm, 122.0_deg}, {
-                    Positions::L3Back, 122.0_deg}, {Positions::L3BackConfirm, 122.0_deg},
-            {Positions::L3Front, 122.0_deg}, {Positions::L3FrontConfirm, 122.0_deg}, {Positions::L4Back, 122.0_deg}, {
-                    Positions::L4BackConfirm, 122.0_deg}, {Positions::L4Front, 122.0_deg}, {Positions::L4FrontConfirm,
-                    122.0_deg}, {Positions::NetPosition, 122.0_deg}, {Positions::NetConfirm, 122.0_deg}, {
-                    Positions::ProcessorPosition, 122.0_deg}, {Positions::ProcessorConfirm, 122.0_deg}, {
-                    Positions::SustainedPosition, 122.0_deg}, {Positions::EndPosition, 122.0_deg}};
+	inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 122.0_deg}, {
+			Positions::AlgaeHold, 122.0_deg}, {Positions::AlgaeHighReef, 122.0_deg},
+			{Positions::AlgaeLowReef, 122.0_deg}, {Positions::CoralAndAlgae, 122.0_deg}, {Positions::CoralHold,
+					122.0_deg}, {Positions::InitialPosition, 122.0_deg}, {Positions::Intake, 122.0_deg}, {
+					Positions::IntakeCoralStation, 122.0_deg}, {Positions::L1Confirm, 122.0_deg}, {
+					Positions::L1Position, 122.0_deg}, {Positions::L2Back, 122.0_deg}, {Positions::L2BackConfirm,
+					122.0_deg}, {Positions::L2Front, 122.0_deg}, {Positions::L2FrontConfirm, 122.0_deg}, {
+					Positions::L3Back, 122.0_deg}, {Positions::L3BackConfirm, 122.0_deg},
+			{Positions::L3Front, 122.0_deg}, {Positions::L3FrontConfirm, 122.0_deg}, {Positions::L4Back, 122.0_deg}, {
+					Positions::L4BackConfirm, 122.0_deg}, {Positions::L4Front, 122.0_deg}, {Positions::L4FrontConfirm,
+					122.0_deg}, {Positions::NetPosition, 122.0_deg}, {Positions::NetConfirm, 122.0_deg}, {
+					Positions::ProcessorPosition, 122.0_deg}, {Positions::ProcessorConfirm, 122.0_deg}, {
+					Positions::SustainedPosition, 122.0_deg}, {Positions::EndPosition, 122.0_deg} };
 
-    constexpr static const units::degrees_per_second_t ClimberVelocity = 60.0_deg_per_s;
-    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 30.0_deg_per_s_sq;
+	constexpr static const units::degrees_per_second_t ClimberVelocity = 60.0_deg_per_s;
+	constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 30.0_deg_per_s_sq;
 
-    constexpr static const double ClimberEncoderOffset = 0.0;
-    constexpr static const double ClimberSensorToMechanism = 64;
+	constexpr static const double ClimberEncoderOffset = 0.0;
+	constexpr static const double ClimberSensorToMechanism = 64;
 
-    constexpr static const double ClimberMotorId = 22;
+	constexpr static const double ClimberMotorId = 22;
 
-    constexpr static const OverTalonFXConfig ClimberConfig() {
-        OverTalonFXConfig climberConfig;
-        climberConfig.MotorId = ClimberMotorId;
-        climberConfig.NeutralMode = ControllerNeutralMode::Brake;
-        climberConfig.Inverted = true;
-        climberConfig.useFOC = true;
+	constexpr static const OverTalonFXConfig ClimberConfig() {
+		OverTalonFXConfig climberConfig;
+		climberConfig.MotorId = ClimberMotorId;
+		climberConfig.NeutralMode = ControllerNeutralMode::Brake;
+		climberConfig.Inverted = true;
+		climberConfig.useFOC = true;
 
-        climberConfig.CurrentLimit = 20_A;
-        climberConfig.StatorCurrentLimit = 120_A;
-        climberConfig.TriggerThreshold = 30_A;
-        climberConfig.TriggerThresholdTime = 0.5_s;
-        climberConfig.ClosedLoopRampRate = 0.05_s;
-        climberConfig.PIDConfigs.WithKP(0.0);
+		climberConfig.CurrentLimit = 20_A;
+		climberConfig.StatorCurrentLimit = 120_A;
+		climberConfig.TriggerThreshold = 30_A;
+		climberConfig.TriggerThresholdTime = 0.5_s;
+		climberConfig.ClosedLoopRampRate = 0.05_s;
+		climberConfig.PIDConfigs.WithKP(0.0);
 
-        return climberConfig;
-    }
+		return climberConfig;
+	}
 
 };

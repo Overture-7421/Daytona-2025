@@ -18,6 +18,7 @@ Elevator::Elevator() {
 		ElevatorConstants::ElevatorUpperCruiseAcceleration, 0.0_tr_per_s_cu);
 
 	frc::SmartDashboard::PutNumber("Elevator/TargetPosition", 0.0);
+	frc::SmartDashboard::PutBoolean("Elevator/AtPosition", false);
 
 }
 
@@ -68,6 +69,7 @@ frc2::CommandPtr Elevator::setState(Positions state) {
 	[](bool interrupted) {
 	},
 	[this, state]() {
+		frc::SmartDashboard::PutBoolean("Elevator/AtPosition", isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state)));
 		return isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state));
 	},
 		{ this }).ToPtr();
@@ -82,6 +84,7 @@ frc2::CommandPtr Elevator::setCharacterization(units::meter_t position) {
 	[](bool interrupted) {
 	},
 	[this, position]() {
+		frc::SmartDashboard::PutBoolean("Elevator/AtPosition", isElevatorAtPosition(position));
 		return isElevatorAtPosition(position);
 	},
 		{ this }).ToPtr();

@@ -19,16 +19,22 @@
 
 class StateManager : public frc2::SubsystemBase {
 public:
-	StateManager(Intake* intake, Arm* arm, Elevator* elevator, Grabber* grabber, Climber* climber, AlignManager* alignManager,
-		OverXboxController* driver, OverXboxController* oprtr, OverConsole* console, frc2::Trigger* endToInitial);
+	StateManager(Intake* intake, Arm* arm, Elevator* elevator, Grabber* grabber, Climber* climber,
+		AlignManager* alignManager, OverXboxController* driver, OverXboxController* oprtr, OverConsole* console,
+		frc2::Trigger* endToInitial);
 
 	void Periodic() override;
 
 	Positions getStatePosition();
-	frc2::CommandPtr setStatePosition(Positions state);
+
+	bool getExecute();
+	bool setExecute(bool value);
+	frc2::CommandPtr setStatePosition();
 	frc2::CommandPtr setStateOverride();
 
 private:
+	bool execute = false;
+	int test = 0;
 
 	Intake* intake = nullptr;
 	Arm* arm = nullptr;
@@ -44,60 +50,29 @@ private:
 
 	AlignManager* alignManager = nullptr;
 
+	int currentTransitionIndex = -1;
+
 	Positions state = Positions::InitialPosition;
 	//No se define en que estado empieza, ahorita vemos eso
 	std::vector<Transitions> transitionsMap = {
 
 	{Positions::InitialPosition, Positions::SustainedPosition, [this]() {
-		return frc::DriverStation::IsEnabled();
+		return frc::DriverStation::IsEnabled() && !frc::DriverStation::IsAutonomous();
 	}, [this]() {
 		return frc2::cmd::Sequence(intake->setState(Positions::InitialPosition),
 				elevator->setState(Positions::SustainedPosition), arm->setState(Positions::SustainedPosition),
 				grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition),
 				climber->servoAngleCommand(ClimberConstants::ClosedServo));
-	}}, {Positions::InitialPosition, Positions::L2Front, [this]() {
-		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
-	}, [this]() {
-		return frc2::cmd::Parallel(
-
-				frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front),
-						elevator->setState(Positions::L2Front), climber->setState(Positions::L2Front),
-						climber->servoAngleCommand(ClimberConstants::ClosedServo)),
-				intake->setState(Positions::L2Front), grabber->setState(Positions::L2Front));
-	}}, {Positions::InitialPosition, Positions::L3Front, [this]() {
-		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
-	}, [this]() {
-		return frc2::cmd::Parallel(arm->setState(Positions::L3Front, Heading::Front),
-				elevator->setState(Positions::L3Front), intake->setState(Positions::L3Front),
-				grabber->setState(Positions::L3Front),
-				frc2::cmd::Sequence(climber->setState(Positions::L3Front),
-						climber->servoAngleCommand(ClimberConstants::ClosedServo)));
 	}}, {Positions::InitialPosition, Positions::L4Front, [this]() {
-		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
+		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L4Front, Heading::Front),
 				elevator->setState(Positions::L4Front), intake->setState(Positions::L4Front),
 				grabber->setState(Positions::L4Front),
 				frc2::cmd::Sequence(climber->setState(Positions::L4Front),
 						climber->servoAngleCommand(ClimberConstants::ClosedServo)));
-	}}, {Positions::InitialPosition, Positions::L2Back, [this]() {
-		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
-	}, [this]() {
-		return frc2::cmd::Parallel(
-				frc2::cmd::Sequence(arm->setState(Positions::L2Back, Heading::Back),
-						elevator->setState(Positions::L2Back), climber->setState(Positions::L2Back),
-						climber->servoAngleCommand(ClimberConstants::ClosedServo)), intake->setState(Positions::L2Back),
-				grabber->setState(Positions::L2Back));
-	}}, {Positions::InitialPosition, Positions::L3Back, [this]() {
-		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
-	}, [this]() {
-		return frc2::cmd::Parallel(arm->setState(Positions::L3Back, Heading::Back),
-				elevator->setState(Positions::L3Back), intake->setState(Positions::L3Back),
-				grabber->setState(Positions::L3Back),
-				frc2::cmd::Sequence(climber->setState(Positions::L3Back),
-						climber->servoAngleCommand(ClimberConstants::ClosedServo)));
 	}}, {Positions::InitialPosition, Positions::L4Back, [this]() {
-		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn();
+		return frc::DriverStation::IsAutonomous() && grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L4Back, Heading::Back),
 				elevator->setState(Positions::L4Back), intake->setState(Positions::L4Back),
@@ -105,33 +80,32 @@ private:
 				frc2::cmd::Sequence(climber->setState(Positions::L4Back),
 						climber->servoAngleCommand(ClimberConstants::ClosedServo)));
 	}},
-
 	{Positions::SustainedPosition, Positions::Intake, [this]() {
-		return !grabber->isCoralIn() && !intake->isCoralIn();
+		return !grabber->isCoralIn() && !intake->isCoralIn() && driver->LeftTrigger().Get();
 	}, [this]() {
 		return frc2::cmd::Sequence(intake->setState(Positions::Intake), elevator->setState(Positions::Intake),
 				arm->setState(Positions::Intake), grabber->setState(Positions::Intake),
 				climber->setState(Positions::Intake));
 	}}, {Positions::SustainedPosition, Positions::IntakeCoralStation, [this]() {
-		return !grabber->isCoralIn() && !intake->isCoralIn();
+		return !grabber->isCoralIn() && !intake->isCoralIn() && (oprtr->RightBumper().Get() || console->AxisMagnitudeGreaterThan(0, 0.1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(intake->setState(Positions::IntakeCoralStation),
 				elevator->setState(Positions::IntakeCoralStation), arm->setState(Positions::IntakeCoralStation),
 				grabber->setState(Positions::IntakeCoralStation), climber->setState(Positions::IntakeCoralStation));
 	}}, {Positions::SustainedPosition, Positions::AlgaeLowReef, [this]() {
-		return !grabber->isCoralIn() && !intake->isCoralIn() && (alignManager->getAlgaePose() == AlgaePose::Down);
+		return !grabber->isCoralIn() && !intake->isCoralIn() && (alignManager->getAlgaePose() == AlgaePose::Down) && (oprtr->POVDown().Get() || console->Button(1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::AlgaeLowReef), arm->setState(Positions::AlgaeLowReef),
 				grabber->setState(Positions::AlgaeLowReef), intake->setState(Positions::AlgaeLowReef),
 				climber->setState(Positions::AlgaeLowReef));
 	}}, {Positions::SustainedPosition, Positions::AlgaeHighReef, [this]() {
-		return !grabber->isCoralIn() && !intake->isCoralIn() && (alignManager->getAlgaePose() == AlgaePose::Up);
+		return !grabber->isCoralIn() && !intake->isCoralIn() && (alignManager->getAlgaePose() == AlgaePose::Up) && (oprtr->POVUp().Get() || console->Button(1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::AlgaeHighReef),
 				arm->setState(Positions::AlgaeHighReef), grabber->setState(Positions::AlgaeHighReef),
 				intake->setState(Positions::AlgaeHighReef), climber->setState(Positions::AlgaeHighReef));
 	}}, {Positions::SustainedPosition, Positions::AlgaeGround, [this]() {
-		return !grabber->isCoralIn() && !intake->isCoralIn();
+		return !grabber->isCoralIn() && !intake->isCoralIn() && driver->POVLeft().Get();
 	}, [this]() {
 		return frc2::cmd::Sequence(intake->setState(Positions::AlgaeGround), arm->setState(Positions::AlgaeGround),
 				elevator->setState(Positions::AlgaeGround), grabber->setState(Positions::AlgaeGround),
@@ -200,19 +174,19 @@ private:
 	}},
 
 	{Positions::AlgaeHighReef, Positions::SustainedPosition, [this]() {
-		return (!oprtr->POVUp().Get() || !console->Button(1).Get()) && !grabber->isAlgaeIn();
+		return (!oprtr->POVUp().Get() || !console->Button(1).Get()) && !grabber->isAlgaeIn() && !intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
 				arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
 				grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition));
 	}}, {Positions::AlgaeHighReef, Positions::CoralAndAlgae, [this]() {
-		return intake->isCoralIn() && grabber->isAlgaeIn();
+		return intake->isCoralIn() && grabber->isAlgaeIn() && (!oprtr->POVUp().Get() || !console->Button(1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::CoralAndAlgae),
 				arm->setState(Positions::CoralAndAlgae), intake->setState(Positions::CoralAndAlgae),
 				grabber->setState(Positions::CoralAndAlgae), climber->setState(Positions::CoralAndAlgae));
 	}}, {Positions::AlgaeHighReef, Positions::AlgaeHold, [this]() {
-		return grabber->isAlgaeIn();
+		return grabber->isAlgaeIn() && !intake->isCoralIn() && (!oprtr->POVUp().Get() || !console->Button(1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
 				intake->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
@@ -226,19 +200,19 @@ private:
 	}},
 
 	{Positions::AlgaeLowReef, Positions::SustainedPosition, [this]() {
-		return (!oprtr->POVDown().Get() || !console->Button(1).Get()) && !grabber->isAlgaeIn();
+		return (!oprtr->POVDown().Get() || !console->Button(1).Get()) && !grabber->isAlgaeIn() && !intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
 				arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
 				grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition));
 	}}, {Positions::AlgaeLowReef, Positions::CoralAndAlgae, [this]() {
-		return intake->isCoralIn() && grabber->isAlgaeIn();
+		return intake->isCoralIn() && grabber->isAlgaeIn() && (!oprtr->POVDown().Get() || !console->Button(1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::CoralAndAlgae),
 				arm->setState(Positions::CoralAndAlgae), intake->setState(Positions::CoralAndAlgae),
 				grabber->setState(Positions::CoralAndAlgae), climber->setState(Positions::CoralAndAlgae));
 	}}, {Positions::AlgaeLowReef, Positions::AlgaeHold, [this]() {
-		return grabber->isAlgaeIn();
+		return grabber->isAlgaeIn() && !intake->isCoralIn() && (!oprtr->POVDown().Get() || !console->Button(1).Get());
 	}, [this]() {
 		return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
 				intake->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
@@ -252,19 +226,19 @@ private:
 	}},
 
 	{Positions::AlgaeGround, Positions::SustainedPosition, [this]() {
-		return !driver->POVLeft().Get() && !grabber->isAlgaeIn();
+		return !driver->POVLeft().Get() && !grabber->isAlgaeIn() && !intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
 				arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
 				grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition));
 	}}, {Positions::AlgaeGround, Positions::CoralAndAlgae, [this]() {
-		return intake->isCoralIn() && grabber->isAlgaeIn();
+		return intake->isCoralIn() && grabber->isAlgaeIn() && !driver->POVLeft().Get();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::CoralAndAlgae),
 				arm->setState(Positions::CoralAndAlgae), intake->setState(Positions::CoralAndAlgae),
 				grabber->setState(Positions::CoralAndAlgae), climber->setState(Positions::CoralAndAlgae));
 	}}, {Positions::AlgaeGround, Positions::AlgaeHold, [this]() {
-		return grabber->isAlgaeIn();
+		return grabber->isAlgaeIn() && !intake->isCoralIn() && !driver->POVLeft().Get();
 	}, [this]() {
 		return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
 				intake->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
@@ -298,7 +272,7 @@ private:
 	}},
 
 	{Positions::L1Confirm, Positions::SustainedPosition, [this]() {
-		return !grabber->isCoralIn();
+		return !grabber->isCoralIn() && !intake->isCoralIn() && !driver->RightBumper().Get();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
 				arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
@@ -323,14 +297,14 @@ private:
 				climber->setState(Positions::L2Front));
 	}}, {Positions::CoralHold, Positions::L3Front, [this]() {
 		return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front)
-				&& (oprtr->B().Get() || console->Button(7).Get() || console->Button(8).Get());
+				&& (oprtr->X().Get() || console->Button(7).Get() || console->Button(8).Get());
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L3Front, Heading::Front),
 				elevator->setState(Positions::L3Front), intake->setState(Positions::L3Front),
 				grabber->setState(Positions::L3Front), climber->setState(Positions::L3Front));
 	}}, {Positions::CoralHold, Positions::L4Front, [this]() {
 		return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Front)
-				&& (oprtr->B().Get() || console->Button(10).Get() || console->Button(11).Get());
+				&& (oprtr->Y().Get() || console->Button(10).Get() || console->Button(11).Get());
 	}, [this]() {
 		return frc2::cmd::Parallel(
 
@@ -340,7 +314,7 @@ private:
 				climber->setState(Positions::L4Front));
 	}}, {Positions::CoralHold, Positions::L2Back, [this]() {
 		return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back)
-				&& (oprtr->B().Get() || console->Button(12).Get() || console->Button(5).Get());
+				&& (console->Button(12).Get() || console->Button(5).Get());
 	}, [this]() {
 		return frc2::cmd::Parallel(
 				frc2::cmd::Sequence(arm->setState(Positions::L2Back, Heading::Back),
@@ -348,14 +322,14 @@ private:
 				grabber->setState(Positions::L2Back), climber->setState(Positions::L2Back));
 	}}, {Positions::CoralHold, Positions::L3Back, [this]() {
 		return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back)
-				&& (oprtr->B().Get() || console->Button(7).Get() || console->Button(8).Get());
+				&& (console->Button(7).Get() || console->Button(8).Get());
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L3Back, Heading::Back),
 				elevator->setState(Positions::L3Back), intake->setState(Positions::L3Back),
 				grabber->setState(Positions::L3Back), climber->setState(Positions::L3Back));
 	}}, {Positions::CoralHold, Positions::L4Back, [this]() {
 		return grabber->isCoralIn() && (alignManager->getHeading() == Heading::Back)
-				&& (oprtr->B().Get() || console->Button(10).Get() || console->Button(11).Get());
+				&& (console->Button(10).Get() || console->Button(11).Get());
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L4Back, Heading::Back),
 				elevator->setState(Positions::L4Back), intake->setState(Positions::L4Back),
@@ -369,7 +343,7 @@ private:
 	}},
 
 	{Positions::CoralAndAlgae, Positions::CoralHold, [this]() {
-		return !grabber->isAlgaeIn();
+		return !grabber->isAlgaeIn() && intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(intake->setState(Positions::CoralHold), arm->setState(Positions::CoralHold),
 				elevator->setState(Positions::CoralHold), grabber->setState(Positions::CoralHold),
@@ -417,7 +391,7 @@ private:
 	{Positions::L2Front, Positions::FrontConfirm, [this]() {
 		return grabber->isCoralIn() && driver->RightBumper().Get()
 				&& (oprtr->B().Get() || console->Button(12).Get() || console->Button(5).Get())
-				&& alignManager->getHeading() == Heading::Front;
+				&& (alignManager->getHeading() == Heading::Front);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L2FrontConfirm, Heading::Front),
 				elevator->setState(Positions::L2FrontConfirm), intake->setState(Positions::L2FrontConfirm),
@@ -425,7 +399,7 @@ private:
 	}}, {Positions::L3Front, Positions::FrontConfirm, [this]() {
 		return grabber->isCoralIn() && driver->RightBumper().Get()
 				&& (oprtr->X().Get() || console->Button(7).Get() || console->Button(8).Get())
-				&& alignManager->getHeading() == Heading::Front;
+				&& (alignManager->getHeading() == Heading::Front);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L3FrontConfirm, Heading::Front),
 				elevator->setState(Positions::L3FrontConfirm), intake->setState(Positions::L3FrontConfirm),
@@ -433,7 +407,7 @@ private:
 	}}, {Positions::L4Front, Positions::FrontConfirm, [this]() {
 		return grabber->isCoralIn() && driver->RightBumper().Get()
 				&& (oprtr->Y().Get() || console->Button(10).Get() || console->Button(11).Get())
-				&& alignManager->getHeading() == Heading::Front;
+				&& (alignManager->getHeading() == Heading::Front);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L4FrontConfirm, Heading::Front),
 				elevator->setState(Positions::L4FrontConfirm), intake->setState(Positions::L4FrontConfirm),
@@ -442,24 +416,24 @@ private:
 
 	{Positions::L2Back, Positions::BackConfirm, [this]() {
 		return grabber->isCoralIn() && driver->RightBumper().Get()
-				&& (oprtr->B().Get() || console->Button(12).Get() || console->Button(5).Get())
-				&& alignManager->getHeading() == Heading::Back;
+				&& (console->Button(12).Get() || console->Button(5).Get())
+				&& (alignManager->getHeading() == Heading::Back);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L2BackConfirm, Heading::Back),
 				elevator->setState(Positions::L2BackConfirm), intake->setState(Positions::L2BackConfirm),
 				grabber->setState(Positions::L2BackConfirm), climber->setState(Positions::L2BackConfirm));
 	}}, {Positions::L3Back, Positions::BackConfirm, [this]() {
 		return grabber->isCoralIn() && driver->RightBumper().Get()
-				&& (oprtr->X().Get() || console->Button(7).Get() || console->Button(8).Get())
-				&& alignManager->getHeading() == Heading::Back;
+				&& (console->Button(7).Get() || console->Button(8).Get())
+				&& (alignManager->getHeading() == Heading::Back);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L3BackConfirm, Heading::Back),
 				elevator->setState(Positions::L3BackConfirm), intake->setState(Positions::L3BackConfirm),
 				grabber->setState(Positions::L3BackConfirm), climber->setState(Positions::L3BackConfirm));
 	}}, {Positions::L4Back, Positions::BackConfirm, [this]() {
 		return grabber->isCoralIn() && driver->RightBumper().Get()
-				&& (oprtr->Y().Get() || console->Button(10).Get() || console->Button(11).Get())
-				&& alignManager->getHeading() == Heading::Front;
+				&& (console->Button(10).Get() || console->Button(11).Get())
+				&& (alignManager->getHeading() == Heading::Back);
 	}, [this]() {
 		return frc2::cmd::Parallel(arm->setState(Positions::L4BackConfirm, Heading::Back),
 				elevator->setState(Positions::L4BackConfirm), intake->setState(Positions::L4BackConfirm),
@@ -511,7 +485,7 @@ private:
 	}},
 
 	{Positions::NetConfirm, Positions::SustainedPosition, [this]() {
-		return !grabber->isAlgaeIn();
+		return !grabber->isAlgaeIn() && !intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
 				arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
@@ -525,7 +499,7 @@ private:
 	}},
 
 	{Positions::ProcessorConfirm, Positions::SustainedPosition, [this]() {
-		return !grabber->isAlgaeIn();
+		return !grabber->isAlgaeIn() && !intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
 				arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),

@@ -48,7 +48,7 @@ struct IntakeConstants {
     constexpr static const units::volt_t RollersSlow = 3.0_V;
     constexpr static const units::volt_t Centering = 8.25_V;
 
-    constexpr static const units::degree_t IntakeRangeError = 2_deg;
+    constexpr static const units::degree_t IntakeRangeError = 3.5_deg;
 
     constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 50_tps;
     constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 42_tr_per_s_sq;
@@ -64,7 +64,7 @@ struct IntakeConstants {
     constexpr static const OverTalonFXConfig IntakeConfig() { //Limites cuestionables
         OverTalonFXConfig intakeConfig;
         intakeConfig.MotorId = IntakeMotorId;
-        intakeConfig.NeutralMode = ControllerNeutralMode::Coast;
+        intakeConfig.NeutralMode = ControllerNeutralMode::Brake;
         intakeConfig.useFOC = true;
         intakeConfig.Inverted = true;
 
@@ -82,7 +82,7 @@ struct IntakeConstants {
     constexpr static const CanCoderConfig IntakeCANConfig() {
         CanCoderConfig intakeCANConfig;
         intakeCANConfig.CanCoderId = IntakeCANCoderId;
-        intakeCANConfig.Offset = -0.125_tr;
+        intakeCANConfig.Offset = -0.133056640625_tr;
         intakeCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::Clockwise_Positive;
 
         return intakeCANConfig;

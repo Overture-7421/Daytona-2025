@@ -11,7 +11,7 @@
 struct ElevatorConstants {
 
     constexpr static const units::volt_t feedForward = 0_V;
-    constexpr static const units::meter_t RangeError = 0.025_m; //Range of error the elevator is permiited to have.
+    constexpr static const units::meter_t RangeError = 0.04_m; //Range of error the elevator is permiited to have.
 
     inline static const std::map<Positions, units::meter_t> ElevatorPositions = { {Positions::AlgaeGround, 0.30_m}, {
             Positions::AlgaeHold, 1.05_m}, {Positions::AlgaeHighReef, 1.19_m}, {Positions::AlgaeLowReef, 0.68_m}, {

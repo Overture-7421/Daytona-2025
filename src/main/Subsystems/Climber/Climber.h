@@ -37,16 +37,16 @@ public:
 private:
 
     OverTalonFX climberMotor {ClimberConstants::ClimberConfig(), "rio"};
-    frc::DutyCycleEncoder climberEncoder {0}; //Puerto en la RoboRio donde va a estar (No definido aun)
+    frc::DutyCycleEncoder climberEncoder {8}; //Puerto en la RoboRio donde va a estar (No definido aun)
 
     VoltageOut climberVoltage {0_V};
 
     units::degree_t offset = 0.0_deg;
-    units::degree_t target = 0.0_deg; //aquí se pone la posición inicial
+    units::degree_t target = 122_deg; //aquí se pone la posición inicial (NO definido aun)
 
-    frc::ProfiledPIDController<units::degree> climberPID {0.0, 0.0, 0.0, {ClimberConstants::ClimberVelocity,
+    frc::ProfiledPIDController<units::degree> climberPID {1.7, 0.0, 0.0, {ClimberConstants::ClimberVelocity,
             ClimberConstants::ClimberAcceleration}};
 
-    frc::Servo servo {1}; // Not defined yet
+    frc::Servo servo {9}; // Not defined yet
 
 };

@@ -8,27 +8,28 @@ struct ClimberConstants {
 
     constexpr static const units::degree_t ClimberRangeError = 1.0_deg;
 
-    constexpr static const units::degree_t ClosedServo = 10_deg; // Not defined
-    constexpr static const units::degree_t OpenedServo = 0.0_deg; //Not defined
+    constexpr static const units::degree_t ClosedServo = 122_deg; // Not defined
+    constexpr static const units::degree_t OpenedServo = 122_deg; //Not defined
 
-    inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 0.0_deg}, {
-            Positions::AlgaeHold, 0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {
-            Positions::CoralAndAlgae, 0.0_deg}, {Positions::CoralHold, 0.0_deg}, {Positions::InitialPosition, 0.0_deg},
-            {Positions::Intake, 0.0_deg}, {Positions::IntakeCoralStation, 0.0_deg}, {Positions::L1Confirm, 0.0_deg}, {
-                    Positions::L1Position, 0.0_deg}, {Positions::L2Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg},
-            {Positions::L2Front, 0.0_deg}, {Positions::L2FrontConfirm, 0.0_deg}, {Positions::L3Back, 0.0_deg}, {
-                    Positions::L3BackConfirm, 0.0_deg}, {Positions::L3Front, 0.0_deg}, {Positions::L3FrontConfirm,
-                    0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}, {Positions::L4Front,
-                    0.0_deg}, {Positions::L4FrontConfirm, 0.0_deg}, {Positions::NetPosition, 0.0_deg}, {
-                    Positions::NetConfirm, 0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {
-                    Positions::ProcessorConfirm, 0.0_deg}, {Positions::SustainedPosition, 0.0_deg}, {
-                    Positions::EndPosition, 0.0_deg}};
+    inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 122.0_deg}, {
+            Positions::AlgaeHold, 122.0_deg}, {Positions::AlgaeHighReef, 122.0_deg},
+            {Positions::AlgaeLowReef, 122.0_deg}, {Positions::CoralAndAlgae, 122.0_deg}, {Positions::CoralHold,
+                    122.0_deg}, {Positions::InitialPosition, 122.0_deg}, {Positions::Intake, 122.0_deg}, {
+                    Positions::IntakeCoralStation, 122.0_deg}, {Positions::L1Confirm, 122.0_deg}, {
+                    Positions::L1Position, 122.0_deg}, {Positions::L2Back, 122.0_deg}, {Positions::L2BackConfirm,
+                    122.0_deg}, {Positions::L2Front, 122.0_deg}, {Positions::L2FrontConfirm, 122.0_deg}, {
+                    Positions::L3Back, 122.0_deg}, {Positions::L3BackConfirm, 122.0_deg},
+            {Positions::L3Front, 122.0_deg}, {Positions::L3FrontConfirm, 122.0_deg}, {Positions::L4Back, 122.0_deg}, {
+                    Positions::L4BackConfirm, 122.0_deg}, {Positions::L4Front, 122.0_deg}, {Positions::L4FrontConfirm,
+                    122.0_deg}, {Positions::NetPosition, 122.0_deg}, {Positions::NetConfirm, 122.0_deg}, {
+                    Positions::ProcessorPosition, 122.0_deg}, {Positions::ProcessorConfirm, 122.0_deg}, {
+                    Positions::SustainedPosition, 122.0_deg}, {Positions::EndPosition, 122.0_deg}};
 
-    constexpr static const units::degrees_per_second_t ClimberVelocity = 1.0_deg_per_s;
-    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 1.0_deg_per_s_sq;
+    constexpr static const units::degrees_per_second_t ClimberVelocity = 60.0_deg_per_s;
+    constexpr static const units::degrees_per_second_squared_t ClimberAcceleration = 30.0_deg_per_s_sq;
 
-    constexpr static const double ClimberEncoderOffset = 0;
-    constexpr static const double ClimberSensorToMechanism = 1;
+    constexpr static const double ClimberEncoderOffset = 0.0;
+    constexpr static const double ClimberSensorToMechanism = 64;
 
     constexpr static const double ClimberMotorId = 22;
 
@@ -44,7 +45,7 @@ struct ClimberConstants {
         climberConfig.TriggerThreshold = 30_A;
         climberConfig.TriggerThresholdTime = 0.5_s;
         climberConfig.ClosedLoopRampRate = 0.05_s;
-        climberConfig.PIDConfigs.WithKP(0.0).WithKI(0.0);
+        climberConfig.PIDConfigs.WithKP(0.0);
 
         return climberConfig;
     }

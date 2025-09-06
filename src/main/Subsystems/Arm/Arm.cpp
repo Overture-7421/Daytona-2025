@@ -2,8 +2,9 @@
 
 Arm::Arm() {
 
-    armMotor.setRotorToSensorRatio(ArmConstants::ArmRotorToSensor);
-    armMotor.setFusedCANCoder(ArmConstants::ArmCANCoderId);
+    armMotor.setSensorToMechanism(ArmConstants::ArmRotorToSensor);
+    //armMotor.setFusedCANCoder(ArmConstants::ArmCANCoderId);
+    armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());
     armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocity, ArmConstants::ArmCruiseAcceleration, 0_tr_per_s_cu);
 
 }

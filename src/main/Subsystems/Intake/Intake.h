@@ -38,7 +38,7 @@ private:
     OverTalonFX rollersMotor {IntakeConstants::RollersConfig(), "rio"};
     OverTalonFX centeringMotor {IntakeConstants::CenteringConfig(), "rio"};
 
-    CANrange canRange {0, "rio"};
+    CANrange canRange {30, "rio"};
 
     MotionMagicVoltage intakeVoltage {0_tr};
     VoltageOut rollersVoltage {0_V};

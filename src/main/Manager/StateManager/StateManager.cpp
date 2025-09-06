@@ -21,19 +21,33 @@ Positions StateManager::getStatePosition() {
     return state;
 }
 
+// frc2::CommandPtr StateManager::setStatePosition(Positions state) {
+//     return frc2::cmd::RunOnce([this, state] {
+//         for (Transitions transitions : transitionsMap) {
+//             if (transitions.currentState == state && transitions.check()) {
+//                 this->state = state;
+//                 current = &transitions;
+//             }
+//         }
+//     }).AndThen(frc2::cmd::None()).AndThen([this]() {
+//         commandScheduled = frc2::cmd::None();
+//     });
+
+// }
+
 frc2::CommandPtr StateManager::setStatePosition(Positions state) {
-    return frc2::cmd::RunOnce([this, state] {
+    return frc2::cmd::Sequence(frc2::cmd::RunOnce([this, state] {
         for (Transitions transitions : transitionsMap) {
             if (transitions.currentState == state && transitions.check()) {
                 this->state = state;
                 this->commandScheduled = transitions.commandPtr();
             }
         }
-    }).AndThen(std::move(commandScheduled)).AndThen([this]() {
-        commandScheduled = frc2::cmd::None();
-    });
+    }), commandScheduled);
 
 }
+
+
 
 frc2::CommandPtr StateManager::setStateOverride() {
     return frc2::cmd::RunOnce([this] {

@@ -6,6 +6,8 @@
 
 Climber::Climber() {
     climberMotor.setSensorToMechanism(ClimberConstants::ClimberSensorToMechanism);
+    climberPID.DisableContinuousInput();
+
 }
 
 units::degree_t Climber::getCurrentClimberAngle() {
@@ -66,5 +68,8 @@ void Climber::Periodic() {
     climberMotor.SetControl(climberVoltage.WithOutput(motorOutput).WithEnableFOC(true));
 
     frc::SmartDashboard::PutNumber("Climber/CurrentThroughbore", getCurrentClimberAngle().value());
+    frc::SmartDashboard::PutNumber("Climber/Without360", climberEncoder.Get() - ClimberConstants::ClimberEncoderOffset);
+    frc::SmartDashboard::PutNumber("Climber/MotorOutput", motorOutput.value());
+    frc::SmartDashboard::PutNumber("Climber/Target", target.value());
 
 }

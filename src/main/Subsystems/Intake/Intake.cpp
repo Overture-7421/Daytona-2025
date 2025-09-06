@@ -55,13 +55,10 @@ frc2::CommandPtr Intake::setCharacterization(units::volt_t rollers, units::volt_
     return frc2::FunctionalCommand([this, intake]() {
         setIntakeToAngle(intake);
     }, [this, rollers, centering]() {
-        if (!isCoralIn()) {
-            setRollersVoltage(rollers);
-            setCenteringVoltage(centering);
-        } else {
-            setRollersVoltage(IntakeConstants::RollersSlow);
-            setCenteringVoltage(IntakeConstants::Centering);
-        }
+
+        setRollersVoltage(rollers);
+        setCenteringVoltage(centering);
+
     },[](bool interrupted) {
     },[this, intake]() {
         return isIntakeAtPosition(intake);

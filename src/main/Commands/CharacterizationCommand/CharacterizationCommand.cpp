@@ -6,7 +6,6 @@
 
 frc2::CommandPtr CharacterizationCommand(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber,
         Climber *climber) {
-    return frc2::cmd::Sequence(elevator->setCharacterization(0.0_m), arm->setCharacterization(0.0_deg),
-            intake->setCharacterization(0.0_V, 0.0_V, 0.0_deg), grabber->setCharacterization(0.0_V));
+    return frc2::cmd::Sequence(elevator->setCharacterization(1.05_m), arm->setCharacterization(90.0_deg));
 
 }

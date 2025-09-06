@@ -43,13 +43,15 @@ private:
 
     Positions state = Positions::InitialPosition;
     //No se define en que estado empieza, ahorita vemos eso
+
+    Transitions *current = nullptr;
     std::vector<Transitions> transitionsMap = {
 
     {Positions::InitialPosition, Positions::SustainedPosition, [this]() {
         return frc::DriverStation::IsEnabled();
     }, [this]() {
-        return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
-                arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::InitialPosition), elevator->setState(Positions::SustainedPosition),
+                arm->setState(Positions::SustainedPosition),
                 grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition),
                 climber->servoAngleCommand(ClimberConstants::ClosedServo));
     }}, {Positions::InitialPosition, Positions::L2Front, [this]() {
@@ -136,8 +138,8 @@ private:
     }}, {Positions::SustainedPosition, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 
@@ -163,8 +165,8 @@ private:
     }}, {Positions::Intake, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 
@@ -191,8 +193,8 @@ private:
     }}, {Positions::IntakeCoralStation, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 
@@ -217,8 +219,8 @@ private:
     }}, {Positions::AlgaeHighReef, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 
@@ -243,8 +245,8 @@ private:
     }}, {Positions::AlgaeLowReef, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 
@@ -269,8 +271,8 @@ private:
     }}, {Positions::AlgaeGround, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 
@@ -289,8 +291,8 @@ private:
     }}, {Positions::L1Position, Positions::EndPosition, [this]() {
         return console->Button(4).Get() || oprtr->Back().Get();
     }, [this]() {
-        return frc2::cmd::Sequence(arm->setState(Positions::EndPosition), elevator->setState(Positions::EndPosition),
-                intake->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
+        return frc2::cmd::Sequence(intake->setState(Positions::EndPosition), arm->setState(Positions::EndPosition),
+                elevator->setState(Positions::EndPosition), grabber->setState(Positions::EndPosition),
                 climber->setState(Positions::EndPosition));
     }},
 

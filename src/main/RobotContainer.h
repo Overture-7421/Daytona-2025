@@ -33,93 +33,93 @@
 #include "Commands/EmergencyCommand/EmergencyCommand.h"
 #include "Commands/CharacterizationCommand/CharacterizationCommand.h"
 
-class RobotContainer: public OverContainer {
+class RobotContainer : public OverContainer {
 public:
-    RobotContainer();
+	RobotContainer();
 
-    frc2::Command* GetAutonomousCommand();
-    void UpdateTelemetry();
+	frc2::Command* GetAutonomousCommand();
+	void UpdateTelemetry();
 
 private:
 
-    void ConfigureBindings();
-    void ConfigDriverBindings();
-    void ConfigOperatorBindings();
-    void ConfigMixedBindigs();
-    void ConfigDefaultCommands();
-    void ConfigCharacterizationBindings();
-    void disableBackCamera();
-    void enableBackCamera();
+	void ConfigureBindings();
+	void ConfigDriverBindings();
+	void ConfigOperatorBindings();
+	void ConfigMixedBindigs();
+	void ConfigDefaultCommands();
+	void ConfigCharacterizationBindings();
+	void disableBackCamera();
+	void enableBackCamera();
 
-    OverXboxController driver {0, 0.55, 0.2};
-    OverXboxController oprtr {1, 0.20, 0.2};
-    OverConsole console {2};
-    OverXboxController test {3, 0.20, 0.2};
+	OverXboxController driver{ 0, 0.55, 0.2 };
+	OverXboxController oprtr{ 1, 0.20, 0.2 };
+	OverConsole console{ 2 };
+	OverXboxController test{ 3, 0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
-    frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
 	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeWelded);
 	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 #endif 
-    double getLeftStickDistance();
-    bool getDriverOverride();
+	double getLeftStickDistance();
+	bool getDriverOverride();
 
-    //Subsystems
-    Chassis chassis;
-    Grabber grabber;
-    Elevator elevator;
-    Arm arm;
-    Climber climber;
-    Intake intake;
+	//Subsystems
+	Chassis chassis;
+	Grabber grabber;
+	Elevator elevator;
+	Arm arm;
+	Climber climber;
+	Intake intake;
 
-    AlignManager alignManager {&chassis, &tagLayout};
-    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console, &endToInitial};
+	AlignManager alignManager{ &chassis, &tagLayout };
+	StateManager stateManager{ &intake, &arm, &elevator, &grabber, &climber, &alignManager, &driver, &oprtr, &console, &endToInitial };
 
-    static AprilTags::Config railCameraLeft();
-    static AprilTags::Config climberCameraLeft();
-    static AprilTags::Config climberCameraRight();
-    static AprilTags::Config railCameraRight();
+	static AprilTags::Config railCameraLeft();
+	static AprilTags::Config climberCameraLeft();
+	static AprilTags::Config climberCameraRight();
+	static AprilTags::Config railCameraRight();
 
-    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
-    AprilTags climberCamLeft {&tagLayout, &chassis, climberCameraLeft()};
-    AprilTags climberCamRight {&tagLayout, &chassis, climberCameraRight()};
-    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
+	AprilTags railCamLeft{ &tagLayout, &chassis, railCameraLeft() };
+	AprilTags climberCamLeft{ &tagLayout, &chassis, climberCameraLeft() };
+	AprilTags climberCamRight{ &tagLayout, &chassis, climberCameraRight() };
+	AprilTags railCamRight{ &tagLayout, &chassis, railCameraRight() };
 
-    frc::SendableChooser<frc2::Command*> autoChooser;
+	frc::SendableChooser<frc2::Command*> autoChooser;
 
-    frc2::Trigger endToInitial {[] {
-        return frc::SmartDashboard::GetBoolean("EndToInitial", false);
-    }};
+	frc2::Trigger endToInitial{ [] {
+		return frc::SmartDashboard::GetBoolean("EndToInitial", false);
+	} };
 
-    frc2::Trigger emergency {[] {
-        return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
-    }};
+	frc2::Trigger emergency{ [] {
+		return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
+	} };
 
-    // Maybe si lo usamos
-    // frc2::Trigger increaseOffsetX {[] {
-    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
-    // }};
-    // frc2::Trigger decreaseOffsetX {[] {
-    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);
-    // }};
+	// Maybe si lo usamos
+	// frc2::Trigger increaseOffsetX {[] {
+	//     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
+	// }};
+	// frc2::Trigger decreaseOffsetX {[] {
+	//     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);
+	// }};
 
-    // frc2::Trigger increaseOffsetLeft {[] {
-    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
-    // }};
-    // frc2::Trigger decreaseOffsetLeft {[] {
-    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
-    // }};
+	// frc2::Trigger increaseOffsetLeft {[] {
+	//     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+	// }};
+	// frc2::Trigger decreaseOffsetLeft {[] {
+	//     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
+	// }};
 
-    // frc2::Trigger increaseOffsetRight {[] {
-    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);
-    // }};
-    // frc2::Trigger decreaseOffsetRight {[] {
-    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);
-    // }};
+	// frc2::Trigger increaseOffsetRight {[] {
+	//     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+	// }};
+	// frc2::Trigger decreaseOffsetRight {[] {
+	//     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);
+	// }};
 
-    // frc2::Trigger resetOffsets {[] {
-    //     return frc::SmartDashboard::GetBoolean("ResetOffset", false);
-    // }};
+	// frc2::Trigger resetOffsets {[] {
+	//     return frc::SmartDashboard::GetBoolean("ResetOffset", false);
+	// }};
 
 };

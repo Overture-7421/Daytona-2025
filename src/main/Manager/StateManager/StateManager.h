@@ -258,7 +258,7 @@ private:
 				intake->setState(Positions::L1Confirm), grabber->setState(Positions::L1Confirm),
 				climber->setState(Positions::L1Confirm));
 	}}, {Positions::L1Position, Positions::CoralHold, [this]() {
-		return !driver->LeftTrigger().Get() && !grabber->isAlgaeIn() && intake->isCoralIn();
+		return (!driver->LeftTrigger().Get()) && !grabber->isAlgaeIn() && intake->isCoralIn();
 	}, [this]() {
 		return frc2::cmd::Sequence(intake->setState(Positions::CoralHold), arm->setState(Positions::CoralHold),
 				elevator->setState(Positions::CoralHold), grabber->setState(Positions::CoralHold),

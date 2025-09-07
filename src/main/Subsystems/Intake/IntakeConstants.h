@@ -33,7 +33,7 @@ struct IntakeConstants {
             {Positions::Intake, {3.0_V, 8.25_V, 131_deg}}, //To be defined
             {Positions::IntakeCoralStation, {3.0_V, 8.25_V, 0_deg}}, //To be defined
             {Positions::L1Confirm, {-2.0_V, -2.0_V, 30_deg}}, //To be defined
-            {Positions::L1Position, {3.0_V, 8.25_V, 30_deg}}, //To be defined
+            {Positions::L1Position, {0.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::L2Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L2BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L2Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L2FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L3Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L3BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {

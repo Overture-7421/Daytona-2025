@@ -44,5 +44,6 @@ void Grabber::Periodic() {
 
 	frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);
 	frc::SmartDashboard::PutBoolean("Grabber/CoralIn", isCoralIn());
+	frc::SmartDashboard::PutBoolean("Grabber/AlgaeIn", isAlgaeIn());
 
 }

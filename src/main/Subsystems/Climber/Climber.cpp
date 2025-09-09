@@ -79,13 +79,13 @@ frc2::CommandPtr Climber::servoAngleCommand(units::degree_t angle) {
 
 void Climber::Periodic() {
 
-    units::volt_t motorOutput = units::volt_t(climberPID.Calculate(getCurrentClimberAngle(), target));
+    // units::volt_t motorOutput = units::volt_t(climberPID.Calculate(getCurrentClimberAngle(), target));
 
-    climberMotor.SetControl(climberVoltage.WithOutput(motorOutput).WithEnableFOC(true));
+    // climberMotor.SetControl(climberVoltage.WithOutput(motorOutput).WithEnableFOC(true));
 
     frc::SmartDashboard::PutNumber("Climber/CurrentThroughbore", getCurrentClimberAngle().value());
-    frc::SmartDashboard::PutNumber("Climber/Without360", climberEncoder.Get() - ClimberConstants::ClimberEncoderOffset);
-    frc::SmartDashboard::PutNumber("Climber/MotorOutput", motorOutput.value());
-    frc::SmartDashboard::PutNumber("Climber/Target", target.value());
+    // frc::SmartDashboard::PutNumber("Climber/Without360", climberEncoder.Get() - ClimberConstants::ClimberEncoderOffset);
+    // frc::SmartDashboard::PutNumber("Climber/MotorOutput", motorOutput.value());
+    // frc::SmartDashboard::PutNumber("Climber/Target", target.value());
 
 }

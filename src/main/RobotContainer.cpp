@@ -58,6 +58,18 @@ void RobotContainer::ConfigDriverBindings() {
 
     driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
     driver.LeftTrigger().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
+    // driver.LeftTrigger().WhileTrue(
+    // frc2::cmd::Parallel(intake.setCharacterization(3_V, 8.25_V, 131_deg), arm.setCharacterization(-90_deg)));
+    // driver.LeftTrigger().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
+
+    // driver.RightBumper().WhileTrue(intake.setCharacterization(-6_V, -6_V, 30_deg));
+    // driver.RightBumper().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
+
+    // driver.LeftBumper().WhileTrue(CharacterizationCommand(&intake, &arm, &elevator, &grabber, &climber));
+    // driver.LeftBumper().OnFalse(ClosedCommand(&intake, &arm, &elevator, &grabber, &climber));
+
+    // driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
+    // driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
 
     driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
     driver.RightBumper().OnFalse(SustainedCommands(&stateManager));

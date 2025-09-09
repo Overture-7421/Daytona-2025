@@ -82,7 +82,7 @@ struct IntakeConstants {
     constexpr static const CanCoderConfig IntakeCANConfig() {
         CanCoderConfig intakeCANConfig;
         intakeCANConfig.CanCoderId = IntakeCANCoderId;
-        intakeCANConfig.Offset = -0.133056640625_tr;
+        intakeCANConfig.Offset = -0.142822265625_tr;
         intakeCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::Clockwise_Positive;
 
         return intakeCANConfig;

@@ -31,6 +31,7 @@
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/EmergencyCommand/EmergencyCommand.h"
 #include "Commands/CharacterizationCommand/CharacterizationCommand.h"
+#include "Commands/ClosedCommand/ClosedCommand.h"
 
 class RobotContainer: public OverContainer {
 public:

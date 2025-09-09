@@ -187,9 +187,9 @@ void RobotContainer::ConfigMixedBindigs() {
             L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
 
     // //Maybe es 2 en el numero de la consola :V
-    (driver.POVDown() && console.Button(1)).OnTrue(
-            AlgaeReefCommand(&stateManager, &alignManager).AlongWith(
-                    algaeAlignPos(&alignManager).AndThen(AlgaeHoldCommand(&stateManager))));
+    // (driver.POVDown() && console.Button(1)).OnTrue(
+            // AlgaeReefCommand(&stateManager, &alignManager).AlongWith(
+                    // algaeAlignPos(&alignManager).AndThen(AlgaeHoldCommand(&stateManager))));
 
     // (!driver.LeftTrigger() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
     // 	stateManager.setStatePosition(Positions::IntakeCoralStation));

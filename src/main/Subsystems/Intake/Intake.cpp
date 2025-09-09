@@ -48,22 +48,23 @@ frc2::CommandPtr Intake::setState(Positions state) {
         setIntakeToAngle(IntakeConstants::IntakePositions.at(state).intake);
     }, [this, state]() {
 
-        if(!(state == Positions::CoralHold)){
+        if (!(state == Positions::CoralHold)) {
             setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
             setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
-                }
+        }
     }, [](bool interrupted) {
-    }, [this, state]() {
-        frc::SmartDashboard::PutBoolean("Intake/AtPosition",
-                isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
-        return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
-    },
-    {this}).ToPtr().BeforeStarting([this, state]() {
+    }
+            , [this, state]() {
+                frc::SmartDashboard::PutBoolean("Intake/AtPosition",
+                        isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
+                return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
+            },
+            {this}).ToPtr().BeforeStarting([this, state]() {
         return frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
     }).AndThen([this, state]() {
-        if(state == Positions::CoralHold){
-                    setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
-                    setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
+        if (state == Positions::CoralHold) {
+            setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
+            setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
         }
         frc::SmartDashboard::PutBoolean("Intake/IsFinished", true);
     });

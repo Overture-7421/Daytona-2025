@@ -32,6 +32,7 @@
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/EmergencyCommand/EmergencyCommand.h"
 #include "Commands/CharacterizationCommand/CharacterizationCommand.h"
+#include "Commands/ClosedCommand/ClosedCommand.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -97,9 +98,9 @@ private:
         return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
     }};
 
-    frc2::Trigger startCommands {[this]() {
-        return stateManager.getExecute();
-    }};
+    // frc2::Trigger startCommands {[this]() {
+    //     return stateManager.getExecute();
+    // }};
 
     // Maybe si lo usamos
     // frc2::Trigger increaseOffsetX {[] {

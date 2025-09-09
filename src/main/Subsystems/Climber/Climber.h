@@ -42,7 +42,7 @@ private:
     VoltageOut climberVoltage {0_V};
 
     units::degree_t offset = 0.0_deg;
-    units::degree_t target = 122_deg; //aquí se pone la posición inicial (NO definido aun)
+    units::degree_t target = 75_deg; //aquí se pone la posición inicial (NO definido aun)
 
     frc::ProfiledPIDController<units::degree> climberPID {1.7, 0.0, 0.0, {ClimberConstants::ClimberVelocity,
             ClimberConstants::ClimberAcceleration}};

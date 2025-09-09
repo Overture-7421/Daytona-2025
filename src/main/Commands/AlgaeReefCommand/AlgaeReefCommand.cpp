@@ -4,14 +4,14 @@
 
 #include "AlgaeReefCommand.h"
 
-frc2::CommandPtr AlgaeReefCommand(StateManager *stateManager, AlignManager *alignManager) {
-    // return frc2::cmd::Select < AlgaePose > ([alignManager] {
-    //     return alignManager->getAlgaePose();
-    // },
-    // std::pair {AlgaePose::Up, stateManager->setStatePosition(Positions::AlgaeHighReef)}, std::pair {AlgaePose::Down,
-    //         stateManager->setStatePosition(Positions::AlgaeLowReef)}
+frc2::CommandPtr AlgaeReefCommand(StateManager* stateManager, AlignManager* alignManager) {
+	return frc2::cmd::Select < AlgaePose >([alignManager] {
+		return alignManager->getAlgaePose();
+	},
+		std::pair{ AlgaePose::Up, stateManager->setStatePosition(Positions::AlgaeHighReef) }, std::pair{ AlgaePose::Down,
+				stateManager->setStatePosition(Positions::AlgaeLowReef) }
 
-    // );
-    return frc2::cmd::None();
+	);
+	return frc2::cmd::None();
 
 }

@@ -4,15 +4,15 @@
 
 #include "L3Command.h"
 
-frc2::CommandPtr L3Command(StateManager* stateManager, AlignManager* alignManager) {
-	// return frc2::cmd::Select < Heading > ([alignManager] {
-	//     return alignManager->getHeading();
-	// },
-	// std::pair {Heading::Back, stateManager->setStatePosition(Positions::L3Back)}, std::pair {Heading::Front,
-	//         stateManager->setStatePosition(Positions::L3Front)}
+frc2::CommandPtr L3Command(StateManager *stateManager, AlignManager *alignManager) {
+    // return frc2::cmd::Select < Heading > ([alignManager] {
+    //     return alignManager->getHeading();
+    // },
+    // std::pair {Heading::Back, stateManager->setStatePosition(Positions::L3Back)}, std::pair {Heading::Front,
+    //         stateManager->setStatePosition(Positions::L3Front)}
 
-	// );
+    // );
 
-	return frc2::cmd::None();
+    return frc2::cmd::None();
 
 }

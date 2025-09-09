@@ -28,7 +28,7 @@ struct IntakeConstants {
     {Positions::AlgaeGround, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::AlgaeHold, {0.0_V, 0.0_V, 35.3_deg}}, {
             Positions::AlgaeHighReef, {0.0_V, 0.0_V, 21.8_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 21.8_deg}},
             {Positions::CoralAndAlgae, {3.0_V, 8.25_V, 30_deg}}, //To be defined
-            {Positions::CoralHold, {-2.0_V, -2.0_V, 0_deg}}, //To be defined
+            {Positions::CoralHold, {-8.0_V, -8.0_V, 0_deg}}, //To be defined
             {Positions::InitialPosition, {0.0_V, 0.0_V, 30_deg}},
             {Positions::Intake, {3.0_V, 8.25_V, 131_deg}}, //To be defined
             {Positions::IntakeCoralStation, {3.0_V, 8.25_V, 0_deg}}, //To be defined
@@ -42,8 +42,8 @@ struct IntakeConstants {
                     Positions::L4Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::NetPosition, {0.0_V, 0.0_V, 35.3_deg}},
             {Positions::NetConfirm, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::ProcessorPosition, {0.0_V, 0.0_V, 35.3_deg}},
-            {Positions::ProcessorConfirm, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::SustainedPosition, {3.0_V, 8.25_V,
-                    0_deg}}, {Positions::EndPosition, {0.0_V, 0.0_V, 130.0_deg}}};
+            {Positions::ProcessorConfirm, {0.0_V, 0.0_V, 35.3_deg}},
+            {Positions::SustainedPosition, {0.0_V, 0_V, 0_deg}}, {Positions::EndPosition, {0.0_V, 0.0_V, 130.0_deg}}};
 
     constexpr static const units::volt_t RollersSlow = 3.0_V;
     constexpr static const units::volt_t Centering = 8.25_V;

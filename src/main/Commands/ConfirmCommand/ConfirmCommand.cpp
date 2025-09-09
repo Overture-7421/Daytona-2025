@@ -4,23 +4,18 @@
 
 #include "ConfirmCommand.h"
 
-frc2::CommandPtr ConfirmCommand(StateManager* stateManager) {
-	return frc2::cmd::Select < Positions
-	>([stateManager] {
-		return stateManager->getStatePosition();
-	},
-		std::pair{ Positions::L1Position, stateManager->setStatePosition(Positions::L1Confirm) }, std::pair{
-				Positions::NetPosition, stateManager->setStatePosition(Positions::NetConfirm) }, std::pair{
-				Positions::L2Back, stateManager->setStatePosition(Positions::BackConfirm) }, std::pair{
-				Positions::L3Back, stateManager->setStatePosition(Positions::BackConfirm) }, std::pair{
-				Positions::L4Back, stateManager->setStatePosition(Positions::BackConfirm) }, std::pair{
-				Positions::L2Front, stateManager->setStatePosition(Positions::FrontConfirm) }, std::pair{
-				Positions::L3Front, stateManager->setStatePosition(Positions::FrontConfirm) }, std::pair{
-				Positions::L4Front, stateManager->setStatePosition(Positions::FrontConfirm) }, std::pair{
-				Positions::ProcessorPosition, stateManager->setStatePosition(Positions::ProcessorConfirm) }
-
-				);
-
-	return frc2::cmd::None();
-
+frc2::CommandPtr ConfirmCommand(StateManager *stateManager) {
+    return frc2::cmd::Select < Positions
+            > ([stateManager] {
+                return stateManager->getStatePosition();
+            },
+            std::pair {Positions::L1Position, stateManager->L1PositionToL1Confirm()}, std::pair {Positions::NetPosition,
+                    stateManager->NetPositionToNetConfirm()}, std::pair {Positions::L2Back,
+                    stateManager->L2BackToBackConfirm()}, std::pair {Positions::L3Back,
+                    stateManager->L3BackToBackConfirm()}, std::pair {Positions::L4Back,
+                    stateManager->L4BackToBackConfirm()}, std::pair {Positions::L2Front,
+                    stateManager->L2FrontToFrontConfirm()}, std::pair {Positions::L3Front,
+                    stateManager->L3FrontToFrontConfirm()}, std::pair {Positions::L4Front,
+                    stateManager->L4FrontToFrontConfirm()}, std::pair {Positions::ProcessorPosition,
+                    stateManager->ProcessorPositionToProcessorConfirm()});
 }

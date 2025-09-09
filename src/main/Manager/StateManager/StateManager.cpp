@@ -5,25 +5,25 @@
 #include "StateManager.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 
-StateManager::StateManager(Intake* intake, Arm* arm, Elevator* elevator, Grabber* grabber, Climber* climber,
-	AlignManager* alignManager, OverXboxController* driver, OverXboxController* oprtr, OverConsole* console,
-	frc2::Trigger* endToInitial) {
-	this->intake = intake;
-	this->arm = arm;
-	this->elevator = elevator;
-	this->grabber = grabber;
-	this->climber = climber;
-	this->driver = driver;
-	this->oprtr = oprtr;
-	this->console = console;
-	this->endToInitial = endToInitial;
-	this->alignManager = alignManager;
+StateManager::StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
+        AlignManager *alignManager, OverXboxController *driver, OverXboxController *oprtr, OverConsole *console,
+        frc2::Trigger *endToInitial) {
+    this->intake = intake;
+    this->arm = arm;
+    this->elevator = elevator;
+    this->grabber = grabber;
+    this->climber = climber;
+    this->driver = driver;
+    this->oprtr = oprtr;
+    this->console = console;
+    this->endToInitial = endToInitial;
+    this->alignManager = alignManager;
 
-	frc::SmartDashboard::PutBoolean("StateManager/IsFinished", false);
+    frc::SmartDashboard::PutBoolean("StateManager/IsFinished", false);
 }
 
 Positions StateManager::getStatePosition() {
-	return state;
+    return state;
 }
 
 // bool StateManager::getExecute() {
@@ -56,34 +56,34 @@ Positions StateManager::getStatePosition() {
 // }
 
 frc2::CommandPtr StateManager::setStatePosition(Positions desiredState) {
-	return frc2::cmd::RunOnce([this, desiredState] {
-		this->state = desiredState;
-	});
+    return frc2::cmd::RunOnce([this, desiredState] {
+        this->state = desiredState;
+    });
 }
 
 frc2::CommandPtr StateManager::setStateOverride() {
-	return frc2::cmd::RunOnce([this] {
-		this->state = Positions::SustainedPosition;
-	});
+    return frc2::cmd::RunOnce([this] {
+        this->state = Positions::SustainedPosition;
+    });
 }
 
 void StateManager::Periodic() {
-	frc::SmartDashboard::PutString("StateManager/CurrentState", std::to_string(static_cast<int>(state)));
-	frc::SmartDashboard::PutString("StateManager/DesiredState", std::to_string(static_cast<int>(desiredState)));
-	// frc::SmartDashboard::PutBoolean("StateManager/Execute", execute);
+    frc::SmartDashboard::PutString("StateManager/CurrentState", std::to_string(static_cast<int>(state)));
+    frc::SmartDashboard::PutString("StateManager/DesiredState", std::to_string(static_cast<int>(desiredState)));
+    // frc::SmartDashboard::PutBoolean("StateManager/Execute", execute);
 
-	// if (execute == false) {
-	// for (const Transitions& transitions : transitionsMap) {
-	// 	frc::SmartDashboard::PutBoolean("StateManager/CurrentTransition", transitions.currentState == this->state);
-	// 	frc::SmartDashboard::PutNumber("StateManager/CurrentIndex", currentTransitionIndex);
-	// 	if (transitions.currentState == this->state && transitions.check()) {
-	// 		this->desiredState = transitions.nextState;
+    // if (execute == false) {
+    // for (const Transitions& transitions : transitionsMap) {
+    // 	frc::SmartDashboard::PutBoolean("StateManager/CurrentTransition", transitions.currentState == this->state);
+    // 	frc::SmartDashboard::PutNumber("StateManager/CurrentIndex", currentTransitionIndex);
+    // 	if (transitions.currentState == this->state && transitions.check()) {
+    // 		this->desiredState = transitions.nextState;
 
-	// 		this->currentTransitionIndex = &transitions - &transitionsMap[0];
-	// 		execute = true;
-	// 		break; // Exit loop once valid transition is found
-	// 	}
-	// }
-	// }
+    // 		this->currentTransitionIndex = &transitions - &transitionsMap[0];
+    // 		execute = true;
+    // 		break; // Exit loop once valid transition is found
+    // 	}
+    // }
+    // }
 
 }

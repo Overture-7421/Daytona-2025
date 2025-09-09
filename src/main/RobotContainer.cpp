@@ -56,60 +56,62 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.LeftTrigger().WhileTrue(
-            frc2::cmd::Parallel(intake.setCharacterization(3_V, 8.25_V, 131_deg), arm.setCharacterization(-90_deg)));
-    driver.LeftTrigger().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
+    driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
+    driver.LeftTrigger().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
+    // driver.LeftTrigger().WhileTrue(
+    // frc2::cmd::Parallel(intake.setCharacterization(3_V, 8.25_V, 131_deg), arm.setCharacterization(-90_deg)));
+    // driver.LeftTrigger().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
 
-    driver.RightBumper().WhileTrue(intake.setCharacterization(-6_V, -6_V, 30_deg));
-    driver.RightBumper().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
+    // driver.RightBumper().WhileTrue(intake.setCharacterization(-6_V, -6_V, 30_deg));
+    // driver.RightBumper().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
 
-    driver.LeftBumper().WhileTrue(CharacterizationCommand(&intake, &arm, &elevator, &grabber, &climber));
-    driver.LeftBumper().OnFalse(ClosedCommand(&intake, &arm, &elevator, &grabber, &climber));
+    // driver.LeftBumper().WhileTrue(CharacterizationCommand(&intake, &arm, &elevator, &grabber, &climber));
+    // driver.LeftBumper().OnFalse(ClosedCommand(&intake, &arm, &elevator, &grabber, &climber));
 
     // driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
     // driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
 
-    // driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
-    // driver.RightBumper().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
+    driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
-    // driver.POVLeft().WhileTrue(AlgaeCommand(&stateManager));
-    // driver.POVLeft().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
+    driver.POVLeft().OnFalse(SustainedCommands(&stateManager));
 
-    // driver.POVUp().WhileTrue(stateManager.setStatePosition(Positions::L1Position));
-    // driver.POVUp().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.POVUp().WhileTrue(L1Command(&stateManager));
+    driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
-    // driver.POVRight().WhileTrue(/*Coral detection later */);
-    // driver.POVRight().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.POVRight().WhileTrue(AlgaeLowManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+    driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
 }
 
 void RobotContainer::ConfigOperatorBindings() {
 
-    // oprtr.LeftBumper().WhileTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
-    // oprtr.LeftBumper().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.LeftBumper().WhileTrue(stateManager.AlgaeHoldToProcessor());
+    oprtr.LeftBumper().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.RightBumper().WhileTrue(stateManager.setStatePosition(Positions::IntakeCoralStation));
-    // oprtr.RightBumper().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.RightBumper().WhileTrue(stateManager.AlgaeHoldToNet());
+    oprtr.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.A().WhileTrue(stateManager.setStatePosition(Positions::L1Position));
-    // oprtr.A().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.A().WhileTrue(L1Command(&stateManager));
+    oprtr.A().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.B().WhileTrue(stateManager.setStatePosition(Positions::L2Front));
-    // oprtr.B().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.B().WhileTrue(stateManager.CoralHoldToL2Front());
+    oprtr.B().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.X().WhileTrue(stateManager.setStatePosition(Positions::L3Front));
-    // oprtr.X().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.X().WhileTrue(stateManager.CoralHoldToL3Front());
+    oprtr.X().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.Y().WhileTrue(stateManager.setStatePosition(Positions::L4Front));
-    // oprtr.Y().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.Y().WhileTrue(stateManager.CoralHoldToL4Front());
+    oprtr.Y().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.POVUp().WhileTrue(stateManager.setStatePosition(Positions::AlgaeHighReef));
-    // oprtr.POVUp().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+    oprtr.POVUp().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.POVDown().WhileTrue(stateManager.setStatePosition(Positions::AlgaeLowReef));
-    // oprtr.POVDown().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+    oprtr.POVDown().OnFalse(SustainedCommands(&stateManager));
 
-    // oprtr.Back().WhileTrue(stateManager.setStatePosition(Positions::EndPosition));
+    oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
     // oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
     oprtr.Start().WhileTrue(frc2::cmd::RunOnce([this] {
@@ -166,27 +168,28 @@ void RobotContainer::ConfigOperatorBindings() {
 }
 
 void RobotContainer::ConfigMixedBindigs() {
-    // (driver.POVDown() && console.Button(12)).OnTrue(
-    // 	L2Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(12)).OnTrue(
+            L2Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager)));
 
-    // (driver.POVDown() && console.Button(5)).OnTrue(
-    // 	L2Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(5)).OnTrue(
+            L2Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
 
-    // (driver.POVDown() && console.Button(7)).OnTrue(
-    // 	L3Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(7)).OnTrue(
+            L3Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager)));
 
-    // (driver.POVDown() && console.Button(8)).OnTrue(
-    // 	L3Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(8)).OnTrue(
+            L3Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
 
-    // (driver.POVDown() && console.Button(10)).OnTrue(
-    // 	L4Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(10)).OnTrue(
+            L4Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager)));
 
-    // (driver.POVDown() && console.Button(11)).OnTrue(
-    // 	L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(11)).OnTrue(
+            L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
 
     // //Maybe es 2 en el numero de la consola :V
-    // (driver.POVDown() && console.Button(1)).OnTrue(
-    // 	AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager)));
+    (driver.POVDown() && console.Button(1)).OnTrue(
+            AlgaeReefCommand(&stateManager, &alignManager).AlongWith(
+                    algaeAlignPos(&alignManager).AndThen(AlgaeHoldCommand(&stateManager))));
 
     // (!driver.LeftTrigger() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
     // 	stateManager.setStatePosition(Positions::IntakeCoralStation));
@@ -195,13 +198,13 @@ void RobotContainer::ConfigMixedBindigs() {
     // (!driver.LeftTrigger() && console.Button(9)).OnTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
     // console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
-    // console.Button(4).OnTrue(stateManager.setStatePosition(Positions::EndPosition));
+    console.Button(4).OnTrue(EndPositionCommands(&stateManager));
 
-    // driver.POVDown().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
 
 void RobotContainer::ConfigDefaultCommands() {
-    //startCommands.OnTrue(stateManager.setStatePosition());
+    // startCommands.OnTrue(stateManager.setStatePosition());
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {

@@ -24,11 +24,10 @@
 #include "Manager/AlignManager/AlignManager.h"
 #include "Manager/StateManager/StateManager.h"
 
-#include "Commands/AlgaeCommand/AlgaeCommand.h"
-#include "Commands/L2Command/L2Command.h"
-#include "Commands/L3Command/L3Command.h"
-#include "Commands/L4Command/L4Command.h"
-#include "Commands/AlgaeReefCommand/AlgaeReefCommand.h"
+#include "Commands/AlgaeCommands/AlgaeCommands.h"
+#include "Commands/ReefCommands/ReefCommands.h"
+#include "Commands/SustainedCommands/SustainedCommands.h"
+#include "Commands/EndPositionCommands/EndPositionCommands.h"
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/EmergencyCommand/EmergencyCommand.h"
 #include "Commands/CharacterizationCommand/CharacterizationCommand.h"
@@ -98,9 +97,9 @@ private:
         return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
     }};
 
-    // frc2::Trigger startCommands {[this]() {
-    //     return stateManager.getExecute();
-    // }};
+    // frc2::Trigger startCommands{ [this]() {
+    // 	return stateManager.getExecute();
+    // } };
 
     // Maybe si lo usamos
     // frc2::Trigger increaseOffsetX {[] {

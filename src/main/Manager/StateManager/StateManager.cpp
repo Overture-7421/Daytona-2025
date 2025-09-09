@@ -26,32 +26,38 @@ Positions StateManager::getStatePosition() {
     return state;
 }
 
-bool StateManager::getExecute() {
-    return execute;
-}
+// bool StateManager::getExecute() {
+// 	return execute;
+// }
 
-void StateManager::setExecute(bool value) {
-    this->execute = value;
-}
+// void StateManager::setExecute(bool value) {
+// 	this->execute = value;
+// }
 
-frc2::CommandPtr StateManager::setNewState() {
-    return frc2::cmd::RunOnce([this]() {
+// frc2::CommandPtr StateManager::setNewState() {
+// 	return frc2::cmd::RunOnce([this]() {
+// 		this->state = desiredState;
+// 	}
+// 	);
+// }
+
+// frc2::CommandPtr StateManager::setStatePosition() {
+//     return frc2::cmd::Either(frc2::cmd::None(), frc2::cmd::Defer([this] {
+//         return this->transitionsMap[this->currentTransitionIndex].commandGenerator();
+//     }, {}).AlongWith(setNewState()), [this] {
+//         return this->currentTransitionIndex == -1;
+//     }
+//     ).BeforeStarting([this]() {
+//         return frc::SmartDashboard::PutBoolean("StateManager/IsFinished", false);
+//     }).FinallyDo([this] {
+//         frc::SmartDashboard::PutBoolean("StateManager/IsFinished", true);
+//         setExecute(false);
+//     });
+// }
+
+frc2::CommandPtr StateManager::setStatePosition(Positions desiredState) {
+    return frc2::cmd::RunOnce([this, desiredState] {
         this->state = desiredState;
-    }
-    );
-}
-
-frc2::CommandPtr StateManager::setStatePosition() {
-    return frc2::cmd::Either(frc2::cmd::None(), frc2::cmd::Defer([this] {
-        return this->transitionsMap[this->currentTransitionIndex].commandGenerator();
-    }, {}).AlongWith(setNewState()), [this] {
-        return this->currentTransitionIndex == -1;
-    }
-    ).BeforeStarting([this]() {
-        return frc::SmartDashboard::PutBoolean("StateManager/IsFinished", false);
-    }).FinallyDo([this] {
-        frc::SmartDashboard::PutBoolean("StateManager/IsFinished", true);
-        setExecute(false);
     });
 }
 
@@ -64,20 +70,20 @@ frc2::CommandPtr StateManager::setStateOverride() {
 void StateManager::Periodic() {
     frc::SmartDashboard::PutString("StateManager/CurrentState", std::to_string(static_cast<int>(state)));
     frc::SmartDashboard::PutString("StateManager/DesiredState", std::to_string(static_cast<int>(desiredState)));
-    frc::SmartDashboard::PutBoolean("StateManager/Execute", execute);
+    // frc::SmartDashboard::PutBoolean("StateManager/Execute", execute);
 
     // if (execute == false) {
-    for (const Transitions &transitions : transitionsMap) {
-        frc::SmartDashboard::PutBoolean("StateManager/CurrentTransition", transitions.currentState == this->state);
-        frc::SmartDashboard::PutNumber("StateManager/CurrentIndex", currentTransitionIndex);
-        if (transitions.currentState == this->state && transitions.check()) {
-            this->desiredState = transitions.nextState;
+    // for (const Transitions& transitions : transitionsMap) {
+    // 	frc::SmartDashboard::PutBoolean("StateManager/CurrentTransition", transitions.currentState == this->state);
+    // 	frc::SmartDashboard::PutNumber("StateManager/CurrentIndex", currentTransitionIndex);
+    // 	if (transitions.currentState == this->state && transitions.check()) {
+    // 		this->desiredState = transitions.nextState;
 
-            this->currentTransitionIndex = &transitions - &transitionsMap[0];
-            execute = true;
-            break; // Exit loop once valid transition is found
-        }
-    }
+    // 		this->currentTransitionIndex = &transitions - &transitionsMap[0];
+    // 		execute = true;
+    // 		break; // Exit loop once valid transition is found
+    // 	}
+    // }
     // }
 
 }

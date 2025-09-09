@@ -7,4 +7,4 @@
 #include <frc2/command/Commands.h>
 #include "Manager/StateManager/StateManager.h"
 
-frc2::CommandPtr AlgaeReefCommand(StateManager *stateManager, AlignManager *alignManager);
+frc2::CommandPtr SustainedCommands(StateManager *stateManager);

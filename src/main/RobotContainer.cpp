@@ -80,7 +80,7 @@ void RobotContainer::ConfigDriverBindings() {
 	driver.POVUp().WhileTrue(L1Command(&stateManager));
 	driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
-	driver.POVRight().WhileTrue(AlgaeLowManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+	driver.POVRight().WhileTrue(NetCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
 	driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
 	driver.A().WhileTrue(leftAlignPos(&alignManager));
@@ -111,10 +111,10 @@ void RobotContainer::ConfigOperatorBindings() {
 	oprtr.Y().OnFalse(SustainedCommands(&stateManager));
 
 	oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
-	oprtr.POVUp().OnFalse(SustainedCommands(&stateManager));
+	oprtr.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.AlgaeHighReefToAlgaeHold()));
 
 	oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
-	oprtr.POVDown().OnFalse(SustainedCommands(&stateManager));
+	oprtr.POVDown().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.AlgaeLowReefToAlgaeHold()));
 
 	oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
 	// oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));

@@ -120,7 +120,7 @@ public:
     frc2::CommandPtr IntakeToL1Position() { // Done
         return frc2::cmd::Parallel(
                 frc2::cmd::Sequence(arm->setState(Positions::L1Position), elevator->setState(Positions::L1Position)),
-                intake->setState(Positions::L1Position)).BeforeStarting(setStatePosition(Positions::L1Position)).OnlyIf(
+                frc2::cmd::Sequence(intake->setStateRollers(Positions::Through), intake->setStateIntake(Positions::L1Position), intake->setState(Positions::L1Position))).BeforeStarting(setStatePosition(Positions::L1Position)).OnlyIf(
                 [this] {
                     return intake->isCoralIn() && !grabber->isCoralIn();
                 });
@@ -187,8 +187,11 @@ public:
     }
 
     frc2::CommandPtr L1PositionToCoralHold() { // Done
-        return frc2::cmd::Sequence(arm->setState(Positions::CoralHold), elevator->setState(Positions::CoralHold),
-                intake->setState(Positions::CoralHold), grabber->setState(Positions::CoralHold),
+        return frc2::cmd::Sequence(arm->setState(Positions::CoralHold),
+                intake->setStateRollers(Positions::Through), intake->setStateIntake(Positions::CoralHold), 
+                frc2::cmd::Parallel(intake->setState(Positions::CoralHold),
+                    grabber->setState(Positions::CoralHold),
+                elevator->setState(Positions::CoralHold)),
                 climber->setState(Positions::CoralHold)).BeforeStarting(setStatePosition(Positions::CoralHold)).OnlyIf(
                 [this] {
                     return !grabber->isAlgaeIn() && intake->isCoralIn();

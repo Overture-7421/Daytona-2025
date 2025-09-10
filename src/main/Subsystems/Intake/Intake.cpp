@@ -70,6 +70,51 @@ frc2::CommandPtr Intake::setState(Positions state) {
     });
 }
 
+frc2::CommandPtr Intake::setStateRollers(Positions state) {
+    return frc2::FunctionalCommand([this]() {
+    }, [this, state]() {
+
+        if (!(state == Positions::CoralHold)) {
+            setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
+            setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
+        }
+    }, [](bool interrupted) {
+    }
+            , [this, state]() {
+                frc::SmartDashboard::PutBoolean("Intake/AtPosition",
+                        isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
+                return true;
+            },
+            {this}).ToPtr().BeforeStarting([this, state]() {
+        return frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
+    }).AndThen([this, state]() {
+        if (state == Positions::CoralHold) {
+            setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
+            setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
+        }
+        frc::SmartDashboard::PutBoolean("Intake/IsFinished", true);
+    });
+}
+
+frc2::CommandPtr Intake::setStateIntake(Positions state) {
+    return frc2::FunctionalCommand([this, state]() {
+        setIntakeToAngle(IntakeConstants::IntakePositions.at(state).intake);
+    }, [this]() {
+    }, [](bool interrupted) {
+    }
+            , [this, state]() {
+                frc::SmartDashboard::PutBoolean("Intake/AtPosition",
+                        isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
+                return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
+            },
+            {this}).ToPtr().BeforeStarting([this, state]() {
+        return frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
+    }).AndThen([this]() {
+        frc::SmartDashboard::PutBoolean("Intake/IsFinished", true);
+    });
+}
+
+
 frc2::CommandPtr Intake::setCharacterization(units::volt_t rollers, units::volt_t centering, units::degree_t intake) {
     return frc2::FunctionalCommand([this, intake]() {
         setIntakeToAngle(intake);

@@ -24,7 +24,7 @@ public:
             Positions::ProcessorPosition, 2.0_V}, {Positions::ProcessorConfirm, -5.0_V}, {Positions::SustainedPosition,
             0.0_V}, {Positions::EndPosition, 0.0_V}};
 
-    constexpr static const double CoralDetectionCurrent = 35.0; //To be defined
+    constexpr static const double CoralDetectionCurrent = 25.0; //To be defined
     constexpr static const double AlgaeDetectionCurrent = 20.0; //To be defined
 
     //Configuration for the Motor

@@ -28,6 +28,8 @@ public:
     units::degree_t getIntakePosition();
 
     frc2::CommandPtr setState(Positions state);
+    frc2::CommandPtr setStateRollers(Positions state);
+    frc2::CommandPtr setStateIntake(Positions state);
     frc2::CommandPtr setCharacterization(units::volt_t rollers, units::volt_t centering, units::degree_t intake);
 
     void Periodic() override;

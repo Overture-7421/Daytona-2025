@@ -15,6 +15,7 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <pathplanner/lib/auto/AutoBuilder.h>
+#include "OvertureLib/Utils/Logging/Logging.h"
 
 class AlignManager {
 public:

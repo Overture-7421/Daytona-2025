@@ -83,6 +83,11 @@ void RobotContainer::ConfigDriverBindings() {
     driver.POVRight().WhileTrue(AlgaeLowManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
     driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
+    driver.A().WhileTrue(leftAlignPos(&alignManager));
+
+    driver.B().WhileTrue(rightAlignPos(&alignManager));
+
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {
@@ -228,10 +233,10 @@ void RobotContainer::ConfigCharacterizationBindings() {
 
 }
 
-AprilTags::Config RobotContainer::railCameraLeft() {
+AprilTags::Config RobotContainer::railCameraRight() {
     AprilTags::Config config;
-    config.cameraName = "RailLeft";
-    config.cameraToRobot = {8_in, -9.2_in, 11.52224_in, {0_deg, -5_deg, 29.993788_deg}};
+    config.cameraName = "RailRight";
+    config.cameraToRobot = {8_in, -9.2_in, 11.52224_in, {0_deg, -5_deg, -44.124984_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
@@ -240,7 +245,7 @@ AprilTags::Config RobotContainer::railCameraLeft() {
 AprilTags::Config RobotContainer::climberCameraLeft() {
     AprilTags::Config config;
     config.cameraName = "ClimberLeft";
-    config.cameraToRobot = {-7.998650_in, -10.5_in, 10.253949_in, {0_deg, -5.000909_deg, 32.006364_deg}};
+    config.cameraToRobot = {-11.162644_in, 10.651305_in, 8.845276_in, {0_deg, -20_deg, 125.531348_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
@@ -248,14 +253,14 @@ AprilTags::Config RobotContainer::climberCameraLeft() {
 AprilTags::Config RobotContainer::climberCameraRight() {
     AprilTags::Config config;
     config.cameraName = "ClimberRight";
-    config.cameraToRobot = {-3.9_in, -10.5_in, 12.752224_in, {0_deg, -4.00065_deg, 10.005291_deg}};
+    config.cameraToRobot = {-11.4_in, -1.319890_in, 6.843439_in, {0_deg, -15_deg, 146.355913_deg}};
     return config;
 }
 
-AprilTags::Config RobotContainer::railCameraRight() {
+AprilTags::Config RobotContainer::railCameraLeft() {
     AprilTags::Config config;
-    config.cameraName = "RailRight";
-    config.cameraToRobot = {11.2_in, -3.5_in, 7.752_in, {0_deg, -15_deg, 47.981360_deg}};
+    config.cameraName = "RailLeft";
+    config.cameraToRobot = {11.2_in, -3.5_in, 7.752_in, {0_deg, -15_deg, -30.375507_deg}};
     return config;
 }
 void RobotContainer::UpdateTelemetry() {

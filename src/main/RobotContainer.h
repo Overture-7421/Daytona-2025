@@ -51,7 +51,7 @@ private:
     void disableBackCamera();
     void enableBackCamera();
 
-    OverXboxController driver {0, 0.55, 0.2};
+    OverXboxController driver {0, 0.65, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
     OverConsole console {2};
     OverXboxController test {3, 0.20, 0.2};
@@ -77,15 +77,15 @@ private:
     StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &alignManager, &driver, &oprtr, &console,
             &endToInitial};
 
-    static AprilTags::Config railCameraLeft();
+    static AprilTags::Config railCameraRight();
     static AprilTags::Config climberCameraLeft();
     static AprilTags::Config climberCameraRight();
-    static AprilTags::Config railCameraRight();
+    static AprilTags::Config railCameraLeft();
 
-    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
+    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
     AprilTags climberCamLeft {&tagLayout, &chassis, climberCameraLeft()};
     AprilTags climberCamRight {&tagLayout, &chassis, climberCameraRight()};
-    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
+    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 

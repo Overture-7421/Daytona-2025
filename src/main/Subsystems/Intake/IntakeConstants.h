@@ -96,7 +96,7 @@ struct IntakeConstants {
         rollersConfig.Inverted = false;
 
         rollersConfig.CurrentLimit = 30_A;
-        rollersConfig.StatorCurrentLimit = 80_A;
+        rollersConfig.StatorCurrentLimit = 120_A;
         rollersConfig.TriggerThreshold = 40_A;
         rollersConfig.TriggerThresholdTime = 0.5_s;
         rollersConfig.ClosedLoopRampRate = 0.0_s;
@@ -112,7 +112,7 @@ struct IntakeConstants {
         centeringConfig.Inverted = false;
 
         centeringConfig.CurrentLimit = 30_A;
-        centeringConfig.StatorCurrentLimit = 80_A;
+        centeringConfig.StatorCurrentLimit = 120_A;
         centeringConfig.TriggerThreshold = 40_A;
         centeringConfig.TriggerThresholdTime = 0.5_s;
         centeringConfig.ClosedLoopRampRate = 0.0_s;

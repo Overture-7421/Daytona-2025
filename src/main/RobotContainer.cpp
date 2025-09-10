@@ -129,10 +129,10 @@ void RobotContainer::ConfigOperatorBindings() {
 	// 	frc::SmartDashboard::PutBoolean("EndToInitial", false);
 	// }));
 
-	emergency.OnTrue(frc2::cmd::RunOnce([this] {
-		EmergencyCommand(&stateManager, &intake, &arm, &elevator, &grabber, &climber);
+	emergency.OnTrue(EmergencyCommand(&stateManager, &intake, &arm, &elevator, &grabber, &climber).AndThen(
+		frc2::cmd::RunOnce([this] {
 		frc::SmartDashboard::PutBoolean("EMERGENCY", false);
-	}));
+	})));
 
 	//Maybe si lo usamos
 	// increaseOffsetX.OnTrue(frc2::cmd::RunOnce([this] {

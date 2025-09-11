@@ -35,7 +35,7 @@ public:
 	//GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
 
 	//IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
-	const ReefOffset defaultReefOffset{ -0.25_m, 0.085_m, 0.51_m, 180.0_deg, 0.0_m };
+	const ReefOffset defaultReefOffset{ -0.31_m, 0.078_m, 0.49_m, 180.0_deg, 0.0_m };
 
 	std::map<ReefLocation, ReefOffset> alignPositionsMap;
 	const std::map<ReefLocation, ReefOffset> alignInRed = {};

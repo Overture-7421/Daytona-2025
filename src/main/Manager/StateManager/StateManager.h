@@ -204,10 +204,10 @@ public:
     }
 
     frc2::CommandPtr CoralHoldToL1Position() { // Done
-        return frc2::cmd::Parallel(
-                frc2::cmd::Sequence(arm->setState(Positions::L1Position), elevator->setState(Positions::L1Position)),
-                intake->setState(Positions::L1Position), grabber->setState(Positions::L1Position),
-                climber->setState(Positions::L1Position)).BeforeStarting(setStatePosition(Positions::L1Position));
+        return frc2::cmd::Sequence(
+                frc2::cmd::Sequence(arm->setState(Positions::L1Position), elevator->setState(Positions::CoralHold)), 
+                frc2::cmd::Parallel( intake->setState(Positions::SustainToL1),grabber->setState(Positions::CoralSpit)),
+                climber->setState(Positions::L1Position)).BeforeStarting(setStatePosition(Positions::Intake));
     }
 
     frc2::CommandPtr CoralHoldToL2Front() { // Done

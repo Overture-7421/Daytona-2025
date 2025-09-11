@@ -56,7 +56,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = -0.04443359375_tr;
+        armCANConfig.Offset = -0.041015625_tr;
         armCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
 
         return armCANConfig;

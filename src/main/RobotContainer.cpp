@@ -245,7 +245,7 @@ AprilTags::Config RobotContainer::railCameraRight() {
 AprilTags::Config RobotContainer::climberCameraLeft() {
 	AprilTags::Config config;
 	config.cameraName = "ClimberLeft";
-	config.cameraToRobot = { -11.162644_in, 10.651305_in, 8.845276_in, {0_deg, -20_deg, 60.024706_deg} };
+	config.cameraToRobot = { -11.162644_in, 10.651305_in, 8.845276_in, {0_deg, -20_deg, -119.975294_deg} };
 	config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m} };
 	return config;
 }
@@ -253,7 +253,7 @@ AprilTags::Config RobotContainer::climberCameraLeft() {
 AprilTags::Config RobotContainer::climberCameraRight() {
 	AprilTags::Config config;
 	config.cameraName = "ClimberRight";
-	config.cameraToRobot = { -11.4_in, -1.319890_in, 6.843439_in, {0_deg, -15_deg, 35.018739_deg} };
+	config.cameraToRobot = { -11.4_in, -1.319890_in, 6.843439_in, {0_deg, -15_deg, -144.981261_deg} };
 	return config;
 }
 

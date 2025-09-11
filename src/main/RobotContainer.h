@@ -51,7 +51,7 @@ private:
 	void disableBackCamera();
 	void enableBackCamera();
 
-	OverXboxController driver{ 0, 0.15, 0.2 };
+	OverXboxController driver{ 0, 0.05, 0.2 };
 	OverXboxController oprtr{ 1, 0.20, 0.2 };
 	OverConsole console{ 2 };
 	OverXboxController test{ 3, 0.20, 0.2 };

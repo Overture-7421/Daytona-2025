@@ -53,12 +53,14 @@ pathplanner::PathConstraints constraints = pathplanner::PathConstraints(3.0_mps,
 	720_deg_per_s_sq);
 
 frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
-	return frc2::cmd::Sequence(frc2::cmd::RunOnce([this, reefSide] {
-		getReefOffset(reefSide);
-	}),
-		frc2::cmd::DeferredCommand([this] {
-		return pathplanner::AutoBuilder::pathfindToPose(targetPose, constraints, 0_mps);
-	}));
+    return frc2::cmd::Sequence(
+        frc2::cmd::RunOnce([this, reefSide] {
+            getReefOffset(reefSide);
+        }),
+        frc2::cmd::Defer([this]() {
+            return pathplanner::AutoBuilder::pathfindToPose(targetPose, constraints, 0_mps);
+        }, {chassis})  // Add chassis as requirement
+    );
 }
 
 void AlignManager::setHeading(Heading heading) {

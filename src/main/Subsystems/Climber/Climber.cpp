@@ -10,9 +10,6 @@ Climber::Climber() {
     climberPID.SetTolerance(ClimberConstants::ClimberRangeError);
 
     frc::SmartDashboard::PutBoolean("Climber/AtPosition", false);
-    frc::SmartDashboard::PutNumber("Climber/Error", 0.0);
-
-    frc::SmartDashboard::PutBoolean("Climber/IsFinished", false);
 }
 
 units::degree_t Climber::getCurrentClimberAngle() {
@@ -30,23 +27,15 @@ bool Climber::isClimberAtPosition(units::degree_t climberAngle) {
 frc2::CommandPtr Climber::setState(Positions climberState) {
     return frc2::FunctionalCommand([this, climberState]() {
         setTarget(ClimberConstants::ClimberPositions.at(climberState));
-    }
-            , [this, climberState]() {
-                setTarget(ClimberConstants::ClimberPositions.at(climberState) + offset);
-                frc::SmartDashboard::PutNumber("Climber/Error",
-                        units::math::abs(ClimberConstants::ClimberPositions.at(climberState) - getCurrentClimberAngle()).value());
-
-            }, [this](bool interupted) {
-                offset = 0.0_deg;
-            }, [this, climberState]() {
-                frc::SmartDashboard::PutBoolean("Climber/AtPosition", climberPID.AtGoal());
-                return climberPID.AtGoal();
-            },
-            {this}).ToPtr().BeforeStarting([this]() {
-        return frc::SmartDashboard::PutBoolean("Climber/IsFinished", false);
-    }).AndThen([this]() {
-        return frc::SmartDashboard::PutBoolean("Climber/IsFinished", true);
-    });
+    }, [this, climberState]() {
+        setTarget(ClimberConstants::ClimberPositions.at(climberState) + offset);
+    }, [this](bool interupted) {
+        offset = 0.0_deg;
+    }, [this, climberState]() {
+        frc::SmartDashboard::PutBoolean("Climber/AtPosition", climberPID.AtGoal());
+        return climberPID.AtGoal();
+    },
+    {this}).ToPtr();
 }
 
 frc2::CommandPtr Climber::setCharacterization(units::degree_t angle) {

@@ -74,8 +74,10 @@ public:
     }
 
     frc2::CommandPtr SustainedToAlgaeLowReef() { // Done
-        return frc2::cmd::Sequence(elevator->setState(Positions::AlgaeLowReef), arm->setState(Positions::AlgaeLowReef),
-                grabber->setState(Positions::AlgaeLowReef), intake->setState(Positions::AlgaeLowReef),
+        return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(intake->setState(Positions::AlgaeLowReef), arm->setState(Positions::AlgaeLowReef))
+            , elevator->setState(Positions::AlgaeLowReef),
+                grabber->setState(Positions::AlgaeLowReef),
                 climber->setState(Positions::AlgaeLowReef)).BeforeStarting(setStatePosition(Positions::AlgaeLowReef)).OnlyIf(
                 [this] {
                     return !intake->isCoralIn();
@@ -83,13 +85,13 @@ public:
     }
 
     frc2::CommandPtr SustainedToAlgaeHighReef() { // Done
-        return frc2::cmd::Sequence(elevator->setState(Positions::AlgaeHighReef),
-                arm->setState(Positions::AlgaeHighReef), grabber->setState(Positions::AlgaeHighReef),
-                intake->setState(Positions::AlgaeHighReef), climber->setState(Positions::AlgaeHighReef)).BeforeStarting(
+        return frc2::cmd::Parallel(
+            intake->setState(Positions::AlgaeHighReef),arm->setState(Positions::AlgaeHighReef)
+            , elevator->setState(Positions::AlgaeHighReef),
+                 grabber->setState(Positions::AlgaeHighReef),
+                 climber->setState(Positions::AlgaeHighReef)).BeforeStarting(
                 setStatePosition(Positions::AlgaeHighReef)).OnlyIf([this] {
             return !intake->isCoralIn();
-        }).Until([this] {
-            return grabber->isAlgaeIn();
         });
     }
 
@@ -330,7 +332,7 @@ public:
     }
 
     frc2::CommandPtr NetPositionToNetConfirm() { // Done
-        return frc2::cmd::Sequence(grabber->setState(Positions::NetConfirm), arm->setState(Positions::NetConfirm),
+        return frc2::cmd::Sequence(grabber->setState(Positions::AlgaeTension), grabber->setState(Positions::NetConfirm), arm->setState(Positions::NetConfirm),
                 elevator->setState(Positions::NetConfirm), intake->setState(Positions::NetConfirm),
                 climber->setState(Positions::NetConfirm)).BeforeStarting(setStatePosition(Positions::NetConfirm)).OnlyIf(
                 [this] {

@@ -49,7 +49,7 @@ void AlignManager::getReefOffset(ReefSide reefSide) {
 	targetPose = reefPackage.pose.TransformBy({ reefOffset.xOffset, yTarget, headingTarget });
 }
 
-pathplanner::PathConstraints constraints = pathplanner::PathConstraints(3.0_mps, 4.0_mps_sq, 540_deg_per_s,
+pathplanner::PathConstraints constraints = pathplanner::PathConstraints(4.0_mps, 2.5_mps_sq, 540_deg_per_s,
 	720_deg_per_s_sq);
 
 frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {

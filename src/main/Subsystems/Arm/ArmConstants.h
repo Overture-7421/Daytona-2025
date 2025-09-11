@@ -10,7 +10,7 @@
 
 struct ArmConstants {
 
-    constexpr static const units::degree_t ArmRangeError = 3.0_deg;
+    constexpr static const units::degree_t ArmRangeError = 4.0_deg;
 
     inline static const std::map<Positions, units::degree_t> ArmFront { {Positions::InitialPosition, -90_deg}, {
             Positions::SustainedPosition, 90.0_deg}, {Positions::Intake, 90.0_deg}, {Positions::IntakeCoralStation,
@@ -27,10 +27,10 @@ struct ArmConstants {
             Positions::L3Back, -107.0_deg}, {Positions::L4Back, -113.0_deg}, {Positions::L2BackConfirm, -188.0_deg}, {
             Positions::L3BackConfirm, -183.0_deg}, {Positions::L4BackConfirm, -162.0_deg}};
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 13_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 9_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 9_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 6_tr_per_s_sq;
 
-    constexpr static const double ArmRotorToSensor = 68.571428;
+    constexpr static const double ArmRotorToSensor = 60;
 
     constexpr static const double ArmMotorId = 23;
     constexpr static const double ArmCANCoderId = 25;
@@ -48,7 +48,7 @@ struct ArmConstants {
         armConfig.TriggerThreshold = 40_A;
         armConfig.TriggerThresholdTime = 0.5_s;
         armConfig.PIDConfigs.GravityType = 1;
-        armConfig.PIDConfigs.WithKG(0.32).WithKV(0).WithKP(120);
+        armConfig.PIDConfigs.WithKG(0.32).WithKV(0).WithKP(170);
 
         return armConfig;
     }
@@ -56,7 +56,7 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = -0.041015625_tr;
+        armCANConfig.Offset = -0.046142578125_tr;
         armCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
 
         return armCANConfig;

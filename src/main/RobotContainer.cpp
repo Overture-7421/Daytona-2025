@@ -71,7 +71,7 @@ void RobotContainer::ConfigDriverBindings() {
 	// driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
 	// driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
 
-	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
+	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager, &grabber));
 	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
 	driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
@@ -80,12 +80,12 @@ void RobotContainer::ConfigDriverBindings() {
 	driver.POVUp().WhileTrue(L1Command(&stateManager));
 	driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
-	driver.POVRight().WhileTrue(NetCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+	driver.POVRight().WhileTrue(NetCommand(&stateManager));
 	driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
-	driver.A().WhileTrue(leftAlignPos(&alignManager));
+	//driver.A().WhileTrue(leftAlignPos(&alignManager));
 
-	driver.B().WhileTrue(rightAlignPos(&alignManager));
+	//driver.B().WhileTrue(rightAlignPos(&alignManager));
 
 
 }
@@ -213,8 +213,8 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
-	//test.A().WhileTrue(arm.setCharacterization(-90.0_deg));
-	//test.A().OnFalse(arm.setCharacterization(0.0_deg));
+	test.A().WhileTrue(arm.setCharacterization(-90.0_deg));
+	test.A().OnFalse(arm.setCharacterization(0.0_deg));
 
 	//test.B().WhileTrue(elevator.setCharacterization(1.00_m));
 	//test.B().OnFalse(elevator.setCharacterization(0.05_m));

@@ -4,7 +4,7 @@
 
 #include "ConfirmCommand.h"
 
-frc2::CommandPtr ConfirmCommand(StateManager *stateManager) {
+frc2::CommandPtr ConfirmCommand(StateManager *stateManager, Grabber *grabber) {
     return frc2::cmd::Select < Positions
             > ([stateManager] {
                 return stateManager->getStatePosition();
@@ -17,5 +17,6 @@ frc2::CommandPtr ConfirmCommand(StateManager *stateManager) {
                     stateManager->L2FrontToFrontConfirm()}, std::pair {Positions::L3Front,
                     stateManager->L3FrontToFrontConfirm()}, std::pair {Positions::L4Front,
                     stateManager->L4FrontToFrontConfirm()}, std::pair {Positions::ProcessorPosition,
-                    stateManager->ProcessorPositionToProcessorConfirm()});
+                    stateManager->ProcessorPositionToProcessorConfirm()}, std::pair {Positions::SustainedPosition,
+            grabber->setState(Positions::CoralSpit)});
 }

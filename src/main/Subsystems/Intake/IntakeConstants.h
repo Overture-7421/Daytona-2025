@@ -26,7 +26,7 @@ struct IntakeConstants {
      rollers and finally the degree type variable refers to the pivot*/
 
     {Positions::AlgaeGround, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::AlgaeHold, {0.0_V, 0.0_V, 35.3_deg}}, {
-            Positions::AlgaeHighReef, {0.0_V, 0.0_V, 21.8_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 21.8_deg}},
+            Positions::AlgaeHighReef, {0.0_V, 0.0_V, 30_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 30_deg}},
             {Positions::CoralAndAlgae, {3.0_V, 8.25_V, 30_deg}}, //To be defined
             {Positions::CoralHold, {-9.0_V, 0.0_V, 0_deg}}, //To be defined
             {Positions::InitialPosition, {0.0_V, 0.0_V, 30_deg}},

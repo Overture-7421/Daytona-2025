@@ -39,6 +39,9 @@ Robot::Robot() {
 
     // frc::SmartDashboard::PutBoolean("EMERGENCY", false);
 
+    frc::SmartDashboard::PutBoolean("ARM-ZERO", false);
+
+
     //Maybe si lo usamos
     // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);
     // frc::SmartDashboard::PutBoolean("DecreaseOffset/DecreaseOffsetX", false);

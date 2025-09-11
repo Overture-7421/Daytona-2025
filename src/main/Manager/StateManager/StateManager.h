@@ -226,7 +226,7 @@ public:
     }
 
     frc2::CommandPtr CoralHoldToL4Front() {  // Done
-        return frc2::cmd::Parallel(arm->setState(Positions::L4Front, Heading::Front),
+        return frc2::cmd::Sequence(arm->setState(Positions::L4Front, Heading::Front),
                 elevator->setState(Positions::L4Front), intake->setState(Positions::L4Front),
                 grabber->setState(Positions::L4Front), climber->setState(Positions::L4Front)).BeforeStarting(
                 setStatePosition(Positions::L4Front));

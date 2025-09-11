@@ -87,6 +87,11 @@ void RobotContainer::ConfigDriverBindings() {
 
 	//driver.B().WhileTrue(rightAlignPos(&alignManager));
 
+    armZero.OnTrue(frc2::cmd::RunOnce([this] {
+    arm.setArmZero();
+    frc::SmartDashboard::PutBoolean("ARM-ZERO", false);
+    }));
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {

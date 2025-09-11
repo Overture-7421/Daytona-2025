@@ -11,6 +11,11 @@ Arm::Arm() {
 
 }
 
+frc2::CommandPtr Arm::setArmZero() {
+    return frc2::cmd::RunOnce([this]() {
+    armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());});
+}
+
 void Arm::setToAngle(units::degree_t armAngle) {
     frc::SmartDashboard::PutNumber("Arm/TargetArmAngle", armAngle.value());
     armMotor.SetControl(armVoltage.WithPosition(armAngle).WithEnableFOC(true));

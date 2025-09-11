@@ -188,7 +188,7 @@ public:
                 intake->setStateIntake(Positions::CoralHold), grabber->setState(Positions::CoralHold),
 
                 elevator->setState(Positions::CoralHold), intake->setState(Positions::CoralHold),
-                climber->setState(Positions::CoralHold)).BeforeStarting(setStatePosition(Positions::CoralHold)).OnlyIf(
+                climber->setState(Positions::CoralHold)).BeforeStarting(setStatePosition(Positions::SustainedPosition)).OnlyIf(
                 [this] {
                     return !grabber->isAlgaeIn() && intake->isCoralIn();
                 });

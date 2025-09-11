@@ -9,7 +9,6 @@ frc2::CommandPtr EndPositionCommands(StateManager *stateManager) {
             > ([stateManager] {
                 return stateManager->getStatePosition();
             },
-            std::pair {Positions::SustainedPosition, stateManager->SustainedToEndPosition()}, std::pair {
-                    Positions::CoralHold, stateManager->CoralHoldToEndPosition()}, std::pair {Positions::AlgaeHold,
+            std::pair {Positions::SustainedPosition, stateManager->SustainedToEndPosition()}, std::pair {Positions::AlgaeHold,
                     stateManager->AlgaeHoldToEndPosition()});
 }

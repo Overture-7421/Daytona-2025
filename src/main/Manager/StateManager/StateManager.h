@@ -20,8 +20,7 @@
 class StateManager: public frc2::SubsystemBase {
 public:
     StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
-            AlignManager *alignManager, OverXboxController *driver, OverXboxController *oprtr, OverConsole *console,
-            frc2::Trigger *endToInitial);
+            AlignManager *alignManager);
 
     void Periodic() override;
 
@@ -40,26 +39,21 @@ public:
     frc2::CommandPtr InitialToSustained() { // Done
         return frc2::cmd::Sequence(intake->setState(Positions::InitialPosition),
                 elevator->setState(Positions::SustainedPosition), arm->setState(Positions::SustainedPosition),
-                grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition),
-                climber->servoAngleCommand(ClimberConstants::ClosedServo)).BeforeStarting(
+                grabber->setState(Positions::SustainedPosition), climber->setState(Positions::SustainedPosition)).BeforeStarting(
                 setStatePosition(Positions::SustainedPosition));
     }
 
     frc2::CommandPtr InitialToL4Front() { // Done
         return frc2::cmd::Parallel(arm->setState(Positions::L4Front, Heading::Front),
                 elevator->setState(Positions::L4Front), intake->setState(Positions::L4Front),
-                grabber->setState(Positions::L4Front),
-                frc2::cmd::Sequence(climber->setState(Positions::L4Front),
-                        climber->servoAngleCommand(ClimberConstants::ClosedServo))).BeforeStarting(
+                grabber->setState(Positions::L4Front), frc2::cmd::Sequence(climber->setState(Positions::L4Front))).BeforeStarting(
                 setStatePosition(Positions::L4Front));
     }
 
     frc2::CommandPtr InitialToL4Back() { // Done
         return frc2::cmd::Parallel(arm->setState(Positions::L4Back, Heading::Back),
                 elevator->setState(Positions::L4Back), intake->setState(Positions::L4Back),
-                grabber->setState(Positions::L4Back),
-                frc2::cmd::Sequence(climber->setState(Positions::L4Back),
-                        climber->servoAngleCommand(ClimberConstants::ClosedServo))).BeforeStarting(
+                grabber->setState(Positions::L4Back), frc2::cmd::Sequence(climber->setState(Positions::L4Back))).BeforeStarting(
                 setStatePosition(Positions::L4Back));
     }
 
@@ -67,7 +61,7 @@ public:
         return frc2::cmd::Sequence(intake->setState(Positions::Intake), elevator->setState(Positions::Intake),
                 arm->setState(Positions::Intake), grabber->setState(Positions::Intake),
                 climber->setState(Positions::Intake)).OnlyIf([this] {
-            return  !intake->isCoralIn();
+            return !intake->isCoralIn();
         }).BeforeStarting(setStatePosition(Positions::Intake)).Until([this] {
             return intake->isCoralIn();
         });
@@ -98,7 +92,7 @@ public:
                 elevator->setState(Positions::AlgaeGround), grabber->setState(Positions::AlgaeGround),
                 climber->setState(Positions::AlgaeGround)).BeforeStarting(setStatePosition(Positions::AlgaeGround)).OnlyIf(
                 [this] {
-                    return  !intake->isCoralIn();
+                    return !intake->isCoralIn();
                 });
     }
 
@@ -120,10 +114,11 @@ public:
     frc2::CommandPtr IntakeToL1Position() { // Done
         return frc2::cmd::Parallel(
                 frc2::cmd::Sequence(arm->setState(Positions::L1Position), elevator->setState(Positions::L1Position)),
-                frc2::cmd::Sequence(intake->setStateRollers(Positions::Through), intake->setStateIntake(Positions::L1Position), intake->setState(Positions::L1Position))).BeforeStarting(setStatePosition(Positions::L1Position)).OnlyIf(
-                [this] {
-                    return intake->isCoralIn();
-                });
+                frc2::cmd::Sequence(intake->setStateRollers(Positions::Through),
+                        intake->setStateIntake(Positions::L1Position), intake->setState(Positions::L1Position))).BeforeStarting(
+                setStatePosition(Positions::L1Position)).OnlyIf([this] {
+            return intake->isCoralIn();
+        });
     }
 
     frc2::CommandPtr AlgaeHighReefToSustained() { // Done
@@ -187,9 +182,9 @@ public:
     }
 
     frc2::CommandPtr L1PositionToCoralHold() { // Done
-        return frc2::cmd::Sequence(arm->setState(Positions::CoralHold),
-                intake->setStateRollers(Positions::Through), intake->setStateIntake(Positions::CoralHold), grabber->setState(Positions::CoralHold),
-                
+        return frc2::cmd::Sequence(arm->setState(Positions::CoralHold), intake->setStateRollers(Positions::Through),
+                intake->setStateIntake(Positions::CoralHold), grabber->setState(Positions::CoralHold),
+
                 elevator->setState(Positions::CoralHold), intake->setState(Positions::CoralHold),
                 climber->setState(Positions::CoralHold)).BeforeStarting(setStatePosition(Positions::CoralHold)).OnlyIf(
                 [this] {
@@ -394,13 +389,6 @@ private:
     Elevator *elevator = nullptr;
     Grabber *grabber = nullptr;
     Climber *climber = nullptr;
-
-    OverXboxController *driver = nullptr;
-    OverXboxController *oprtr = nullptr;
-    OverConsole *console = nullptr;
-
-    frc2::Trigger *endToInitial = nullptr;
-
     AlignManager *alignManager = nullptr;
 
 };

@@ -16,14 +16,13 @@ struct ClimberConstants {
     //233.2 empieza
     //Falta poner la posicion donde ya escala/escalo/cerrado
     inline static const std::map<Positions, units::degree_t> ClimberPositions = { {Positions::AlgaeGround, 61.8_deg}, {
-            Positions::AlgaeHold, 61.8_deg}, {Positions::AlgaeHighReef, 61.8_deg},
-            {Positions::AlgaeLowReef, 61.8_deg}, {Positions::CoralAndAlgae, 61.8_deg}, {Positions::CoralHold,
-                    61.8_deg}, {Positions::InitialPosition, 61.8_deg}, {Positions::Intake, 61.8_deg}, {
-                    Positions::IntakeCoralStation, 61.8_deg}, {Positions::L1Confirm, 61.8_deg}, {
-                    Positions::L1Position, 61.8_deg}, {Positions::L2Back, 61.8_deg}, {Positions::L2BackConfirm,
-                    61.8_deg}, {Positions::L2Front, 61.8_deg}, {Positions::L2FrontConfirm, 61.8_deg}, {
-                    Positions::L3Back, 61.8_deg}, {Positions::L3BackConfirm, 61.8_deg},
-            {Positions::L3Front, 61.8_deg}, {Positions::L3FrontConfirm, 61.8_deg}, {Positions::L4Back, 61.8_deg}, {
+            Positions::AlgaeHold, 61.8_deg}, {Positions::AlgaeHighReef, 61.8_deg}, {Positions::AlgaeLowReef, 61.8_deg},
+            {Positions::CoralAndAlgae, 61.8_deg}, {Positions::CoralHold, 61.8_deg}, {Positions::InitialPosition,
+                    61.8_deg}, {Positions::Intake, 61.8_deg}, {Positions::IntakeCoralStation, 61.8_deg}, {
+                    Positions::L1Confirm, 61.8_deg}, {Positions::L1Position, 61.8_deg}, {Positions::L2Back, 61.8_deg}, {
+                    Positions::L2BackConfirm, 61.8_deg}, {Positions::L2Front, 61.8_deg}, {Positions::L2FrontConfirm,
+                    61.8_deg}, {Positions::L3Back, 61.8_deg}, {Positions::L3BackConfirm, 61.8_deg}, {Positions::L3Front,
+                    61.8_deg}, {Positions::L3FrontConfirm, 61.8_deg}, {Positions::L4Back, 61.8_deg}, {
                     Positions::L4BackConfirm, 61.8_deg}, {Positions::L4Front, 61.8_deg}, {Positions::L4FrontConfirm,
                     61.8_deg}, {Positions::NetPosition, 61.8_deg}, {Positions::NetConfirm, 61.8_deg}, {
                     Positions::ProcessorPosition, 61.8_deg}, {Positions::ProcessorConfirm, 61.8_deg}, {

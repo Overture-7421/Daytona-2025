@@ -10,7 +10,6 @@ Grabber::Grabber() {
 //Gives the desired voltage to the grabber
 void Grabber::setMotorVoltage(units::volt_t voltage) {
     grabberMotor.SetControl(grabberVoltage.WithOutput(voltage).WithEnableFOC(true));
-    frc::SmartDashboard::PutBoolean("Grabber/IsFinished", false);
 }
 
 //Checks how much Voltage is 
@@ -33,10 +32,6 @@ bool Grabber::isAlgaeIn() {
 frc2::CommandPtr Grabber::setState(Positions state) {
     return frc2::cmd::RunOnce([this, state]() {
         setMotorVoltage(GrabberConstants::GrabberVoltage.at(state));
-    }).BeforeStarting([this]() {
-        return frc::SmartDashboard::PutBoolean("Grabber/IsFinished", false);
-    }).AndThen([this]() {
-        return frc::SmartDashboard::PutBoolean("Grabber/IsFinished", true);
     });
 }
 

@@ -20,8 +20,6 @@ Elevator::Elevator() {
     frc::SmartDashboard::PutNumber("Elevator/TargetPosition", 0.0);
     frc::SmartDashboard::PutBoolean("Elevator/AtPosition", false);
 
-    frc::SmartDashboard::PutBoolean("Elevator/IsFinished", false);
-
 }
 
 //Function that permits us to provide a target position to the elevator 
@@ -76,11 +74,7 @@ frc2::CommandPtr Elevator::setState(Positions state) {
                         isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state)));
                 return isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state));
             },
-            {this}).ToPtr().BeforeStarting([this]() {
-        return frc::SmartDashboard::PutBoolean("Elevator/IsFinished", false);
-    }).AndThen([this]() {
-        return frc::SmartDashboard::PutBoolean("Elevator/IsFinished", true);
-    });
+            {this}).ToPtr();
 }
 
 frc2::CommandPtr Elevator::setCharacterization(units::meter_t position) {

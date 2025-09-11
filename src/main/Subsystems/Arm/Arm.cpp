@@ -9,8 +9,6 @@ Arm::Arm() {
     armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());
     armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocity, ArmConstants::ArmCruiseAcceleration, 0_tr_per_s_cu);
 
-    frc::SmartDashboard::PutBoolean("Arm/IsFinished", false);
-
 }
 
 void Arm::setToAngle(units::degree_t armAngle) {
@@ -47,11 +45,7 @@ frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
 
         return true;
     },
-    {this}).ToPtr().BeforeStarting([this]() {
-        return frc::SmartDashboard::PutBoolean("Arm/IsFinished", false);
-    }).AndThen([this]() {
-        return frc::SmartDashboard::PutBoolean("Arm/IsFinished", true);
-    });
+    {this}).ToPtr();
 }
 
 frc2::CommandPtr Arm::setCharacterization(units::degree_t angle) {
@@ -74,11 +68,7 @@ frc2::CommandPtr Arm::setState(Positions state) {
         frc::SmartDashboard::PutBoolean("Arm/AtPosition", isArmAtPosition(ArmConstants::ArmFront.at(state)));
         return isArmAtPosition(ArmConstants::ArmFront.at(state));
     },
-    {this}).ToPtr().BeforeStarting([this]() {
-        return frc::SmartDashboard::PutBoolean("Arm/IsFinished", false);
-    }).AndThen([this]() {
-        return frc::SmartDashboard::PutBoolean("Arm/IsFinished", true);
-    });
+    {this}).ToPtr();
 }
 
 void Arm::Periodic() {

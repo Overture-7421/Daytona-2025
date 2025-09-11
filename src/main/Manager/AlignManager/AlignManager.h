@@ -19,41 +19,41 @@
 
 class AlignManager {
 public:
-	AlignManager(Chassis* chassis, frc::AprilTagFieldLayout* tagLayout);
+    AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
 
-	void getReefOffset(ReefSide reefSide);
+    void getReefOffset(ReefSide reefSide);
 
-	frc2::CommandPtr AlignToPose(ReefSide reefSide);
+    frc2::CommandPtr AlignToPose(ReefSide reefSide);
 
-	void setHeading(Heading heading);
-	Heading getHeading();
+    void setHeading(Heading heading);
+    Heading getHeading();
 
-	void setAlgaePose(AlgaePose algaePose);
-	AlgaePose getAlgaePose();
+    void setAlgaePose(AlgaePose algaePose);
+    AlgaePose getAlgaePose();
 
-	//MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 
-	//ATRAS es mas POSITIVOS / ADELANTE es mas NEGATIVOS
-	//GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
+    //MOVER DERECHA es mas POSITIVOS / MOVER IZQUIERDA es mas NEGATIVOS 
+    //ATRAS es mas POSITIVOS / ADELANTE es mas NEGATIVOS
+    //GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
 
-	//IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
-	const ReefOffset defaultReefOffset{ 0.139_m, 0.476_m, 0.59_m, 180.0_deg, 0.0_m };
+    //IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
+    const ReefOffset defaultReefOffset {0.139_m, 0.476_m, 0.59_m, 180.0_deg, 0.0_m};
 
-	std::map<ReefLocation, ReefOffset> alignPositionsMap;
-	const std::map<ReefLocation, ReefOffset> alignInRed = {};
-	const std::map<ReefLocation, ReefOffset> alignInBlue = {};
+    std::map<ReefLocation, ReefOffset> alignPositionsMap;
+    const std::map<ReefLocation, ReefOffset> alignInRed = {};
+    const std::map<ReefLocation, ReefOffset> alignInBlue = {};
 
 private:
-	Chassis* chassis = nullptr;
-	frc::AprilTagFieldLayout* tagLayout = nullptr;
+    Chassis *chassis = nullptr;
+    frc::AprilTagFieldLayout *tagLayout = nullptr;
 
-	ReefOffset reefOffset;
+    ReefOffset reefOffset;
 
-	units::meter_t xTarget = 0.0_m; // The target X position in the target frame
-	units::meter_t yTarget = 0.0_m; // The target Y position in the target frame
-	units::degree_t headingTarget = 0.0_deg; // The target heading in the target frame
+    units::meter_t xTarget = 0.0_m; // The target X position in the target frame
+    units::meter_t yTarget = 0.0_m; // The target Y position in the target frame
+    units::degree_t headingTarget = 0.0_deg; // The target heading in the target frame
 
-	frc::Pose2d targetPose;
+    frc::Pose2d targetPose;
 
-	Heading heading = Heading::Front;
-	AlgaePose algaePose = AlgaePose::Up;
+    Heading heading = Heading::Front;
+    AlgaePose algaePose = AlgaePose::Up;
 };

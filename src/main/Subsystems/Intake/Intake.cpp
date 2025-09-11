@@ -12,7 +12,6 @@ Intake::Intake() {
             0.0_tr_per_s_cu);
 
     frc::SmartDashboard::PutNumber("Intake/TargetIntakeAngle", 0.0);
-    frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
 
 }
 
@@ -23,7 +22,6 @@ void Intake::setIntakeToAngle(units::degree_t intakeAngle) {
 
 bool Intake::isIntakeAtPosition(units::degree_t intakeAngle) {
     units::degree_t intakeError = intakeAngle - intakeMotor.GetPosition().GetValue();
-    frc::SmartDashboard::PutNumber("Intake/IntakeError", intakeError.value());
     return (units::math::abs(intakeError) < IntakeConstants::IntakeRangeError);
 }
 
@@ -59,14 +57,11 @@ frc2::CommandPtr Intake::setState(Positions state) {
                         isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
                 return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
             },
-            {this}).ToPtr().BeforeStarting([this, state]() {
-        return frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
-    }).AndThen([this, state]() {
+            {this}).ToPtr().AndThen([this, state]() {
         if (state == Positions::CoralHold) {
             setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
             setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
         }
-        frc::SmartDashboard::PutBoolean("Intake/IsFinished", true);
     });
 }
 
@@ -85,14 +80,11 @@ frc2::CommandPtr Intake::setStateRollers(Positions state) {
                         isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
                 return true;
             },
-            {this}).ToPtr().BeforeStarting([this, state]() {
-        return frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
-    }).AndThen([this, state]() {
+            {this}).ToPtr().AndThen([this, state]() {
         if (state == Positions::CoralHold) {
             setRollersVoltage(IntakeConstants::IntakePositions.at(state).rollers);
             setCenteringVoltage(IntakeConstants::IntakePositions.at(state).centering);
         }
-        frc::SmartDashboard::PutBoolean("Intake/IsFinished", true);
     });
 }
 
@@ -107,13 +99,8 @@ frc2::CommandPtr Intake::setStateIntake(Positions state) {
                         isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake));
                 return isIntakeAtPosition(IntakeConstants::IntakePositions.at(state).intake);
             },
-            {this}).ToPtr().BeforeStarting([this, state]() {
-        return frc::SmartDashboard::PutBoolean("Intake/IsFinished", false);
-    }).AndThen([this]() {
-        frc::SmartDashboard::PutBoolean("Intake/IsFinished", true);
-    });
+            {this}).ToPtr();
 }
-
 
 frc2::CommandPtr Intake::setCharacterization(units::volt_t rollers, units::volt_t centering, units::degree_t intake) {
     return frc2::FunctionalCommand([this, intake]() {

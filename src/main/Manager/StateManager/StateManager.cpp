@@ -6,17 +6,12 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 StateManager::StateManager(Intake *intake, Arm *arm, Elevator *elevator, Grabber *grabber, Climber *climber,
-        AlignManager *alignManager, OverXboxController *driver, OverXboxController *oprtr, OverConsole *console,
-        frc2::Trigger *endToInitial) {
+        AlignManager *alignManager) {
     this->intake = intake;
     this->arm = arm;
     this->elevator = elevator;
     this->grabber = grabber;
     this->climber = climber;
-    this->driver = driver;
-    this->oprtr = oprtr;
-    this->console = console;
-    this->endToInitial = endToInitial;
     this->alignManager = alignManager;
 
     frc::SmartDashboard::PutBoolean("StateManager/IsFinished", false);
@@ -69,7 +64,6 @@ frc2::CommandPtr StateManager::setStateOverride() {
 
 void StateManager::Periodic() {
     frc::SmartDashboard::PutString("StateManager/CurrentState", std::to_string(static_cast<int>(state)));
-    frc::SmartDashboard::PutString("StateManager/DesiredState", std::to_string(static_cast<int>(desiredState)));
     // frc::SmartDashboard::PutBoolean("StateManager/Execute", execute);
 
     // if (execute == false) {

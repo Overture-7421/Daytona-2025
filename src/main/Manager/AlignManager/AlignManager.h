@@ -42,6 +42,8 @@ public:
 	const std::map<ReefLocation, ReefOffset> alignInBlue = {};
 
 private:
+	frc::Pose2d transformToTargetFrame(const frc::Pose2d& pose);
+
 	ReefSide reefSide;
 	Chassis* chassis = nullptr;
 	frc::AprilTagFieldLayout* tagLayout = nullptr;

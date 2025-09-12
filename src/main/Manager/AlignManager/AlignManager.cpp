@@ -39,6 +39,8 @@ void AlignManager::initialize() {
 		yTarget = reefOffset.algaeOffset;
 	}
 
+	xTarget = reefOffset.xOffset;
+
 	if (reefPackage.algaePose == AlgaePose::Up) {
 		setAlgaePose(AlgaePose::Up);
 	} else if (reefPackage.algaePose == AlgaePose::Down) {
@@ -54,23 +56,29 @@ void AlignManager::initialize() {
 		setHeading(Heading::Back);
 	}
 
-	targetPose = reefPackage.pose.TransformBy({ reefOffset.xOffset, yTarget, headingTarget });
-
 	frc::Pose2d pose = chassis->getEstimatedPose();
+	frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 
 	frc::ChassisSpeeds currentSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(chassis->getCurrentSpeeds(),
 		-pose.Rotation() + reefPackage.pose.Rotation());
-	xPIDController.Reset(pose.X(), currentSpeeds.vx);
-	yPIDController.Reset(pose.Y(), currentSpeeds.vy);
-	headingPIDController.Reset(pose.Rotation().Degrees(), currentSpeeds.omega);
+	xPIDController.Reset(poseInTargetFrame.X(), currentSpeeds.vx);
+	yPIDController.Reset(poseInTargetFrame.Y(), currentSpeeds.vy);
+	headingPIDController.Reset(poseInTargetFrame.Rotation().Degrees(), currentSpeeds.omega);
+
+	frc::SmartDashboard::PutNumber("Align/TargetX", xTarget.value());
+	frc::SmartDashboard::PutNumber("Align/TargetY", yTarget.value());
+	frc::SmartDashboard::PutNumber("Align/TargetHeading", headingTarget.value());
 }
 
 void AlignManager::alterSpeed(frc::ChassisSpeeds& inputSpeed) {
 	frc::Pose2d pose = chassis->getEstimatedPose();
 
-	auto xSpeed = xPIDController.Calculate(pose.X(), targetPose.X()) * 1_mps;
-	auto ySpeed = yPIDController.Calculate(pose.Y(), targetPose.Y()) * 1_mps;
-	auto headingSpeed = headingPIDController.Calculate(pose.Rotation().Degrees(), targetPose.Rotation().Degrees()) * 1_deg_per_s;
+	frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
+
+
+	auto xSpeed = xPIDController.Calculate(poseInTargetFrame.X(), xTarget) * 1_mps;
+	auto ySpeed = yPIDController.Calculate(poseInTargetFrame.Y(), yTarget) * 1_mps;
+	auto headingSpeed = headingPIDController.Calculate(poseInTargetFrame.Rotation().Degrees(), headingTarget) * 1_deg_per_s;
 
 	if (xPIDController.AtGoal()) {
 		xSpeed = 0_mps;
@@ -86,6 +94,9 @@ void AlignManager::alterSpeed(frc::ChassisSpeeds& inputSpeed) {
 		units::radians_per_second_t(headingSpeed), pose.Rotation());
 }
 
+frc::Pose2d AlignManager::transformToTargetFrame(const frc::Pose2d& pose) {
+	return pose.RelativeTo(targetPose);
+}
 
 frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
 	return frc2::FunctionalCommand(

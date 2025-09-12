@@ -5,6 +5,9 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() {
+
+    // autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
+    // frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
     ConfigureBindings();
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
@@ -21,20 +24,18 @@ RobotContainer::RobotContainer() {
     pathplanner::NamedCommands::registerCommand("L4",
             std::move(L4Command(&stateManager, &alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("AlgaeReef",
-            std::move(AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager))));
+    // pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("Sustained", std::move(SustainedCommands(&stateManager)));
+    // pathplanner::NamedCommands::registerCommand("Intake", std::move(stateManager.setStatePosition(Positions::Intake)));
 
-    pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
+    // pathplanner::NamedCommands::registerCommand("AlgaeCommand", std::move(AlgaeCommand(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("Intake",
-            std::move(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager))));
+    // pathplanner::NamedCommands::registerCommand("AlgaeHold",
+    // 	std::move(stateManager.setStatePosition(Positions::AlgaeHold)));
 
-    pathplanner::NamedCommands::registerCommand("AlgaeHold", std::move(AlgaeHoldCommand(&stateManager)));
+    // pathplanner::NamedCommands::registerCommand("CoralHold",
+    // 	std::move(stateManager.setStatePosition(Positions::CoralHold)));
 
-    autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
-    frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -56,7 +57,7 @@ void RobotContainer::ConfigDriverBindings() {
     driver.Back().OnTrue(ResetHeading(&chassis));
 
     driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
-    driver.LeftTrigger().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
+    driver.LeftTrigger().OnFalse(stateManager.L1PositionToCoralHold());
     // driver.LeftTrigger().WhileTrue(
     // frc2::cmd::Parallel(intake.setCharacterization(3_V, 8.25_V, 131_deg), arm.setCharacterization(-90_deg)));
     // driver.LeftTrigger().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
@@ -70,8 +71,8 @@ void RobotContainer::ConfigDriverBindings() {
     // driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
     // driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
 
-    driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
-    driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
+	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager, &grabber));
+	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
     driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
     driver.POVLeft().OnFalse(SustainedCommands(&stateManager));
@@ -79,17 +80,16 @@ void RobotContainer::ConfigDriverBindings() {
     driver.POVUp().WhileTrue(L1Command(&stateManager));
     driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
-    driver.POVRight().WhileTrue(NetCommand(&stateManager));
-    driver.POVRight().OnFalse(SustainedCommands(&stateManager));
+	driver.POVRight().WhileTrue(NetCommand(&stateManager));
+	driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
-    //driver.A().WhileTrue(leftAlignPos(&alignManager));
+	//driver.A().WhileTrue(leftAlignPos(&alignManager));
 
-    //driver.B().WhileTrue(rightAlignPos(&alignManager));
+	//driver.B().WhileTrue(rightAlignPos(&alignManager));
 
-    armZero.OnTrue(frc2::cmd::RunOnce([this] {
-        arm.setArmZero();
+    armZero.OnTrue(arm.setArmZero().andThen(frc::cmd::RunOnce([this] {
         frc::SmartDashboard::PutBoolean("ARM-ZERO", false);
-    }));
+    })));
 
 }
 
@@ -207,7 +207,6 @@ void RobotContainer::ConfigMixedBindigs() {
     // console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
     console.Button(4).OnTrue(EndPositionCommands(&stateManager));
-    console.Button(4).OnFalse(climber.setClimberCommand(ClimberConstants::ClimberClosed));
 
     driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
@@ -217,9 +216,6 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
-    //test.A().WhileTrue(climber.setClimberCommand(1100.0_deg)); // -850
-    //test.A().OnFalse(climber.setClimberCommand(0.0_deg));
-
     //test.A().WhileTrue(arm.setCharacterization(-90.0_deg));
     //test.A().OnFalse(arm.setCharacterization(0.0_deg));
 

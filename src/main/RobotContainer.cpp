@@ -5,9 +5,6 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() {
-
-    // autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
-    // frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
     ConfigureBindings();
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
@@ -36,8 +33,8 @@ RobotContainer::RobotContainer() {
 
     pathplanner::NamedCommands::registerCommand("AlgaeHold", std::move(AlgaeHoldCommand(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("CoralHold", std::move(SustainedCommands(&stateManager)));
-
+    autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
+    frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -73,7 +70,7 @@ void RobotContainer::ConfigDriverBindings() {
     // driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
     // driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
 
-    driver.RightBumper().OnTrue(ConfirmCommand(&stateManager));
+    driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
     driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
     driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
@@ -210,6 +207,7 @@ void RobotContainer::ConfigMixedBindigs() {
     // console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
     console.Button(4).OnTrue(EndPositionCommands(&stateManager));
+    console.Button(4).OnFalse(climber.setClimberCommand(ClimberConstants::ClimberClosed));
 
     driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
@@ -219,6 +217,9 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
+    //test.A().WhileTrue(climber.setClimberCommand(1100.0_deg)); // -850
+    //test.A().OnFalse(climber.setClimberCommand(0.0_deg));
+
     //test.A().WhileTrue(arm.setCharacterization(-90.0_deg));
     //test.A().OnFalse(arm.setCharacterization(0.0_deg));
 

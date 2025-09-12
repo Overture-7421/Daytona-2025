@@ -95,7 +95,7 @@ void AlignManager::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
 }
 
 frc::Pose2d AlignManager::transformToTargetFrame(const frc::Pose2d &pose) {
-    return pose.RelativeTo(targetPose);
+    return pose.RelativeTo(reefPackage.pose);
 }
 
 frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {

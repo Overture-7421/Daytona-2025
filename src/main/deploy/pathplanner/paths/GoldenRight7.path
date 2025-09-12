@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.1992500000000001,
-        "y": 1.05125
+        "x": 1.4039999999999997,
+        "y": 0.837
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.29125,
-        "y": 1.1194999999999993
+        "x": 1.4917500000000001,
+        "y": 1.1
       },
       "isLocked": false,
       "linkedName": "GoldenRight6-7"
@@ -20,8 +20,8 @@
         "y": 3.6545
       },
       "prevControl": {
-        "x": 2.2815,
-        "y": 3.6545
+        "x": 2.19375,
+        "y": 3.6349999999999993
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "GoldenRight",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -126.0
+    "rotation": 54.0
   },
   "useDefaultConstraints": true
 }

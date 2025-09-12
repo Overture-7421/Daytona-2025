@@ -37,6 +37,6 @@ enum class Positions {
 
     ProcessorPosition, ProcessorConfirm, FrontConfirm, BackConfirm,
 
-    EndPosition, Through, AlgaeTension, CoralSpit, SustainToL1
+    EndPosition, Through, AlgaeTension, CoralSpit, SustainToL1, L4FrontAuto, L4FrontAutoConfirm
 };
 

@@ -54,7 +54,7 @@ struct ClimberConstants {
         OverTalonFXConfig climberConfig;
         climberConfig.MotorId = ClimberMotorId;
         climberConfig.NeutralMode = ControllerNeutralMode::Brake;
-        climberConfig.Inverted = true;
+        climberConfig.Inverted = false;
         climberConfig.useFOC = true;
 
         climberConfig.CurrentLimit = 20_A;

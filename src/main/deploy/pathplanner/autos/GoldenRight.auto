@@ -32,22 +32,9 @@
                       }
                     },
                     {
-                      "type": "sequential",
+                      "type": "named",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.2
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "FirstL4"
-                            }
-                          }
-                        ]
+                        "name": "FirstL4"
                       }
                     }
                   ]
@@ -57,12 +44,6 @@
                 "type": "named",
                 "data": {
                   "name": "Confirm"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Sustained"
                 }
               },
               {
@@ -76,18 +57,31 @@
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "sequential",
                       "data": {
-                        "name": "Intake"
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Sustained"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Intake"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Sustained"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Sustained"
                 }
               },
               {
@@ -95,41 +89,15 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "sequential",
+                      "type": "named",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "path",
-                            "data": {
-                              "pathName": "GoldenRight3"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "RightAlign"
-                            }
-                          }
-                        ]
+                        "name": "RightAlign"
                       }
                     },
                     {
-                      "type": "sequential",
+                      "type": "named",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.2
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "L4"
-                            }
-                          }
-                        ]
+                        "name": "L4"
                       }
                     }
                   ]
@@ -199,12 +167,6 @@
                       "type": "sequential",
                       "data": {
                         "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.2
-                            }
-                          },
                           {
                             "type": "named",
                             "data": {
@@ -281,12 +243,6 @@
                       "type": "sequential",
                       "data": {
                         "commands": [
-                          {
-                            "type": "wait",
-                            "data": {
-                              "waitTime": 0.2
-                            }
-                          },
                           {
                             "type": "named",
                             "data": {

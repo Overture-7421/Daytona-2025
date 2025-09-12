@@ -46,9 +46,9 @@ public:
     frc2::CommandPtr InitialToL4Front() { // Done
         return frc2::cmd::Sequence(climber->setClimberCommand(ClimberConstants::ClimberRest),  intake->setState(Positions::L4Front),
                 elevator->setState(Positions::L4Front),
-            arm->setState(Positions::L4Front, Heading::Front),
+            arm->setState(Positions::L4FrontAuto, Heading::Front),
                 grabber->setState(Positions::L4Front)).BeforeStarting(
-                setStatePosition(Positions::L4Front));
+                setStatePosition(Positions::L4FrontAuto));
     }
 
     frc2::CommandPtr InitialToL4Back() { // Done
@@ -289,6 +289,13 @@ public:
                 setStatePosition(Positions::L4FrontConfirm));
     }
 
+    frc2::CommandPtr L4FrontAutoToFrontAutoConfirm() { // Done
+        return frc2::cmd::Parallel(arm->setState(Positions::L4FrontAutoConfirm, Heading::Front),
+                elevator->setState(Positions::L4FrontConfirm), intake->setState(Positions::L4FrontConfirm),
+                grabber->setState(Positions::L4FrontConfirm)).BeforeStarting(
+                setStatePosition(Positions::L4FrontAutoConfirm));
+    }
+
     frc2::CommandPtr L2BackToBackConfirm() { // Done
         return frc2::cmd::Parallel(arm->setState(Positions::L2BackConfirm, Heading::Back),
                 elevator->setState(Positions::L2BackConfirm), intake->setState(Positions::L2BackConfirm),
@@ -360,7 +367,7 @@ public:
         });
     }
 
-    frc2::CommandPtr EndToInitial() {
+    frc2::CommandPtr AllToInitial() {
         return frc2::cmd::Sequence(intake->setState(Positions::InitialPosition),
                 arm->setState(Positions::InitialPosition), elevator->setState(Positions::InitialPosition),
                 grabber->setState(Positions::InitialPosition));

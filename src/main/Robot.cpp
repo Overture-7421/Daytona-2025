@@ -35,11 +35,9 @@ Robot::Robot() {
         frc2::CommandScheduler::GetInstance().Run();
     }, RobotConstants::LoopTime, RobotConstants::TimingOffset);
 
-    // frc::SmartDashboard::PutBoolean("EndToInitial", false);
+    frc::SmartDashboard::PutBoolean("To-Initial", false);
 
     // frc::SmartDashboard::PutBoolean("EMERGENCY", false);
-
-    frc::SmartDashboard::PutBoolean("ARM-ZERO", false);
 
     //Maybe si lo usamos
     // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);

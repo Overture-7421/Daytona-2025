@@ -28,7 +28,7 @@ public:
     // frc2::CommandPtr setCharacterization(units::degree_t angle);
 
     // void setOffset();
-    
+
     void setOffset();
 
     void setToAngle(units::degree_t armAngle);

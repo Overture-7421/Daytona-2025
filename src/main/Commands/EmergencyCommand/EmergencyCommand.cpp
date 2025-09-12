@@ -10,6 +10,6 @@ frc2::CommandPtr EmergencyCommand(StateManager *stateManager, Intake *intake, Ar
             arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
             frc2::cmd::Parallel(stateManager->setStateOverride(), grabber->setState(Positions::SustainedPosition))
 
-                    );
+            );
 
 }

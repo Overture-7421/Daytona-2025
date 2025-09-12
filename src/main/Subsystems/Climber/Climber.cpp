@@ -16,7 +16,7 @@ Climber::Climber() {
     climberMotor.configureMotionMagic(ClimberConstants::ClimberVelocity, ClimberConstants::ClimberAcceleration,
             0.0_tr_per_s_cu);
     frc::SmartDashboard::PutBoolean("Climber/AtPosition", false);
-    
+
 }
 
 void Climber::setToAngle(units::degree_t armAngle) {

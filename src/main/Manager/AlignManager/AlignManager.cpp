@@ -18,12 +18,12 @@ AlignManager::AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout
 }
 
 void AlignManager::initialize() {
-	reefPackage = findClosestReefLocation(chassis, tagLayout);
-	if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
-		alignPositionsMap = alignInRed;
-	} else {
-		alignPositionsMap = alignInBlue;
-	}
+    reefPackage = findClosestReefLocation(chassis, tagLayout);
+    if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
+        alignPositionsMap = alignInRed;
+    } else {
+        alignPositionsMap = alignInBlue;
+    }
 
     if (alignPositionsMap.contains(reefPackage.reefLocation)) {
         reefOffset = alignPositionsMap.at(reefPackage.reefLocation);
@@ -90,8 +90,8 @@ void AlignManager::alterSpeed(frc::ChassisSpeeds &inputSpeed) {
         headingSpeed = 0_deg_per_s;
     }
 
-	inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xSpeed, ySpeed,
-		units::radians_per_second_t(headingSpeed), pose.Rotation() - reefPackage.pose.Rotation());
+    inputSpeed = frc::ChassisSpeeds::FromFieldRelativeSpeeds(xSpeed, ySpeed, units::radians_per_second_t(headingSpeed),
+            pose.Rotation() - reefPackage.pose.Rotation());
 }
 
 frc::Pose2d AlignManager::transformToTargetFrame(const frc::Pose2d &pose) {

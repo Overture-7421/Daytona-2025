@@ -10,17 +10,13 @@ RobotContainer::RobotContainer() {
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
 
-    pathplanner::NamedCommands::registerCommand("FirstL4",
-            std::move(L4CommandAuto(&stateManager, &alignManager)));
+    pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager, &alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("LeftAlign",
-            std::move(leftAlignPos(&alignManager)));
-        
-    pathplanner::NamedCommands::registerCommand("RightAlign",
-            std::move(rightAlignPos(&alignManager)));
+    pathplanner::NamedCommands::registerCommand("LeftAlign", std::move(leftAlignPos(&alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("L4",
-            std::move(L4Command(&stateManager, &alignManager)));
+    pathplanner::NamedCommands::registerCommand("RightAlign", std::move(rightAlignPos(&alignManager)));
+
+    pathplanner::NamedCommands::registerCommand("L4", std::move(L4Command(&stateManager, &alignManager)));
 
     pathplanner::NamedCommands::registerCommand("AlgaeReef",
             std::move(AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager))));
@@ -82,8 +78,8 @@ void RobotContainer::ConfigDriverBindings() {
     driver.POVUp().WhileTrue(L1Command(&stateManager));
     driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
-	driver.POVRight().WhileTrue(NetCommand(&stateManager));
-	driver.POVRight().OnFalse(SustainedCommands(&stateManager));
+    driver.POVRight().WhileTrue(NetCommand(&stateManager));
+    driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
     toInitial.OnTrue(stateManager.AllToInitial().AndThen(frc2::cmd::RunOnce([this] {
     	frc::SmartDashboard::PutBoolean("To-Initial", false);

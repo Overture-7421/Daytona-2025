@@ -69,5 +69,5 @@ frc2::CommandPtr L4CommandAuto(StateManager *stateManager, AlignManager *alignMa
 
     //         );
 
-    return  stateManager->InitialToL4Front();
+    return stateManager->InitialToL4Front();
 }

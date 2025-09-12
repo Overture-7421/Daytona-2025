@@ -64,8 +64,8 @@ private:
     units::meter_t yTarget = 0.0_m; // The target Y position in the target frame
     units::degree_t headingTarget = 0.0_deg; // The target heading in the target frame
 
-	frc::Pose2d targetPose;
-	ReefPackage reefPackage;
+    frc::Pose2d targetPose;
+    ReefPackage reefPackage;
 
     Heading heading = Heading::Front;
     AlgaePose algaePose = AlgaePose::Up;

@@ -96,7 +96,7 @@ private:
         return frc::SmartDashboard::GetBoolean("EMERGENCY", false);
     }};
 
-	frc2::Trigger armZero {[] {
+    frc2::Trigger armZero {[] {
         return frc::SmartDashboard::GetBoolean("ARM-ZERO", false);
     }};
 

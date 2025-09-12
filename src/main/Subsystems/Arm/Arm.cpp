@@ -13,7 +13,8 @@ Arm::Arm() {
 
 frc2::CommandPtr Arm::setArmZero() {
     return frc2::cmd::RunOnce([this]() {
-    armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());});
+        armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());
+    });
 }
 
 void Arm::setToAngle(units::degree_t armAngle) {

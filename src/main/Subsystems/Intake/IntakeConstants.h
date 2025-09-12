@@ -44,7 +44,8 @@ struct IntakeConstants {
                     Positions::NetPosition, {0.0_V, 0.0_V, 35.3_deg}},
             {Positions::NetConfirm, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::ProcessorPosition, {0.0_V, 0.0_V, 35.3_deg}},
             {Positions::ProcessorConfirm, {0.0_V, 0.0_V, 35.3_deg}},
-            {Positions::SustainedPosition, {0.0_V, 0_V, 0_deg}}, {Positions::EndPosition, {0.0_V, 0.0_V, 130.0_deg}}, {Positions::SustainToL1, {6.0_V, 10.0_V, 0.0_deg}}};
+            {Positions::SustainedPosition, {0.0_V, 0_V, 0_deg}}, {Positions::EndPosition, {0.0_V, 0.0_V, 130.0_deg}}, {
+                    Positions::SustainToL1, {6.0_V, 10.0_V, 0.0_deg}}};
 
     constexpr static const units::volt_t RollersSlow = 3.0_V;
     constexpr static const units::volt_t Centering = 8.25_V;

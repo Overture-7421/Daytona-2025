@@ -4,56 +4,24 @@
     {
       "anchor": {
         "x": 3.7147500000000004,
-        "y": 2.5917499999999993
+        "y": 2.5429999999999997
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.471,
-        "y": 2.5332499999999993
+        "x": 3.705,
+        "y": 2.0457499999999995
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.521,
-        "y": 1.734
+        "x": 1.7160000000000002,
+        "y": 0.9147499999999991
       },
       "prevControl": {
-        "x": 1.7160544494639023,
-        "y": 1.8903769859804629
-      },
-      "nextControl": {
-        "x": 1.3259455505360975,
-        "y": 1.577623014019537
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 1.677,
-        "y": 0.768
-      },
-      "prevControl": {
-        "x": 1.1895000000000002,
-        "y": 1.0707499999999994
-      },
-      "nextControl": {
-        "x": 2.506906134341187,
-        "y": 0.25260701092965376
-      },
-      "isLocked": false,
-      "linkedName": "GoldenRight4-5"
-    },
-    {
-      "anchor": {
-        "x": 3.334500000000001,
-        "y": 2.8354999999999984
-      },
-      "prevControl": {
-        "x": 3.066375000000001,
-        "y": 1.484624999999999
+        "x": 2.50575,
+        "y": 0.9244999999999993
       },
       "nextControl": null,
       "isLocked": false,
@@ -61,7 +29,21 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.2,
+      "maxWaypointRelativePos": 0.65,
+      "constraints": {
+        "maxVelocity": 2.0,
+        "maxAcceleration": 1.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -74,13 +56,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 54.0
+    "rotation": -48.36646066342979
   },
   "reversed": false,
   "folder": "GoldenRight",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 61.75026450502569
+    "rotation": 59.53445508054015
   },
   "useDefaultConstraints": false
 }

@@ -335,9 +335,8 @@ public:
     }
 
     frc2::CommandPtr FrontConfirmToSustained() {
-        return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
-                arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
-                grabber->setState(Positions::SustainedPosition)).BeforeStarting(
+        return frc2::cmd::Sequence(grabber->setState(Positions::SustainedPosition), elevator->setState(Positions::SustainedPosition),
+                arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition)).BeforeStarting(
                 setStatePosition(Positions::SustainedPosition));
     }
 

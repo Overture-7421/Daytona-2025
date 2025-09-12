@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0085,
-        "y": 7.028
+        "x": 3.0420000000000003,
+        "y": 6.3065
       },
       "isLocked": false,
       "linkedName": "GoldenLeft6-7"
     },
     {
       "anchor": {
-        "x": 2.87625,
-        "y": 4.38575
+        "x": 2.4765,
+        "y": 4.3565
       },
       "prevControl": {
-        "x": 2.42775,
-        "y": 4.38575
+        "x": 1.84275,
+        "y": 4.366249999999999
       },
       "nextControl": null,
       "isLocked": false,

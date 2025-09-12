@@ -9,17 +9,17 @@ RobotContainer::RobotContainer() {
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
 
-    pathplanner::NamedCommands::registerCommand("FirstL4Left",
-            std::move(L4CommandAuto(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager))));
+    pathplanner::NamedCommands::registerCommand("FirstL4",
+            std::move(L4CommandAuto(&stateManager, &alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("FirstL4Right",
-            std::move(L4CommandAuto(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager))));
+    pathplanner::NamedCommands::registerCommand("LeftAlign",
+            std::move(leftAlignPos(&alignManager)));
+        
+    pathplanner::NamedCommands::registerCommand("RightAlign",
+            std::move(rightAlignPos(&alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("L4Left",
-            std::move(L4Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager))));
-
-    pathplanner::NamedCommands::registerCommand("L4Right",
-            std::move(L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager))));
+    pathplanner::NamedCommands::registerCommand("L4",
+            std::move(L4Command(&stateManager, &alignManager)));
 
     pathplanner::NamedCommands::registerCommand("AlgaeReef",
             std::move(AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager))));

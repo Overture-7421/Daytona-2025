@@ -17,7 +17,7 @@ struct ArmConstants {
             90_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
             0.0_deg}, {Positions::L1Position, 90_deg}, {Positions::L1Confirm, 90.0_deg},
             {Positions::CoralHold, 90.0_deg}, {Positions::CoralAndAlgae, -90.0_deg}, {Positions::AlgaeHold, -90.0_deg},
-            {Positions::L2Front, -59.0_deg}, {Positions::L3Front, 287.0_deg}, {Positions::L4Front, 293.0_deg}, {
+            {Positions::L2Front, -49.0_deg}, {Positions::L3Front, 307.0_deg}, {Positions::L4Front, 303.0_deg}, {
                     Positions::L2FrontConfirm, -1.0_deg}, {Positions::L3FrontConfirm, 362.0_deg}, {
                     Positions::L4FrontConfirm, 342.0_deg}, {Positions::NetPosition, -67.0_deg}, {Positions::NetConfirm,
                     -67.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {

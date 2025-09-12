@@ -35,7 +35,7 @@ public:
 	//GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
 
 	//IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
-	const ReefOffset defaultReefOffset{ -0.31_m, 0.078_m, 0.49_m, 180.0_deg, 0.0_m };
+	const ReefOffset defaultReefOffset{ -0.31_m, 0.073_m, 0.50_m, 180.0_deg, 0.0_m };
 
 	std::map<ReefLocation, ReefOffset> alignPositionsMap;
 	const std::map<ReefLocation, ReefOffset> alignInRed = {};
@@ -46,7 +46,7 @@ private:
 	Chassis* chassis = nullptr;
 	frc::AprilTagFieldLayout* tagLayout = nullptr;
 
-	frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints{ 2_mps, 1_mps_sq };
+	frc::TrapezoidProfile<units::meters>::Constraints defaultConstraints{ 2_mps, 0.5_mps_sq };
 
 	frc::TrapezoidProfile<units::meters>::Constraints minimumConstraints{ 1_mps, 0.25_mps_sq };
 

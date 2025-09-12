@@ -12,17 +12,13 @@ RobotContainer::RobotContainer() {
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
 
-    pathplanner::NamedCommands::registerCommand("FirstL4",
-            std::move(L4CommandAuto(&stateManager, &alignManager)));
+    pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager, &alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("LeftAlign",
-            std::move(leftAlignPos(&alignManager)));
-        
-    pathplanner::NamedCommands::registerCommand("RightAlign",
-            std::move(rightAlignPos(&alignManager)));
+    pathplanner::NamedCommands::registerCommand("LeftAlign", std::move(leftAlignPos(&alignManager)));
 
-    pathplanner::NamedCommands::registerCommand("L4",
-            std::move(L4Command(&stateManager, &alignManager)));
+    pathplanner::NamedCommands::registerCommand("RightAlign", std::move(rightAlignPos(&alignManager)));
+
+    pathplanner::NamedCommands::registerCommand("L4", std::move(L4Command(&stateManager, &alignManager)));
 
     // pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
 
@@ -71,8 +67,8 @@ void RobotContainer::ConfigDriverBindings() {
     // driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
     // driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
 
-	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager, &grabber));
-	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
+    driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager, &grabber));
+    driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
     driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
     driver.POVLeft().OnFalse(SustainedCommands(&stateManager));
@@ -80,12 +76,12 @@ void RobotContainer::ConfigDriverBindings() {
     driver.POVUp().WhileTrue(L1Command(&stateManager));
     driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
-	driver.POVRight().WhileTrue(NetCommand(&stateManager));
-	driver.POVRight().OnFalse(SustainedCommands(&stateManager));
+    driver.POVRight().WhileTrue(NetCommand(&stateManager));
+    driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
-	//driver.A().WhileTrue(leftAlignPos(&alignManager));
+    //driver.A().WhileTrue(leftAlignPos(&alignManager));
 
-	//driver.B().WhileTrue(rightAlignPos(&alignManager));
+    //driver.B().WhileTrue(rightAlignPos(&alignManager));
 
     armZero.OnTrue(arm.setArmZero().andThen(frc::cmd::RunOnce([this] {
         frc::SmartDashboard::PutBoolean("ARM-ZERO", false);

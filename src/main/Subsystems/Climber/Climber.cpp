@@ -37,7 +37,7 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
     return frc2::FunctionalCommand([this, armAngle]() {
         setToAngle(armAngle);
     }, [this, armAngle]() {
-        setToAngle(armAngle + offset);
+       setToAngle(armAngle + offset);
     }, [this](bool interupted) {
         offset = 0_deg;
     }, [this, armAngle]() {

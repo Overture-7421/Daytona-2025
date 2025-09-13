@@ -47,14 +47,17 @@ void AlignManager::initialize() {
         setAlgaePose(AlgaePose::Down);
     }
 
-    units::degree_t chassisHeading = chassis->getEstimatedPose().RelativeTo(reefPackage.pose).Rotation().Degrees();
-    if (chassisHeading < 90_deg || chassisHeading > -90_deg) {
-        headingTarget = reefOffset.headingOffset;
-        setHeading(Heading::Front);
-    } else {
-        headingTarget = reefOffset.headingOffset + 180_deg;
-        setHeading(Heading::Back);
-    }
+    // units::degree_t chassisHeading = chassis->getEstimatedPose().RelativeTo(reefPackage.pose).Rotation().Degrees();
+    // if (chassisHeading < 90_deg || chassisHeading > -90_deg) {
+    //     headingTarget = reefOffset.headingOffset;
+    //     setHeading(Heading::Front);
+    // } else {
+    //     headingTarget = reefOffset.headingOffset + 180_deg;
+    //     setHeading(Heading::Back);
+    // }
+
+    headingTarget = reefOffset.headingOffset;
+    setHeading(Heading::Front);
 
     frc::Pose2d pose = chassis->getEstimatedPose();
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);

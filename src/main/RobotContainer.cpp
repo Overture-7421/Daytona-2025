@@ -5,6 +5,7 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer() {
+	frc::SmartDashboard::PutBoolean("Finished", false);
 
 	ConfigureBindings();
 	chassis.setAcceptingVisionMeasurements(true);
@@ -28,7 +29,7 @@ RobotContainer::RobotContainer() {
 	pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
 
 	pathplanner::NamedCommands::registerCommand("Intake",
-		std::move(stateManager.SustainedToIntake()));
+		std::move(stateManager.SustainedToIntake().WithTimeout(4_s)));
 
 	pathplanner::NamedCommands::registerCommand("AlgaeHold", std::move(AlgaeHoldCommand(&stateManager)));
 
@@ -62,9 +63,7 @@ void RobotContainer::ConfigDriverBindings() {
 	driver.RightTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
 	driver.RightTrigger().OnFalse(SustainedCommands(&stateManager));
 
-	driver.LeftBumper().WhileTrue(frc2::cmd::Either(L1Command(&stateManager), stateManager.L1PositionToCoralHold(), [this] {
-		return stateManager.getStatePosition() == Positions::SustainedPosition;
-	}));
+	driver.POVUp().WhileTrue(PassCommand(&stateManager));
 
 	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
 	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
@@ -113,6 +112,7 @@ void RobotContainer::ConfigOperatorBindings() {
 	}));
 
 	oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
+	oprtr.Back().OnFalse(climber.setClimberCommand(ClimberConstants::ClimberClosed));
 	// oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	oprtr.Start().WhileTrue(frc2::cmd::RunOnce([this] {
@@ -184,13 +184,13 @@ void RobotContainer::ConfigMixedBindigs() {
 
 	console.Button(3).OnTrue(arm.setArmZero());
 
-	console.Button(0).WhileTrue(AlgaeHighManualCommand(&stateManager));
-	console.Button(0).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+	console.Button(2).WhileTrue(AlgaeHighManualCommand(&stateManager));
+	console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
 		return grabber.isAlgaeIn();
 	}));
 
-	console.Button(0).WhileTrue(AlgaeLowManualCommand(&stateManager));
-	console.Button(0).OnFalse(SustainedCommands(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+	console.Button(1).WhileTrue(AlgaeLowManualCommand(&stateManager));
+	console.Button(1).OnFalse(SustainedCommands(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
 
 	// //Maybe es 2 en el numero de la consola :V
 	// (driver.POVDown() && console.Button(1)).OnTrue(
@@ -201,8 +201,9 @@ void RobotContainer::ConfigMixedBindigs() {
 	// console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	console.Button(4).OnTrue(EndPositionCommands(&stateManager));
+	console.Button(4).OnFalse(climber.setClimberCommand(ClimberConstants::ClimberClosed));
 
-	// driver.POVDown().OnFalse(SustainedCommands(&stateManager));
+	driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
 
 void RobotContainer::ConfigDefaultCommands() {

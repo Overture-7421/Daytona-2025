@@ -57,22 +57,9 @@
                       }
                     },
                     {
-                      "type": "sequential",
+                      "type": "named",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "Sustained"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "Intake"
-                            }
-                          }
-                        ]
+                        "name": "Intake"
                       }
                     }
                   ]
@@ -133,22 +120,9 @@
                       }
                     },
                     {
-                      "type": "sequential",
+                      "type": "named",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "Sustained"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "Intake"
-                            }
-                          }
-                        ]
+                        "name": "Intake"
                       }
                     }
                   ]

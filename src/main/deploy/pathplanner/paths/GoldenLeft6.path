@@ -16,28 +16,12 @@
     },
     {
       "anchor": {
-        "x": 2.8275,
-        "y": 7.028
+        "x": 3.0213920454545455,
+        "y": 6.742258522727273
       },
       "prevControl": {
-        "x": 3.004276695296638,
-        "y": 6.851223304703364
-      },
-      "nextControl": {
-        "x": 2.3092803916291826,
-        "y": 7.546219608370811
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 1.1797500000000003,
-        "y": 7.028
-      },
-      "prevControl": {
-        "x": 1.92075,
-        "y": 7.535
+        "x": 3.101164772727273,
+        "y": 6.293536931818181
       },
       "nextControl": null,
       "isLocked": false,
@@ -58,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -54.0
+    "rotation": -56.72511201516515
   },
   "reversed": false,
   "folder": "GoldenLeft",

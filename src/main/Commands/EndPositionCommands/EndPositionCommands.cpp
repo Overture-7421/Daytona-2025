@@ -4,10 +4,11 @@
 
 #include "EndPositionCommands.h"
 
-frc2::CommandPtr EndPositionCommands(StateManager *stateManager) {
-    return frc2::cmd::Select < Positions > ([stateManager] {
-        return stateManager->getStatePosition();
-    },
-    std::pair {Positions::SustainedPosition, stateManager->SustainedToEndPosition()}, std::pair {Positions::AlgaeHold,
-            stateManager->AlgaeHoldToEndPosition()});
+frc2::CommandPtr EndPositionCommands(StateManager* stateManager) {
+	return frc2::cmd::Select < Positions >([stateManager] {
+		return stateManager->getStatePosition();
+	},
+		std::pair{ Positions::SustainedPosition, stateManager->SustainedToEndPosition() }, std::pair{ Positions::AlgaeHold,
+				stateManager->AlgaeHoldToEndPosition() }, std::pair{ Positions::Intake,
+				stateManager->SustainedToEndPosition() });
 }

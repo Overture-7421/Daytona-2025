@@ -23,12 +23,12 @@ RobotContainer::RobotContainer() {
 
 	pathplanner::NamedCommands::registerCommand("Sustained", std::move(SustainedCommands(&stateManager)));
 
-	pathplanner::NamedCommands::registerCommand("CoralHold", std::move(stateManager.L1PositionToCoralHold()));
+	pathplanner::NamedCommands::registerCommand("CoralHold", std::move(stateManager.L1PositionToCoralHoldAuto()));
 
 	pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
 
 	pathplanner::NamedCommands::registerCommand("Intake",
-		std::move(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager))));
+		std::move(stateManager.SustainedToIntake()));
 
 	pathplanner::NamedCommands::registerCommand("AlgaeHold", std::move(AlgaeHoldCommand(&stateManager)));
 
@@ -56,29 +56,21 @@ void RobotContainer::ConfigDriverBindings() {
 	chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
 	driver.Back().OnTrue(ResetHeading(&chassis));
 
-	driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
-	driver.LeftTrigger().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
-	// driver.LeftTrigger().WhileTrue(
-	// frc2::cmd::Parallel(intake.setCharacterization(3_V, 8.25_V, 131_deg), arm.setCharacterization(-90_deg)));
-	// driver.LeftTrigger().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
+	driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(stateManager.L1PositionToCoralHold()));
+	driver.LeftTrigger().OnFalse(SustainedCommands(&stateManager));
 
-	// driver.RightBumper().WhileTrue(intake.setCharacterization(-6_V, -6_V, 30_deg));
-	// driver.RightBumper().OnFalse(intake.setCharacterization(0_V, 0_V, 30_deg));
+	driver.RightTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
+	driver.RightTrigger().OnFalse(SustainedCommands(&stateManager));
 
-	// driver.LeftBumper().WhileTrue(CharacterizationCommand(&intake, &arm, &elevator, &grabber, &climber));
-	// driver.LeftBumper().OnFalse(ClosedCommand(&intake, &arm, &elevator, &grabber, &climber));
-
-	// driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
-	// driver.A().WhileTrue(stateManager.setStatePosition(Positions::SustainedPosition));
+	driver.LeftBumper().WhileTrue(frc2::cmd::Either(L1Command(&stateManager), stateManager.L1PositionToCoralHold()), [this] {
+		return stateManager.getStatePosition() == Positions::SustainedPosition;
+	});
 
 	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
 	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
 	driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
 	driver.POVLeft().OnFalse(SustainedCommands(&stateManager));
-
-	driver.POVUp().WhileTrue(L1Command(&stateManager));
-	driver.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.L1PositionToCoralHold()));
 
 	driver.POVRight().WhileTrue(NetCommand(&stateManager));
 	driver.POVRight().OnFalse(SustainedCommands(&stateManager));
@@ -110,11 +102,15 @@ void RobotContainer::ConfigOperatorBindings() {
 	oprtr.Y().WhileTrue(stateManager.CoralHoldToL4Front());
 	oprtr.Y().OnFalse(SustainedCommands(&stateManager));
 
-	oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
-	oprtr.POVUp().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.AlgaeHighReefToAlgaeHold()));
+	oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager));
+	oprtr.POVUp().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+		return grabber.isAlgaeIn();
+	}));
 
-	oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
-	oprtr.POVDown().OnFalse(SustainedCommands(&stateManager).AndThen(stateManager.AlgaeLowReefToAlgaeHold()));
+	oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager));
+	oprtr.POVDown().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+		return grabber.isAlgaeIn();
+	}));
 
 	oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
 	// oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
@@ -188,21 +184,25 @@ void RobotContainer::ConfigMixedBindigs() {
 
 	console.Button(3).OnTrue(arm.setArmZero());
 
+	console.Button(0).WhileTrue(AlgaeHighManualCommand(&stateManager));
+	console.Button(0).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+		return grabber.isAlgaeIn();
+	}));
+
+	console.Button(0).WhileTrue(AlgaeLowManualCommand(&stateManager));
+	console.Button(0).OnFalse(SustainedCommands(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+
 	// //Maybe es 2 en el numero de la consola :V
 	// (driver.POVDown() && console.Button(1)).OnTrue(
 	// AlgaeReefCommand(&stateManager, &alignManager).AlongWith(
 	// algaeAlignPos(&alignManager).AndThen(AlgaeHoldCommand(&stateManager))));
-
-	// (!driver.LeftTrigger() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
-	// 	stateManager.setStatePosition(Positions::IntakeCoralStation));
-	// console.AxisMagnitudeGreaterThan(0, 0.1).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	// (!driver.LeftTrigger() && console.Button(9)).OnTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
 	// console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	console.Button(4).OnTrue(EndPositionCommands(&stateManager));
 
-	driver.POVDown().OnFalse(SustainedCommands(&stateManager));
+	// driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
 
 void RobotContainer::ConfigDefaultCommands() {

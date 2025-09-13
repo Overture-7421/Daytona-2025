@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.10175,
-        "y": 6.930499999999999
+        "x": 1.884630681818182,
+        "y": 7.171036931818182
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.3315362575045144,
-        "y": 6.832020175355208
+        "x": 2.1144169393226964,
+        "y": 7.07255710717339
       },
       "isLocked": false,
       "linkedName": "GoldenLeft2-3"
@@ -48,7 +48,7 @@
   "folder": "GoldenLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -54.0
+    "rotation": -135.00000000000006
   },
   "useDefaultConstraints": true
 }

@@ -62,9 +62,9 @@ void RobotContainer::ConfigDriverBindings() {
 	driver.RightTrigger().WhileTrue(stateManager.SustainedToIntake().AndThen(L1Command(&stateManager)));
 	driver.RightTrigger().OnFalse(SustainedCommands(&stateManager));
 
-	driver.LeftBumper().WhileTrue(frc2::cmd::Either(L1Command(&stateManager), stateManager.L1PositionToCoralHold()), [this] {
+	driver.LeftBumper().WhileTrue(frc2::cmd::Either(L1Command(&stateManager), stateManager.L1PositionToCoralHold(), [this] {
 		return stateManager.getStatePosition() == Positions::SustainedPosition;
-	});
+	}));
 
 	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
 	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));

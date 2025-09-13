@@ -48,7 +48,7 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
 }
 
 void Climber::setOffset() {
-    offset -= 1.0_deg;
+    offset += 20_deg;
 }
 // units::degree_t Climber::getCurrentClimberAngle() {
 //     return units::degree_t((climberEncoder.Get() - ClimberConstants::ClimberEncoderOffset) * 360);

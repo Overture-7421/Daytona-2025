@@ -154,7 +154,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "RightAlign"
+                        "name": "LeftAlign"
                       }
                     },
                     {

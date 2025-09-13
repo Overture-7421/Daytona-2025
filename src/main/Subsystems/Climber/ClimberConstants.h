@@ -11,15 +11,15 @@ struct ClimberConstants {
 
     //10-15 angulos reales equivalen a 50 degrees del climber
 
-    //-850 descansa toda la partida
-    // -500 horizonte para escalar
-    //1100 para escalado
+    //-920 descansa toda la partida
+    // -570 horizonte para escalar
+    //1600 para escalado
 
-    constexpr static const units::degree_t ClimberRangeError = 5.0_deg;
+    constexpr static const units::degree_t ClimberRangeError = 5.0_deg; 
 
     constexpr static const units::degree_t ClimberRest = -920_deg;
     constexpr static const units::degree_t ClimberOpen = -570_deg;
-    constexpr static const units::degree_t ClimberClosed = 1600_deg;
+    constexpr static const units::degree_t ClimberClosed = 905_deg;
 
     // constexpr static const units::degree_t ClosedServo = 122_deg; // Not defined
     // constexpr static const units::degree_t OpenedServo = 122_deg; //Not defined
@@ -56,9 +56,9 @@ struct ClimberConstants {
         climberConfig.Inverted = false;
         climberConfig.useFOC = true;
 
-        climberConfig.CurrentLimit = 20_A;
+        climberConfig.CurrentLimit = 40_A;
         climberConfig.StatorCurrentLimit = 120_A;
-        climberConfig.TriggerThreshold = 30_A;
+        climberConfig.TriggerThreshold = 60_A;
         climberConfig.TriggerThresholdTime = 0.5_s;
         climberConfig.ClosedLoopRampRate = 0.05_s;
         climberConfig.PIDConfigs.WithKP(200.0);

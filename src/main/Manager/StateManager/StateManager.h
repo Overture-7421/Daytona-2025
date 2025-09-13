@@ -209,7 +209,7 @@ public:
 
 	frc2::CommandPtr CoralHoldToL1Position() {
 		return (frc2::cmd::Sequence(arm->setState(Positions::L1Position), elevator->setState(Positions::CoralHold),
-			intake->setState(Positions::SustainToL1), grabber->setState(Positions::CoralSpit)).BeforeStarting(
+			intake->setState(Positions::SustainToL1), grabber->setState(Positions::CoralSpit), elevator->setState(Positions::L1Position), frc2::cmd::Wait(0.2_s), intake->setState(Positions::L1Position)).BeforeStarting(
 				setStatePosition(Positions::L1Position)));
 	}
 

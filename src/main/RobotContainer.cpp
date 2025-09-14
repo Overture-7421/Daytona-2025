@@ -10,7 +10,7 @@ RobotContainer::RobotContainer() {
 	chassis.setAcceptingVisionMeasurements(true);
 	frc::DriverStation::SilenceJoystickConnectionWarning(true);
 
-	pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager, &alignManager)));
+	pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager, &climber, &arm, &elevator, &intake, &grabber)));
 
 	pathplanner::NamedCommands::registerCommand("LeftAlign", std::move(leftAlignPos(&alignManager)));
 
@@ -62,9 +62,7 @@ void RobotContainer::ConfigDriverBindings() {
 	driver.RightTrigger().WhileTrue(stateManager.SustainedToIntake());
 	driver.RightTrigger().OnFalse(L1Command(&stateManager));
 
-	driver.LeftBumper().WhileTrue(frc2::cmd::Either(L1Command(&stateManager), stateManager.L1PositionToCoralHold(), [this] {
-		return stateManager.getStatePosition() == Positions::SustainedPosition;
-	}));
+	driver.POVUp().WhileTrue(PassCommand(&stateManager));
 
 	driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
 	driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
@@ -113,7 +111,7 @@ void RobotContainer::ConfigOperatorBindings() {
 	}));
 
 	oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
-	// oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+	oprtr.Back().OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
 
 	oprtr.Start().WhileTrue(frc2::cmd::RunOnce([this] {
 		climber.setOffset();
@@ -178,13 +176,17 @@ void RobotContainer::ConfigMixedBindigs() {
 
 	console.Button(3).OnTrue(arm.setArmZero());
 
-	console.Button(0).WhileTrue(AlgaeHighManualCommand(&stateManager));
-	console.Button(0).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+	console.Button(2).WhileTrue(AlgaeHighManualCommand(&stateManager));
+	console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
 		return grabber.isAlgaeIn();
 	}));
 
-	console.Button(0).WhileTrue(AlgaeLowManualCommand(&stateManager));
-	console.Button(0).OnFalse(SustainedCommands(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+	console.Button(1).WhileTrue(AlgaeLowManualCommand(&stateManager));
+	console.Button(1).OnFalse(SustainedCommands(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+
+	console.Button(6).WhileTrue(frc2::cmd::RunOnce([this] {
+		climber.setOffset();
+	}));
 
 	// //Maybe es 2 en el numero de la consola :V
 	// (driver.POVDown() && console.Button(1)).OnTrue(
@@ -195,8 +197,9 @@ void RobotContainer::ConfigMixedBindigs() {
 	// console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	console.Button(4).OnTrue(EndPositionCommands(&stateManager));
+	console.Button(4).OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
 
-	// driver.POVDown().OnFalse(SustainedCommands(&stateManager));
+	driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
 
 void RobotContainer::ConfigDefaultCommands() {
@@ -204,24 +207,15 @@ void RobotContainer::ConfigDefaultCommands() {
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
-	//test.A().WhileTrue(arm.setCharacterization(-90.0_deg));
-	//test.A().OnFalse(arm.setCharacterization(0.0_deg));
+	//-920 descansa toda la partida
+	// -570 horizonte para escalar
+	//1600 para escalado
 
-	//test.B().WhileTrue(elevator.setCharacterization(1.00_m));
-	//test.B().OnFalse(elevator.setCharacterization(0.05_m));
+	// test.A().WhileTrue(climber.setClimberCommand(-570_deg));
 
-	//test.X().WhileTrue(intake.setCharacterization(3.0_V, 8.25_V, 132_deg));
-	//test.X().OnFalse(intake.setCharacterization(3.0_V, 8.25_V, 15_deg));
+	// test.B().WhileTrue(climber.setClimberCommand(-920_deg));
 
-	// test.Y().WhileTrue(grabber.setCharacterization(5_V));
-	// test.Y().OnFalse(grabber.setCharacterization(0.0_V));
-
-	//test.Y().WhileTrue(CharacterizationCommand(&intake, &arm, &elevator, &grabber, &climber));
-	//test.Y().OnFalse(frc2::cmd::Sequence(arm.setCharacterization(-90_deg), elevator.setCharacterization(0.01_m)));
-
-	//test.Y().WhileTrue(climber.setCharacterization(212.0_deg));
-	//test.Y().OnFalse(climber.setCharacterization(122.0_deg));
-
+	// test.Y().WhileTrue(climber.setClimberCommand(850_deg));
 }
 
 AprilTags::Config RobotContainer::railCameraRight() {
@@ -256,7 +250,7 @@ AprilTags::Config RobotContainer::railCameraLeft() {
 }
 void RobotContainer::UpdateTelemetry() {
 	chassis.shuffleboardPeriodic();
-	
+
 	frc::SmartDashboard::PutNumber("MatchTime", frc::DriverStation::GetMatchTime().value());
 
 }

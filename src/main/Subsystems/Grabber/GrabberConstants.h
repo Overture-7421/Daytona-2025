@@ -25,7 +25,7 @@ public:
             1.8_V}, {Positions::EndPosition, 0.0_V}, {Positions::AlgaeTension, 8.0_V}, {Positions::CoralSpit, -2.0_V}};
 
     constexpr static const double CoralDetectionCurrent = 25.0; //To be defined
-    constexpr static const double AlgaeDetectionCurrent = 15.0; //To be defined
+    constexpr static const double AlgaeDetectionCurrent = 35.0; //To be defined
 
     //Configuration for the Motor
     constexpr static const OverTalonFXConfig GrabberConfig() {

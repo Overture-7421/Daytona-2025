@@ -66,15 +66,6 @@ frc2::CommandPtr L4Command(StateManager *stateManager, AlignManager *alignManage
                     stateManager->CoralHoldToL2Front()});
 }
 
-frc2::CommandPtr L4CommandAuto(StateManager *stateManager, AlignManager *alignManager) {
-    // return frc2::cmd::Select < Heading
-    //         > ([alignManager, stateManager] {
-    //             return alignManager->getHeading();
-    //         },
-    //         std::pair {Heading::Back, stateManager->InitialToL4Back()}, std::pair {Heading::Front,
-    //                 stateManager->InitialToL4Front()}
-
-    //         );
-
+frc2::CommandPtr L4CommandAuto(StateManager *stateManager) {
     return stateManager->InitialToL4Front();
 }

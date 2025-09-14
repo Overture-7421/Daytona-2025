@@ -10,7 +10,7 @@ RobotContainer::RobotContainer() {
 	chassis.setAcceptingVisionMeasurements(true);
 	frc::DriverStation::SilenceJoystickConnectionWarning(true);
 
-	pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager, &climber, &arm, &elevator, &intake, &grabber)));
+	pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager)));
 
 	pathplanner::NamedCommands::registerCommand("LeftAlign", std::move(leftAlignPos(&alignManager)));
 
@@ -196,7 +196,7 @@ void RobotContainer::ConfigMixedBindigs() {
 	// (!driver.LeftTrigger() && console.Button(9)).OnTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
 	// console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
-	console.Button(4).OnTrue(EndPositionCommands(&stateManager));
+	console.Button(4).WhileTrue(EndPositionCommands(&stateManager));
 	console.Button(4).OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
 
 	driver.POVDown().OnFalse(SustainedCommands(&stateManager));

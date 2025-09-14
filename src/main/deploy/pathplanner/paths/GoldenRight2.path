@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.7741803278688524,
-        "y": 0.7943135245901636
+        "x": 1.545596590909091,
+        "y": 0.958735795454545
       },
       "prevControl": {
-        "x": 2.40952868852459,
-        "y": 1.2498463114754088
+        "x": 2.180944951564828,
+        "y": 1.41426858233979
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "GoldenRightIntake"
     }
   ],
   "rotationTargets": [
@@ -39,7 +39,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.0,
-    "maxAcceleration": 4.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

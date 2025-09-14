@@ -10,7 +10,7 @@ frc2::CommandPtr SustainedCommands(StateManager *stateManager) {
                 return stateManager->getStatePosition();
             },
             std::pair {Positions::InitialPosition, stateManager->InitialToSustained()}, std::pair {Positions::Intake,
-                    stateManager->IntakeToSustained()}, std::pair {Positions::AlgaeLowReef,
+                    stateManager->L1PositionToCoralHold()}, std::pair {Positions::AlgaeLowReef,
                     stateManager->AlgaeLowReefToSustained()}, std::pair {Positions::AlgaeHighReef,
                     stateManager->AlgaeHighReefToSustained()}, std::pair {Positions::AlgaeGround,
                     stateManager->AlgaeGroundToSustained()}, std::pair {Positions::L1Confirm,

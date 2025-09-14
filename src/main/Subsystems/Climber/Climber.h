@@ -34,6 +34,8 @@ public:
     void setToAngle(units::degree_t armAngle);
     frc2::CommandPtr setClimberCommand(units::degree_t armAngle);
 
+    frc2::CommandPtr setClimberClimbedCommand(units::degree_t armAngle);
+
     bool isClimberAtPosition(units::degree_t armAngle);
     void getCurrentAngle(double armAngle);
 

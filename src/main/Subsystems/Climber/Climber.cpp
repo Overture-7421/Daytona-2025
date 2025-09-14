@@ -47,8 +47,21 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t armAngle) {
     {this}).ToPtr();
 }
 
+frc2::CommandPtr Climber::setClimberClimbedCommand(units::degree_t armAngle) {
+    return frc2::FunctionalCommand([this, armAngle]() {
+        setToAngle(armAngle);
+    }, [this, armAngle]() {
+       setToAngle(armAngle + offset);
+    }, [this](bool interupted) {
+        offset = 0_deg;
+    }, [this]() {
+        return false;
+    },
+    {this}).ToPtr();
+}
+
 void Climber::setOffset() {
-    offset += 20_deg;
+    offset += 25_deg;
 }
 // units::degree_t Climber::getCurrentClimberAngle() {
 //     return units::degree_t((climberEncoder.Get() - ClimberConstants::ClimberEncoderOffset) * 360);

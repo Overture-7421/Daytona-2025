@@ -112,7 +112,7 @@ void RobotContainer::ConfigOperatorBindings() {
 	}));
 
 	oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
-	oprtr.Back().OnFalse(climber.setClimberCommand(ClimberConstants::ClimberClosed));
+	oprtr.Back().OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
 	// oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	oprtr.Start().WhileTrue(frc2::cmd::RunOnce([this] {
@@ -205,7 +205,7 @@ void RobotContainer::ConfigMixedBindigs() {
 	// console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
 
 	console.Button(4).OnTrue(EndPositionCommands(&stateManager));
-	console.Button(4).OnFalse(climber.setClimberCommand(ClimberConstants::ClimberClosed));
+	console.Button(4).OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
 
 	driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }

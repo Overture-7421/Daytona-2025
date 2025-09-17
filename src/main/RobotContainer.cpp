@@ -77,6 +77,9 @@ void RobotContainer::ConfigDriverBindings() {
 		frc::SmartDashboard::PutBoolean("To-Initial", false);
 	})));
 
+	driver.A().WhileTrue(grabber.setCharacterization(GrabberConstants::GrabberSpitAlgae));
+	driver.A().OnFalse(grabber.setCharacterization(GrabberConstants::GrabberRollersZero));
+
 
 }
 
@@ -101,14 +104,17 @@ void RobotContainer::ConfigOperatorBindings() {
 	oprtr.Y().OnFalse(SustainedCommands(&stateManager));
 
 	oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager));
-	oprtr.POVUp().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-		return grabber.isAlgaeIn();
-	}));
+	oprtr.POVUp().OnFalse(SustainedCommands(&stateManager));
+	// oprtr.POVUp().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+	// 	return grabber.isAlgaeIn();
+	// }));
 
 	oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager));
-	oprtr.POVDown().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-		return grabber.isAlgaeIn();
-	}));
+	oprtr.POVDown().OnFalse(SustainedCommands(&stateManager));
+
+	// oprtr.POVDown().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+	// 	return grabber.isAlgaeIn();
+	// }));
 
 	oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
 	oprtr.Back().OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
@@ -177,12 +183,16 @@ void RobotContainer::ConfigMixedBindigs() {
 	console.Button(3).OnTrue(arm.setArmZero());
 
 	console.Button(2).WhileTrue(AlgaeHighManualCommand(&stateManager));
-	console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-		return grabber.isAlgaeIn();
-	}));
+	console.Button(2).OnFalse(SustainedCommands(&stateManager));
+	// console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+	// 	return grabber.isAlgaeIn();
+	// }));
 
 	console.Button(1).WhileTrue(AlgaeLowManualCommand(&stateManager));
-	console.Button(1).OnFalse(SustainedCommands(&stateManager).AndThen(AlgaeHoldCommand(&stateManager)));
+	console.Button(1).OnFalse(SustainedCommands(&stateManager));
+	// console.Button(1).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+	// 	return grabber.isAlgaeIn();
+	// }));
 
 	console.Button(6).WhileTrue(frc2::cmd::RunOnce([this] {
 		climber.setOffset();

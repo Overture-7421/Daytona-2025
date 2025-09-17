@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.0089139344262295,
-        "y": 2.2688012295081954
+        "x": 4.243647540983606,
+        "y": 1.1059938524590156
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.545596590909091,
-        "y": 0.958735795454545
+        "x": 1.7022540983606556,
+        "y": 0.9141905737704917
       },
       "prevControl": {
-        "x": 1.8572769187779439,
-        "y": 1.4622194020119204
+        "x": 2.913012295081966,
+        "y": 0.4466700819672146
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,8 +30,12 @@
   ],
   "rotationTargets": [
     {
+      "waypointRelativePos": 0.2965582272512974,
+      "rotationDegrees": -11.218547392997513
+    },
+    {
       "waypointRelativePos": 0.6001885902876029,
-      "rotationDegrees": -48.24
+      "rotationDegrees": -75.72685629731951
     }
   ],
   "constraintZones": [],
@@ -47,7 +51,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -38.92754359279229
+    "rotation": -77.79953127261923
   },
   "reversed": false,
   "folder": "GoldenRight",

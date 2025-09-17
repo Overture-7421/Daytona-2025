@@ -33,9 +33,9 @@ void Intake::setCenteringVoltage(units::volt_t voltage) {
     centeringMotor.SetControl(centeringVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
-bool Intake::isCoralIn() {
-    return canRange.GetIsDetected().GetValue();
-}
+// bool Intake::isCoralIn() {
+//     return canRange.GetIsDetected().GetValue();
+// }
 
 units::degree_t Intake::getIntakePosition() {
     return intakeMotor.GetPosition().GetValue();
@@ -120,6 +120,6 @@ frc2::CommandPtr Intake::setCharacterization(units::volt_t rollers, units::volt_
 
 void Intake::Periodic() {
     frc::SmartDashboard::PutNumber("Intake/CurrentIntakeAngle", intakeMotor.GetPosition().GetValueAsDouble() * 360);
-    frc::SmartDashboard::PutBoolean("Intake/CoralIn", isCoralIn());
+    //frc::SmartDashboard::PutBoolean("Intake/CoralIn", isCoralIn());
 
 }

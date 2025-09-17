@@ -23,7 +23,7 @@ public:
     void setRollersVoltage(units::volt_t voltage);
     void setCenteringVoltage(units::volt_t voltage);
 
-    bool isCoralIn();
+    //bool isCoralIn();
 
     units::degree_t getIntakePosition();
 
@@ -42,7 +42,7 @@ private:
     OverTalonFX rollersMotor {IntakeConstants::RollersConfig(), "rio"};
     OverTalonFX centeringMotor {IntakeConstants::CenteringConfig(), "rio"};
 
-    CANrange canRange {30, "rio"};
+    //CANrange canRange {30, "rio"};
 
     MotionMagicVoltage intakeVoltage {0_tr};
     VoltageOut rollersVoltage {0_V};

@@ -19,7 +19,7 @@ struct ClimberConstants {
 
     constexpr static const units::degree_t ClimberRest = -920_deg;
     constexpr static const units::degree_t ClimberOpen = -570_deg;
-    constexpr static const units::degree_t ClimberClosed = 905_deg;
+    constexpr static const units::degree_t ClimberClosed = 950_deg;
 
     // constexpr static const units::degree_t ClosedServo = 122_deg; // Not defined
     // constexpr static const units::degree_t OpenedServo = 122_deg; //Not defined

@@ -309,5 +309,6 @@ frc2::CommandPtr StateManager::ProcessorConfirmToSustained() {
 frc2::CommandPtr StateManager::AllToInitial() {
 	return frc2::cmd::Sequence(intake->setState(Positions::InitialPosition),
 		arm->setState(Positions::InitialPosition), elevator->setState(Positions::InitialPosition),
-		grabber->setState(Positions::InitialPosition));
+		grabber->setState(Positions::InitialPosition)).AlongWith(
+			setStatePosition(Positions::InitialPosition));
 }

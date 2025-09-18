@@ -21,7 +21,8 @@ struct ArmConstants {
                     Positions::L2FrontConfirm, -1.0_deg}, {Positions::L3FrontConfirm, 362.0_deg}, {
                     Positions::L4FrontConfirm, 342.0_deg}, {Positions::NetPosition, -67.0_deg}, {Positions::NetConfirm,
                     -67.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {
-                    Positions::EndPosition, -68.0_deg}, {Positions::L4FrontAuto, -57.0_deg}, {Positions::L4FrontAutoConfirm, -18.0_deg}};
+                    Positions::EndPosition, -68.0_deg}, {Positions::L4FrontAuto, -57.0_deg}, {
+                    Positions::L4FrontAutoConfirm, -18.0_deg}};
 
     inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, -135.0_deg}, {
             Positions::L3Back, -107.0_deg}, {Positions::L4Back, -113.0_deg}, {Positions::L2BackConfirm, -188.0_deg}, {

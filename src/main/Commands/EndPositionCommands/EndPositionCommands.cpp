@@ -4,6 +4,6 @@
 
 #include "EndPositionCommands.h"
 
-frc2::CommandPtr EndPositionCommands(StateManager* stateManager) {
-	return stateManager->SustainedToEndPosition();
+frc2::CommandPtr EndPositionCommands(StateManager *stateManager) {
+    return stateManager->SustainedToEndPosition();
 }

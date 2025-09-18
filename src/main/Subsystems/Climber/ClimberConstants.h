@@ -15,7 +15,7 @@ struct ClimberConstants {
     // -570 horizonte para escalar
     //1600 para escalado
 
-    constexpr static const units::degree_t ClimberRangeError = 5.0_deg; 
+    constexpr static const units::degree_t ClimberRangeError = 5.0_deg;
 
     constexpr static const units::degree_t ClimberRest = -920_deg;
     constexpr static const units::degree_t ClimberOpen = -570_deg;

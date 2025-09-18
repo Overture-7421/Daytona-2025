@@ -8,36 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.8707500000000006,
-        "y": 5.90675
+        "x": 3.5698295454545454,
+        "y": 6.193821022727272
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.925,
-        "y": 7.204
+        "x": 1.8347727272727272,
+        "y": 7.200951704545455
       },
       "prevControl": {
-        "x": 3.116760893856569,
-        "y": 7.043601248174028
-      },
-      "nextControl": {
-        "x": 2.5642499999999995,
-        "y": 7.505749999999999
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 0.9847500000000002,
-        "y": 6.90125
-      },
-      "prevControl": {
-        "x": 1.9304999999999999,
-        "y": 7.535
+        "x": 2.792045454545455,
+        "y": 6.891832386363637
       },
       "nextControl": null,
       "isLocked": false,
@@ -50,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -58,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -54.0
+    "rotation": -140.1944289077349
   },
   "reversed": false,
   "folder": "GoldenLeft",

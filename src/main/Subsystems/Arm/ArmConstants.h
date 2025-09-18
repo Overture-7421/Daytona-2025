@@ -10,27 +10,28 @@
 
 struct ArmConstants {
 
-    constexpr static const units::degree_t ArmRangeError = 0.0_deg;
+    constexpr static const units::degree_t ArmRangeError = 2.0_deg;
 
-    inline static const std::map<Positions, units::degree_t> ArmFront { {Positions::InitialPosition, 0.0_deg}, {
-            Positions::SustainedPosition, 0.0_deg}, {Positions::Intake, 0.0_deg}, {Positions::IntakeCoralStation,
-            0.0_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
-            0.0_deg}, {Positions::L1Position, 0.0_deg}, {Positions::L1Confirm, 0.0_deg},
-            {Positions::CoralHold, 0.0_deg}, {Positions::CoralAndAlgae, 0.0_deg}, {Positions::AlgaeHold, 0.0_deg}, {
-                    Positions::L2Front, 0.0_deg}, {Positions::L3Front, 0.0_deg}, {Positions::L4Front, 0.0_deg}, {
-                    Positions::L2FrontConfirm, 0.0_deg}, {Positions::L3FrontConfirm, 0.0_deg}, {
-                    Positions::L4FrontConfirm, 0.0_deg}, {Positions::NetPosition, 0.0_deg}, {Positions::NetConfirm,
-                    0.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {
-                    Positions::EndPosition, 0.0_deg}};
+    inline static const std::map<Positions, units::degree_t> ArmFront { {Positions::InitialPosition, -90_deg}, {
+            Positions::SustainedPosition, 90.0_deg}, {Positions::Intake, 90.0_deg}, {Positions::IntakeCoralStation,
+            90_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
+            0.0_deg}, {Positions::L1Position, 90_deg}, {Positions::L1Confirm, 90.0_deg},
+            {Positions::CoralHold, 90.0_deg}, {Positions::CoralAndAlgae, -90.0_deg}, {Positions::AlgaeHold, -90.0_deg},
+            {Positions::L2Front, -54.0_deg}, {Positions::L3Front, 307.0_deg}, {Positions::L4Front, 303.0_deg}, {
+                    Positions::L2FrontConfirm, -1.0_deg}, {Positions::L3FrontConfirm, 362.0_deg}, {
+                    Positions::L4FrontConfirm, 342.0_deg}, {Positions::NetPosition, -67.0_deg}, {Positions::NetConfirm,
+                    -67.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {
+                    Positions::EndPosition, -68.0_deg}, {Positions::L4FrontAuto, -57.0_deg}, {
+                    Positions::L4FrontAutoConfirm, -18.0_deg}};
 
-    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, 0.0_deg}, {Positions::L3Back,
-            0.0_deg}, {Positions::L4Back, 0.0_deg}, {Positions::L2BackConfirm, 0.0_deg}, {Positions::L3BackConfirm,
-            0.0_deg}, {Positions::L4BackConfirm, 0.0_deg}};
+    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, -135.0_deg}, {
+            Positions::L3Back, -107.0_deg}, {Positions::L4Back, -113.0_deg}, {Positions::L2BackConfirm, -188.0_deg}, {
+            Positions::L3BackConfirm, -183.0_deg}, {Positions::L4BackConfirm, -162.0_deg}};
 
-    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 0_tps;
-    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 0_tr_per_s_sq;
+    constexpr static const units::turns_per_second_t ArmCruiseVelocity = 9_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 6_tr_per_s_sq;
 
-    constexpr static const double ArmRotorToSensor = 0;
+    constexpr static const double ArmRotorToSensor = 60;
 
     constexpr static const double ArmMotorId = 23;
     constexpr static const double ArmCANCoderId = 25;
@@ -48,7 +49,7 @@ struct ArmConstants {
         armConfig.TriggerThreshold = 40_A;
         armConfig.TriggerThresholdTime = 0.5_s;
         armConfig.PIDConfigs.GravityType = 1;
-        armConfig.PIDConfigs.WithKG(0.0).WithKV(0.0).WithKP(0.0);
+        armConfig.PIDConfigs.WithKG(0.32).WithKV(0).WithKP(170);
 
         return armConfig;
     }
@@ -56,7 +57,8 @@ struct ArmConstants {
     constexpr static const CanCoderConfig ArmCANConfig() {
         CanCoderConfig armCANConfig;
         armCANConfig.CanCoderId = ArmCANCoderId;
-        armCANConfig.Offset = 0.0_tr;
+        armCANConfig.Offset = -0.046142578125_tr;
+        armCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
 
         return armCANConfig;
     }

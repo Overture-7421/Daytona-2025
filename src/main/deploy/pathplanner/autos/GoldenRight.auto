@@ -9,34 +9,41 @@
           "data": {
             "commands": [
               {
-                "type": "sequential",
+                "type": "parallel",
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "sequential",
                       "data": {
-                        "pathName": "GoldenRight1"
+                        "commands": [
+                          {
+                            "type": "path",
+                            "data": {
+                              "pathName": "GoldenRight1"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "LeftAlign"
+                            }
+                          }
+                        ]
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "L4Left"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Confirm"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Sustained"
+                        "name": "FirstL4"
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Confirm"
                 }
               },
               {
@@ -59,13 +66,7 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "CoralHold"
-                }
-              },
-              {
-                "type": "sequential",
+                "type": "parallel",
                 "data": {
                   "commands": [
                     {
@@ -77,22 +78,35 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "L4Right"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Confirm"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Sustained"
+                        "name": "CoralHold"
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RightAlign"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "L4"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Confirm"
                 }
               },
               {
@@ -115,13 +129,7 @@
                 }
               },
               {
-                "type": "named",
-                "data": {
-                  "name": "CoralHold"
-                }
-              },
-              {
-                "type": "sequential",
+                "type": "parallel",
                 "data": {
                   "commands": [
                     {
@@ -133,19 +141,7 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "L4Left"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Confirm"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Sustained"
+                        "name": "CoralHold"
                       }
                     }
                   ]
@@ -156,15 +152,15 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "named",
                       "data": {
-                        "pathName": "GoldenRight6"
+                        "name": "LeftAlign"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "Intake"
+                        "name": "L4"
                       }
                     }
                   ]
@@ -173,51 +169,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "CoralHold"
+                  "name": "Confirm"
                 }
               },
               {
-                "type": "sequential",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "GoldenRight7"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "L4Right"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Confirm"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "GoldenRight8"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Sustained"
-                      }
-                    }
-                  ]
+                  "pathName": "GoldenRight6"
                 }
               }
             ]

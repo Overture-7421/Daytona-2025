@@ -25,6 +25,7 @@ public:
 
     bool isElevatorAtPosition(units::meter_t elevatorPosition); //Check if it is already at the target position
     frc2::CommandPtr setState(Positions state);
+    frc2::CommandPtr setCharacterization(units::meter_t position);
 
 private:
     //Declaration of the motors involved in this subsystem

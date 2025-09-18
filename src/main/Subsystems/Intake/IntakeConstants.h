@@ -25,13 +25,15 @@ struct IntakeConstants {
      variables will be needed, the first volt refers to the centering motor, the secon to the
      rollers and finally the degree type variable refers to the pivot*/
 
-    {Positions::AlgaeGround, {0.0_V, 0.0_V, 0_deg}}, {Positions::AlgaeHold, {0.0_V, 0.0_V, 0_deg}}, {
-            Positions::AlgaeHighReef, {0.0_V, 0.0_V, 0_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 0_deg}}, {
-            Positions::CoralAndAlgae, {0.0_V, 0.0_V, 30_deg}}, //To be defined
-            {Positions::CoralHold, {0.0_V, 0.0_V, 0_deg}}, //To be defined
-            {Positions::InitialPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::Intake, {3.0_V, 4.0_V, 80_deg}}, //To be defined
-            {Positions::IntakeCoralStation, {3.0_V, 4.0_V, 10_deg}}, //To be defined
-            {Positions::L1Confirm, {-2.0_V, 0.0_V, 30_deg}}, //To be defined
+    {Positions::AlgaeGround, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::AlgaeHold, {0.0_V, 0.0_V, 35.3_deg}}, {
+            Positions::AlgaeHighReef, {0.0_V, 0.0_V, 30_deg}}, {Positions::AlgaeLowReef, {0.0_V, 0.0_V, 30_deg}},
+            {Positions::CoralAndAlgae, {3.0_V, 8.25_V, 30_deg}}, //To be defined
+            {Positions::CoralHold, {-9.0_V, 0.0_V, 0_deg}}, //To be defined
+            {Positions::InitialPosition, {0.0_V, 0.0_V, 30_deg}},
+            {Positions::Intake, {6.0_V, 10_V, 131_deg}}, //To be defined
+            {Positions::Through, {1.5_V, 10_V, 131_deg}},
+            {Positions::IntakeCoralStation, {3.0_V, 8.25_V, 0_deg}}, //To be defined
+            {Positions::L1Confirm, {-4.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::L1Position, {0.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::L2Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L2BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L2Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L2FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
@@ -39,17 +41,21 @@ struct IntakeConstants {
                     Positions::L3Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L3FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L4Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L4Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
-                    Positions::NetPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::NetConfirm, {0.0_V, 0.0_V, 0_deg}}, {
-                    Positions::ProcessorPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::ProcessorConfirm, {0.0_V, 0.0_V,
-                    0_deg}}, {Positions::SustainedPosition, {0.0_V, 0.0_V, 0_deg}}, {Positions::EndPosition, {0.0_V,
-                    0.0_V, 0.0_deg}}};
+                    Positions::NetPosition, {0.0_V, 0.0_V, 35.3_deg}},
+            {Positions::NetConfirm, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::ProcessorPosition, {0.0_V, 0.0_V, 35.3_deg}},
+            {Positions::ProcessorConfirm, {0.0_V, 0.0_V, 35.3_deg}},
+            {Positions::SustainedPosition, {0.0_V, 0_V, 0_deg}}, {Positions::EndPosition, {0.0_V, 0.0_V, 130.0_deg}}, {
+                    Positions::SustainToL1, {6.0_V, 10.0_V, 0.0_deg}}};
 
-    constexpr static const units::degree_t IntakeRangeError = 1_deg;
+    constexpr static const units::volt_t RollersSlow = 3.0_V;
+    constexpr static const units::volt_t Centering = 8.25_V;
 
-    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 0_tps;
-    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 0_tr_per_s_sq;
+    constexpr static const units::degree_t IntakeRangeError = 3.5_deg;
 
-    constexpr static const double IntakeRotorToSensor = 0;
+    constexpr static const units::turns_per_second_t IntakeCruiseVelocity = 50_tps;
+    constexpr static const units::turns_per_second_squared_t IntakeCruiseAcceleration = 42_tr_per_s_sq;
+
+    constexpr static const double IntakeRotorToSensor = 77.8461539;
 
     constexpr static const double IntakeMotorId = 26;
     constexpr static const double IntakeCANCoderId = 27;
@@ -69,8 +75,8 @@ struct IntakeConstants {
         intakeConfig.StatorCurrentLimit = 120_A;
         intakeConfig.TriggerThreshold = 40_A;
         intakeConfig.TriggerThresholdTime = 0.5_s;
-        intakeConfig.PIDConfigs.GravityType = 1;
-        intakeConfig.PIDConfigs.WithKG(0.0).WithKV(0.0).WithKP(0.0);
+        //intakeConfig.PIDConfigs.GravityType = 1;
+        intakeConfig.PIDConfigs.WithKV(1.0).WithKP(47.0);
 
         return intakeConfig;
     }
@@ -78,7 +84,8 @@ struct IntakeConstants {
     constexpr static const CanCoderConfig IntakeCANConfig() {
         CanCoderConfig intakeCANConfig;
         intakeCANConfig.CanCoderId = IntakeCANCoderId;
-        intakeCANConfig.Offset = 0.0_tr;
+        intakeCANConfig.Offset = -0.142822265625_tr;
+        intakeCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::Clockwise_Positive;
 
         return intakeCANConfig;
     }
@@ -87,9 +94,9 @@ struct IntakeConstants {
         OverTalonFXConfig rollersConfig;
         rollersConfig.MotorId = RollersMotorId;
         rollersConfig.NeutralMode = ControllerNeutralMode::Brake;
-        rollersConfig.Inverted = true;
+        rollersConfig.Inverted = false;
 
-        rollersConfig.CurrentLimit = 25_A;
+        rollersConfig.CurrentLimit = 30_A;
         rollersConfig.StatorCurrentLimit = 120_A;
         rollersConfig.TriggerThreshold = 40_A;
         rollersConfig.TriggerThresholdTime = 0.5_s;
@@ -103,9 +110,9 @@ struct IntakeConstants {
         OverTalonFXConfig centeringConfig;
         centeringConfig.MotorId = CenteringMotorId;
         centeringConfig.NeutralMode = ControllerNeutralMode::Brake;
-        centeringConfig.Inverted = true;
+        centeringConfig.Inverted = false;
 
-        centeringConfig.CurrentLimit = 25_A;
+        centeringConfig.CurrentLimit = 30_A;
         centeringConfig.StatorCurrentLimit = 120_A;
         centeringConfig.TriggerThreshold = 40_A;
         centeringConfig.TriggerThresholdTime = 0.5_s;

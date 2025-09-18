@@ -2,9 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#pragma once
+#include "EndPositionCommands.h"
 
-#include <frc2/command/Commands.h>
-#include "Manager/StateManager/StateManager.h"
-
-frc2::CommandPtr L2Command(StateManager *stateManager, AlignManager *alignManager);
+frc2::CommandPtr EndPositionCommands(StateManager *stateManager) {
+    return stateManager->SustainedToEndPosition();
+}

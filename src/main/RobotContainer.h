@@ -24,12 +24,12 @@
 #include "Manager/AlignManager/AlignManager.h"
 #include "Manager/StateManager/StateManager.h"
 
-#include "Commands/AlgaeCommand/AlgaeCommand.h"
-#include "Commands/L2Command/L2Command.h"
-#include "Commands/L3Command/L3Command.h"
-#include "Commands/L4Command/L4Command.h"
-#include "Commands/AlgaeReefCommand/AlgaeReefCommand.h"
+#include "Commands/AlgaeCommands/AlgaeCommands.h"
+#include "Commands/ReefCommands/ReefCommands.h"
+#include "Commands/SustainedCommands/SustainedCommands.h"
+#include "Commands/EndPositionCommands/EndPositionCommands.h"
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
+#include "Commands/CharacterizationCommand/CharacterizationCommand.h"
 
 class RobotContainer: public OverContainer {
 public:
@@ -49,7 +49,7 @@ private:
     void disableBackCamera();
     void enableBackCamera();
 
-    OverXboxController driver {0, 0.55, 0.2};
+    OverXboxController driver {0, 0.05, 0.2};
     OverXboxController oprtr {1, 0.20, 0.2};
     OverConsole console {2};
     OverXboxController test {3, 0.20, 0.2};
@@ -72,25 +72,24 @@ private:
     Intake intake;
 
     AlignManager alignManager {&chassis, &tagLayout};
-    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber, &driver, &oprtr, &console, &emergency};
+    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber};
 
-    static AprilTags::Config railCameraLeft();
+    static AprilTags::Config railCameraRight();
     static AprilTags::Config climberCameraLeft();
     static AprilTags::Config climberCameraRight();
-    static AprilTags::Config railCameraRight();
+    static AprilTags::Config railCameraLeft();
 
-    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
+    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
     AprilTags climberCamLeft {&tagLayout, &chassis, climberCameraLeft()};
     AprilTags climberCamRight {&tagLayout, &chassis, climberCameraRight()};
-    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
+    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
 
     frc::SendableChooser<frc2::Command*> autoChooser;
 
-    frc2::Trigger emergency {[] {
-        return frc::SmartDashboard::GetBoolean("Emergency", false);
+    frc2::Trigger toInitial {[] {
+        return frc::SmartDashboard::GetBoolean("To-Initial", false);
     }};
 
-    // Maybe si lo usamos
     // frc2::Trigger increaseOffsetX {[] {
     //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
     // }};

@@ -30,22 +30,21 @@ bool Grabber::isAlgaeIn() {
 }
 
 frc2::CommandPtr Grabber::setState(Positions state) {
-    return frc2::FunctionalCommand([]() {
-    },
-    [this, state]() {
+    return frc2::cmd::RunOnce([this, state]() {
         setMotorVoltage(GrabberConstants::GrabberVoltage.at(state));
-    },
-    [](bool interrupted) {
-    },
-    []() {
-        return false;
-    },
-    {this}).ToPtr();
+    });
+}
+
+frc2::CommandPtr Grabber::setCharacterization(units::volt_t voltage) {
+    return frc2::cmd::RunOnce([this, voltage]() {
+        setMotorVoltage(voltage);
+    });
 }
 
 void Grabber::Periodic() {
 
     frc::SmartDashboard::PutBoolean("Grabber/ACTIVATED?", getVoltage() > 0.0);
-    frc::SmartDashboard::PutBoolean("Sensor Activated???", isCoralIn());
+    frc::SmartDashboard::PutBoolean("Grabber/CoralIn", isCoralIn());
+    frc::SmartDashboard::PutBoolean("Grabber/AlgaeIn", isAlgaeIn());
 
 }

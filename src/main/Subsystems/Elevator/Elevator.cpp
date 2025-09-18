@@ -16,6 +16,10 @@ Elevator::Elevator() {
     //Configuration of Speed, Acceleration and Jerk given when the elevator starts
     leftElevatorMotor.configureMotionMagic(ElevatorConstants::ElevatorCruiseVelocity,
             ElevatorConstants::ElevatorUpperCruiseAcceleration, 0.0_tr_per_s_cu);
+
+    frc::SmartDashboard::PutNumber("Elevator/TargetPosition", 0.0);
+    frc::SmartDashboard::PutBoolean("Elevator/AtPosition", false);
+
 }
 
 //Function that permits us to provide a target position to the elevator 
@@ -63,9 +67,27 @@ frc2::CommandPtr Elevator::setState(Positions state) {
     []() {
     },
     [](bool interrupted) {
+    }
+            ,
+            [this, state]() {
+                frc::SmartDashboard::PutBoolean("Elevator/AtPosition",
+                        isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state)));
+                return isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state));
+            },
+            {this}).ToPtr();
+}
+
+frc2::CommandPtr Elevator::setCharacterization(units::meter_t position) {
+    return frc2::FunctionalCommand([this, position]() {
+        setTarget(position);
     },
-    [this, state]() {
-        return isElevatorAtPosition(ElevatorConstants::ElevatorPositions.at(state));
+    []() {
+    },
+    [](bool interrupted) {
+    },
+    [this, position]() {
+        frc::SmartDashboard::PutBoolean("Elevator/AtPosition", isElevatorAtPosition(position));
+        return isElevatorAtPosition(position);
     },
     {this}).ToPtr();
 }

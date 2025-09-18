@@ -23,9 +23,14 @@ public:
     void setRollersVoltage(units::volt_t voltage);
     void setCenteringVoltage(units::volt_t voltage);
 
-    bool isCoralIn();
+    //bool isCoralIn();
+
+    units::degree_t getIntakePosition();
 
     frc2::CommandPtr setState(Positions state);
+    frc2::CommandPtr setStateRollers(Positions state);
+    frc2::CommandPtr setStateIntake(Positions state);
+    frc2::CommandPtr setCharacterization(units::volt_t rollers, units::volt_t centering, units::degree_t intake);
 
     void Periodic() override;
 
@@ -37,7 +42,7 @@ private:
     OverTalonFX rollersMotor {IntakeConstants::RollersConfig(), "rio"};
     OverTalonFX centeringMotor {IntakeConstants::CenteringConfig(), "rio"};
 
-    CANrange canRange {0, "rio"};
+    //CANrange canRange {30, "rio"};
 
     MotionMagicVoltage intakeVoltage {0_tr};
     VoltageOut rollersVoltage {0_V};

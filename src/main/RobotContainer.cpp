@@ -6,35 +6,33 @@
 
 RobotContainer::RobotContainer() {
 
-    autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
-    frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
     ConfigureBindings();
     chassis.setAcceptingVisionMeasurements(true);
     frc::DriverStation::SilenceJoystickConnectionWarning(true);
 
-    pathplanner::NamedCommands::registerCommand("L4Left",
-            std::move(L4Command(&stateManager, &alignManager).AlongWith(leftAlignPos(&alignManager))));
+    pathplanner::NamedCommands::registerCommand("FirstL4", std::move(L4CommandAuto(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("L4Right",
-            std::move(L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager))));
+    pathplanner::NamedCommands::registerCommand("LeftAlign", std::move(leftAlignPos(&alignManager)));
+
+    pathplanner::NamedCommands::registerCommand("RightAlign", std::move(rightAlignPos(&alignManager)));
+
+    pathplanner::NamedCommands::registerCommand("L4", std::move(L4Command(&stateManager, &alignManager)));
 
     pathplanner::NamedCommands::registerCommand("AlgaeReef",
             std::move(AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager))));
 
-    pathplanner::NamedCommands::registerCommand("Sustained",
-            std::move(stateManager.setStatePosition(Positions::SustainedPosition)));
+    pathplanner::NamedCommands::registerCommand("Sustained", std::move(SustainedCommands(&stateManager)));
+
+    pathplanner::NamedCommands::registerCommand("CoralHold", std::move(stateManager.L1PositionToCoralHoldAuto()));
 
     pathplanner::NamedCommands::registerCommand("Confirm", std::move(ConfirmCommand(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("Intake", std::move(stateManager.setStatePosition(Positions::Intake)));
+    pathplanner::NamedCommands::registerCommand("Intake", std::move(stateManager.SustainedToIntake()));
 
-    pathplanner::NamedCommands::registerCommand("AlgaeCommand", std::move(AlgaeCommand(&stateManager)));
+    pathplanner::NamedCommands::registerCommand("AlgaeHold", std::move(AlgaeHoldCommand(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("AlgaeHold",
-            std::move(stateManager.setStatePosition(Positions::AlgaeHold)));
-
-    pathplanner::NamedCommands::registerCommand("CoralHold",
-            std::move(stateManager.setStatePosition(Positions::CoralHold)));
+    autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
+    frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
 
 }
 
@@ -56,60 +54,70 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.LeftTrigger().WhileTrue(stateManager.setStatePosition(Positions::Intake));
-    driver.LeftTrigger().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake());
+    driver.LeftTrigger().OnFalse(SustainedCommands(&stateManager));
+
+    driver.RightTrigger().WhileTrue(stateManager.SustainedToIntake());
+    driver.RightTrigger().OnFalse(L1Command(&stateManager));
+
+    driver.POVUp().WhileTrue(PassCommand(&stateManager));
 
     driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
-    driver.RightBumper().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
-    driver.POVLeft().WhileTrue(AlgaeCommand(&stateManager));
-    driver.POVLeft().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
+    driver.POVLeft().OnFalse(SustainedCommands(&stateManager));
 
-    driver.POVUp().WhileTrue(stateManager.setStatePosition(Positions::L1Position));
-    driver.POVUp().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    driver.POVRight().WhileTrue(NetCommand(&stateManager));
+    driver.POVRight().OnFalse(SustainedCommands(&stateManager));
 
-    //driver.POVRight().WhileTrue(/*Coral detection later */);
-    //driver.POVRight().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    toInitial.OnTrue(stateManager.AllToInitial().AndThen(frc2::cmd::RunOnce([this] {
+        frc::SmartDashboard::PutBoolean("To-Initial", false);
+    })));
+
+    driver.A().WhileTrue(grabber.setCharacterization(GrabberConstants::GrabberSpitAlgae));
+    driver.A().OnFalse(grabber.setCharacterization(GrabberConstants::GrabberRollersZero));
 
 }
 
 void RobotContainer::ConfigOperatorBindings() {
 
-    oprtr.LeftBumper().WhileTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
-    oprtr.LeftBumper().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.LeftBumper().WhileTrue(stateManager.AlgaeHoldToProcessor());
+    oprtr.LeftBumper().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.RightBumper().WhileTrue(stateManager.setStatePosition(Positions::IntakeCoralStation));
-    oprtr.RightBumper().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.RightBumper().WhileTrue(stateManager.AlgaeHoldToNet());
+    oprtr.RightBumper().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.A().WhileTrue(stateManager.setStatePosition(Positions::L1Position));
-    oprtr.A().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.A().WhileTrue(L1Command(&stateManager));
+    oprtr.A().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.B().WhileTrue(stateManager.setStatePosition(Positions::L2Front));
-    oprtr.B().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.B().WhileTrue(stateManager.CoralHoldToL2Front());
+    oprtr.B().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.X().WhileTrue(stateManager.setStatePosition(Positions::L3Front));
-    oprtr.X().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.X().WhileTrue(stateManager.CoralHoldToL3Front());
+    oprtr.X().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.Y().WhileTrue(stateManager.setStatePosition(Positions::L4Front));
-    oprtr.Y().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.Y().WhileTrue(stateManager.CoralHoldToL4Front());
+    oprtr.Y().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.POVUp().WhileTrue(stateManager.setStatePosition(Positions::AlgaeHighReef));
-    oprtr.POVUp().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager));
+    oprtr.POVUp().OnFalse(SustainedCommands(&stateManager));
+    // oprtr.POVUp().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    // 	return grabber.isAlgaeIn();
+    // }));
 
-    oprtr.POVDown().WhileTrue(stateManager.setStatePosition(Positions::AlgaeLowReef));
-    oprtr.POVDown().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager));
+    oprtr.POVDown().OnFalse(SustainedCommands(&stateManager));
 
-    oprtr.Back().WhileTrue(stateManager.setStatePosition(Positions::EndPosition));
-    oprtr.Back().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    // oprtr.POVDown().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    // 	return grabber.isAlgaeIn();
+    // }));
+
+    oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
+    oprtr.Back().OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
 
     oprtr.Start().WhileTrue(frc2::cmd::RunOnce([this] {
         climber.setOffset();
-    }));
-    oprtr.Start().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
-
-    emergency.OnTrue(frc2::cmd::RunOnce([this] {
-        stateManager.setStatePosition(Positions::EndPosition);
-        frc::SmartDashboard::PutBoolean("Emergency", false);
     }));
 
     //Maybe si lo usamos
@@ -169,42 +177,67 @@ void RobotContainer::ConfigMixedBindigs() {
     (driver.POVDown() && console.Button(11)).OnTrue(
             L4Command(&stateManager, &alignManager).AlongWith(rightAlignPos(&alignManager)));
 
-    //Maybe es 2 en el numero de la consola :V
-    (driver.POVDown() && console.Button(1)).OnTrue(
-            AlgaeReefCommand(&stateManager, &alignManager).AlongWith(algaeAlignPos(&alignManager)));
+    console.Button(3).OnTrue(arm.setArmZero());
 
-    (!driver.LeftTrigger() && console.AxisMagnitudeGreaterThan(0, 0.1)).OnTrue(
-            stateManager.setStatePosition(Positions::IntakeCoralStation));
-    console.AxisMagnitudeGreaterThan(0, 0.1).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    console.Button(2).WhileTrue(AlgaeHighManualCommand(&stateManager));
+    console.Button(2).OnFalse(SustainedCommands(&stateManager));
+    // console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    // 	return grabber.isAlgaeIn();
+    // }));
 
-    (!driver.LeftTrigger() && console.Button(9)).OnTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
-    console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    console.Button(1).WhileTrue(AlgaeLowManualCommand(&stateManager));
+    console.Button(1).OnFalse(SustainedCommands(&stateManager));
+    // console.Button(1).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    // 	return grabber.isAlgaeIn();
+    // }));
 
-    console.Button(4).OnTrue(stateManager.setStatePosition(Positions::EndPosition));
+    console.Button(6).WhileTrue(frc2::cmd::RunOnce([this] {
+        climber.setOffset();
+    }));
 
-    driver.POVDown().OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    // //Maybe es 2 en el numero de la consola :V
+    // (driver.POVDown() && console.Button(1)).OnTrue(
+    // AlgaeReefCommand(&stateManager, &alignManager).AlongWith(
+    // algaeAlignPos(&alignManager).AndThen(AlgaeHoldCommand(&stateManager))));
+
+    // (!driver.LeftTrigger() && console.Button(9)).OnTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
+    // console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+
+    console.Button(4).WhileTrue(EndPositionCommands(&stateManager));
+    console.Button(4).OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
+
+    driver.POVDown().OnFalse(SustainedCommands(&stateManager));
 }
 
 void RobotContainer::ConfigDefaultCommands() {
-
+    // startCommands.OnTrue(stateManager.setStatePosition());
 }
 
 void RobotContainer::ConfigCharacterizationBindings() {
+    //-920 descansa toda la partida
+    // -570 horizonte para escalar
+    //1600 para escalado
 
+    // test.A().WhileTrue(climber.setClimberCommand(-570_deg));
+
+    // test.B().WhileTrue(climber.setClimberCommand(-920_deg));
+
+    // test.Y().WhileTrue(climber.setClimberCommand(850_deg));
 }
 
-AprilTags::Config RobotContainer::railCameraLeft() {
+AprilTags::Config RobotContainer::railCameraRight() {
     AprilTags::Config config;
-    config.cameraName = "RailLeft";
-    config.cameraToRobot = {7.200000_in, -5.892500_in, 6.368259_in, {0_deg, -21.500115_deg, 30.026518_deg}};
+    config.cameraName = "RailRight";
+    config.cameraToRobot = {11.2_in, 3.5_in, 7.752224_in, {0_deg, -15_deg, -47.981360_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
 
+//Climbers no utilizaremos
 AprilTags::Config RobotContainer::climberCameraLeft() {
     AprilTags::Config config;
     config.cameraName = "ClimberLeft";
-    config.cameraToRobot = {6.000000_in, 11.000000_in, 7.752224_in, {0_deg, -21.000118_deg, 25.025948_deg}};
+    config.cameraToRobot = {-11.162644_in, 10.651305_in, 8.845276_in, {0_deg, -20_deg, -119.975294_deg}};
     config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m}};
     return config;
 }
@@ -212,21 +245,18 @@ AprilTags::Config RobotContainer::climberCameraLeft() {
 AprilTags::Config RobotContainer::climberCameraRight() {
     AprilTags::Config config;
     config.cameraName = "ClimberRight";
-    config.cameraToRobot = {11.000000_in, -7.000000_in, 9.752224_in, {0_deg, -15.000170_deg, 50.018714_deg}};
+    config.cameraToRobot = {-11.4_in, -1.319890_in, 6.843439_in, {0_deg, -15_deg, -144.981261_deg}};
     return config;
 }
 
-AprilTags::Config RobotContainer::railCameraRight() {
+AprilTags::Config RobotContainer::railCameraLeft() {
     AprilTags::Config config;
-    config.cameraName = "RailRight";
-    config.cameraToRobot = {-9.648405_in, 8.631463_in, 8.410513_in, {0_deg, -28.125_deg, 120_deg}};
+    config.cameraName = "RailLeft";
+    config.cameraToRobot = {8_in, 9.2_in, 11.252224_in, {0_deg, -5_deg, -29.993788_deg}};
     return config;
 }
 void RobotContainer::UpdateTelemetry() {
     chassis.shuffleboardPeriodic();
-    //driver.updateTelemetry();
-    //oprtr.updateTelemetry();
-    //console.updateTelemetry();
 
     frc::SmartDashboard::PutNumber("MatchTime", frc::DriverStation::GetMatchTime().value());
 

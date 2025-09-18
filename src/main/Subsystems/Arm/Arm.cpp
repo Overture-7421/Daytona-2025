@@ -1,11 +1,20 @@
 #include "Subsystems/Arm/Arm.h"
 
 Arm::Arm() {
+    frc::SmartDashboard::PutNumber("Arm/TargetArmAngle", 0.0);
+    frc::SmartDashboard::PutBoolean("Arm/AtPosition", false);
 
-    armMotor.setRotorToSensorRatio(ArmConstants::ArmRotorToSensor);
-    armMotor.setFusedCANCoder(ArmConstants::ArmCANCoderId);
+    armMotor.setSensorToMechanism(ArmConstants::ArmRotorToSensor);
+    //armMotor.setFusedCANCoder(ArmConstants::ArmCANCoderId);
+    armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());
     armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocity, ArmConstants::ArmCruiseAcceleration, 0_tr_per_s_cu);
 
+}
+
+frc2::CommandPtr Arm::setArmZero() {
+    return frc2::cmd::RunOnce([this]() {
+        armMotor.SetPosition(armCANCoder.GetAbsolutePosition().GetValue());
+    });
 }
 
 void Arm::setToAngle(units::degree_t armAngle) {
@@ -31,8 +40,27 @@ frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
         }
     }, []() {
     }, [](bool interupted) {
-    }, [this, state]() {
-        return isArmAtPosition(ArmConstants::ArmBack.at(state));
+    }, [this, state, heading]() {
+        if (heading == Heading::Front) {
+            frc::SmartDashboard::PutBoolean("Arm/AtPosition", isArmAtPosition(ArmConstants::ArmFront.at(state)));
+            return isArmAtPosition(ArmConstants::ArmFront.at(state));
+        } else if (heading == Heading::Back) {
+            frc::SmartDashboard::PutBoolean("Arm/AtPosition", isArmAtPosition(ArmConstants::ArmBack.at(state)));
+            return isArmAtPosition(ArmConstants::ArmBack.at(state));
+        }
+
+        return true;
+    },
+    {this}).ToPtr();
+}
+
+frc2::CommandPtr Arm::setCharacterization(units::degree_t angle) {
+    return frc2::FunctionalCommand([this, angle]() {
+        setToAngle(angle);
+    }, []() {
+    }, [](bool interupted) {
+    }, [this, angle]() {
+        return isArmAtPosition(angle);
     },
     {this}).ToPtr();
 }
@@ -43,11 +71,14 @@ frc2::CommandPtr Arm::setState(Positions state) {
     }, []() {
     }, [](bool interupted) {
     }, [this, state]() {
+        frc::SmartDashboard::PutBoolean("Arm/AtPosition", isArmAtPosition(ArmConstants::ArmFront.at(state)));
         return isArmAtPosition(ArmConstants::ArmFront.at(state));
     },
     {this}).ToPtr();
 }
 
 void Arm::Periodic() {
+
+    frc::SmartDashboard::PutNumber("Arm/CurrentArmAngle", getCurrentAngle().value());
 
 }

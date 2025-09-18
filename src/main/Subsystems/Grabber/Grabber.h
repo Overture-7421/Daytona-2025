@@ -5,6 +5,8 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/Commands.h>
 #include <OvertureLib/MotorControllers/OverTalonFX/OverTalonFX.h>
 #include <OvertureLib/Utils/Logging/Logging.h>
 #include <frc2/command/CommandPtr.h>
@@ -27,6 +29,7 @@ public:
     bool isAlgaeIn(); //Checks if the grabber is holding an Algae
 
     frc2::CommandPtr setState(Positions state); //simply applies voltage
+    frc2::CommandPtr setCharacterization(units::volt_t voltage);
 
     void Periodic() override;
 

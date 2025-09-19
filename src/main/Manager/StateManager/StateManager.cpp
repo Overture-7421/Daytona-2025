@@ -137,7 +137,7 @@ frc2::CommandPtr StateManager::L1PositionToL1Confirm() {
             setStatePosition(Positions::L1Confirm));
 }
 
-frc2::CommandPtr StateManager::L1PositionToCoralHold() {
+frc2::CommandPtr StateManager::IntakeToCoralHold() {
     return frc2::cmd::Sequence(arm->setState(Positions::CoralHold), intake->setStateRollers(Positions::Through),
             intake->setStateIntake(Positions::CoralHold), grabber->setState(Positions::CoralHold),
 

@@ -63,7 +63,7 @@ void RobotContainer::ConfigDriverBindings() {
     driver.POVUp().WhileTrue(PassCommand(&stateManager));
 
     driver.RightBumper().WhileTrue(ConfirmCommand(&stateManager));
-    driver.RightBumper().OnFalse(SustainedCommands(&stateManager));
+    driver.RightBumper().OnFalse(SustainedConfirmedCommands(&stateManager));
 
     driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
     driver.POVLeft().OnFalse(SustainedCommands(&stateManager));

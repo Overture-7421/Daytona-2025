@@ -45,7 +45,7 @@ public:
     frc2::CommandPtr AlgaeGroundToSustained();
     frc2::CommandPtr AlgaeGroundToAlgaeHold();
     frc2::CommandPtr L1PositionToL1Confirm();
-    frc2::CommandPtr L1PositionToCoralHold();
+    frc2::CommandPtr IntakeToCoralHold();
     frc2::CommandPtr L1PositionToCoralHoldAuto();
     frc2::CommandPtr L1ConfirmToSustained();
     frc2::CommandPtr CoralHoldToL1Position();

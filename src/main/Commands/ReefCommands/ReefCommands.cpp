@@ -15,7 +15,7 @@ frc2::CommandPtr PassCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getStatePosition();
     },
-    std::pair {Positions::L1Position, stateManager->L1PositionToCoralHold()}, std::pair {Positions::SustainedPosition,
+    std::pair {Positions::L1Position, stateManager->IntakeToCoralHold()}, std::pair {Positions::SustainedPosition,
             stateManager->CoralHoldToL1Position()});
 }
 

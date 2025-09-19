@@ -42,10 +42,10 @@ void AlignManager::initialize() {
     } else {
         // if (getHeading() == Heading::Back) {
         //     headingTarget = backReefOffset.headingOffset;
-            // reefOffset = backReefOffset;
+        // reefOffset = backReefOffset;
         // } else {
-            // headingTarget = frontReefOffset.headingOffset;
-            reefOffset = frontReefOffset;
+        // headingTarget = frontReefOffset.headingOffset;
+        reefOffset = frontReefOffset;
         // }
     }
     headingTarget = frontReefOffset.headingOffset;

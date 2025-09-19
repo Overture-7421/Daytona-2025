@@ -8,3 +8,4 @@
 #include "Manager/StateManager/StateManager.h"
 
 frc2::CommandPtr SustainedCommands(StateManager *stateManager);
+frc2::CommandPtr SustainedConfirmedCommands(StateManager *stateManager);

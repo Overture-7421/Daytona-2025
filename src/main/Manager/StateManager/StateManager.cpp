@@ -199,7 +199,7 @@ frc2::CommandPtr StateManager::CoralHoldToL3Back() {
 }
 
 frc2::CommandPtr StateManager::CoralHoldToL4Back() {
-    return frc2::cmd::Parallel(arm->setState(Positions::L4Back, Heading::Back), elevator->setState(Positions::L4Back),
+    return frc2::cmd::Sequence(arm->setState(Positions::L4Back, Heading::Back), elevator->setState(Positions::L4Back),
             intake->setState(Positions::L4Back), grabber->setState(Positions::L4Back)).AlongWith(
             setStatePosition(Positions::L4Back));
 }
@@ -217,45 +217,62 @@ frc2::CommandPtr StateManager::AlgaeHoldToProcessor() {
 }
 
 frc2::CommandPtr StateManager::L2FrontToFrontConfirm() {
-    return frc2::cmd::Parallel(elevator->setState(Positions::L2FrontConfirm),
-            intake->setState(Positions::L2FrontConfirm), arm->setState(Positions::L2FrontConfirm, Heading::Front),
-            grabber->setState(Positions::L2FrontConfirm)).AlongWith(setStatePosition(Positions::L2FrontConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(elevator->setState(Positions::L2FrontConfirm),
+                    intake->setState(Positions::L2FrontConfirm),
+                    arm->setState(Positions::L2FrontConfirm, Heading::Front),
+                    grabber->setState(Positions::L2FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L2FrontConfirm));
 }
 
 frc2::CommandPtr StateManager::L3FrontToFrontConfirm() {
-    return frc2::cmd::Parallel(elevator->setState(Positions::L3FrontConfirm),
-            intake->setState(Positions::L3FrontConfirm), arm->setState(Positions::L3FrontConfirm, Heading::Front),
-            grabber->setState(Positions::L3FrontConfirm)).AlongWith(setStatePosition(Positions::L3FrontConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(elevator->setState(Positions::L3FrontConfirm),
+                    intake->setState(Positions::L3FrontConfirm),
+                    arm->setState(Positions::L3FrontConfirm, Heading::Front),
+                    grabber->setState(Positions::L3FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L3FrontConfirm));
 }
 
 frc2::CommandPtr StateManager::L4FrontToFrontConfirm() {
-    return frc2::cmd::Parallel(elevator->setState(Positions::L4FrontConfirm),
-            intake->setState(Positions::L4FrontConfirm), arm->setState(Positions::L4FrontConfirm, Heading::Front),
-            grabber->setState(Positions::L4FrontConfirm)).AlongWith(setStatePosition(Positions::L4FrontConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(elevator->setState(Positions::L4FrontConfirm),
+                    intake->setState(Positions::L4FrontConfirm),
+                    arm->setState(Positions::L4FrontConfirm, Heading::Front),
+                    grabber->setState(Positions::L4FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L4FrontConfirm));
 }
 
 frc2::CommandPtr StateManager::L4FrontAutoToFrontAutoConfirm() {
-    return frc2::cmd::Parallel(arm->setState(Positions::L4FrontAutoConfirm, Heading::Front),
-            elevator->setState(Positions::L4FrontConfirm), intake->setState(Positions::L4FrontConfirm),
-            grabber->setState(Positions::L4FrontConfirm)).AlongWith(setStatePosition(Positions::L4FrontAutoConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(arm->setState(Positions::L4FrontAutoConfirm, Heading::Front),
+                    elevator->setState(Positions::L4FrontConfirm), intake->setState(Positions::L4FrontConfirm),
+                    grabber->setState(Positions::L4FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L4FrontAutoConfirm));
 }
 
 frc2::CommandPtr StateManager::L2BackToBackConfirm() {
-    return frc2::cmd::Parallel(arm->setState(Positions::L2BackConfirm, Heading::Back),
-            elevator->setState(Positions::L2BackConfirm), intake->setState(Positions::L2BackConfirm),
-            grabber->setState(Positions::L2BackConfirm)).AlongWith(setStatePosition(Positions::L2BackConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(arm->setState(Positions::L2BackConfirm, Heading::Back),
+                    elevator->setState(Positions::L2BackConfirm), intake->setState(Positions::L2BackConfirm),
+                    grabber->setState(Positions::L2BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L2BackConfirm));
 }
 
 frc2::CommandPtr StateManager::L3BackToBackConfirm() {
-    return frc2::cmd::Parallel(arm->setState(Positions::L3BackConfirm, Heading::Back),
-            elevator->setState(Positions::L3BackConfirm), intake->setState(Positions::L3BackConfirm),
-            grabber->setState(Positions::L3BackConfirm)).AlongWith(setStatePosition(Positions::L3BackConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(arm->setState(Positions::L3BackConfirm, Heading::Back),
+                    elevator->setState(Positions::L3BackConfirm), intake->setState(Positions::L3BackConfirm),
+                    grabber->setState(Positions::L3BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L3BackConfirm));
 }
 
 frc2::CommandPtr StateManager::L4BackToBackConfirm() {
-    return frc2::cmd::Parallel(arm->setState(Positions::L4BackConfirm, Heading::Back),
-            elevator->setState(Positions::L4BackConfirm), intake->setState(Positions::L4BackConfirm),
-            grabber->setState(Positions::L4BackConfirm)).AlongWith(setStatePosition(Positions::L4BackConfirm));
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(arm->setState(Positions::L4BackConfirm, Heading::Back),
+                    elevator->setState(Positions::L4BackConfirm), intake->setState(Positions::L4BackConfirm),
+                    grabber->setState(Positions::L4BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L4BackConfirm));
 }
 
 frc2::CommandPtr StateManager::NetPositionToNetConfirm() {

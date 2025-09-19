@@ -24,9 +24,9 @@ struct ArmConstants {
                     Positions::EndPosition, -68.0_deg}, {Positions::L4FrontAuto, -57.0_deg}, {
                     Positions::L4FrontAutoConfirm, -18.0_deg}};
 
-    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, -135.0_deg}, {
-            Positions::L3Back, -107.0_deg}, {Positions::L4Back, -113.0_deg}, {Positions::L2BackConfirm, -188.0_deg}, {
-            Positions::L3BackConfirm, -183.0_deg}, {Positions::L4BackConfirm, -162.0_deg}};
+    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, 234.0_deg}, {
+            Positions::L3Back, -127.0_deg}, {Positions::L4Back, -123.0_deg}, {Positions::L2BackConfirm, 179.0_deg}, {
+            Positions::L3BackConfirm, -182.0_deg}, {Positions::L4BackConfirm, -162.0_deg}};
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 9_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 6_tr_per_s_sq;

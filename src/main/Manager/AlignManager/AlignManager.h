@@ -35,11 +35,15 @@ public:
     //GIRAR IZQUIERDA mas POSITIVOS / GIRAR DERECHA mas NEGATIVOS
 
     //IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
-    const ReefOffset defaultReefOffset {-0.320_m, 0.020_m, 0.48_m, 180.0_deg, 0.0_m}; // Derecha 0.060
+    const ReefOffset frontReefOffset {-0.320_m, 0.020_m, 0.48_m, 180.0_deg, 0.0_m};
+    const ReefOffset backReefOffset {-0.020_m, 0.0320_m, 0.48_m, 0.0_deg, 0.0_m};
 
     std::map<ReefLocation, ReefOffset> alignPositionsMap;
-    const std::map<ReefLocation, ReefOffset> alignInRed = {};
-    const std::map<ReefLocation, ReefOffset> alignInBlue = {};
+    const std::map<ReefLocation, ReefOffset> frontAlignInRed = {};
+    const std::map<ReefLocation, ReefOffset> frontAlignInBlue = {};
+
+    const std::map<ReefLocation, ReefOffset> backAlignInRed = {};
+    const std::map<ReefLocation, ReefOffset> backAlignInBlue = {};
 
 private:
     frc::Pose2d transformToTargetFrame(const frc::Pose2d &pose);

@@ -19,17 +19,37 @@ AlignManager::AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout
 
 void AlignManager::initialize() {
     reefPackage = findClosestReefLocation(chassis, tagLayout);
-    if (reefPackage.alliance == frc::DriverStation::Alliance::kRed) {
-        alignPositionsMap = alignInRed;
-    } else {
-        alignPositionsMap = alignInBlue;
+
+    // units::degree_t chassisHeading = chassis->getEstimatedPose().RelativeTo(reefPackage.pose).Rotation().Degrees();
+    // if (chassisHeading > 90_deg || chassisHeading < -90_deg) {
+    //     setHeading(Heading::Front);
+    // } else {
+    //     setHeading(Heading::Back);
+    // }
+
+    if (reefPackage.alliance == frc::DriverStation::Alliance::kRed && getHeading() == Heading::Front) {
+        alignPositionsMap = frontAlignInRed;
+    } else if (reefPackage.alliance == frc::DriverStation::Alliance::kBlue && getHeading() == Heading::Front) {
+        alignPositionsMap = frontAlignInBlue;
+    } else if (reefPackage.alliance == frc::DriverStation::Alliance::kRed && getHeading() == Heading::Back) {
+        alignPositionsMap = backAlignInRed;
+    } else if (reefPackage.alliance == frc::DriverStation::Alliance::kBlue && getHeading() == Heading::Back) {
+        alignPositionsMap = backAlignInBlue;
     }
 
     if (alignPositionsMap.contains(reefPackage.reefLocation)) {
         reefOffset = alignPositionsMap.at(reefPackage.reefLocation);
     } else {
-        reefOffset = defaultReefOffset;
+        // if (getHeading() == Heading::Back) {
+        //     headingTarget = backReefOffset.headingOffset;
+            // reefOffset = backReefOffset;
+        // } else {
+            // headingTarget = frontReefOffset.headingOffset;
+            reefOffset = frontReefOffset;
+        // }
     }
+    headingTarget = frontReefOffset.headingOffset;
+    setHeading(Heading::Front);
 
     if (reefSide == ReefSide::Left) {
         yTarget = reefOffset.leftOffset;
@@ -46,18 +66,6 @@ void AlignManager::initialize() {
     } else if (reefPackage.algaePose == AlgaePose::Down) {
         setAlgaePose(AlgaePose::Down);
     }
-
-    // units::degree_t chassisHeading = chassis->getEstimatedPose().RelativeTo(reefPackage.pose).Rotation().Degrees();
-    // if (chassisHeading < 90_deg || chassisHeading > -90_deg) {
-    //     headingTarget = reefOffset.headingOffset;
-    //     setHeading(Heading::Front);
-    // } else {
-    //     headingTarget = reefOffset.headingOffset + 180_deg;
-    //     setHeading(Heading::Back);
-    // }
-
-    headingTarget = reefOffset.headingOffset;
-    setHeading(Heading::Front);
 
     frc::Pose2d pose = chassis->getEstimatedPose();
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);

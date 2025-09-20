@@ -42,8 +42,8 @@ struct IntakeConstants {
                     Positions::L4Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L4Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::NetPosition, {0.0_V, 0.0_V, 35.3_deg}},
-            {Positions::NetConfirm, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::ProcessorPosition, {0.0_V, 0.0_V, 35.3_deg}},
-            {Positions::ProcessorConfirm, {0.0_V, 0.0_V, 35.3_deg}},
+            {Positions::NetConfirm, {0.0_V, 0.0_V, 35.3_deg}}, {Positions::ProcessorPosition, {0.0_V, 0.0_V, 125.0_deg}},
+            {Positions::ProcessorConfirm, {0.0_V, 0.0_V, 125.0_deg}},
             {Positions::SustainedPosition, {0.0_V, 0_V, 0_deg}}, {Positions::EndPosition, {0.0_V, 0.0_V, 130.0_deg}}, {
                     Positions::SustainToL1, {6.0_V, 10.0_V, 0.0_deg}}};
 

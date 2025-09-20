@@ -58,5 +58,5 @@ frc2::CommandPtr ProcessorCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getStatePosition();
     },
-    std::pair {Positions::NetPosition, stateManager->AlgaeHoldToProcessor()});
+    std::pair {Positions::AlgaeHold, stateManager->AlgaeHoldToProcessor()});
 }

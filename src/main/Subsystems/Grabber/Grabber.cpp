@@ -25,7 +25,7 @@ bool Grabber::isCoralIn() {
 
 bool Grabber::isAlgaeIn() {
 
-    return grabberMotor.GetSupplyCurrent().GetValueAsDouble() > GrabberConstants::AlgaeDetectionCurrent;
+    return grabberMotor.GetStatorCurrent().GetValueAsDouble() > GrabberConstants::AlgaeDetectionCurrent;
 
 }
 

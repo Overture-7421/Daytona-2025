@@ -13,7 +13,7 @@ AlignManager::AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout
     this->yPIDController.SetIZone(3);
     this->yPIDController.SetTolerance(0.025_m);
     this->headingPIDController.SetIZone(3);
-    this->headingPIDController.SetTolerance(2.0_deg);
+    this->headingPIDController.SetTolerance(4.0_deg);
     this->headingPIDController.EnableContinuousInput(-180_deg, 180_deg);
 }
 

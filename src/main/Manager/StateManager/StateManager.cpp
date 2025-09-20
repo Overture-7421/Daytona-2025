@@ -102,8 +102,8 @@ frc2::CommandPtr StateManager::AlgaeHighReefToSustained() {
 }
 
 frc2::CommandPtr StateManager::AlgaeHighReefToAlgaeHold() {
-    return (frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
-            intake->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold)).AlongWith(
+    return (frc2::cmd::Sequence( arm->setState(Positions::AlgaeHold),grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
+            intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold)));
 }
 
@@ -114,8 +114,8 @@ frc2::CommandPtr StateManager::AlgaeLowReefToSustained() {
 }
 
 frc2::CommandPtr StateManager::AlgaeLowReefToAlgaeHold() {
-    return (frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
-            intake->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold)).AlongWith(
+    return (frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold),grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
+            intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold)));
 }
 
@@ -126,8 +126,8 @@ frc2::CommandPtr StateManager::AlgaeGroundToSustained() {
 }
 
 frc2::CommandPtr StateManager::AlgaeGroundToAlgaeHold() {
-    return (frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
-            intake->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold)).AlongWith(
+    return (frc2::cmd::Sequence( arm->setState(Positions::AlgaeHold),grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
+            intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold)));
 }
 

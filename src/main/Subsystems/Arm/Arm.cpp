@@ -38,6 +38,8 @@ frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
         } else if (heading == Heading::Back) {
             setToAngle(ArmConstants::ArmBack.at(state));
         }
+        frc::SmartDashboard::PutBoolean("Arm/AtPosition", false);
+
     }, []() {
     }, [](bool interupted) {
     }, [this, state, heading]() {
@@ -68,6 +70,7 @@ frc2::CommandPtr Arm::setCharacterization(units::degree_t angle) {
 frc2::CommandPtr Arm::setState(Positions state) {
     return frc2::FunctionalCommand([this, state]() {
         setToAngle(ArmConstants::ArmFront.at(state));
+        frc::SmartDashboard::PutBoolean("Arm/AtPosition", false);
     }, []() {
     }, [](bool interupted) {
     }, [this, state]() {

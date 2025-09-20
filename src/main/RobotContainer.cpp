@@ -66,7 +66,10 @@ void RobotContainer::ConfigDriverBindings() {
     driver.RightBumper().OnFalse(SustainedConfirmedCommands(&stateManager));
 
     driver.POVLeft().WhileTrue(AlgaeGroundCommand(&stateManager));
-    driver.POVLeft().OnFalse(SustainedCommands(&stateManager));
+    driver.POVLeft().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    	return grabber.isAlgaeIn();
+    }));
+
 
     driver.POVRight().WhileTrue(NetCommand(&stateManager));
     driver.POVRight().OnFalse(SustainedCommands(&stateManager));
@@ -78,6 +81,7 @@ void RobotContainer::ConfigDriverBindings() {
     driver.A().WhileTrue(grabber.setCharacterization(GrabberConstants::GrabberSpitAlgae));
     driver.A().OnFalse(grabber.setCharacterization(GrabberConstants::GrabberRollersZero));
 
+    driver.Y().WhileTrue(algaeAlignPos(&alignManager));
 }
 
 void RobotContainer::ConfigOperatorBindings() {
@@ -101,17 +105,14 @@ void RobotContainer::ConfigOperatorBindings() {
     oprtr.Y().OnFalse(SustainedCommands(&stateManager));
 
     oprtr.POVUp().WhileTrue(AlgaeHighManualCommand(&stateManager));
-    oprtr.POVUp().OnFalse(SustainedCommands(&stateManager));
-    // oprtr.POVUp().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-    // 	return grabber.isAlgaeIn();
-    // }));
+    oprtr.POVUp().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    	return grabber.isAlgaeIn();
+    }));
 
     oprtr.POVDown().WhileTrue(AlgaeLowManualCommand(&stateManager));
-    oprtr.POVDown().OnFalse(SustainedCommands(&stateManager));
-
-    // oprtr.POVDown().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-    // 	return grabber.isAlgaeIn();
-    // }));
+    oprtr.POVDown().OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    	return grabber.isAlgaeIn();
+    }));
 
     oprtr.Back().WhileTrue(EndPositionCommands(&stateManager));
     oprtr.Back().OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));
@@ -180,16 +181,14 @@ void RobotContainer::ConfigMixedBindigs() {
     console.Button(3).OnTrue(arm.setArmZero());
 
     console.Button(2).WhileTrue(AlgaeHighManualCommand(&stateManager));
-    console.Button(2).OnFalse(SustainedCommands(&stateManager));
-    // console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-    // 	return grabber.isAlgaeIn();
-    // }));
+    console.Button(2).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    	return grabber.isAlgaeIn();
+    }));
 
     console.Button(1).WhileTrue(AlgaeLowManualCommand(&stateManager));
-    console.Button(1).OnFalse(SustainedCommands(&stateManager));
-    // console.Button(1).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
-    // 	return grabber.isAlgaeIn();
-    // }));
+    console.Button(1).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    	return grabber.isAlgaeIn();
+    }));
 
     console.Button(6).WhileTrue(frc2::cmd::RunOnce([this] {
         climber.setOffset();
@@ -200,8 +199,10 @@ void RobotContainer::ConfigMixedBindigs() {
     // AlgaeReefCommand(&stateManager, &alignManager).AlongWith(
     // algaeAlignPos(&alignManager).AndThen(AlgaeHoldCommand(&stateManager))));
 
-    // (!driver.LeftTrigger() && console.Button(9)).OnTrue(stateManager.setStatePosition(Positions::ProcessorPosition));
-    // console.Button(9).OnFalse(stateManager.setStatePosition(Positions::SustainedPosition));
+    console.Button(9).WhileTrue(ProcessorCommand(&stateManager));
+    console.Button(9).OnFalse(frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedCommands(&stateManager), [this] {
+    	return grabber.isAlgaeIn();
+    }));
 
     console.Button(4).WhileTrue(EndPositionCommands(&stateManager));
     console.Button(4).OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));

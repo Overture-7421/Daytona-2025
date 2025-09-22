@@ -62,22 +62,22 @@ frc2::CommandPtr StateManager::SustainedToIntake() {
 }
 
 frc2::CommandPtr StateManager::SustainedToAlgaeLowReef() {
-    return (frc2::cmd::Sequence(
+    return frc2::cmd::Sequence(
             frc2::cmd::Parallel(intake->setState(Positions::AlgaeLowReef), arm->setState(Positions::AlgaeLowReef)),
             elevator->setState(Positions::AlgaeLowReef), grabber->setState(Positions::AlgaeLowReef)).AlongWith(
-            setStatePosition(Positions::AlgaeLowReef)));
+            setStatePosition(Positions::AlgaeLowReef));
 }
 
 frc2::CommandPtr StateManager::SustainedToAlgaeHighReef() {
-    return (frc2::cmd::Parallel(intake->setState(Positions::AlgaeHighReef), arm->setState(Positions::AlgaeHighReef),
+    return frc2::cmd::Parallel(intake->setState(Positions::AlgaeHighReef), arm->setState(Positions::AlgaeHighReef),
             elevator->setState(Positions::AlgaeHighReef), grabber->setState(Positions::AlgaeHighReef)).AlongWith(
-            setStatePosition(Positions::AlgaeHighReef)));
+            setStatePosition(Positions::AlgaeHighReef));
 }
 
 frc2::CommandPtr StateManager::SustainedToAlgaeGround() {
-    return (frc2::cmd::Sequence(intake->setState(Positions::AlgaeGround), arm->setState(Positions::AlgaeGround),
+    return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition), intake->setState(Positions::AlgaeGround), arm->setState(Positions::AlgaeGround),
             elevator->setState(Positions::AlgaeGround), grabber->setState(Positions::AlgaeGround)).AlongWith(
-            setStatePosition(Positions::AlgaeGround)));
+            setStatePosition(Positions::AlgaeGround));
 }
 
 frc2::CommandPtr StateManager::SustainedToEndPosition() {
@@ -96,39 +96,39 @@ frc2::CommandPtr StateManager::IntakeToL1Position() {
 }
 
 frc2::CommandPtr StateManager::AlgaeHighReefToSustained() {
-    return (frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
+    return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
             arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
-            grabber->setState(Positions::SustainedPosition)).AlongWith(setStatePosition(Positions::SustainedPosition)));
+            grabber->setState(Positions::SustainedPosition)).AlongWith(setStatePosition(Positions::SustainedPosition));
 }
 
 frc2::CommandPtr StateManager::AlgaeHighReefToAlgaeHold() {
-    return (frc2::cmd::Sequence( arm->setState(Positions::AlgaeHold),grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
-            intake->setState(Positions::AlgaeHold)).AlongWith(
-            setStatePosition(Positions::AlgaeHold)));
+    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
+            elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
+            setStatePosition(Positions::AlgaeHold));
 }
 
 frc2::CommandPtr StateManager::AlgaeLowReefToSustained() {
-    return (frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
+    return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
             arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
-            grabber->setState(Positions::SustainedPosition)).AlongWith(setStatePosition(Positions::SustainedPosition)));
+            grabber->setState(Positions::SustainedPosition)).AlongWith(setStatePosition(Positions::SustainedPosition));
 }
 
 frc2::CommandPtr StateManager::AlgaeLowReefToAlgaeHold() {
-    return (frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold),grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
-            intake->setState(Positions::AlgaeHold)).AlongWith(
-            setStatePosition(Positions::AlgaeHold)));
+    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
+            elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
+            setStatePosition(Positions::AlgaeHold));
 }
 
 frc2::CommandPtr StateManager::AlgaeGroundToSustained() {
-    return (frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
+    return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
             arm->setState(Positions::SustainedPosition), intake->setState(Positions::SustainedPosition),
-            grabber->setState(Positions::SustainedPosition)).AlongWith(setStatePosition(Positions::SustainedPosition)));
+            grabber->setState(Positions::SustainedPosition)).AlongWith(setStatePosition(Positions::SustainedPosition));
 }
 
 frc2::CommandPtr StateManager::AlgaeGroundToAlgaeHold() {
-    return (frc2::cmd::Sequence( arm->setState(Positions::AlgaeHold),grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold),
-            intake->setState(Positions::AlgaeHold)).AlongWith(
-            setStatePosition(Positions::AlgaeHold)));
+    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
+            elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
+            setStatePosition(Positions::AlgaeHold));
 }
 
 frc2::CommandPtr StateManager::L1PositionToL1Confirm() {
@@ -212,7 +212,7 @@ frc2::CommandPtr StateManager::AlgaeHoldToNet() {
 
 frc2::CommandPtr StateManager::AlgaeHoldToProcessor() {
     return (frc2::cmd::Sequence(intake->setState(Positions::ProcessorPosition),
-            arm->setState(Positions::ProcessorPosition), elevator->setState(Positions::ProcessorPosition),
+            elevator->setState(Positions::ProcessorPosition), arm->setState(Positions::ProcessorPosition),
             grabber->setState(Positions::ProcessorPosition)).AlongWith(setStatePosition(Positions::ProcessorPosition)));
 }
 
@@ -222,7 +222,7 @@ frc2::CommandPtr StateManager::L2FrontToFrontConfirm() {
                     intake->setState(Positions::L2FrontConfirm),
                     arm->setState(Positions::L2FrontConfirm, Heading::Front),
                     grabber->setState(Positions::L2FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
-            setStatePosition(Positions::L2FrontConfirm));
+            setStatePosition(Positions::FrontConfirm));
 }
 
 frc2::CommandPtr StateManager::L3FrontToFrontConfirm() {
@@ -231,7 +231,7 @@ frc2::CommandPtr StateManager::L3FrontToFrontConfirm() {
                     intake->setState(Positions::L3FrontConfirm),
                     arm->setState(Positions::L3FrontConfirm, Heading::Front),
                     grabber->setState(Positions::L3FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
-            setStatePosition(Positions::L3FrontConfirm));
+            setStatePosition(Positions::FrontConfirm));
 }
 
 frc2::CommandPtr StateManager::L4FrontToFrontConfirm() {
@@ -240,7 +240,7 @@ frc2::CommandPtr StateManager::L4FrontToFrontConfirm() {
                     intake->setState(Positions::L4FrontConfirm),
                     arm->setState(Positions::L4FrontConfirm, Heading::Front),
                     grabber->setState(Positions::L4FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
-            setStatePosition(Positions::L4FrontConfirm));
+            setStatePosition(Positions::FrontConfirm));
 }
 
 frc2::CommandPtr StateManager::L4FrontAutoToFrontAutoConfirm() {
@@ -256,7 +256,7 @@ frc2::CommandPtr StateManager::L2BackToBackConfirm() {
             frc2::cmd::Parallel(arm->setState(Positions::L2BackConfirm, Heading::Back),
                     elevator->setState(Positions::L2BackConfirm), intake->setState(Positions::L2BackConfirm),
                     grabber->setState(Positions::L2BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
-            setStatePosition(Positions::L2BackConfirm));
+            setStatePosition(Positions::BackConfirm));
 }
 
 frc2::CommandPtr StateManager::L3BackToBackConfirm() {
@@ -264,7 +264,7 @@ frc2::CommandPtr StateManager::L3BackToBackConfirm() {
             frc2::cmd::Parallel(arm->setState(Positions::L3BackConfirm, Heading::Back),
                     elevator->setState(Positions::L3BackConfirm), intake->setState(Positions::L3BackConfirm),
                     grabber->setState(Positions::L3BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
-            setStatePosition(Positions::L3BackConfirm));
+            setStatePosition(Positions::BackConfirm));
 }
 
 frc2::CommandPtr StateManager::L4BackToBackConfirm() {
@@ -272,12 +272,13 @@ frc2::CommandPtr StateManager::L4BackToBackConfirm() {
             frc2::cmd::Parallel(arm->setState(Positions::L4BackConfirm, Heading::Back),
                     elevator->setState(Positions::L4BackConfirm), intake->setState(Positions::L4BackConfirm),
                     grabber->setState(Positions::L4BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
-            setStatePosition(Positions::L4BackConfirm));
+            setStatePosition(Positions::BackConfirm));
 }
 
 frc2::CommandPtr StateManager::NetPositionToNetConfirm() {
-    return (frc2::cmd::Sequence(grabber->setState(Positions::AlgaeTension), grabber->setState(Positions::NetConfirm),
-            arm->setState(Positions::NetConfirm), elevator->setState(Positions::NetConfirm),
+    return (frc2::cmd::Sequence(
+            frc2::cmd::Parallel(frc2::cmd::Sequence(frc2::cmd::Wait(0.1_s), grabber->setState(Positions::NetConfirm)),
+                    arm->setState(Positions::NetConfirm)), elevator->setState(Positions::NetConfirm),
             intake->setState(Positions::NetConfirm)).AlongWith(setStatePosition(Positions::NetConfirm)));
 }
 

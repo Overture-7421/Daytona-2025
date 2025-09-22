@@ -21,13 +21,9 @@ frc2::CommandPtr SustainedConfirmedCommands(StateManager *stateManager) {
             > ([stateManager] {
                 return stateManager->getStatePosition();
             },
-            std::pair {Positions::L1Confirm, stateManager->L1ConfirmToSustained()}, std::pair {
-                    Positions::L2FrontConfirm, stateManager->FrontConfirmToSustained()}, std::pair {
-                    Positions::L3FrontConfirm, stateManager->FrontConfirmToSustained()}, std::pair {
-                    Positions::L4FrontConfirm, stateManager->FrontConfirmToSustained()}, std::pair {
-                    Positions::L2BackConfirm, stateManager->BackConfirmToSustained()}, std::pair {
-                    Positions::L3BackConfirm, stateManager->BackConfirmToSustained()}, std::pair {
-                    Positions::L4BackConfirm, stateManager->BackConfirmToSustained()}, std::pair {Positions::NetConfirm,
+            std::pair {Positions::L1Confirm, stateManager->L1ConfirmToSustained()}, std::pair {Positions::FrontConfirm,
+                    stateManager->FrontConfirmToSustained()}, std::pair {Positions::BackConfirm,
+                    stateManager->BackConfirmToSustained()}, std::pair {Positions::NetConfirm,
                     stateManager->NetConfirmToSustained()}, std::pair {Positions::ProcessorConfirm,
                     stateManager->ProcessorConfirmToSustained()});
 }

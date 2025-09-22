@@ -20,8 +20,8 @@ public:
             Positions::L2Front, 1.0_V}, {Positions::L2FrontConfirm, 0.0_V}, {Positions::L3Back, 0.0_V}, {
             Positions::L3BackConfirm, 0.0_V}, {Positions::L3Front, 1.0_V}, {Positions::L3FrontConfirm, 0.0_V}, {
             Positions::L4Back, 0.0_V}, {Positions::L4BackConfirm, 0.0_V}, {Positions::L4Front, 1.0_V}, {
-            Positions::L4FrontConfirm, 0.0_V}, {Positions::NetPosition, 2.0_V}, {Positions::NetConfirm, -7.0_V}, {
-            Positions::ProcessorPosition, 2.0_V}, {Positions::ProcessorConfirm, -5.0_V}, {Positions::SustainedPosition,
+            Positions::L4FrontConfirm, 0.0_V}, {Positions::NetPosition, 2.0_V}, {Positions::NetConfirm, -11.0_V}, {
+            Positions::ProcessorPosition, 2.0_V}, {Positions::ProcessorConfirm, -8.0_V}, {Positions::SustainedPosition,
             1.0_V}, {Positions::EndPosition, 0.0_V}, {Positions::AlgaeTension, 4.0_V}, {Positions::CoralSpit, -4.0_V}};
 
     constexpr static const double CoralDetectionCurrent = 25.0; //To be defined
@@ -36,9 +36,9 @@ public:
         grabberConfig.MotorId = 28;
         grabberConfig.NeutralMode = ControllerNeutralMode::Brake;
         grabberConfig.Inverted = false;
-        grabberConfig.CurrentLimit = 20_A;
-        grabberConfig.StatorCurrentLimit = 60_A;
-        grabberConfig.TriggerThreshold = 40_A;
+        grabberConfig.CurrentLimit = 30_A;
+        grabberConfig.StatorCurrentLimit = 70_A;
+        grabberConfig.TriggerThreshold = 60_A;
         grabberConfig.TriggerThresholdTime = 0.5_s;
         grabberConfig.ClosedLoopRampRate = 0.0_s;
         grabberConfig.OpenLoopRampRate = 0.05_s;

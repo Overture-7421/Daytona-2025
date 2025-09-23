@@ -36,8 +36,8 @@ public:
         grabberConfig.MotorId = 28;
         grabberConfig.NeutralMode = ControllerNeutralMode::Brake;
         grabberConfig.Inverted = false;
-        grabberConfig.CurrentLimit = 30_A;
-        grabberConfig.StatorCurrentLimit = 70_A;
+        grabberConfig.CurrentLimit = 20_A;
+        grabberConfig.StatorCurrentLimit = 60_A;
         grabberConfig.TriggerThreshold = 60_A;
         grabberConfig.TriggerThresholdTime = 0.5_s;
         grabberConfig.ClosedLoopRampRate = 0.0_s;

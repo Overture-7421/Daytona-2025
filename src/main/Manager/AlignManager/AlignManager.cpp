@@ -4,7 +4,7 @@
 
 #include "AlignManager.h"
 
-AlignManager::AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
+AlignManager::AlignManager(Chassis* chassis, frc::AprilTagFieldLayout* tagLayout) {
     this->chassis = chassis;
     this->tagLayout = tagLayout;
 }
@@ -24,7 +24,7 @@ void AlignManager::initialize() {
     }
 
     this->alignSpeedHelper = std::make_shared < AlignSpeedHelper
-            > (chassis, tagLayout, reefSide, reefPackage, this->reefOffset, headingTarget);
+    >(chassis, tagLayout, reefSide, reefPackage, this->reefOffset, headingTarget);
     this->alignSpeedHelper->initialize();
     this->chassis->enableSpeedHelper(alignSpeedHelper.get());
 }
@@ -45,15 +45,15 @@ frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
 
         initialize();
     },
-    [this]() {
+        [this]() {
         // Execute - empty for this command
     },
     [this](bool interrupted) {
         this->chassis->disableSpeedHelper();
-        this->alignSpeedHelper = nullptr;
+        this->alignSpeedHelper.reset(); // Explicitly reset the shared_ptr
     },
-    [this]() {
+        [this]() {
         return this->alignSpeedHelper->isAtTarget();
     },
-    {chassis}).ToPtr();
+        { chassis }).ToPtr();
 }

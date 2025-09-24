@@ -18,7 +18,7 @@
 class AlignSpeedHelper: public SpeedsHelper {
 public:
     AlignSpeedHelper(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout, ReefSide reefSide, ReefPackage reefPackage,
-					 ReefOffset reefOffset, units::degree_t headingTarget);
+            ReefOffset reefOffset, units::degree_t headingTarget);
     void initialize() override;
     void alterSpeed(frc::ChassisSpeeds &inputSpeed) override;
 

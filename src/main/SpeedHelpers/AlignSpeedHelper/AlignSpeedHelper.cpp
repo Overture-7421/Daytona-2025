@@ -11,7 +11,7 @@ AlignSpeedHelper::AlignSpeedHelper(Chassis *chassis, frc::AprilTagFieldLayout *t
     this->reefSide = reefSide;
     this->reefPackage = reefPackage;
     this->reefOffset = reefOffset;
-	this->headingTarget = headingTarget;
+    this->headingTarget = headingTarget;
 
     this->xPIDController.SetIZone(3);
     this->xPIDController.SetTolerance(0.025_m);

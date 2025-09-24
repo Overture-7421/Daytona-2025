@@ -72,7 +72,7 @@ void RobotContainer::ConfigDriverBindings() {
 
     driver.POVDown().OnFalse(frc2::cmd::RunOnce([this] {
         chassis.disableSpeedHelper();
-    }, {chassis}));
+    }, {&chassis}));
 
     toInitial.OnTrue(stateManager.AllToInitial().AndThen(frc2::cmd::RunOnce([this] {
         frc::SmartDashboard::PutBoolean("To-Initial", false);

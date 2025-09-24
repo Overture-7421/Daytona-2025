@@ -6,6 +6,7 @@
 
 #include "Subsystems/Chassis/Chassis.h"
 #include "Enums/ReefSide.h"
+#include "Enums/Heading.h"
 #include "Commands/UtilityFunctions/ReefOffset.h"
 #include "SpeedHelpers/AlignSpeedHelper/AlignSpeedHelper.h"
 #include "Commands/UtilityFunctions/UtilityFunctions.h"
@@ -14,22 +15,23 @@
 
 class AlignManager {
 public:
-	AlignManager(Chassis* chassis, frc::AprilTagFieldLayout* tagLayout);
-	Heading getHeading();
-	void setHeading();
-	frc2::CommandPtr AlignToPose(ReefSide reefSide);
+    AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout);
+    void initialize();
+    Heading getHeading();
+    void setHeading();
+    frc2::CommandPtr AlignToPose(ReefSide reefSide);
 
 private:
-	//IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
-	const ReefOffset frontReefOffset{ -0.320_m, 0.020_m, 0.48_m, 180.0_deg, -0.178_m };
-	const ReefOffset backReefOffset{ -0.020_m, 0.0320_m, 0.48_m, 0.0_deg, 0.0_m };
+    //IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
+    const ReefOffset frontReefOffset {-0.320_m, 0.020_m, 0.48_m, 180.0_deg, -0.178_m};
+    const ReefOffset backReefOffset {-0.020_m, 0.0320_m, 0.48_m, 0.0_deg, 0.0_m};
 
-	std::shared_ptr<AlignSpeedHelper> alignSpeedHelper;
-	ReefSide reefSide;
-	ReefOffset reefOffset;
-	Chassis* chassis = nullptr;
-	frc::AprilTagFieldLayout* tagLayout = nullptr;
-	Heading heading = Heading::Front;
-	ReefPackage reefPackage;
-	units::degree_t headingTarget;
+    std::shared_ptr<AlignSpeedHelper> alignSpeedHelper;
+    ReefSide reefSide;
+    ReefOffset reefOffset;
+    Chassis *chassis = nullptr;
+    frc::AprilTagFieldLayout *tagLayout = nullptr;
+    Heading heading = Heading::Front;
+    ReefPackage reefPackage;
+    units::degree_t headingTarget;
 };

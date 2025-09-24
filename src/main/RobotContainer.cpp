@@ -207,6 +207,7 @@ void RobotContainer::ConfigMixedBindigs() {
 	// 	frc2::cmd::Either(AlgaeHoldCommand(&stateManager), SustainedConfirmedCommands(&stateManager), [this] {
 	// 	return grabber.isAlgaeIn();
 	// }));
+    // driver.POVDown().OnFalse(frc2::cmd::RunOnce([this]{return chassis.disableSpeedHelper();}));
 
 	console.Button(4).WhileTrue(EndPositionCommands(&stateManager));
 	console.Button(4).OnFalse(climber.setClimberClimbedCommand(ClimberConstants::ClimberClosed));

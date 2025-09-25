@@ -39,6 +39,13 @@ void AlignManager::setHeading() {
     }
 }
 
+void AlignManager::resetSpeedHelper() {
+	if (this->alignSpeedHelper) {
+		this->chassis->disableSpeedHelper();
+		this->alignSpeedHelper.reset();
+	}
+}
+
 frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
     return frc2::FunctionalCommand([this, reefSide]() {
         this->reefSide = reefSide;
@@ -49,8 +56,7 @@ frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
         // Execute - empty for this command
     },
     [this](bool interrupted) {
-        this->chassis->disableSpeedHelper();
-        this->alignSpeedHelper.reset(); // Explicitly reset the shared_ptr
+        resetSpeedHelper();
     },
         [this]() {
         return this->alignSpeedHelper->isAtTarget();

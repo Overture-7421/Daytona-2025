@@ -12,8 +12,8 @@
 struct GrabberConstants {
 public:
 
-    inline static const std::map<Positions, units::volt_t> GrabberVoltage = { {Positions::AlgaeGround, 6.0_V}, {
-            Positions::AlgaeHold, 1.5_V}, {Positions::AlgaeHighReef, 8.0_V}, {Positions::AlgaeLowReef, 8.0_V}, {
+    inline static const std::map<Positions, units::volt_t> GrabberVoltage = { {Positions::AlgaeGround, 8.0_V}, {
+            Positions::AlgaeHold, 0.75_V}, {Positions::AlgaeHighReef, 8.0_V}, {Positions::AlgaeLowReef, 8.0_V}, {
             Positions::CoralAndAlgae, 2.0_V}, {Positions::CoralHold, 6.0_V}, {Positions::InitialPosition, 0.0_V}, {
             Positions::Intake, 1.8_V}, {Positions::IntakeCoralStation, 0.0_V}, {Positions::L1Confirm, 0.0_V}, {
             Positions::L1Position, 0.0_V}, {Positions::L2Back, 0.0_V}, {Positions::L2BackConfirm, 0.0_V}, {

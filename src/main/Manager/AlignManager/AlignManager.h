@@ -25,7 +25,7 @@ public:
 private:
 	//IZQUIERDA, DERECHA, ADELANTE/ATRAS, ROTACION, ALGA
 	const ReefOffset frontReefOffset{ -0.320_m, 0.020_m, 0.48_m, 180.0_deg, -0.178_m };
-	const ReefOffset backReefOffset{ 0.07_m, 0.4_m, 0.48_m, 0.0_deg, 0.0_m };
+	const ReefOffset backReefOffset{ 0.10_m, 0.43_m, 0.48_m, 0.0_deg, 0.0_m };
 
 	std::shared_ptr<AlignSpeedHelper> alignSpeedHelper;
 	ReefSide reefSide;

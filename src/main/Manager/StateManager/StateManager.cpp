@@ -76,7 +76,8 @@ frc2::CommandPtr StateManager::SustainedToAlgaeHighReef() {
 
 frc2::CommandPtr StateManager::SustainedToAlgaeGround() {
 	return frc2::cmd::Sequence(elevator->setState(Positions::SustainedPosition),
-		intake->setState(Positions::AlgaeGround), arm->setState(Positions::AlgaeGround),
+		frc2::cmd::Parallel(
+			intake->setState(Positions::AlgaeGround), arm->setState(Positions::AlgaeGround)),
 		elevator->setState(Positions::AlgaeGround), grabber->setState(Positions::AlgaeGround)).AlongWith(
 			setStatePosition(Positions::AlgaeGround));
 }

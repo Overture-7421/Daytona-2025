@@ -15,7 +15,7 @@ struct ArmConstants {
     inline static const std::map<Positions, units::degree_t> ArmFront { {Positions::InitialPosition, -90_deg}, {
             Positions::SustainedPosition, 90.0_deg}, {Positions::Intake, 90.0_deg}, {Positions::IntakeCoralStation,
             90_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
-            35.0_deg}, {Positions::L1Position, 90_deg}, {Positions::L1Confirm, 90.0_deg}, {Positions::CoralHold,
+            15.0_deg}, {Positions::L1Position, 90_deg}, {Positions::L1Confirm, 90.0_deg}, {Positions::CoralHold,
             90.0_deg}, {Positions::CoralAndAlgae, -90.0_deg}, {Positions::AlgaeHold, -90.0_deg}, {Positions::L2Front,
             -54.0_deg}, {Positions::L3Front, 307.0_deg}, {Positions::L4Front, 303.0_deg}, {Positions::L2FrontConfirm,
             -1.0_deg}, {Positions::L3FrontConfirm, 362.0_deg}, {Positions::L4FrontConfirm, 342.0_deg}, {

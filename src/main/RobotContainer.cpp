@@ -51,17 +51,17 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.LeftTrigger().WhileTrue(frc2::cmd::Either(frc2::cmd::None(), stateManager.SustainedToIntake(), [this] {
+    driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().Unless( [this] {
         return grabber.isAlgaeIn();
     }));
-    driver.LeftTrigger().OnFalse(frc2::cmd::Either(frc2::cmd::None(), L1Command(&stateManager), [this] {
+    driver.LeftTrigger().OnFalse(L1Command(&stateManager).Unless( [this] {
         return grabber.isAlgaeIn();
     }));
 
     driver.RightTrigger().WhileTrue(stateManager.L1PositionIntake());
     driver.RightTrigger().OnFalse(stateManager.L1PositionClosed());
 
-    driver.POVUp().OnTrue(frc2::cmd::Either(frc2::cmd::None(), PassCommand(&stateManager), [this] {
+    driver.POVUp().OnTrue(PassCommand(&stateManager).Unless( [this] {
         return grabber.isAlgaeIn();
     }));
 

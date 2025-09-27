@@ -20,43 +20,26 @@ class Climber: public frc2::SubsystemBase {
 public:
     Climber();
 
-    // units::degree_t getCurrentClimberAngle();
-    // void setTarget(units::degree_t climberTarget);
-    // bool isClimberAtPosition(units::degree_t climberAngle);
-
-    // frc2::CommandPtr setState(Positions state);
-    // frc2::CommandPtr setCharacterization(units::degree_t angle);
-
-    // void setOffset();
-
     void setOffset();
 
-    void setToAngle(units::degree_t armAngle);
-    frc2::CommandPtr setClimberCommand(units::degree_t armAngle);
+    void setToAngle(units::degree_t climberAngle);
+    frc2::CommandPtr setClimberCommand(units::degree_t climberAngle);
 
-    frc2::CommandPtr setClimberClimbedCommand(units::degree_t armAngle);
+    frc2::CommandPtr setClimberClimbedCommand(units::degree_t climberAngle);
 
-    bool isClimberAtPosition(units::degree_t armAngle);
-    void getCurrentAngle(double armAngle);
-
-    // void setServoAngle(units::degree_t angle);
-    // frc2::CommandPtr servoAngleCommand(units::degree_t angle);
+    bool isClimberAtPosition(units::degree_t climberAngle);
 
     void Periodic() override;
 
 private:
 
     OverTalonFX climberMotor {ClimberConstants::ClimberConfig(), "rio"};
-    frc::DutyCycleEncoder climberEncoder {7}; //Puerto en la RoboRio donde va a estar (No definido aun)
+    OverCANCoder climberCANCoder {ClimberConstants::ClimberCANConfig(), "rio"};
 
-    //VoltageOut climberVoltage {0_V};
     MotionMagicVoltage armVoltage {0_tr};
 
     units::degree_t offset = 0.0_deg;
     units::degree_t target = 233_deg; //aquí se pone la posición inicial (NO definido aun)
-
-    frc::ProfiledPIDController<units::degree> climberPID {1.7, 0.0, 0.0, {ClimberConstants::ClimberVelocity,
-            ClimberConstants::ClimberAcceleration}};
 
     frc::Servo servo {9}; // Not defined yet
 

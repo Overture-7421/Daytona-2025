@@ -18,5 +18,6 @@ frc2::CommandPtr ConfirmCommand(StateManager *stateManager) {
                     stateManager->L3FrontToFrontConfirm()}, std::pair {Positions::L4Front,
                     stateManager->L4FrontToFrontConfirm()}, std::pair {Positions::ProcessorPosition,
                     stateManager->ProcessorPositionToProcessorConfirm()}, std::pair {Positions::L4FrontAuto,
-                    stateManager->L4FrontAutoToFrontAutoConfirm()});
+                    stateManager->L4FrontAutoToFrontAutoConfirm()}, std::pair {Positions::AlgaeHold,
+                    stateManager->L1ClosedConfirm()});
 }

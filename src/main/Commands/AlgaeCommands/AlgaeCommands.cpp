@@ -20,21 +20,24 @@ frc2::CommandPtr AlgaeHighManualCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getStatePosition();
     },
-    std::pair {Positions::SustainedPosition, stateManager->SustainedToAlgaeHighReef()});
+    std::pair {Positions::SustainedPosition, stateManager->SustainedToAlgaeHighReef()}, std::pair {Positions::AlgaeHold,
+            stateManager->SustainedToAlgaeHighReef()});
 }
 
 frc2::CommandPtr AlgaeLowManualCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getStatePosition();
     },
-    std::pair {Positions::SustainedPosition, stateManager->SustainedToAlgaeLowReef()});
+    std::pair {Positions::SustainedPosition, stateManager->SustainedToAlgaeLowReef()}, std::pair {Positions::AlgaeHold,
+            stateManager->SustainedToAlgaeLowReef()});
 }
 
 frc2::CommandPtr AlgaeGroundCommand(StateManager *stateManager) {
     return frc2::cmd::Select < Positions > ([stateManager] {
         return stateManager->getStatePosition();
     },
-    std::pair {Positions::SustainedPosition, stateManager->SustainedToAlgaeGround()});
+    std::pair {Positions::SustainedPosition, stateManager->SustainedToAlgaeGround()}, std::pair {Positions::AlgaeHold,
+            stateManager->SustainedToAlgaeGround()});
 }
 
 frc2::CommandPtr AlgaeHoldCommand(StateManager *stateManager) {

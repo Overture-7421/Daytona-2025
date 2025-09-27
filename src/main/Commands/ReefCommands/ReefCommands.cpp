@@ -12,11 +12,13 @@ frc2::CommandPtr L1Command(StateManager *stateManager) {
 }
 
 frc2::CommandPtr PassCommand(StateManager *stateManager) {
-    return frc2::cmd::Select < Positions > ([stateManager] {
-        return stateManager->getStatePosition();
-    },
-    std::pair {Positions::L1Position, stateManager->IntakeToCoralHold()}, std::pair {Positions::SustainedPosition,
-            stateManager->CoralHoldToL1Position()});
+    return frc2::cmd::Select < Positions
+            > ([stateManager] {
+                return stateManager->getStatePosition();
+            },
+            std::pair {Positions::L1Position, stateManager->IntakeToCoralHold()}, std::pair {
+                    Positions::SustainedPosition, stateManager->CoralHoldToL1Position()}, std::pair {
+                    Positions::AlgaeHold, stateManager->L1ClosedToCoralHold()});
 }
 
 frc2::CommandPtr L2Command(StateManager *stateManager, AlignManager *alignManager) {

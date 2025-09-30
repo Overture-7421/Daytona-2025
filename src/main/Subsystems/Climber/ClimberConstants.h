@@ -19,7 +19,7 @@ struct ClimberConstants {
 
     constexpr static const units::degree_t ClimberRest = 4_deg;
     constexpr static const units::degree_t ClimberOpen = 70_deg;
-    constexpr static const units::degree_t ClimberClosed = 265_deg;
+    constexpr static const units::degree_t ClimberClosed = 273_deg;
 
     constexpr static const units::turns_per_second_t ClimberVelocity = 50.0_tps;
     constexpr static const units::turns_per_second_squared_t ClimberAcceleration = 40_tr_per_s_sq;

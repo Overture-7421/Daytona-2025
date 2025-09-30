@@ -32,27 +32,29 @@ bool Climber::isClimberAtPosition(units::degree_t climberAngle) {
 
 frc2::CommandPtr Climber::setClimberCommand(units::degree_t climberAngle) {
     return frc2::FunctionalCommand([this, climberAngle]() {
-        setToAngle(climberAngle);
+        // setToAngle(climberAngle);
     }, [this, climberAngle]() {
-        setToAngle(climberAngle + offset);
+        // setToAngle(climberAngle + offset);
     }, [this](bool interupted) {
         offset = 0_deg;
     }, [this, climberAngle]() {
         frc::SmartDashboard::PutBoolean("Climber/AtPosition", isClimberAtPosition(climberAngle));
-        return isClimberAtPosition(climberAngle);
+        // return isClimberAtPosition(climberAngle);
+        return true;
     },
     {this}).ToPtr();
 }
 
 frc2::CommandPtr Climber::setClimberClimbedCommand(units::degree_t climberAngle) {
     return frc2::FunctionalCommand([this, climberAngle]() {
-        setToAngle(climberAngle);
+        // setToAngle(climberAngle);
     }, [this, climberAngle]() {
-        setToAngle(climberAngle + offset);
+        // setToAngle(climberAngle + offset);
     }, [this](bool interupted) {
         offset = 0_deg;
     }, [this]() {
-        return false;
+        // return false;
+        return true;
     },
     {this}).ToPtr();
 }

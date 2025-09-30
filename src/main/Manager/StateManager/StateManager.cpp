@@ -333,14 +333,14 @@ frc2::CommandPtr StateManager::AllToInitial() {
 }
 
 frc2::CommandPtr StateManager::L1PositionClosed() {
-    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
-            elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
+    return frc2::cmd::Sequence(intake->setState(Positions::AlgaeHold), arm->setState(Positions::AlgaeHold),
+            grabber->setState(Positions::AlgaeHold), elevator->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold));
 }
 
 frc2::CommandPtr StateManager::L1PositionIntake() {
     return frc2::cmd::Sequence(climber->setClimberCommand(ClimberConstants::ClimberRest),
-            arm->setState(Positions::AlgaeHold), intake->setState(Positions::Intake),
+            intake->setState(Positions::Intake), arm->setState(Positions::AlgaeHold),
             elevator->setState(Positions::AlgaeHold), grabber->setState(Positions::Intake)).AlongWith(
             setStatePosition(Positions::Intake));
 }

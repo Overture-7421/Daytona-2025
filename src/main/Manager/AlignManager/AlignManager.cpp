@@ -4,7 +4,7 @@
 
 #include "AlignManager.h"
 
-AlignManager::AlignManager(Chassis* chassis, frc::AprilTagFieldLayout* tagLayout) {
+AlignManager::AlignManager(Chassis *chassis, frc::AprilTagFieldLayout *tagLayout) {
     this->chassis = chassis;
     this->tagLayout = tagLayout;
 }
@@ -24,7 +24,7 @@ void AlignManager::initialize() {
     }
 
     this->alignSpeedHelper = std::make_shared < AlignSpeedHelper
-    >(chassis, tagLayout, reefSide, reefPackage, this->reefOffset, headingTarget);
+            > (chassis, tagLayout, reefSide, reefPackage, this->reefOffset, headingTarget);
     this->alignSpeedHelper->initialize();
     this->chassis->enableSpeedHelper(alignSpeedHelper.get());
 }
@@ -40,10 +40,10 @@ void AlignManager::setHeading() {
 }
 
 void AlignManager::resetSpeedHelper() {
-	if (this->alignSpeedHelper) {
-		this->chassis->disableSpeedHelper();
-		this->alignSpeedHelper.reset();
-	}
+    if (this->alignSpeedHelper) {
+        this->chassis->disableSpeedHelper();
+        this->alignSpeedHelper.reset();
+    }
 }
 
 frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
@@ -52,14 +52,14 @@ frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
 
         initialize();
     },
-        [this]() {
+    [this]() {
         // Execute - empty for this command
     },
     [this](bool interrupted) {
         resetSpeedHelper();
     },
-        [this]() {
+    [this]() {
         return this->alignSpeedHelper->isAtTarget();
     },
-        { chassis }).ToPtr();
+    {chassis}).ToPtr();
 }

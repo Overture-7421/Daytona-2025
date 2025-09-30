@@ -51,17 +51,17 @@ void RobotContainer::ConfigDriverBindings() {
     chassis.SetDefaultCommand(DriveCommand(&chassis, &driver).ToPtr());
     driver.Back().OnTrue(ResetHeading(&chassis));
 
-    driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().Unless( [this] {
+    driver.LeftTrigger().WhileTrue(stateManager.SustainedToIntake().Unless([this] {
         return grabber.isAlgaeIn();
     }));
-    driver.LeftTrigger().OnFalse(L1Command(&stateManager).Unless( [this] {
+    driver.LeftTrigger().OnFalse(L1Command(&stateManager).Unless([this] {
         return grabber.isAlgaeIn();
     }));
 
     driver.RightTrigger().WhileTrue(stateManager.L1PositionIntake());
     driver.RightTrigger().OnFalse(stateManager.L1PositionClosed());
 
-    driver.POVUp().OnTrue(PassCommand(&stateManager).Unless( [this] {
+    driver.POVUp().OnTrue(PassCommand(&stateManager).Unless([this] {
         return grabber.isAlgaeIn();
     }));
 
@@ -168,48 +168,60 @@ void RobotContainer::ConfigOperatorBindings() {
 
 void RobotContainer::ConfigMixedBindigs() {
     (driver.POVDown() && console.Button(12)).OnTrue(
-            frc2::cmd::Sequence(stateManager.IntakeToCoralHold(), frc2::cmd::Wait(0.5_s),
+            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                     L2Command(&stateManager, &alignManager)).AlongWith(
                     frc2::cmd::Sequence(frc2::cmd::Wait(1_s), leftAlignPos(&alignManager))).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
-                    })));
+                    })).Unless([this] {
+                return grabber.isAlgaeIn();
+            }));
 
     (driver.POVDown() && console.Button(5)).OnTrue(
-            frc2::cmd::Sequence(stateManager.IntakeToCoralHold(), frc2::cmd::Wait(0.5_s),
+            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                     L2Command(&stateManager, &alignManager)).AlongWith(
                     frc2::cmd::Sequence(frc2::cmd::Wait(1_s), rightAlignPos(&alignManager))).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
-                    })));
+                    })).Unless([this] {
+                return grabber.isAlgaeIn();
+            }));
 
     (driver.POVDown() && console.Button(7)).OnTrue(
-            frc2::cmd::Sequence(stateManager.IntakeToCoralHold(), frc2::cmd::Wait(0.5_s),
+            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                     L3Command(&stateManager, &alignManager)).AlongWith(leftAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
-                    })));
+                    })).Unless([this] {
+                return grabber.isAlgaeIn();
+            }));
 
     (driver.POVDown() && console.Button(8)).OnTrue(
-            frc2::cmd::Sequence(stateManager.IntakeToCoralHold(), frc2::cmd::Wait(0.5_s),
+            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                     L3Command(&stateManager, &alignManager)).AlongWith(rightAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
-                    })));
+                    })).Unless([this] {
+                return grabber.isAlgaeIn();
+            }));
 
     (driver.POVDown() && console.Button(10)).OnTrue(
-            frc2::cmd::Sequence(stateManager.IntakeToCoralHold(), frc2::cmd::Wait(0.5_s),
+            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                     L4Command(&stateManager, &alignManager)).AlongWith(leftAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
-                    })));
+                    })).Unless([this] {
+                return grabber.isAlgaeIn();
+            }));
 
     (driver.POVDown() && console.Button(11)).OnTrue(
-            frc2::cmd::Sequence(stateManager.IntakeToCoralHold(), frc2::cmd::Wait(0.5_s),
+            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                     L4Command(&stateManager, &alignManager)).AlongWith(rightAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
-                    })));
+                    })).Unless([this] {
+                return grabber.isAlgaeIn();
+            }));
 
     console.Button(3).OnTrue(arm.setArmZero());
 

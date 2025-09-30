@@ -21,6 +21,14 @@ frc2::CommandPtr PassCommand(StateManager *stateManager) {
                     Positions::AlgaeHold, stateManager->L1ClosedToCoralHold()});
 }
 
+frc2::CommandPtr PassCommandAlign(StateManager *stateManager) {
+    return frc2::cmd::Select < Positions > ([stateManager] {
+        return stateManager->getStatePosition();
+    },
+    std::pair {Positions::L1Position, stateManager->IntakeToCoralHold()}, std::pair {Positions::SustainedPosition,
+            stateManager->IntakeToCoralHold()}, std::pair {Positions::AlgaeHold, stateManager->L1ClosedToCoralHold()});
+}
+
 frc2::CommandPtr L2Command(StateManager *stateManager, AlignManager *alignManager) {
     return frc2::cmd::Select < Positions
             > ([stateManager, alignManager] {

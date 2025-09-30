@@ -33,9 +33,9 @@ void Intake::setCenteringVoltage(units::volt_t voltage) {
     centeringMotor.SetControl(centeringVoltage.WithOutput(voltage).WithEnableFOC(true));
 }
 
-// bool Intake::isCoralIn() {
-//     return canRange.GetIsDetected().GetValue();
-// }
+bool Intake::isCoralIn() {
+    return canRange.GetIsDetected().GetValue();
+}
 
 units::degree_t Intake::getIntakePosition() {
     return intakeMotor.GetPosition().GetValue();

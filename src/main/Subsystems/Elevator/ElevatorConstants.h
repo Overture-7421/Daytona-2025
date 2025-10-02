@@ -14,7 +14,7 @@ struct ElevatorConstants {
     constexpr static const units::meter_t RangeError = 0.04_m; //Range of error the elevator is permiited to have.
 
     inline static const std::map<Positions, units::meter_t> ElevatorPositions = { {Positions::AlgaeGround, 0.10_m}, {
-            Positions::AlgaeHold, 0.08_m}, {Positions::AlgaeHighReef, 1.30_m}, {Positions::AlgaeLowReef, 0.82_m}, {
+            Positions::AlgaeHold, 0.08_m}, {Positions::AlgaeHighReef, 1.30_m}, {Positions::AlgaeLowReef, 0.79_m}, {
             Positions::CoralAndAlgae, 1.05_m}, {Positions::CoralHold, 0.93_m}, {Positions::InitialPosition, 0.001_m}, {
             Positions::Intake, 1.05_m}, {Positions::IntakeCoralStation, 1.05_m}, {Positions::L1Confirm, 1.05_m}, {
             Positions::L1Position, 1.15_m}, {Positions::L2Back, 0.46_m}, {Positions::L2BackConfirm, 0.46_m}, {

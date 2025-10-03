@@ -168,8 +168,9 @@ void RobotContainer::ConfigOperatorBindings() {
 
 void RobotContainer::ConfigMixedBindigs() {
     (driver.POVDown() && console.Button(12)).OnTrue(
-            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
-                    L2Command(&stateManager, &alignManager)).AlongWith(
+            frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
+                            L2Command(&stateManager, &alignManager)),
                     frc2::cmd::Sequence(frc2::cmd::Wait(1_s), leftAlignPos(&alignManager))).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
@@ -178,8 +179,9 @@ void RobotContainer::ConfigMixedBindigs() {
             }));
 
     (driver.POVDown() && console.Button(5)).OnTrue(
-            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
-                    L2Command(&stateManager, &alignManager)).AlongWith(
+            frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
+                            L2Command(&stateManager, &alignManager)),
                     frc2::cmd::Sequence(frc2::cmd::Wait(1_s), rightAlignPos(&alignManager))).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
@@ -188,8 +190,9 @@ void RobotContainer::ConfigMixedBindigs() {
             }));
 
     (driver.POVDown() && console.Button(7)).OnTrue(
-            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
-                    L3Command(&stateManager, &alignManager)).AlongWith(leftAlignPos(&alignManager)).BeforeStarting(
+            frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
+                            L3Command(&stateManager, &alignManager)), leftAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
                     })).Unless([this] {
@@ -197,8 +200,9 @@ void RobotContainer::ConfigMixedBindigs() {
             }));
 
     (driver.POVDown() && console.Button(8)).OnTrue(
-            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
-                    L3Command(&stateManager, &alignManager)).AlongWith(rightAlignPos(&alignManager)).BeforeStarting(
+            frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
+                            L3Command(&stateManager, &alignManager)), rightAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
                     })).Unless([this] {
@@ -206,8 +210,9 @@ void RobotContainer::ConfigMixedBindigs() {
             }));
 
     (driver.POVDown() && console.Button(10)).OnTrue(
-            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
-                    L4Command(&stateManager, &alignManager)).AlongWith(leftAlignPos(&alignManager)).BeforeStarting(
+            frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
+                            L4Command(&stateManager, &alignManager)), leftAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
                     })).Unless([this] {
@@ -215,8 +220,9 @@ void RobotContainer::ConfigMixedBindigs() {
             }));
 
     (driver.POVDown() && console.Button(11)).OnTrue(
-            frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
-                    L4Command(&stateManager, &alignManager)).AlongWith(rightAlignPos(&alignManager)).BeforeStarting(
+            frc2::cmd::Parallel(
+                    frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
+                            L4Command(&stateManager, &alignManager)), rightAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
                     })).Unless([this] {

@@ -218,6 +218,22 @@ frc2::CommandPtr StateManager::CoralHoldToL4Back() {
             setStatePosition(Positions::L4Back));
 }
 
+frc2::CommandPtr StateManager::ReefFrontToReefPosition(Positions reefPosition) {
+    return frc2::cmd::Sequence(
+        frc2::cmd::Parallel(
+        arm->setState(Positions::FrontTransition, Heading::Front),
+            elevator->setState(reefPosition)), arm->setState(reefPosition, Heading::Front),
+            intake->setState(reefPosition), grabber->setState(reefPosition)).AlongWith(setStatePosition(reefPosition));
+}
+
+frc2::CommandPtr StateManager::ReefBackToReefPosition(Positions reefPosition) {
+    return frc2::cmd::Sequence(
+        frc2::cmd::Parallel(
+        arm->setState(Positions::BackTransition, Heading::Back),
+            elevator->setState(reefPosition)), arm->setState(reefPosition, Heading::Back),
+            intake->setState(reefPosition), grabber->setState(reefPosition)).AlongWith(setStatePosition(reefPosition));
+}
+
 frc2::CommandPtr StateManager::AlgaeHoldToNet() {
     return (frc2::cmd::Sequence(arm->setState(Positions::NetPosition), elevator->setState(Positions::NetPosition),
             grabber->setState(Positions::NetPosition), intake->setState(Positions::NetPosition)).AlongWith(

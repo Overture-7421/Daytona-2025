@@ -57,6 +57,10 @@ public:
     frc2::CommandPtr CoralHoldToL2Back();
     frc2::CommandPtr CoralHoldToL3Back();
     frc2::CommandPtr CoralHoldToL4Back();
+
+    frc2::CommandPtr ReefFrontToReefPosition(Positions reefPosition);
+    frc2::CommandPtr ReefBackToReefPosition(Positions reefPosition);
+
     frc2::CommandPtr AlgaeHoldToNet();
     frc2::CommandPtr AlgaeHoldToProcessor();
     frc2::CommandPtr L2FrontToFrontConfirm();

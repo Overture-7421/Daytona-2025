@@ -61,5 +61,5 @@ frc2::CommandPtr AlignManager::AlignToPose(ReefSide reefSide) {
     [this]() {
         return this->alignSpeedHelper->isAtTarget();
     },
-    {chassis}).ToPtr();
+    {}).ToPtr();
 }

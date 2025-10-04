@@ -25,38 +25,24 @@ enum class Positions {
 
     AlgaeHold,
 
-    L2Front,
-    L3Front,
-    L4Front,
+    L2Front, L3Front, L4Front,
 
-    L2FrontConfirm,
-    L3FrontConfirm,
-    L4FrontConfirm,
+    L2FrontConfirm, L3FrontConfirm, L4FrontConfirm,
 
-    L2Back,
-    L3Back,
-    L4Back,
+    L2Back, L3Back, L4Back,
 
-    L2BackConfirm,
-    L3BackConfirm,
-    L4BackConfirm,
+    L2BackConfirm, L3BackConfirm, L4BackConfirm,
 
-    NetPosition,
-    NetConfirm,
+    NetPosition, NetConfirm,
 
-    ProcessorPosition,
-    ProcessorConfirm,
-    FrontConfirm,
-    BackConfirm,
+    ProcessorPosition, ProcessorConfirm, FrontConfirm, BackConfirm,
 
-    EndPosition,
-    Through,
-    AlgaeTension,
-    CoralSpit,
-    SustainToL1,
-    L4FrontAuto,
-    L4FrontAutoConfirm,
-    FrontTransition,
-    BackTransition
+    EndPosition, Through, AlgaeTension, CoralSpit, SustainToL1,
+
+    L4FrontAuto, L4FrontAutoConfirm,
+
+    L4BackAuto, L4BackAutoConfirm,
+
+    FrontTransition, BackTransition
 };
 

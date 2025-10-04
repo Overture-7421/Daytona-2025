@@ -49,9 +49,9 @@ frc2::CommandPtr StateManager::InitialToL4Front() {
 
 frc2::CommandPtr StateManager::InitialToL4Back() {
     return frc2::cmd::Parallel(climber->setClimberCommand(ClimberConstants::ClimberRest),
-            arm->setState(Positions::L4Back, Heading::Back), elevator->setState(Positions::L4Back),
-            intake->setState(Positions::L4Back), grabber->setState(Positions::L4Back)).AlongWith(
-            setStatePosition(Positions::L4Back));
+            intake->setState(Positions::L1Position), elevator->setState(Positions::L4Back),
+            arm->setState(Positions::L4BackAuto, Heading::Back), grabber->setState(Positions::L4Back)).AlongWith(
+            setStatePosition(Positions::L4BackAuto));
 }
 
 frc2::CommandPtr StateManager::SustainedToIntake() {
@@ -110,7 +110,7 @@ frc2::CommandPtr StateManager::AlgaeHighReefToSustained() {
 }
 
 frc2::CommandPtr StateManager::AlgaeHighReefToAlgaeHold() {
-    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
+    return frc2::cmd::Sequence(grabber->setState(Positions::AlgaeHold), arm->setState(Positions::AlgaeHold),
             elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold));
 }
@@ -122,7 +122,7 @@ frc2::CommandPtr StateManager::AlgaeLowReefToSustained() {
 }
 
 frc2::CommandPtr StateManager::AlgaeLowReefToAlgaeHold() {
-    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
+    return frc2::cmd::Sequence(grabber->setState(Positions::AlgaeHold), arm->setState(Positions::AlgaeHold),
             elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold));
 }
@@ -134,7 +134,7 @@ frc2::CommandPtr StateManager::AlgaeGroundToSustained() {
 }
 
 frc2::CommandPtr StateManager::AlgaeGroundToAlgaeHold() {
-    return frc2::cmd::Sequence(arm->setState(Positions::AlgaeHold), grabber->setState(Positions::AlgaeHold),
+    return frc2::cmd::Sequence(grabber->setState(Positions::AlgaeHold), arm->setState(Positions::AlgaeHold),
             elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold));
 }
@@ -183,8 +183,9 @@ frc2::CommandPtr StateManager::CoralHoldToL1Position() {
 frc2::CommandPtr StateManager::CoralHoldToL2Front() {
     return frc2::cmd::Parallel(
             frc2::cmd::Sequence(arm->setState(Positions::FrontTransition, Heading::Front),
-                    elevator->setState(Positions::L2Front), arm->setState(Positions::L2Front, Heading::Front)), intake->setState(Positions::L2Front),
-            grabber->setState(Positions::L2Front)).AlongWith(setStatePosition(Positions::L2Front));
+                    elevator->setState(Positions::L2Front), arm->setState(Positions::L2Front, Heading::Front)),
+            intake->setState(Positions::L2Front), grabber->setState(Positions::L2Front)).AlongWith(
+            setStatePosition(Positions::L2Front));
 }
 
 frc2::CommandPtr StateManager::CoralHoldToL3Front() {
@@ -201,7 +202,8 @@ frc2::CommandPtr StateManager::CoralHoldToL4Front() {
 
 frc2::CommandPtr StateManager::CoralHoldToL2Back() {
     return frc2::cmd::Parallel(
-            frc2::cmd::Sequence(arm->setState(Positions::BackTransition, Heading::Back), elevator->setState(Positions::L2Back), arm->setState(Positions::L2Back, Heading::Back)),
+            frc2::cmd::Sequence(arm->setState(Positions::BackTransition, Heading::Back),
+                    elevator->setState(Positions::L2Back), arm->setState(Positions::L2Back, Heading::Back)),
             intake->setState(Positions::L2Back), grabber->setState(Positions::L2Back)).AlongWith(
             setStatePosition(Positions::L2Back));
 }
@@ -220,17 +222,15 @@ frc2::CommandPtr StateManager::CoralHoldToL4Back() {
 
 frc2::CommandPtr StateManager::ReefFrontToReefPosition(Positions reefPosition) {
     return frc2::cmd::Sequence(
-        frc2::cmd::Parallel(
-        arm->setState(Positions::FrontTransition, Heading::Front),
-            elevator->setState(reefPosition)), arm->setState(reefPosition, Heading::Front),
+            frc2::cmd::Parallel(arm->setState(Positions::FrontTransition, Heading::Front),
+                    elevator->setState(reefPosition)), arm->setState(reefPosition, Heading::Front),
             intake->setState(reefPosition), grabber->setState(reefPosition)).AlongWith(setStatePosition(reefPosition));
 }
 
 frc2::CommandPtr StateManager::ReefBackToReefPosition(Positions reefPosition) {
     return frc2::cmd::Sequence(
-        frc2::cmd::Parallel(
-        arm->setState(Positions::BackTransition, Heading::Back),
-            elevator->setState(reefPosition)), arm->setState(reefPosition, Heading::Back),
+            frc2::cmd::Parallel(arm->setState(Positions::BackTransition, Heading::Back),
+                    elevator->setState(reefPosition)), arm->setState(reefPosition, Heading::Back),
             intake->setState(reefPosition), grabber->setState(reefPosition)).AlongWith(setStatePosition(reefPosition));
 }
 
@@ -279,6 +279,14 @@ frc2::CommandPtr StateManager::L4FrontAutoToFrontAutoConfirm() {
                     elevator->setState(Positions::L4FrontConfirm), intake->setState(Positions::L4FrontConfirm),
                     grabber->setState(Positions::L4FrontConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
             setStatePosition(Positions::L4FrontAutoConfirm));
+}
+
+frc2::CommandPtr StateManager::L4BackAutoToFrontAutoConfirm() {
+    return frc2::cmd::Sequence(
+            frc2::cmd::Parallel(arm->setState(Positions::L4BackAutoConfirm, Heading::Back),
+                    elevator->setState(Positions::L4BackConfirm), intake->setState(Positions::L4BackConfirm),
+                    grabber->setState(Positions::L4BackConfirm)), grabber->setState(Positions::CoralSpit)).AlongWith(
+            setStatePosition(Positions::L4BackAutoConfirm));
 }
 
 frc2::CommandPtr StateManager::L2BackToBackConfirm() {

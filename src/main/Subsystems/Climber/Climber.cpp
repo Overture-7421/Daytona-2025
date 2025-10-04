@@ -10,10 +10,6 @@ Climber::Climber() {
     climberMotor.configureMotionMagic(ClimberConstants::ClimberVelocity, ClimberConstants::ClimberAcceleration,
             0.0_tr_per_s_cu);
     frc::SmartDashboard::PutBoolean("Climber/AtPosition", false);
-
-    CANcoderConfiguration config = climberCANCoder.getConfiguration();
-    config.MagnetSensor.WithAbsoluteSensorDiscontinuityPoint(1_tr);
-    climberCANCoder.GetConfigurator().Apply(config);
 }
 
 void Climber::setToAngle(units::degree_t climberAngle) {
@@ -40,7 +36,7 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t climberAngle) {
     }, [this, climberAngle]() {
         frc::SmartDashboard::PutBoolean("Climber/AtPosition", isClimberAtPosition(climberAngle));
         return isClimberAtPosition(climberAngle);
-       // return true;
+        // return true;
     },
     {this}).ToPtr();
 }
@@ -54,7 +50,7 @@ frc2::CommandPtr Climber::setClimberClimbedCommand(units::degree_t climberAngle)
         offset = 0_deg;
     }, [this]() {
         return false;
-       // return true;
+        // return true;
     },
     {this}).ToPtr();
 }

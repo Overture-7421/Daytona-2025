@@ -67,6 +67,7 @@ public:
     frc2::CommandPtr L3FrontToFrontConfirm();
     frc2::CommandPtr L4FrontToFrontConfirm();
     frc2::CommandPtr L4FrontAutoToFrontAutoConfirm();
+    frc2::CommandPtr L4BackAutoToFrontAutoConfirm();
     frc2::CommandPtr L2BackToBackConfirm();
     frc2::CommandPtr L3BackToBackConfirm();
     frc2::CommandPtr L4BackToBackConfirm();

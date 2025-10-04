@@ -17,7 +17,7 @@ struct ClimberConstants {
 
     constexpr static const units::degree_t ClimberRangeError = 1.5_deg;
 
-    constexpr static const units::degree_t ClimberRest = 16_deg;
+    constexpr static const units::degree_t ClimberRest = 14_deg;
     constexpr static const units::degree_t ClimberOpen = 70_deg;
     constexpr static const units::degree_t ClimberClosed = 273_deg;
 
@@ -35,7 +35,7 @@ struct ClimberConstants {
         climberCANConfig.CanCoderId = climberCANCoderId;
         climberCANConfig.Offset = -0.92578125_tr;
         climberCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
-
+        climberCANConfig.absoluteDiscontinuityPoint = 1.0_tr;
         return climberCANConfig;
     }
 

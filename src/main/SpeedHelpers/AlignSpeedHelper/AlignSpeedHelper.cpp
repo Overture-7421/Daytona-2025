@@ -36,8 +36,8 @@ void AlignSpeedHelper::initialize() {
     frc::Pose2d pose = chassis->getEstimatedPose();
     frc::Pose2d poseInTargetFrame = transformToTargetFrame(pose);
 
-    frc::ChassisSpeeds currentSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(chassis->getCurrentSpeeds(),
-            -pose.Rotation() + reefPackage.pose.Rotation());
+    // frc::ChassisSpeeds currentSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(chassis->getCurrentSpeeds(),
+    //  -pose.Rotation() + reefPackage.pose.Rotation());
     xPIDController.Reset(poseInTargetFrame.X());
     yPIDController.Reset(poseInTargetFrame.Y());
     headingPIDController.Reset(poseInTargetFrame.Rotation().Degrees());

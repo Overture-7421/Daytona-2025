@@ -48,7 +48,7 @@
   "folder": "GoldenLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -140.1944289077349
+    "rotation": -103.0
   },
   "useDefaultConstraints": true
 }

@@ -33,7 +33,7 @@ struct ClimberConstants {
     constexpr static const CanCoderConfig ClimberCANConfig() {
         CanCoderConfig climberCANConfig;
         climberCANConfig.CanCoderId = climberCANCoderId;
-        climberCANConfig.Offset = -0.935302734375_tr;
+        climberCANConfig.Offset = -0.92578125_tr;
         climberCANConfig.SensorDirection = ctre::phoenix6::signals::SensorDirectionValue::CounterClockwise_Positive;
 
         return climberCANConfig;

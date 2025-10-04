@@ -171,7 +171,7 @@ void RobotContainer::ConfigMixedBindigs() {
             frc2::cmd::Parallel(
                     frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                             L2Command(&stateManager, &alignManager)),
-                    frc2::cmd::Sequence(frc2::cmd::Wait(1_s), leftAlignPos(&alignManager))).BeforeStarting(
+                    leftAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
                     })).Unless([this] {
@@ -182,7 +182,7 @@ void RobotContainer::ConfigMixedBindigs() {
             frc2::cmd::Parallel(
                     frc2::cmd::Sequence(PassCommandAlign(&stateManager), frc2::cmd::Wait(0.5_s),
                             L2Command(&stateManager, &alignManager)),
-                    frc2::cmd::Sequence(frc2::cmd::Wait(1_s), rightAlignPos(&alignManager))).BeforeStarting(
+                    rightAlignPos(&alignManager)).BeforeStarting(
                     frc2::cmd::RunOnce([this] {
                         alignManager.setHeading();
                     })).Unless([this] {

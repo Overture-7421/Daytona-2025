@@ -182,8 +182,8 @@ frc2::CommandPtr StateManager::CoralHoldToL1Position() {
 
 frc2::CommandPtr StateManager::CoralHoldToL2Front() {
     return frc2::cmd::Parallel(
-            frc2::cmd::Sequence(arm->setState(Positions::L2Front, Heading::Front),
-                    elevator->setState(Positions::L2Front)), intake->setState(Positions::L2Front),
+            frc2::cmd::Sequence(arm->setState(Positions::FrontTransition, Heading::Front),
+                    elevator->setState(Positions::L2Front), arm->setState(Positions::L2Front, Heading::Front)), intake->setState(Positions::L2Front),
             grabber->setState(Positions::L2Front)).AlongWith(setStatePosition(Positions::L2Front));
 }
 
@@ -201,7 +201,7 @@ frc2::CommandPtr StateManager::CoralHoldToL4Front() {
 
 frc2::CommandPtr StateManager::CoralHoldToL2Back() {
     return frc2::cmd::Parallel(
-            frc2::cmd::Sequence(arm->setState(Positions::L2Back, Heading::Back), elevator->setState(Positions::L2Back)),
+            frc2::cmd::Sequence(arm->setState(Positions::BackTransition, Heading::Back), elevator->setState(Positions::L2Back), arm->setState(Positions::L2Back, Heading::Back)),
             intake->setState(Positions::L2Back), grabber->setState(Positions::L2Back)).AlongWith(
             setStatePosition(Positions::L2Back));
 }

@@ -39,7 +39,10 @@ frc2::CommandPtr L2Command(StateManager *stateManager, AlignManager *alignManage
                         return alignManager->getHeading();
                     },
                     std::pair {Heading::Back, stateManager->CoralHoldToL2Back()}, std::pair {Heading::Front,
-                            stateManager->CoralHoldToL2Front()})});
+                            stateManager->CoralHoldToL2Front()})}, std::pair {Positions::L4Front, stateManager->ReefFrontToReefPosition(Positions::L2Front)}, std::pair {
+                    Positions::L4Back, stateManager->ReefBackToReefPosition(Positions::L2Back)}, std::pair {
+                    Positions::L3Front, stateManager->ReefFrontToReefPosition(Positions::L2Front)}, std::pair {
+                    Positions::L3Back, stateManager->ReefBackToReefPosition(Positions::L2Back)});
 }
 
 frc2::CommandPtr L3Command(StateManager *stateManager, AlignManager *alignManager) {
@@ -56,7 +59,10 @@ frc2::CommandPtr L3Command(StateManager *stateManager, AlignManager *alignManage
                             stateManager->CoralHoldToL3Front()})},
 
             std::pair {Positions::L4Front, stateManager->ReefFrontToReefPosition(Positions::L3Front)}, std::pair {
-                    Positions::L4Back, stateManager->ReefBackToReefPosition(Positions::L3Back)});
+                    Positions::L4Back, stateManager->ReefBackToReefPosition(Positions::L3Back)}, std::pair {
+                    Positions::L2Front, stateManager->ReefFrontToReefPosition(Positions::L3Front)}, std::pair {
+                    Positions::L2Back, stateManager->ReefBackToReefPosition(Positions::L3Back)});
+                    
 }
 
 frc2::CommandPtr L4Command(StateManager *stateManager, AlignManager *alignManager) {
@@ -72,9 +78,10 @@ frc2::CommandPtr L4Command(StateManager *stateManager, AlignManager *alignManage
                             stateManager->CoralHoldToL4Front()})},
 
             std::pair {Positions::L3Front, stateManager->ReefFrontToReefPosition(Positions::L4Front)}, std::pair {
-                    Positions::L3Back, stateManager->ReefBackToReefPosition(Positions::L4Back)});
+                    Positions::L3Back, stateManager->ReefBackToReefPosition(Positions::L4Back)}, std::pair {
+                    Positions::L2Front, stateManager->ReefFrontToReefPosition(Positions::L4Front)}, std::pair {
+                    Positions::L2Back, stateManager->ReefBackToReefPosition(Positions::L4Back)});
 }
-
 frc2::CommandPtr L4CommandAuto(StateManager *stateManager) {
     return stateManager->InitialToL4Front();
 }

@@ -14,15 +14,15 @@ RobotContainer::RobotContainer() {
 
     pathplanner::NamedCommands::registerCommand("FirstL4Back", std::move(L4CommandAutoBack(&stateManager)));
 
-    pathplanner::NamedCommands::registerCommand("LeftAlign", std::move(leftAlignPos(&alignManager)).BeforeStarting(
-                    frc2::cmd::RunOnce([this] {
-                        alignManager.setHeading();
-                    })));
+    pathplanner::NamedCommands::registerCommand("LeftAlign",
+            std::move(leftAlignPos(&alignManager)).BeforeStarting(frc2::cmd::RunOnce([this] {
+                alignManager.setHeading();
+            })));
 
-    pathplanner::NamedCommands::registerCommand("RightAlign", std::move(rightAlignPos(&alignManager)).BeforeStarting(
-                    frc2::cmd::RunOnce([this] {
-                        alignManager.setHeading();
-                    })));
+    pathplanner::NamedCommands::registerCommand("RightAlign",
+            std::move(rightAlignPos(&alignManager)).BeforeStarting(frc2::cmd::RunOnce([this] {
+                alignManager.setHeading();
+            })));
 
     pathplanner::NamedCommands::registerCommand("L4", std::move(L4Command(&stateManager, &alignManager)));
 

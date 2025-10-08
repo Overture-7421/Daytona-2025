@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.017,
-        "y": 5.6825
+        "x": 4.103954081632653,
+        "y": 5.397959183673469
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.6855,
-        "y": 6.638
+        "x": 3.3551938775510206,
+        "y": 6.441607142857141
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.8347727272727272,
-        "y": 7.200951704545455
+        "x": 1.884630681818182,
+        "y": 7.171036931818182
       },
       "prevControl": {
-        "x": 3.4125000000000005,
-        "y": 7.417999999999999
+        "x": 3.119005102040817,
+        "y": 6.823150510204081
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "GoldenLeft4-5"
+      "linkedName": "GoldenLeftIntake"
     }
   ],
   "rotationTargets": [],
@@ -34,15 +34,15 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 3.5,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -103.0
+    "velocity": 2.0,
+    "rotation": -119.99999999999999
   },
   "reversed": false,
   "folder": "GoldenLeft",
@@ -50,5 +50,5 @@
     "velocity": 0,
     "rotation": -59.99999999999999
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

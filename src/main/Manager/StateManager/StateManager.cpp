@@ -42,7 +42,7 @@ frc2::CommandPtr StateManager::InitialToSustained() {
 
 frc2::CommandPtr StateManager::InitialToL4Front() {
 	return frc2::cmd::Sequence(climber->setClimberCommand(ClimberConstants::ClimberRest),
-		intake->setState(Positions::L4Front), elevator->setState(Positions::L4Front),
+		intake->setState(Positions::L1Position), elevator->setState(Positions::L4Front),
 		arm->setState(Positions::L4FrontAuto, Heading::Front), grabber->setState(Positions::L4Front)).AlongWith(
 			setStatePosition(Positions::L4FrontAuto));
 }

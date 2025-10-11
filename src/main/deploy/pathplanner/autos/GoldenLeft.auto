@@ -185,22 +185,9 @@
           "data": {
             "commands": [
               {
-                "type": "sequential",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "GoldenLeft6"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "LeftAlign"
-                      }
-                    }
-                  ]
+                  "pathName": "GoldenLeft6"
                 }
               },
               {
@@ -224,18 +211,6 @@
                       "data": {
                         "name": "CoralHold"
                       }
-                    },
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.3
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "L4"
-                      }
                     }
                   ]
                 }
@@ -250,22 +225,9 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Sustained"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "GoldenLeft8"
-                }
-              }
-            ]
+            "name": "Sustained"
           }
         }
       ]

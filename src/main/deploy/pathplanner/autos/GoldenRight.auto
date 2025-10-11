@@ -5,36 +5,23 @@
     "data": {
       "commands": [
         {
-          "type": "sequential",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "parallel",
+                "type": "sequential",
                 "data": {
                   "commands": [
                     {
-                      "type": "sequential",
+                      "type": "path",
                       "data": {
-                        "commands": [
-                          {
-                            "type": "path",
-                            "data": {
-                              "pathName": "GoldenRight1"
-                            }
-                          },
-                          {
-                            "type": "named",
-                            "data": {
-                              "name": "LeftAlign"
-                            }
-                          }
-                        ]
+                        "pathName": "GoldenRight1"
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "FirstL4Back"
+                        "name": "LeftAlign"
                       }
                     }
                   ]
@@ -43,11 +30,24 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Confirm"
+                  "name": "FirstL4Front"
                 }
-              },
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Confirm"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
               {
-                "type": "parallel",
+                "type": "sequential",
                 "data": {
                   "commands": [
                     {
@@ -59,20 +59,26 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "Intake"
+                        "name": "RightAlign"
                       }
                     }
                   ]
                 }
               },
               {
-                "type": "parallel",
+                "type": "sequential",
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "named",
                       "data": {
-                        "pathName": "GoldenRight3"
+                        "name": "Intake"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.7
                       }
                     },
                     {
@@ -80,18 +86,11 @@
                       "data": {
                         "name": "CoralHold"
                       }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
+                    },
                     {
-                      "type": "named",
+                      "type": "wait",
                       "data": {
-                        "name": "RightAlign"
+                        "waitTime": 0.3
                       }
                     },
                     {
@@ -102,15 +101,22 @@
                     }
                   ]
                 }
-              },
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Confirm"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "Confirm"
-                }
-              },
-              {
-                "type": "parallel",
+                "type": "sequential",
                 "data": {
                   "commands": [
                     {
@@ -122,20 +128,26 @@
                     {
                       "type": "named",
                       "data": {
-                        "name": "Intake"
+                        "name": "LeftAlign"
                       }
                     }
                   ]
                 }
               },
               {
-                "type": "parallel",
+                "type": "sequential",
                 "data": {
                   "commands": [
                     {
-                      "type": "path",
+                      "type": "named",
                       "data": {
-                        "pathName": "GoldenRight5"
+                        "name": "Intake"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.0
                       }
                     },
                     {
@@ -143,18 +155,11 @@
                       "data": {
                         "name": "CoralHold"
                       }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
+                    },
                     {
-                      "type": "named",
+                      "type": "wait",
                       "data": {
-                        "name": "LeftAlign"
+                        "waitTime": 0.3
                       }
                     },
                     {
@@ -165,20 +170,64 @@
                     }
                   ]
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Confirm"
-                }
-              },
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Confirm"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
               {
                 "type": "path",
                 "data": {
                   "pathName": "GoldenRight6"
                 }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Intake"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "CoralHold"
+                      }
+                    }
+                  ]
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Confirm"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sustained"
           }
         }
       ]

@@ -36,6 +36,8 @@ RobotContainer::RobotContainer() {
 
     pathplanner::NamedCommands::registerCommand("AlgaeHold", std::move(AlgaeHoldCommand(&stateManager)));
 
+    pathplanner::NamedCommands::rehisterCommand("L1", std::move(L1Command(&stateManager)));
+
     autoChooser = pathplanner::AutoBuilder::buildAutoChooser();
     frc::SmartDashboard::PutData("AutoChooser", &autoChooser);
 

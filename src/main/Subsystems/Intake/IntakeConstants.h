@@ -35,11 +35,11 @@ struct IntakeConstants {
             {Positions::IntakeCoralStation, {3.0_V, 8.25_V, 0_deg}}, //To be defined
             {Positions::L1Confirm, {-4.0_V, 0.0_V, 30_deg}}, //To be defined
             {Positions::L1Position, {0.0_V, 0.0_V, 30_deg}}, //To be defined
-            {Positions::L2Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L2BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
-                    Positions::L2Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L2FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
-                    Positions::L3Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L3BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
-                    Positions::L3Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L3FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
-                    Positions::L4Back, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
+            {Positions::L2Back, {0.0_V, 0.0_V, 10_deg}}, {Positions::L2BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
+                    Positions::L2Front, {0.0_V, 0.0_V, 20_deg}}, {Positions::L2FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
+                    Positions::L3Back, {0.0_V, 0.0_V, 20_deg}}, {Positions::L3BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
+                    Positions::L3Front, {0.0_V, 0.0_V, 20_deg}}, {Positions::L3FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
+                    Positions::L4Back, {0.0_V, 0.0_V, 20_deg}}, {Positions::L4BackConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::L4Front, {0.0_V, 0.0_V, 0_deg}}, {Positions::L4FrontConfirm, {0.0_V, 0.0_V, 0_deg}}, {
                     Positions::NetPosition, {0.0_V, 0.0_V, 35.3_deg}},
             {Positions::NetConfirm, {0.0_V, 0.0_V, 35.3_deg}},

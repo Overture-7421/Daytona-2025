@@ -73,8 +73,8 @@ void RobotContainer::ConfigDriverBindings() {
         return grabber.isAlgaeIn();
     }));
 
-    driver.RightBumper().Debounce(300_ms).WhileTrue(ConfirmCommand(&stateManager));
-    driver.RightBumper().Debounce(300_ms).OnFalse(SustainedConfirmedCommands(&stateManager));
+    driver.RightBumper().Debounce(200_ms).WhileTrue(ConfirmCommand(&stateManager));
+    driver.RightBumper().Debounce(200_ms).OnFalse(SustainedConfirmedCommands(&stateManager));
 
     driver.LeftBumper().Debounce(200_ms).WhileTrue(AlgaeGroundCommand(&stateManager));
     driver.LeftBumper().Debounce(200_ms).OnFalse(

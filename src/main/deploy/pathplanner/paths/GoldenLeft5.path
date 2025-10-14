@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.0142613636363635,
-        "y": 6.921747159090909
+        "x": 1.532719370860927,
+        "y": 6.901572847682119
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6054261363636362,
-        "y": 5.505781249999999
+        "x": 2.321596341168111,
+        "y": 6.165345861091839
       },
       "isLocked": false,
       "linkedName": "GoldenLeftIntake"
@@ -20,8 +20,8 @@
         "y": 5.4875
       },
       "prevControl": {
-        "x": 2.6638392857142863,
-        "y": 5.688966836734694
+        "x": 2.8482018878107906,
+        "y": 6.2208954190372
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,8 +47,8 @@
   "reversed": false,
   "folder": "GoldenLeft",
   "idealStartingState": {
-    "velocity": 2.0,
-    "rotation": -90.0
+    "velocity": 0.0,
+    "rotation": -55.49147701245817
   },
   "useDefaultConstraints": false
 }

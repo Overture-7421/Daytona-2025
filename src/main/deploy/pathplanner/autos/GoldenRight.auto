@@ -57,6 +57,12 @@
                       }
                     },
                     {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight3"
+                      }
+                    },
+                    {
                       "type": "named",
                       "data": {
                         "name": "RightAlign"
@@ -78,7 +84,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.7
+                        "waitTime": 1.0
                       }
                     },
                     {
@@ -126,6 +132,12 @@
                       }
                     },
                     {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight5"
+                      }
+                    },
+                    {
                       "type": "named",
                       "data": {
                         "name": "LeftAlign"
@@ -147,7 +159,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.0
+                        "waitTime": 1.0
                       }
                     },
                     {
@@ -185,9 +197,22 @@
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "sequential",
                 "data": {
-                  "pathName": "GoldenRight6"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight6"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "GoldenRight7"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -203,13 +228,13 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.5
+                        "waitTime": 0.7
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "CoralHold"
+                        "name": "L1"
                       }
                     }
                   ]
@@ -222,12 +247,6 @@
           "type": "named",
           "data": {
             "name": "Confirm"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Sustained"
           }
         }
       ]

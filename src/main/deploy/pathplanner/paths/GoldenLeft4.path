@@ -16,24 +16,19 @@
     },
     {
       "anchor": {
-        "x": 1.532719370860927,
-        "y": 6.901572847682119
+        "x": 1.6271523178807947,
+        "y": 6.756291390728475
       },
       "prevControl": {
-        "x": 3.268832781456954,
-        "y": 7.235720198675495
+        "x": 2.629594370860927,
+        "y": 7.460906456953642
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "GoldenLeftIntake"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.5763182238667925,
-      "rotationDegrees": -88.64014275944305
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],

@@ -295,7 +295,7 @@ AprilTags::Config RobotContainer::railCameraRight() {
 AprilTags::Config RobotContainer::climberCameraLeft() {
 	AprilTags::Config config;
 	config.cameraName = "ClimberLeft";
-	config.cameraToRobot = { -11.162644_in, 10.651305_in, 8.845276_in, {0_deg, -20_deg, -119.975294_deg} };
+	config.cameraToRobot = { -11.250259_in, 11.154470_in, 7.327807_in, {0_deg, -24_deg, -140.780604_deg} };
 	config.tagValidDistances = { {1, 3.5_m}, {2, 4.0_m}, {3, 4.0_m} };
 	return config;
 }

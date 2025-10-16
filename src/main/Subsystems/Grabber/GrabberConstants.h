@@ -38,7 +38,7 @@ public:
 		grabberConfig.Inverted = false;
 		grabberConfig.CurrentLimit = 30_A;
 		grabberConfig.StatorCurrentLimit = 60_A;
-		grabberConfig.TriggerThreshold = 70_A;
+		grabberConfig.TriggerThreshold = 75_A;
 		grabberConfig.TriggerThresholdTime = 0.5_s;
 		grabberConfig.ClosedLoopRampRate = 0.0_s;
 		grabberConfig.OpenLoopRampRate = 0.05_s;

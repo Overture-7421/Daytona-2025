@@ -32,6 +32,9 @@ struct ArmConstants {
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 9_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 6_tr_per_s_sq;
 
+    constexpr static const units::turns_per_second_t ArmCruiseVelocityLower = 7_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAccelerationLower = 4_tr_per_s_sq;
+
     constexpr static const double ArmRotorToSensor = 60;
 
     constexpr static const double ArmMotorId = 23;

@@ -23,6 +23,9 @@ public:
     frc2::CommandPtr setCharacterization(units::degree_t angle);
     frc2::CommandPtr setArmZero();
 
+    void setArmLowerSpeed();
+    void setArmNormalSpeed();
+
     void Periodic() override;
 
 private:

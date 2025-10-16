@@ -80,6 +80,15 @@ frc2::CommandPtr Arm::setState(Positions state) {
     {this}).ToPtr();
 }
 
+void Arm::setArmLowerSpeed() {
+    armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocityLower, ArmConstants::ArmCruiseAccelerationLower,
+            0_tr_per_s_cu);
+}
+
+void Arm::setArmNormalSpeed() {
+    armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocity, ArmConstants::ArmCruiseAcceleration, 0_tr_per_s_cu);
+}
+
 void Arm::Periodic() {
 
     frc::SmartDashboard::PutNumber("Arm/CurrentArmAngle", getCurrentAngle().value());

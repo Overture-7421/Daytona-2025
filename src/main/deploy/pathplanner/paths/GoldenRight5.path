@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.2763636363636366,
-        "y": 1.23794034090909
+        "x": 1.3960227272727275,
+        "y": 1.1382244318181813
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.507549860853433,
-        "y": 0.7380041164192939
+        "x": 2.3632670454545455,
+        "y": 0.5499005681818177
       },
       "isLocked": false,
       "linkedName": "GoldenRightIntake"
     },
     {
       "anchor": {
-        "x": 3.4576986754966885,
-        "y": 2.3760554635761593
+        "x": 3.699460227272727,
+        "y": 2.3148721590909087
       },
       "prevControl": {
-        "x": 3.768176020408164,
-        "y": 1.7864795918367338
+        "x": 3.629659090909091,
+        "y": 1.21799715909091
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.45,
-    "maxAcceleration": 3.5,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -48,7 +48,7 @@
   "folder": "GoldenRight",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -117.0
+    "rotation": -120.96375653207367
   },
   "useDefaultConstraints": false
 }

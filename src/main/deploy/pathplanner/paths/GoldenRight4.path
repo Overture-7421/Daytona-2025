@@ -9,19 +9,19 @@
       "prevControl": null,
       "nextControl": {
         "x": 3.909948979591837,
-        "y": 0.9582270408163249
+        "y": 0.9582270408163245
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.2763636363636366,
-        "y": 1.23794034090909
+        "x": 1.3960227272727275,
+        "y": 1.1382244318181813
       },
       "prevControl": {
-        "x": 2.8251924476894947,
-        "y": 0.6475244063233344
+        "x": 2.9448515385985856,
+        "y": 0.5478084972324256
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -117.0
+    "rotation": -120.96375653207367
   },
   "reversed": false,
   "folder": "GoldenRight",

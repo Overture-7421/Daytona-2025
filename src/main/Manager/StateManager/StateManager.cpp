@@ -114,9 +114,9 @@ frc2::CommandPtr StateManager::AlgaeHighReefToAlgaeHold() {
             elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold)).BeforeStarting(frc2::cmd::RunOnce([this] {
         return arm->setArmLowerSpeed();
-    })).AndThen(frc2::cmd::RunOnce([this] {
+    })).FinallyDo(frc2::cmd::RunOnce([this] {
         return arm->setArmNormalSpeed();
-    }));
+    })).;
 }
 
 frc2::CommandPtr StateManager::AlgaeLowReefToSustained() {
@@ -130,7 +130,7 @@ frc2::CommandPtr StateManager::AlgaeLowReefToAlgaeHold() {
             elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold)).BeforeStarting(frc2::cmd::RunOnce([this] {
         return arm->setArmLowerSpeed();
-    })).AndThen(frc2::cmd::RunOnce([this] {
+    })).FinallyDo(frc2::cmd::RunOnce([this] {
         return arm->setArmNormalSpeed();
     }));
 }
@@ -146,7 +146,7 @@ frc2::CommandPtr StateManager::AlgaeGroundToAlgaeHold() {
             elevator->setState(Positions::AlgaeHold), intake->setState(Positions::AlgaeHold)).AlongWith(
             setStatePosition(Positions::AlgaeHold)).BeforeStarting(frc2::cmd::RunOnce([this] {
         return arm->setArmLowerSpeed();
-    })).AndThen(frc2::cmd::RunOnce([this] {
+    })).FinallyDo(frc2::cmd::RunOnce([this] {
         return arm->setArmNormalSpeed();
     }));
 }

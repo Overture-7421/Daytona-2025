@@ -49,6 +49,7 @@ void RobotContainer::ConfigureBindings() {
     ConfigMixedBindigs();
     ConfigDefaultCommands();
     ConfigCharacterizationBindings();
+
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -98,6 +99,11 @@ void RobotContainer::ConfigDriverBindings() {
     driver.A().OnFalse(grabber.setCharacterization(GrabberConstants::GrabberRollersZero));
 
     driver.Y().WhileTrue(algaeAlignPos(&alignManager));
+
+    leds.SetDefaultCommand(BlinkEffect(&leds, "all", {224, 42, 255}, 4_s).ToPtr().IgnoringDisable(true));
+
+    isCoralOnIntake.WhileTrue(StaticEffect(&leds, "all", {232, 255, 54}).ToPtr().IgnoringDisable(true));
+
 }
 
 void RobotContainer::ConfigOperatorBindings() {

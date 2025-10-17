@@ -31,6 +31,10 @@
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/CharacterizationCommand/CharacterizationCommand.h"
 
+#include "OvertureLib/Subsystems/LedsManager/LedsManager.h"
+#include <OvertureLib/Subsystems/LedsManager/Effects/StaticEffect/StaticEffect.h>
+#include <OvertureLib/Subsystems/LedsManager/Effects/BlinkEffect/BlinkEffect.h>
+
 class RobotContainer: public OverContainer {
 public:
     RobotContainer();
@@ -88,6 +92,12 @@ private:
 
     frc2::Trigger toInitial {[] {
         return frc::SmartDashboard::GetBoolean("To-Initial", false);
+    }};
+
+    LedsManager leds {8, 15, { {"all", {0, 239}}}};
+
+    frc2::Trigger isCoralOnIntake {[this] {
+        return intake.isCoralIn();
     }};
 
     // frc2::Trigger increaseOffsetX {[] {

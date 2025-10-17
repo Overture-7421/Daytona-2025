@@ -8,27 +8,32 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.675620860927152,
-        "y": 0.9377690397351
+        "x": 4.7829719387755105,
+        "y": 0.9134566326530602
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.8014900662251656,
-        "y": 0.9740894039735098
+        "x": 1.581887755102041,
+        "y": 1.2417729591836724
       },
       "prevControl": {
-        "x": 2.7167632450299064,
-        "y": 0.7416390728497048
+        "x": 3.007079081632653,
+        "y": 0.41352040816326385
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "GoldenRightIntake"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.7889390519187316,
+      "rotationDegrees": -115.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -42,7 +47,7 @@
   },
   "goalEndState": {
     "velocity": 2.0,
-    "rotation": -75.0
+    "rotation": -117.0
   },
   "reversed": false,
   "folder": "GoldenRight",

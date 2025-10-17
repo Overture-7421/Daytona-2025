@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.9914116455914015,
-        "y": 1.373707840069002
+        "x": 2.932387366172036,
+        "y": 1.3422973432475531
       },
       "isLocked": false,
       "linkedName": "GoldenRightIntake"
@@ -20,8 +20,8 @@
         "y": 2.4196399006622515
       },
       "prevControl": {
-        "x": 2.9466765110107325,
-        "y": 1.7232129124076812
+        "x": 2.880875821216705,
+        "y": 1.5914843820270117
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.0,
-    "maxAcceleration": 3.0,
+    "maxAcceleration": 2.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

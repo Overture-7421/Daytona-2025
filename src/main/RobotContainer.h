@@ -100,6 +100,10 @@ private:
         return intake.isCoralIn();
     }};
 
+	frc2::Trigger disableClimber{[this] {
+		return frc::SmartDashboard::GetBoolean("DisableClimber", false);
+	}
+
     // frc2::Trigger increaseOffsetX {[] {
     //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
     // }};

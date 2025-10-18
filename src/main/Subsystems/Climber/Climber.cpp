@@ -28,13 +28,20 @@ bool Climber::isClimberAtPosition(units::degree_t climberAngle) {
 
 frc2::CommandPtr Climber::setClimberCommand(units::degree_t climberAngle) {
     return frc2::FunctionalCommand([this, climberAngle]() {
-        setToAngle(climberAngle);
+        if (!isDisabled) {
+            setToAngle(climberAngle);
+        }
     }, [this, climberAngle]() {
-        setToAngle(climberAngle + offset);
+        if (!isDisabled) {
+            setToAngle(climberAngle + offset);
+        }
     }, [this](bool interupted) {
         offset = 0_deg;
     }, [this, climberAngle]() {
         frc::SmartDashboard::PutBoolean("Climber/AtPosition", isClimberAtPosition(climberAngle));
+        if (isDisabled) {
+            return true;
+        }
         return isClimberAtPosition(climberAngle);
         // return true;
     },
@@ -43,14 +50,35 @@ frc2::CommandPtr Climber::setClimberCommand(units::degree_t climberAngle) {
 
 frc2::CommandPtr Climber::setClimberClimbedCommand(units::degree_t climberAngle) {
     return frc2::FunctionalCommand([this, climberAngle]() {
-        setToAngle(climberAngle);
+        if (!isDisabled) {
+            setToAngle(climberAngle);
+        }
     }, [this, climberAngle]() {
-        setToAngle(climberAngle + offset);
+        if (!isDisabled) {
+            setToAngle(climberAngle + offset);
+        }
     }, [this](bool interupted) {
         offset = 0_deg;
     }, [this]() {
+        if (isDisabled) {
+            return true;
+        }
         return false;
         // return true;
+    },
+    {this}).ToPtr();
+}
+
+frc2::CommandPtr Climber::disableClimberCommand() {
+    return frc2::FunctionalCommand([this]() {
+        climberMotor.Disable();
+        isDisabled = true;
+    }, []() {
+
+    }, [](bool interupted) {
+
+    }, []() {
+        return true;
     },
     {this}).ToPtr();
 }

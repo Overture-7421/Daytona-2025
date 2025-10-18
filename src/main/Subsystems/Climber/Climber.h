@@ -26,7 +26,7 @@ public:
     frc2::CommandPtr setClimberCommand(units::degree_t climberAngle);
 
     frc2::CommandPtr setClimberClimbedCommand(units::degree_t climberAngle);
-
+    frc2::CommandPtr disableClimberCommand();
     bool isClimberAtPosition(units::degree_t climberAngle);
 
     void Periodic() override;
@@ -37,6 +37,7 @@ private:
     OverCANCoder climberCANCoder {ClimberConstants::ClimberCANConfig(), "rio"};
 
     MotionMagicVoltage armVoltage {0_tr};
+    bool isDisabled = false;
 
     units::degree_t offset = 0.0_deg;
     units::degree_t target = 233_deg; //aquí se pone la posición inicial (NO definido aun)

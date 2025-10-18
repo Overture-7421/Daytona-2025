@@ -95,6 +95,8 @@ void RobotContainer::ConfigDriverBindings() {
         frc::SmartDashboard::PutBoolean("To-Initial", false);
     })));
 
+    disableClimber.OnTrue(climber.disableClimberCommand());
+
     driver.A().WhileTrue(grabber.setCharacterization(GrabberConstants::GrabberSpitAlgae));
     driver.A().OnFalse(grabber.setCharacterization(GrabberConstants::GrabberRollersZero));
 

@@ -3,14 +3,14 @@
   "robotLength": 0.79,
   "holonomicMode": true,
   "pathFolders": [
+    "AlgaeAuto",
     "GoldenLeft",
-    "GoldenRight",
-    "AlgaeAuto"
+    "GoldenRight"
   ],
   "autoFolders": [
+    "AlgaeAuto",
     "GoldenLeft",
-    "GoldenRight",
-    "AlgaeAuto"
+    "GoldenRight"
   ],
   "defaultMaxVel": 5.45,
   "defaultMaxAccel": 3.5,

@@ -31,88 +31,101 @@
 #include "Commands/ConfirmCommand/ConfirmCommand.h"
 #include "Commands/CharacterizationCommand/CharacterizationCommand.h"
 
-class RobotContainer: public OverContainer {
-public:
-    RobotContainer();
+#include "OvertureLib/Subsystems/LedsManager/LedsManager.h"
+#include <OvertureLib/Subsystems/LedsManager/Effects/StaticEffect/StaticEffect.h>
+#include <OvertureLib/Subsystems/LedsManager/Effects/BlinkEffect/BlinkEffect.h>
 
-    frc2::Command* GetAutonomousCommand();
-    void UpdateTelemetry();
+class RobotContainer : public OverContainer {
+public:
+	RobotContainer();
+
+	frc2::Command* GetAutonomousCommand();
+	void UpdateTelemetry();
 
 private:
 
-    void ConfigureBindings();
-    void ConfigDriverBindings();
-    void ConfigOperatorBindings();
-    void ConfigMixedBindigs();
-    void ConfigDefaultCommands();
-    void ConfigCharacterizationBindings();
-    void disableBackCamera();
-    void enableBackCamera();
+	void ConfigureBindings();
+	void ConfigDriverBindings();
+	void ConfigOperatorBindings();
+	void ConfigMixedBindigs();
+	void ConfigDefaultCommands();
+	void ConfigCharacterizationBindings();
+	void disableBackCamera();
+	void enableBackCamera();
 
-    OverXboxController driver {0, 0.05, 0.2};
-    OverXboxController oprtr {1, 0.20, 0.2};
-    OverConsole console {2};
-    OverXboxController test {3, 0.20, 0.2};
+	OverXboxController driver{ 0, 0.05, 0.2 };
+	OverXboxController oprtr{ 1, 0.20, 0.2 };
+	OverConsole console{ 2 };
+	OverXboxController test{ 3, 0.20, 0.2 };
 
 #ifndef __FRC_ROBORIO__
-    frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
+	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::kDefaultField);
 #else
 	frc::AprilTagFieldLayout tagLayout = frc::AprilTagFieldLayout::LoadField(frc::AprilTagField::k2025ReefscapeWelded);
 	//frc::AprilTagFieldLayout tagLayout{ "/home/lvuser/deploy/tag_layout/7421-field.json" };
 #endif 
-    double getLeftStickDistance();
-    bool getDriverOverride();
+	double getLeftStickDistance();
+	bool getDriverOverride();
 
-    //Subsystems
-    Chassis chassis;
-    Grabber grabber;
-    Elevator elevator;
-    Arm arm;
-    Climber climber;
-    Intake intake;
+	//Subsystems
+	Chassis chassis;
+	Grabber grabber;
+	Elevator elevator;
+	Arm arm;
+	Climber climber;
+	Intake intake;
 
-    AlignManager alignManager {&chassis, &tagLayout};
-    StateManager stateManager {&intake, &arm, &elevator, &grabber, &climber};
+	AlignManager alignManager{ &chassis, &tagLayout };
+	StateManager stateManager{ &intake, &arm, &elevator, &grabber, &climber };
 
-    static AprilTags::Config railCameraRight();
-    static AprilTags::Config climberCameraLeft();
-    static AprilTags::Config climberCameraRight();
-    static AprilTags::Config railCameraLeft();
+	static AprilTags::Config railCameraRight();
+	static AprilTags::Config climberCameraLeft();
+	static AprilTags::Config climberCameraRight();
+	static AprilTags::Config railCameraLeft();
 
-    AprilTags railCamRight {&tagLayout, &chassis, railCameraRight()};
-    AprilTags climberCamLeft {&tagLayout, &chassis, climberCameraLeft()};
-    AprilTags climberCamRight {&tagLayout, &chassis, climberCameraRight()};
-    AprilTags railCamLeft {&tagLayout, &chassis, railCameraLeft()};
+	AprilTags railCamRight{ &tagLayout, &chassis, railCameraRight() };
+	AprilTags climberCamLeft{ &tagLayout, &chassis, climberCameraLeft() };
+	AprilTags climberCamRight{ &tagLayout, &chassis, climberCameraRight() };
+	AprilTags railCamLeft{ &tagLayout, &chassis, railCameraLeft() };
 
-    frc::SendableChooser<frc2::Command*> autoChooser;
+	frc::SendableChooser<frc2::Command*> autoChooser;
 
-    frc2::Trigger toInitial {[] {
-        return frc::SmartDashboard::GetBoolean("To-Initial", false);
-    }};
+	frc2::Trigger toInitial{ [] {
+		return frc::SmartDashboard::GetBoolean("To-Initial", false);
+	} };
 
-    // frc2::Trigger increaseOffsetX {[] {
-    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
-    // }};
-    // frc2::Trigger decreaseOffsetX {[] {
-    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);
-    // }};
+	// LedsManager leds {8, 15, { {"all", {0, 239}}}};
 
-    // frc2::Trigger increaseOffsetLeft {[] {
-    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
-    // }};
-    // frc2::Trigger decreaseOffsetLeft {[] {
-    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
-    // }};
+	// frc2::Trigger isCoralOnIntake {[this] {
+	//     return intake.isCoralIn();
+	// }};
 
-    // frc2::Trigger increaseOffsetRight {[] {
-    //     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);
-    // }};
-    // frc2::Trigger decreaseOffsetRight {[] {
-    //     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);
-    // }};
+	frc2::Trigger disableClimber{ [this] {
+		return frc::SmartDashboard::GetBoolean("DisableClimber", false);
+	} };
 
-    // frc2::Trigger resetOffsets {[] {
-    //     return frc::SmartDashboard::GetBoolean("ResetOffset", false);
-    // }};
+		// frc2::Trigger increaseOffsetX {[] {
+		//     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetX", false);
+		// }};
+		// frc2::Trigger decreaseOffsetX {[] {
+		//     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetX", false);
+		// }};
 
+		// frc2::Trigger increaseOffsetLeft {[] {
+		//     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetLeft", false);
+		// }};
+		// frc2::Trigger decreaseOffsetLeft {[] {
+		//     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetLeft", false);
+		// }};
+
+		// frc2::Trigger increaseOffsetRight {[] {
+		//     return frc::SmartDashboard::GetBoolean("IncreaseOffset/IncreaseOffsetRight", false);
+		// }};
+		// frc2::Trigger decreaseOffsetRight {[] {
+		//     return frc::SmartDashboard::GetBoolean("DecreaseOffset/DecreaseOffsetRight", false);
+		// }};
+
+		// frc2::Trigger resetOffsets {[] {
+		//     return frc::SmartDashboard::GetBoolean("ResetOffset", false);
+		// }};
 };

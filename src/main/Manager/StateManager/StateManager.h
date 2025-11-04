@@ -36,6 +36,7 @@ public:
     frc2::CommandPtr SustainedToAlgaeLowReef();
     frc2::CommandPtr SustainedToAlgaeHighReef();
     frc2::CommandPtr SustainedToAlgaeGround();
+    frc2::CommandPtr AlgaeHoldToAlgaeGround();
     frc2::CommandPtr SustainedToEndPosition();
     frc2::CommandPtr IntakeToL1Position();
     frc2::CommandPtr AlgaeHighReefToSustained();
@@ -45,7 +46,8 @@ public:
     frc2::CommandPtr AlgaeGroundToSustained();
     frc2::CommandPtr AlgaeGroundToAlgaeHold();
     frc2::CommandPtr L1PositionToL1Confirm();
-    frc2::CommandPtr L1PositionToCoralHold();
+    frc2::CommandPtr IntakeToCoralHold();
+    frc2::CommandPtr L1ClosedToCoralHold();
     frc2::CommandPtr L1PositionToCoralHoldAuto();
     frc2::CommandPtr L1ConfirmToSustained();
     frc2::CommandPtr CoralHoldToL1Position();
@@ -55,12 +57,17 @@ public:
     frc2::CommandPtr CoralHoldToL2Back();
     frc2::CommandPtr CoralHoldToL3Back();
     frc2::CommandPtr CoralHoldToL4Back();
+
+    frc2::CommandPtr ReefFrontToReefPosition(Positions reefPosition);
+    frc2::CommandPtr ReefBackToReefPosition(Positions reefPosition);
+
     frc2::CommandPtr AlgaeHoldToNet();
     frc2::CommandPtr AlgaeHoldToProcessor();
     frc2::CommandPtr L2FrontToFrontConfirm();
     frc2::CommandPtr L3FrontToFrontConfirm();
     frc2::CommandPtr L4FrontToFrontConfirm();
     frc2::CommandPtr L4FrontAutoToFrontAutoConfirm();
+    frc2::CommandPtr L4BackAutoToFrontAutoConfirm();
     frc2::CommandPtr L2BackToBackConfirm();
     frc2::CommandPtr L3BackToBackConfirm();
     frc2::CommandPtr L4BackToBackConfirm();
@@ -71,6 +78,9 @@ public:
     frc2::CommandPtr NetConfirmToSustained();
     frc2::CommandPtr ProcessorConfirmToSustained();
     frc2::CommandPtr AllToInitial();
+    frc2::CommandPtr L1PositionClosed();
+    frc2::CommandPtr L1PositionIntake();
+    frc2::CommandPtr L1ClosedConfirm();
 
 private:
     // bool execute = false;

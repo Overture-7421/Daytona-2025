@@ -55,18 +55,6 @@
                           }
                         ]
                       }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AlgaeReef"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AlgaeHold"
-                      }
                     }
                   ]
                 }
@@ -79,12 +67,6 @@
                       "type": "path",
                       "data": {
                         "pathName": "AlgaeAuto3"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AlgaeCommand"
                       }
                     }
                   ]
@@ -118,18 +100,6 @@
                           }
                         ]
                       }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AlgaeReef"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AlgaeHold"
-                      }
                     }
                   ]
                 }
@@ -142,12 +112,6 @@
                       "type": "path",
                       "data": {
                         "pathName": "AlgaeAuto5"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AlgaeCommand"
                       }
                     }
                   ]

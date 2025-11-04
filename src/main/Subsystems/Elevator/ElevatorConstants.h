@@ -13,16 +13,16 @@ struct ElevatorConstants {
     constexpr static const units::volt_t feedForward = 0_V;
     constexpr static const units::meter_t RangeError = 0.04_m; //Range of error the elevator is permiited to have.
 
-    inline static const std::map<Positions, units::meter_t> ElevatorPositions = { {Positions::AlgaeGround, 0.01_m}, {
-            Positions::AlgaeHold, 0.08_m}, {Positions::AlgaeHighReef, 1.30_m}, {Positions::AlgaeLowReef, 0.82_m}, {
-            Positions::CoralAndAlgae, 1.05_m}, {Positions::CoralHold, 0.93_m}, {Positions::InitialPosition, 0.00_m}, {
+    inline static const std::map<Positions, units::meter_t> ElevatorPositions = { {Positions::AlgaeGround, 0.10_m}, {
+            Positions::AlgaeHold, 0.08_m}, {Positions::AlgaeHighReef, 1.27_m}, {Positions::AlgaeLowReef, 0.79_m}, {
+            Positions::CoralAndAlgae, 1.05_m}, {Positions::CoralHold, 0.92_m}, {Positions::InitialPosition, 0.001_m}, {
             Positions::Intake, 1.05_m}, {Positions::IntakeCoralStation, 1.05_m}, {Positions::L1Confirm, 1.05_m}, {
-            Positions::L1Position, 1.05_m}, {Positions::L2Back, 0.46_m}, {Positions::L2BackConfirm, 0.46_m}, {
+            Positions::L1Position, 1.15_m}, {Positions::L2Back, 0.46_m}, {Positions::L2BackConfirm, 0.46_m}, {
             Positions::L2Front, 0.35_m}, {Positions::L2FrontConfirm, 0.35_m}, {Positions::L3Back, 0.87_m}, {
             Positions::L3BackConfirm, 0.87_m}, {Positions::L3Front, 0.95_m}, {Positions::L3FrontConfirm, 0.95_m}, {
-            Positions::L4Back, 1.62_m}, {Positions::L4BackConfirm, 1.63_m}, {Positions::L4Front, 1.60_m}, {
-            Positions::L4FrontConfirm, 1.60_m}, {Positions::NetPosition, 1.67_m}, {Positions::NetConfirm, 1.67_m}, {
-            Positions::ProcessorPosition, 0.14_m}, {Positions::ProcessorConfirm, 0.14_m}, {Positions::SustainedPosition,
+            Positions::L4Back, 1.60_m}, {Positions::L4BackConfirm, 1.60_m}, {Positions::L4Front, 1.60_m}, {
+            Positions::L4FrontConfirm, 1.60_m}, {Positions::NetPosition, 1.64_m}, {Positions::NetConfirm, 1.64_m}, {
+            Positions::ProcessorPosition, 0.35_m}, {Positions::ProcessorConfirm, 0.35_m}, {Positions::SustainedPosition,
             1.05_m}, {Positions::EndPosition, 0.0_m}};
 
     constexpr static const units::turns_per_second_t ElevatorCruiseVelocity = 120.0_tps; //The velocity at which the elevator travels

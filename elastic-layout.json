@@ -715,29 +715,121 @@
     {
       "name": "Drive2025",
       "grid_layout": {
-        "layouts": [],
-        "containers": [
+        "layouts": [
           {
-            "title": "Sensor Activated???",
-            "x": 1430.0,
-            "y": 0.0,
-            "width": 480.0,
+            "title": "StateManager",
+            "x": 50.0,
+            "y": 430.0,
+            "width": 260.0,
             "height": 260.0,
-            "type": "Boolean Box",
+            "type": "List Layout",
             "properties": {
-              "topic": "/SmartDashboard/Sensor Activated???",
-              "period": 0.06,
-              "data_type": "boolean",
-              "true_color": 4283215696,
-              "false_color": 4294198070,
-              "true_icon": "None",
-              "false_icon": "None"
-            }
+              "label_position": "TOP"
+            },
+            "children": [
+              {
+                "title": "CurrentState",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 130.0,
+                "height": 130.0,
+                "type": "Text Display",
+                "properties": {
+                  "topic": "/SmartDashboard/StateManager/CurrentState",
+                  "period": 0.06,
+                  "data_type": "string",
+                  "show_submit_button": false
+                }
+              },
+              {
+                "title": "IsFinished",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 130.0,
+                "height": 130.0,
+                "type": "Boolean Box",
+                "properties": {
+                  "topic": "/SmartDashboard/StateManager/IsFinished",
+                  "period": 0.06,
+                  "data_type": "boolean",
+                  "true_color": 4283215696,
+                  "false_color": 4294198070,
+                  "true_icon": "None",
+                  "false_icon": "None"
+                }
+              }
+            ]
           },
           {
+            "title": "Grabber",
+            "x": 330.0,
+            "y": 440.0,
+            "width": 260.0,
+            "height": 260.0,
+            "type": "List Layout",
+            "properties": {
+              "label_position": "TOP"
+            },
+            "children": [
+              {
+                "title": "ACTIVATED?",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 130.0,
+                "height": 130.0,
+                "type": "Boolean Box",
+                "properties": {
+                  "topic": "/SmartDashboard/Grabber/ACTIVATED?",
+                  "period": 0.06,
+                  "data_type": "boolean",
+                  "true_color": 4283215696,
+                  "false_color": 4294198070,
+                  "true_icon": "None",
+                  "false_icon": "None"
+                }
+              },
+              {
+                "title": "AlgaeIn",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 130.0,
+                "height": 130.0,
+                "type": "Boolean Box",
+                "properties": {
+                  "topic": "/SmartDashboard/Grabber/AlgaeIn",
+                  "period": 0.06,
+                  "data_type": "boolean",
+                  "true_color": 4283215696,
+                  "false_color": 4294198070,
+                  "true_icon": "None",
+                  "false_icon": "None"
+                }
+              },
+              {
+                "title": "CoralIn",
+                "x": 0.0,
+                "y": 0.0,
+                "width": 130.0,
+                "height": 130.0,
+                "type": "Boolean Box",
+                "properties": {
+                  "topic": "/SmartDashboard/Grabber/CoralIn",
+                  "period": 0.06,
+                  "data_type": "boolean",
+                  "true_color": 4283215696,
+                  "false_color": 4294198070,
+                  "true_icon": "None",
+                  "false_icon": "None"
+                }
+              }
+            ]
+          }
+        ],
+        "containers": [
+          {
             "title": "AutoChooser",
-            "x": 30.0,
-            "y": 680.0,
+            "x": 80.0,
+            "y": 300.0,
             "width": 400.0,
             "height": 130.0,
             "type": "ComboBox Chooser",
@@ -761,8 +853,8 @@
           },
           {
             "title": "Match Timer",
-            "x": 900.0,
-            "y": 0.0,
+            "x": 930.0,
+            "y": 10.0,
             "width": 530.0,
             "height": 260.0,
             "type": "Match Time",
@@ -789,7 +881,7 @@
           },
           {
             "title": "Devices",
-            "x": 590.0,
+            "x": 620.0,
             "y": 0.0,
             "width": 310.0,
             "height": 260.0,
@@ -800,124 +892,50 @@
             }
           },
           {
-            "title": "Aligned",
-            "x": 1250.0,
-            "y": 260.0,
-            "width": 660.0,
-            "height": 730.0,
+            "title": "CoralIn",
+            "x": 590.0,
+            "y": 280.0,
+            "width": 650.0,
+            "height": 400.0,
             "type": "Boolean Box",
             "properties": {
-              "topic": "/SmartDashboard/Aligned",
+              "topic": "/SmartDashboard/Intake/CoralIn",
               "period": 0.06,
               "data_type": "boolean",
-              "true_color": 4293328640,
+              "true_color": 4283215696,
               "false_color": 4294198070,
               "true_icon": "None",
               "false_icon": "None"
             }
           },
           {
-            "title": "DecreaseOffsetLeft",
-            "x": 540.0,
-            "y": 520.0,
-            "width": 220.0,
-            "height": 160.0,
+            "title": "To-Initial",
+            "x": 1400.0,
+            "y": 310.0,
+            "width": 440.0,
+            "height": 360.0,
             "type": "Toggle Button",
             "properties": {
-              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetLeft",
+              "topic": "/SmartDashboard/To-Initial",
               "period": 0.06,
               "data_type": "boolean"
             }
           },
           {
-            "title": "DecreaseOffsetRight",
-            "x": 0.0,
-            "y": 500.0,
-            "width": 240.0,
-            "height": 170.0,
-            "type": "Toggle Button",
+            "title": "Finished",
+            "x": 1500.0,
+            "y": 20.0,
+            "width": 350.0,
+            "height": 270.0,
+            "type": "Boolean Box",
             "properties": {
-              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetRight",
+              "topic": "/SmartDashboard/Finished",
               "period": 0.06,
-              "data_type": "boolean"
-            }
-          },
-          {
-            "title": "IncreaseOffsetLeft",
-            "x": 20.0,
-            "y": 260.0,
-            "width": 240.0,
-            "height": 240.0,
-            "type": "Toggle Button",
-            "properties": {
-              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetLeft",
-              "period": 0.06,
-              "data_type": "boolean"
-            }
-          },
-          {
-            "title": "IncreaseOffsetX",
-            "x": 260.0,
-            "y": 260.0,
-            "width": 240.0,
-            "height": 240.0,
-            "type": "Toggle Button",
-            "properties": {
-              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetX",
-              "period": 0.06,
-              "data_type": "boolean"
-            }
-          },
-          {
-            "title": "IncreaseOffsetRight",
-            "x": 510.0,
-            "y": 260.0,
-            "width": 240.0,
-            "height": 240.0,
-            "type": "Toggle Button",
-            "properties": {
-              "topic": "/SmartDashboard/IncreaseOffset/IncreaseOffsetRight",
-              "period": 0.06,
-              "data_type": "boolean"
-            }
-          },
-          {
-            "title": "DecreaseOffsetX",
-            "x": 270.0,
-            "y": 520.0,
-            "width": 240.0,
-            "height": 160.0,
-            "type": "Toggle Button",
-            "properties": {
-              "topic": "/SmartDashboard/DecreaseOffset/DecreaseOffsetX",
-              "period": 0.06,
-              "data_type": "boolean"
-            }
-          },
-          {
-            "title": "ResetOffset",
-            "x": 780.0,
-            "y": 620.0,
-            "width": 470.0,
-            "height": 200.0,
-            "type": "Toggle Button",
-            "properties": {
-              "topic": "/SmartDashboard/ResetOffset",
-              "period": 0.06,
-              "data_type": "boolean"
-            }
-          },
-          {
-            "title": "back_Port_1182_Output_MJPEG_Server",
-            "x": 770.0,
-            "y": 270.0,
-            "width": 470.0,
-            "height": 350.0,
-            "type": "Camera Stream",
-            "properties": {
-              "topic": "/CameraPublisher/back_Port_1182_Output_MJPEG_Server",
-              "period": 0.06,
-              "rotation_turns": 0
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
             }
           }
         ]

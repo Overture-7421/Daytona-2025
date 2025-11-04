@@ -15,21 +15,25 @@ struct ArmConstants {
     inline static const std::map<Positions, units::degree_t> ArmFront { {Positions::InitialPosition, -90_deg}, {
             Positions::SustainedPosition, 90.0_deg}, {Positions::Intake, 90.0_deg}, {Positions::IntakeCoralStation,
             90_deg}, {Positions::AlgaeHighReef, 0.0_deg}, {Positions::AlgaeLowReef, 0.0_deg}, {Positions::AlgaeGround,
-            0.0_deg}, {Positions::L1Position, 90_deg}, {Positions::L1Confirm, 90.0_deg},
-            {Positions::CoralHold, 90.0_deg}, {Positions::CoralAndAlgae, -90.0_deg}, {Positions::AlgaeHold, -90.0_deg},
-            {Positions::L2Front, -54.0_deg}, {Positions::L3Front, 307.0_deg}, {Positions::L4Front, 303.0_deg}, {
-                    Positions::L2FrontConfirm, -1.0_deg}, {Positions::L3FrontConfirm, 362.0_deg}, {
-                    Positions::L4FrontConfirm, 342.0_deg}, {Positions::NetPosition, -67.0_deg}, {Positions::NetConfirm,
-                    -67.0_deg}, {Positions::ProcessorPosition, 0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {
-                    Positions::EndPosition, -68.0_deg}, {Positions::L4FrontAuto, -57.0_deg}, {
-                    Positions::L4FrontAutoConfirm, -18.0_deg}};
+            15.0_deg}, {Positions::L1Position, 90_deg}, {Positions::L1Confirm, 90.0_deg}, {Positions::CoralHold,
+            90.0_deg}, {Positions::CoralAndAlgae, -90.0_deg}, {Positions::AlgaeHold, -90.0_deg}, {Positions::L2Front,
+            317.0_deg}, {Positions::L3Front, 317.0_deg}, {Positions::L4Front, 303.0_deg}, {Positions::L2FrontConfirm,
+            359.0_deg}, {Positions::L3FrontConfirm, 362.0_deg}, {Positions::L4FrontConfirm, 342.0_deg}, {
+            Positions::NetPosition, -120.0_deg}, {Positions::NetConfirm, -80.0_deg}, {Positions::ProcessorPosition,
+            0.0_deg}, {Positions::ProcessorConfirm, 0.0_deg}, {Positions::EndPosition, -46.0_deg}, {
+            Positions::L4FrontAuto, -57.0_deg}, {Positions::L4FrontAutoConfirm, -18.0_deg}, {Positions::FrontTransition,
+            287.0_deg}};
 
-    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, -135.0_deg}, {
-            Positions::L3Back, -107.0_deg}, {Positions::L4Back, -113.0_deg}, {Positions::L2BackConfirm, -188.0_deg}, {
-            Positions::L3BackConfirm, -183.0_deg}, {Positions::L4BackConfirm, -162.0_deg}};
+    inline static const std::map<Positions, units::degree_t> ArmBack { {Positions::L2Back, -137.0_deg}, {
+            Positions::L3Back, -137.0_deg}, {Positions::L4Back, -123.0_deg}, {Positions::L2BackConfirm, -181.0_deg}, {
+            Positions::L3BackConfirm, -182.0_deg}, {Positions::L4BackConfirm, -162.0_deg}, {Positions::BackTransition,
+            -107.0_deg}, {Positions::L4BackAuto, -123.0_deg}, {Positions::L4BackAutoConfirm, -162.0_deg}};
 
     constexpr static const units::turns_per_second_t ArmCruiseVelocity = 9_tps;
     constexpr static const units::turns_per_second_squared_t ArmCruiseAcceleration = 6_tr_per_s_sq;
+
+    constexpr static const units::turns_per_second_t ArmCruiseVelocityLower = 7_tps;
+    constexpr static const units::turns_per_second_squared_t ArmCruiseAccelerationLower = 3_tr_per_s_sq;
 
     constexpr static const double ArmRotorToSensor = 60;
 

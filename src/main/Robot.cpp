@@ -36,6 +36,7 @@ Robot::Robot() {
     }, RobotConstants::LoopTime, RobotConstants::TimingOffset);
 
     frc::SmartDashboard::PutBoolean("To-Initial", false);
+	frc::SmartDashboard::PutBoolean("DisableClimber", false);
 
     //Maybe si lo usamos
     // frc::SmartDashboard::PutBoolean("IncreaseOffset/IncreaseOffsetX", false);

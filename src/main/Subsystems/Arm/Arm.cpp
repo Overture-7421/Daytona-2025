@@ -38,6 +38,8 @@ frc2::CommandPtr Arm::setState(Positions state, Heading heading) {
         } else if (heading == Heading::Back) {
             setToAngle(ArmConstants::ArmBack.at(state));
         }
+        frc::SmartDashboard::PutBoolean("Arm/AtPosition", false);
+
     }, []() {
     }, [](bool interupted) {
     }, [this, state, heading]() {
@@ -68,6 +70,7 @@ frc2::CommandPtr Arm::setCharacterization(units::degree_t angle) {
 frc2::CommandPtr Arm::setState(Positions state) {
     return frc2::FunctionalCommand([this, state]() {
         setToAngle(ArmConstants::ArmFront.at(state));
+        frc::SmartDashboard::PutBoolean("Arm/AtPosition", false);
     }, []() {
     }, [](bool interupted) {
     }, [this, state]() {
@@ -75,6 +78,15 @@ frc2::CommandPtr Arm::setState(Positions state) {
         return isArmAtPosition(ArmConstants::ArmFront.at(state));
     },
     {this}).ToPtr();
+}
+
+void Arm::setArmLowerSpeed() {
+    armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocityLower, ArmConstants::ArmCruiseAccelerationLower,
+            0_tr_per_s_cu);
+}
+
+void Arm::setArmNormalSpeed() {
+    armMotor.configureMotionMagic(ArmConstants::ArmCruiseVelocity, ArmConstants::ArmCruiseAcceleration, 0_tr_per_s_cu);
 }
 
 void Arm::Periodic() {

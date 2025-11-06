@@ -6,7 +6,7 @@
 
 Climber::Climber() {
 
-    climberMotor.setRemoteCANCoder(ClimberConstants::climberCANCoderId);
+    //climberMotor.setRemoteCANCoder(ClimberConstants::climberCANCoderId);
     climberMotor.configureMotionMagic(ClimberConstants::ClimberVelocity, ClimberConstants::ClimberAcceleration,
             0.0_tr_per_s_cu);
     frc::SmartDashboard::PutBoolean("Climber/AtPosition", false);
@@ -20,9 +20,9 @@ void Climber::setToAngle(units::degree_t climberAngle) {
 }
 
 bool Climber::isClimberAtPosition(units::degree_t climberAngle) {
-    units::degree_t armError = climberAngle - climberCANCoder.GetAbsolutePosition().GetValue();
-    frc::SmartDashboard::PutNumber("Climber/Error", armError.value());
-    return (units::math::abs(armError) < ClimberConstants::ClimberRangeError);
+    // units::degree_t armError = climberAngle - climberCANCoder.GetAbsolutePosition().GetValue();
+    // frc::SmartDashboard::PutNumber("Climber/Error", armError.value());
+    // return (units::math::abs(armError) < ClimberConstants::ClimberRangeError);
 
 }
 
@@ -88,6 +88,6 @@ void Climber::setOffset() {
 }
 
 void Climber::Periodic() {
-    frc::SmartDashboard::PutNumber("Climber/CurrentThroughbore",
-            climberCANCoder.GetAbsolutePosition().GetValue().value() * 360);
+    //frc::SmartDashboard::PutNumber("Climber/CurrentThroughbore",climberCANCoder.GetAbsolutePosition().GetValue().value() * 360);
 }
+

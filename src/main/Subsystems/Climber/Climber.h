@@ -34,7 +34,7 @@ public:
 private:
 
 	OverTalonFX climberMotor{ ClimberConstants::ClimberConfig(), "rio" };
-	//OverCANCoder climberCANCoder{ ClimberConstants::ClimberCANConfig(), "rio" };
+	OverCANCoder climberCANCoder{ ClimberConstants::ClimberCANConfig(), "rio" };
 
 	MotionMagicVoltage armVoltage{ 0_tr };
 	bool isDisabled = true;
